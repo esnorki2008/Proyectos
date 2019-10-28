@@ -1,0 +1,13 @@
+﻿
+        digraph Automata_INFinito{
+        rankdir = LR;
+        Size ="8,5"node [shape = doublecircle, color = blue];U;
+node [shape = circle];Q->W[ label ="a"];
+W->E[ label ="b"];
+R->T[ label ="5"];
+U->Q[ label ="Epsilon"];
+Q->Q[ label ="9"];
+E->R[ label ="$"];
+T->Y[ label ="c"];
+U->Y[ label ="c"];
+}

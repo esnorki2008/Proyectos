@@ -1,0 +1,2723 @@
+Terminals unused in grammar
+
+   comenta
+   coment
+
+
+State 51 conflicts: 1 shift/reduce
+State 61 conflicts: 1 shift/reduce
+State 64 conflicts: 1 shift/reduce
+State 65 conflicts: 1 shift/reduce
+State 66 conflicts: 1 shift/reduce
+State 94 conflicts: 3 shift/reduce
+State 95 conflicts: 1 shift/reduce
+State 96 conflicts: 1 shift/reduce
+State 97 conflicts: 1 shift/reduce
+State 98 conflicts: 1 shift/reduce
+State 99 conflicts: 1 shift/reduce
+State 100 conflicts: 1 shift/reduce
+State 101 conflicts: 1 shift/reduce
+State 102 conflicts: 1 shift/reduce
+State 103 conflicts: 1 shift/reduce
+State 104 conflicts: 1 shift/reduce
+State 105 conflicts: 1 shift/reduce
+State 106 conflicts: 1 shift/reduce
+State 107 conflicts: 1 shift/reduce
+State 119 conflicts: 14 shift/reduce
+
+
+Grammar
+
+    0 $accept: INI $end
+
+    1 INI: CORPO
+
+    2 CORPO: CUERPO CORPO
+    3      | /* empty */
+
+    4 CUERPO: VAR
+    5       | IMPRI
+    6       | SHO
+    7       | ALTE
+    8       | SIS
+    9       | ASIG
+   10       | PARAS
+   11       | REPE
+
+   12 VAR: id id MAS OPE puntocoma
+   13    | id id puntocoma
+   14    | id arreglo id MAS CONTES puntocoma
+
+   15 CONTE: cora OPE corc CONTE
+   16      | cora OPE corc
+
+   17 CONTES: CONTE
+   18       | igual llaa CONTESS llac
+
+   19 CONTESS: llaa NIDO llac coma CONTESS
+   20        | llaa NIDO llac
+   21        | NIDO
+
+   22 MAS: coma id MAS
+   23    | igual
+   24    | /* empty */
+
+   25 VAL: booleano
+   26    | entero
+   27    | cadena
+   28    | decimal
+   29    | id
+   30    | id CONTE
+   31    | caracter
+
+   32 ASIG: id igual OPE puntocoma
+   33     | id CONTE igual OPE puntocoma
+
+   34 ALTE: VAL sumadoble
+   35     | VAL restadoble
+
+   36 NIDO: OPE coma NIDO
+   37     | OPE
+
+   38 IMPRI: imprimir para OPE parc puntocoma
+
+   39 SHO: show para OPE coma OPE parc puntocoma
+
+   40 SIS: si para OPE parc llaa CORPO llac ELS
+
+   41 ELS: sino llaa CORPO llac ELS
+   42    | sino SIS
+   43    | /* empty */
+
+   44 PARAS: parafor para ESC OPE puntocoma ALTE parc llaa CORPO llac
+
+   45 ESC: ASIG
+   46    | VAR
+
+   47 REPE: repetir para OPE parc llaa CORPO llac
+
+   48 OPE: OPE anddoble OPE
+   49    | OPE ordoble OPE
+   50    | OPE mayor OPE
+   51    | OPE menor OPE
+   52    | OPE menorigual OPE
+   53    | OPE mayorigual OPE
+   54    | OPE diferente OPE
+   55    | admiracion OPE
+   56    | OPE suma OPE
+   57    | OPE menos OPE
+   58    | OPE division OPE
+   59    | OPE multi OPE
+   60    | OPE potencia OPE
+   61    | OPE igualdoble OPE
+   62    | suma OPE
+   63    | menos OPE
+   64    | para OPE parc
+   65    | OPE para OPE parc
+   66    | para OPE parc OPE
+   67    | VAL
+   68    | ALTE
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+entero (258) 26
+decimal (259) 28
+caracter (260) 31
+booleano (261) 25
+cadena (262) 27
+id (263) 12 13 14 22 29 30 32 33
+suma (264) 56 62
+menos (265) 57 63
+multi (266) 59
+division (267) 58
+potencia (268) 60
+puntocoma (269) 12 13 14 32 33 38 39 44
+si (270) 40
+sino (271) 41 42
+igual (272) 18 23 32 33
+igualdoble (273) 61
+diferente (274) 54
+coma (275) 19 22 36 39
+menor (276) 51
+menorigual (277) 52
+mayor (278) 50
+mayorigual (279) 53
+ordoble (280) 49
+anddoble (281) 48
+admiracion (282) 55
+cora (283) 15 16
+llaa (284) 18 19 20 40 41 44 47
+llac (285) 18 19 20 40 41 44 47
+corc (286) 15 16
+imprimir (287) 38
+show (288) 39
+sumadoble (289) 34
+restadoble (290) 35
+para (291) 38 39 40 44 47 64 65 66
+parc (292) 38 39 40 44 47 64 65 66
+parafor (293) 44
+repetir (294) 47
+arreglo (295) 14
+comenta (296)
+coment (297)
+
+
+Nonterminals, with rules where they appear
+
+$accept (43)
+    on left: 0
+INI (44)
+    on left: 1, on right: 0
+CORPO (45)
+    on left: 2 3, on right: 1 2 40 41 44 47
+CUERPO (46)
+    on left: 4 5 6 7 8 9 10 11, on right: 2
+VAR (47)
+    on left: 12 13 14, on right: 4 46
+CONTE (48)
+    on left: 15 16, on right: 15 17 30 33
+CONTES (49)
+    on left: 17 18, on right: 14
+CONTESS (50)
+    on left: 19 20 21, on right: 18 19
+MAS (51)
+    on left: 22 23 24, on right: 12 14 22
+VAL (52)
+    on left: 25 26 27 28 29 30 31, on right: 34 35 67
+ASIG (53)
+    on left: 32 33, on right: 9 45
+ALTE (54)
+    on left: 34 35, on right: 7 44 68
+NIDO (55)
+    on left: 36 37, on right: 19 20 21 36
+IMPRI (56)
+    on left: 38, on right: 5
+SHO (57)
+    on left: 39, on right: 6
+SIS (58)
+    on left: 40, on right: 8 42
+ELS (59)
+    on left: 41 42 43, on right: 40 41
+PARAS (60)
+    on left: 44, on right: 10
+ESC (61)
+    on left: 45 46, on right: 44
+REPE (62)
+    on left: 47, on right: 11
+OPE (63)
+    on left: 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65
+    66 67 68, on right: 12 15 16 32 33 36 37 38 39 40 44 47 48 49 50
+    51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66
+
+
+state 0
+
+    0 $accept: . INI $end
+
+    entero    shift, and go to state 1
+    decimal   shift, and go to state 2
+    caracter  shift, and go to state 3
+    booleano  shift, and go to state 4
+    cadena    shift, and go to state 5
+    id        shift, and go to state 6
+    si        shift, and go to state 7
+    imprimir  shift, and go to state 8
+    show      shift, and go to state 9
+    parafor   shift, and go to state 10
+    repetir   shift, and go to state 11
+
+    $default  reduce using rule 3 (CORPO)
+
+    INI     go to state 12
+    CORPO   go to state 13
+    CUERPO  go to state 14
+    VAR     go to state 15
+    VAL     go to state 16
+    ASIG    go to state 17
+    ALTE    go to state 18
+    IMPRI   go to state 19
+    SHO     go to state 20
+    SIS     go to state 21
+    PARAS   go to state 22
+    REPE    go to state 23
+
+
+state 1
+
+   26 VAL: entero .
+
+    $default  reduce using rule 26 (VAL)
+
+
+state 2
+
+   28 VAL: decimal .
+
+    $default  reduce using rule 28 (VAL)
+
+
+state 3
+
+   31 VAL: caracter .
+
+    $default  reduce using rule 31 (VAL)
+
+
+state 4
+
+   25 VAL: booleano .
+
+    $default  reduce using rule 25 (VAL)
+
+
+state 5
+
+   27 VAL: cadena .
+
+    $default  reduce using rule 27 (VAL)
+
+
+state 6
+
+   12 VAR: id . id MAS OPE puntocoma
+   13    | id . id puntocoma
+   14    | id . arreglo id MAS CONTES puntocoma
+   29 VAL: id .
+   30    | id . CONTE
+   32 ASIG: id . igual OPE puntocoma
+   33     | id . CONTE igual OPE puntocoma
+
+    id       shift, and go to state 24
+    igual    shift, and go to state 25
+    cora     shift, and go to state 26
+    arreglo  shift, and go to state 27
+
+    $default  reduce using rule 29 (VAL)
+
+    CONTE  go to state 28
+
+
+state 7
+
+   40 SIS: si . para OPE parc llaa CORPO llac ELS
+
+    para  shift, and go to state 29
+
+
+state 8
+
+   38 IMPRI: imprimir . para OPE parc puntocoma
+
+    para  shift, and go to state 30
+
+
+state 9
+
+   39 SHO: show . para OPE coma OPE parc puntocoma
+
+    para  shift, and go to state 31
+
+
+state 10
+
+   44 PARAS: parafor . para ESC OPE puntocoma ALTE parc llaa CORPO llac
+
+    para  shift, and go to state 32
+
+
+state 11
+
+   47 REPE: repetir . para OPE parc llaa CORPO llac
+
+    para  shift, and go to state 33
+
+
+state 12
+
+    0 $accept: INI . $end
+
+    $end  shift, and go to state 34
+
+
+state 13
+
+    1 INI: CORPO .
+
+    $default  reduce using rule 1 (INI)
+
+
+state 14
+
+    2 CORPO: CUERPO . CORPO
+
+    entero    shift, and go to state 1
+    decimal   shift, and go to state 2
+    caracter  shift, and go to state 3
+    booleano  shift, and go to state 4
+    cadena    shift, and go to state 5
+    id        shift, and go to state 6
+    si        shift, and go to state 7
+    imprimir  shift, and go to state 8
+    show      shift, and go to state 9
+    parafor   shift, and go to state 10
+    repetir   shift, and go to state 11
+
+    $default  reduce using rule 3 (CORPO)
+
+    CORPO   go to state 35
+    CUERPO  go to state 14
+    VAR     go to state 15
+    VAL     go to state 16
+    ASIG    go to state 17
+    ALTE    go to state 18
+    IMPRI   go to state 19
+    SHO     go to state 20
+    SIS     go to state 21
+    PARAS   go to state 22
+    REPE    go to state 23
+
+
+state 15
+
+    4 CUERPO: VAR .
+
+    $default  reduce using rule 4 (CUERPO)
+
+
+state 16
+
+   34 ALTE: VAL . sumadoble
+   35     | VAL . restadoble
+
+    sumadoble   shift, and go to state 36
+    restadoble  shift, and go to state 37
+
+
+state 17
+
+    9 CUERPO: ASIG .
+
+    $default  reduce using rule 9 (CUERPO)
+
+
+state 18
+
+    7 CUERPO: ALTE .
+
+    $default  reduce using rule 7 (CUERPO)
+
+
+state 19
+
+    5 CUERPO: IMPRI .
+
+    $default  reduce using rule 5 (CUERPO)
+
+
+state 20
+
+    6 CUERPO: SHO .
+
+    $default  reduce using rule 6 (CUERPO)
+
+
+state 21
+
+    8 CUERPO: SIS .
+
+    $default  reduce using rule 8 (CUERPO)
+
+
+state 22
+
+   10 CUERPO: PARAS .
+
+    $default  reduce using rule 10 (CUERPO)
+
+
+state 23
+
+   11 CUERPO: REPE .
+
+    $default  reduce using rule 11 (CUERPO)
+
+
+state 24
+
+   12 VAR: id id . MAS OPE puntocoma
+   13    | id id . puntocoma
+
+    puntocoma  shift, and go to state 38
+    igual      shift, and go to state 39
+    coma       shift, and go to state 40
+
+    $default  reduce using rule 24 (MAS)
+
+    MAS  go to state 41
+
+
+state 25
+
+   32 ASIG: id igual . OPE puntocoma
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 49
+
+
+state 26
+
+   15 CONTE: cora . OPE corc CONTE
+   16      | cora . OPE corc
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 50
+
+
+state 27
+
+   14 VAR: id arreglo . id MAS CONTES puntocoma
+
+    id  shift, and go to state 51
+
+
+state 28
+
+   30 VAL: id CONTE .
+   33 ASIG: id CONTE . igual OPE puntocoma
+
+    igual  shift, and go to state 52
+
+    $default  reduce using rule 30 (VAL)
+
+
+state 29
+
+   40 SIS: si para . OPE parc llaa CORPO llac ELS
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 53
+
+
+state 30
+
+   38 IMPRI: imprimir para . OPE parc puntocoma
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 54
+
+
+state 31
+
+   39 SHO: show para . OPE coma OPE parc puntocoma
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 55
+
+
+state 32
+
+   44 PARAS: parafor para . ESC OPE puntocoma ALTE parc llaa CORPO llac
+
+    id  shift, and go to state 56
+
+    VAR   go to state 57
+    ASIG  go to state 58
+    ESC   go to state 59
+
+
+state 33
+
+   47 REPE: repetir para . OPE parc llaa CORPO llac
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 60
+
+
+state 34
+
+    0 $accept: INI $end .
+
+    $default  accept
+
+
+state 35
+
+    2 CORPO: CUERPO CORPO .
+
+    $default  reduce using rule 2 (CORPO)
+
+
+state 36
+
+   34 ALTE: VAL sumadoble .
+
+    $default  reduce using rule 34 (ALTE)
+
+
+state 37
+
+   35 ALTE: VAL restadoble .
+
+    $default  reduce using rule 35 (ALTE)
+
+
+state 38
+
+   13 VAR: id id puntocoma .
+
+    $default  reduce using rule 13 (VAR)
+
+
+state 39
+
+   23 MAS: igual .
+
+    $default  reduce using rule 23 (MAS)
+
+
+state 40
+
+   22 MAS: coma . id MAS
+
+    id  shift, and go to state 61
+
+
+state 41
+
+   12 VAR: id id MAS . OPE puntocoma
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 62
+
+
+state 42
+
+   29 VAL: id .
+   30    | id . CONTE
+
+    cora  shift, and go to state 26
+
+    $default  reduce using rule 29 (VAL)
+
+    CONTE  go to state 63
+
+
+state 43
+
+   62 OPE: suma . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 64
+
+
+state 44
+
+   63 OPE: menos . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 65
+
+
+state 45
+
+   55 OPE: admiracion . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 66
+
+
+state 46
+
+   64 OPE: para . OPE parc
+   66    | para . OPE parc OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 67
+
+
+state 47
+
+   34 ALTE: VAL . sumadoble
+   35     | VAL . restadoble
+   67 OPE: VAL .
+
+    sumadoble   shift, and go to state 36
+    restadoble  shift, and go to state 37
+
+    $default  reduce using rule 67 (OPE)
+
+
+state 48
+
+   68 OPE: ALTE .
+
+    $default  reduce using rule 68 (OPE)
+
+
+state 49
+
+   32 ASIG: id igual OPE . puntocoma
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    puntocoma   shift, and go to state 73
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+
+
+state 50
+
+   15 CONTE: cora OPE . corc CONTE
+   16      | cora OPE . corc
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    corc        shift, and go to state 83
+    para        shift, and go to state 82
+
+
+state 51
+
+   14 VAR: id arreglo id . MAS CONTES puntocoma
+
+    igual  shift, and go to state 39
+    coma   shift, and go to state 40
+
+    igual     [reduce using rule 24 (MAS)]
+    $default  reduce using rule 24 (MAS)
+
+    MAS  go to state 84
+
+
+state 52
+
+   33 ASIG: id CONTE igual . OPE puntocoma
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 85
+
+
+state 53
+
+   40 SIS: si para OPE . parc llaa CORPO llac ELS
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+    parc        shift, and go to state 86
+
+
+state 54
+
+   38 IMPRI: imprimir para OPE . parc puntocoma
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+    parc        shift, and go to state 87
+
+
+state 55
+
+   39 SHO: show para OPE . coma OPE parc puntocoma
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    coma        shift, and go to state 88
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+
+
+state 56
+
+   12 VAR: id . id MAS OPE puntocoma
+   13    | id . id puntocoma
+   14    | id . arreglo id MAS CONTES puntocoma
+   32 ASIG: id . igual OPE puntocoma
+   33     | id . CONTE igual OPE puntocoma
+
+    id       shift, and go to state 24
+    igual    shift, and go to state 25
+    cora     shift, and go to state 26
+    arreglo  shift, and go to state 27
+
+    CONTE  go to state 89
+
+
+state 57
+
+   46 ESC: VAR .
+
+    $default  reduce using rule 46 (ESC)
+
+
+state 58
+
+   45 ESC: ASIG .
+
+    $default  reduce using rule 45 (ESC)
+
+
+state 59
+
+   44 PARAS: parafor para ESC . OPE puntocoma ALTE parc llaa CORPO llac
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 90
+
+
+state 60
+
+   47 REPE: repetir para OPE . parc llaa CORPO llac
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+    parc        shift, and go to state 91
+
+
+state 61
+
+   22 MAS: coma id . MAS
+
+    igual  shift, and go to state 39
+    coma   shift, and go to state 40
+
+    igual     [reduce using rule 24 (MAS)]
+    $default  reduce using rule 24 (MAS)
+
+    MAS  go to state 92
+
+
+state 62
+
+   12 VAR: id id MAS OPE . puntocoma
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    puntocoma   shift, and go to state 93
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+
+
+state 63
+
+   30 VAL: id CONTE .
+
+    $default  reduce using rule 30 (VAL)
+
+
+state 64
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   62    | suma OPE .
+   65    | OPE . para OPE parc
+
+    multi     shift, and go to state 70
+    division  shift, and go to state 71
+    potencia  shift, and go to state 72
+    para      shift, and go to state 82
+
+    para      [reduce using rule 62 (OPE)]
+    $default  reduce using rule 62 (OPE)
+
+
+state 65
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   63    | menos OPE .
+   65    | OPE . para OPE parc
+
+    multi     shift, and go to state 70
+    division  shift, and go to state 71
+    potencia  shift, and go to state 72
+    para      shift, and go to state 82
+
+    para      [reduce using rule 63 (OPE)]
+    $default  reduce using rule 63 (OPE)
+
+
+state 66
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   55    | admiracion OPE .
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    para        shift, and go to state 82
+
+    para      [reduce using rule 55 (OPE)]
+    $default  reduce using rule 55 (OPE)
+
+
+state 67
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   64    | para OPE . parc
+   65    | OPE . para OPE parc
+   66    | para OPE . parc OPE
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+    parc        shift, and go to state 94
+
+
+state 68
+
+   56 OPE: OPE suma . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 95
+
+
+state 69
+
+   57 OPE: OPE menos . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 96
+
+
+state 70
+
+   59 OPE: OPE multi . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 97
+
+
+state 71
+
+   58 OPE: OPE division . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 98
+
+
+state 72
+
+   60 OPE: OPE potencia . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 99
+
+
+state 73
+
+   32 ASIG: id igual OPE puntocoma .
+
+    $default  reduce using rule 32 (ASIG)
+
+
+state 74
+
+   61 OPE: OPE igualdoble . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 100
+
+
+state 75
+
+   54 OPE: OPE diferente . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 101
+
+
+state 76
+
+   51 OPE: OPE menor . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 102
+
+
+state 77
+
+   52 OPE: OPE menorigual . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 103
+
+
+state 78
+
+   50 OPE: OPE mayor . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 104
+
+
+state 79
+
+   53 OPE: OPE mayorigual . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 105
+
+
+state 80
+
+   49 OPE: OPE ordoble . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 106
+
+
+state 81
+
+   48 OPE: OPE anddoble . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 107
+
+
+state 82
+
+   65 OPE: OPE para . OPE parc
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 108
+
+
+state 83
+
+   15 CONTE: cora OPE corc . CONTE
+   16      | cora OPE corc .
+
+    cora  shift, and go to state 26
+
+    $default  reduce using rule 16 (CONTE)
+
+    CONTE  go to state 109
+
+
+state 84
+
+   14 VAR: id arreglo id MAS . CONTES puntocoma
+
+    igual  shift, and go to state 110
+    cora   shift, and go to state 26
+
+    CONTE   go to state 111
+    CONTES  go to state 112
+
+
+state 85
+
+   33 ASIG: id CONTE igual OPE . puntocoma
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    puntocoma   shift, and go to state 113
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+
+
+state 86
+
+   40 SIS: si para OPE parc . llaa CORPO llac ELS
+
+    llaa  shift, and go to state 114
+
+
+state 87
+
+   38 IMPRI: imprimir para OPE parc . puntocoma
+
+    puntocoma  shift, and go to state 115
+
+
+state 88
+
+   39 SHO: show para OPE coma . OPE parc puntocoma
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 116
+
+
+state 89
+
+   33 ASIG: id CONTE . igual OPE puntocoma
+
+    igual  shift, and go to state 52
+
+
+state 90
+
+   44 PARAS: parafor para ESC OPE . puntocoma ALTE parc llaa CORPO llac
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    puntocoma   shift, and go to state 117
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+
+
+state 91
+
+   47 REPE: repetir para OPE parc . llaa CORPO llac
+
+    llaa  shift, and go to state 118
+
+
+state 92
+
+   22 MAS: coma id MAS .
+
+    $default  reduce using rule 22 (MAS)
+
+
+state 93
+
+   12 VAR: id id MAS OPE puntocoma .
+
+    $default  reduce using rule 12 (VAR)
+
+
+state 94
+
+   64 OPE: para OPE parc .
+   66    | para OPE parc . OPE
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    suma      [reduce using rule 64 (OPE)]
+    menos     [reduce using rule 64 (OPE)]
+    para      [reduce using rule 64 (OPE)]
+    $default  reduce using rule 64 (OPE)
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    OPE   go to state 119
+
+
+state 95
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   56    | OPE suma OPE .
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    multi     shift, and go to state 70
+    division  shift, and go to state 71
+    potencia  shift, and go to state 72
+    para      shift, and go to state 82
+
+    para      [reduce using rule 56 (OPE)]
+    $default  reduce using rule 56 (OPE)
+
+
+state 96
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   57    | OPE menos OPE .
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    multi     shift, and go to state 70
+    division  shift, and go to state 71
+    potencia  shift, and go to state 72
+    para      shift, and go to state 82
+
+    para      [reduce using rule 57 (OPE)]
+    $default  reduce using rule 57 (OPE)
+
+
+state 97
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   59    | OPE multi OPE .
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    potencia  shift, and go to state 72
+    para      shift, and go to state 82
+
+    para      [reduce using rule 59 (OPE)]
+    $default  reduce using rule 59 (OPE)
+
+
+state 98
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   58    | OPE division OPE .
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    potencia  shift, and go to state 72
+    para      shift, and go to state 82
+
+    para      [reduce using rule 58 (OPE)]
+    $default  reduce using rule 58 (OPE)
+
+
+state 99
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   60    | OPE potencia OPE .
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    para  shift, and go to state 82
+
+    para      [reduce using rule 60 (OPE)]
+    $default  reduce using rule 60 (OPE)
+
+
+state 100
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   61    | OPE igualdoble OPE .
+   65    | OPE . para OPE parc
+
+    suma      shift, and go to state 68
+    menos     shift, and go to state 69
+    multi     shift, and go to state 70
+    division  shift, and go to state 71
+    potencia  shift, and go to state 72
+    para      shift, and go to state 82
+
+    para      [reduce using rule 61 (OPE)]
+    $default  reduce using rule 61 (OPE)
+
+
+state 101
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   54    | OPE diferente OPE .
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma      shift, and go to state 68
+    menos     shift, and go to state 69
+    multi     shift, and go to state 70
+    division  shift, and go to state 71
+    potencia  shift, and go to state 72
+    para      shift, and go to state 82
+
+    para      [reduce using rule 54 (OPE)]
+    $default  reduce using rule 54 (OPE)
+
+
+state 102
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   51    | OPE menor OPE .
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma      shift, and go to state 68
+    menos     shift, and go to state 69
+    multi     shift, and go to state 70
+    division  shift, and go to state 71
+    potencia  shift, and go to state 72
+    para      shift, and go to state 82
+
+    para      [reduce using rule 51 (OPE)]
+    $default  reduce using rule 51 (OPE)
+
+
+state 103
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   52    | OPE menorigual OPE .
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma      shift, and go to state 68
+    menos     shift, and go to state 69
+    multi     shift, and go to state 70
+    division  shift, and go to state 71
+    potencia  shift, and go to state 72
+    para      shift, and go to state 82
+
+    para      [reduce using rule 52 (OPE)]
+    $default  reduce using rule 52 (OPE)
+
+
+state 104
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   50    | OPE mayor OPE .
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma      shift, and go to state 68
+    menos     shift, and go to state 69
+    multi     shift, and go to state 70
+    division  shift, and go to state 71
+    potencia  shift, and go to state 72
+    para      shift, and go to state 82
+
+    para      [reduce using rule 50 (OPE)]
+    $default  reduce using rule 50 (OPE)
+
+
+state 105
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   53    | OPE mayorigual OPE .
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma      shift, and go to state 68
+    menos     shift, and go to state 69
+    multi     shift, and go to state 70
+    division  shift, and go to state 71
+    potencia  shift, and go to state 72
+    para      shift, and go to state 82
+
+    para      [reduce using rule 53 (OPE)]
+    $default  reduce using rule 53 (OPE)
+
+
+state 106
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   49    | OPE ordoble OPE .
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+
+    para      [reduce using rule 49 (OPE)]
+    $default  reduce using rule 49 (OPE)
+
+
+state 107
+
+   48 OPE: OPE . anddoble OPE
+   48    | OPE anddoble OPE .
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    para        shift, and go to state 82
+
+    para      [reduce using rule 48 (OPE)]
+    $default  reduce using rule 48 (OPE)
+
+
+state 108
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+   65    | OPE para OPE . parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+    parc        shift, and go to state 120
+
+
+state 109
+
+   15 CONTE: cora OPE corc CONTE .
+
+    $default  reduce using rule 15 (CONTE)
+
+
+state 110
+
+   18 CONTES: igual . llaa CONTESS llac
+
+    llaa  shift, and go to state 121
+
+
+state 111
+
+   17 CONTES: CONTE .
+
+    $default  reduce using rule 17 (CONTES)
+
+
+state 112
+
+   14 VAR: id arreglo id MAS CONTES . puntocoma
+
+    puntocoma  shift, and go to state 122
+
+
+state 113
+
+   33 ASIG: id CONTE igual OPE puntocoma .
+
+    $default  reduce using rule 33 (ASIG)
+
+
+state 114
+
+   40 SIS: si para OPE parc llaa . CORPO llac ELS
+
+    entero    shift, and go to state 1
+    decimal   shift, and go to state 2
+    caracter  shift, and go to state 3
+    booleano  shift, and go to state 4
+    cadena    shift, and go to state 5
+    id        shift, and go to state 6
+    si        shift, and go to state 7
+    imprimir  shift, and go to state 8
+    show      shift, and go to state 9
+    parafor   shift, and go to state 10
+    repetir   shift, and go to state 11
+
+    $default  reduce using rule 3 (CORPO)
+
+    CORPO   go to state 123
+    CUERPO  go to state 14
+    VAR     go to state 15
+    VAL     go to state 16
+    ASIG    go to state 17
+    ALTE    go to state 18
+    IMPRI   go to state 19
+    SHO     go to state 20
+    SIS     go to state 21
+    PARAS   go to state 22
+    REPE    go to state 23
+
+
+state 115
+
+   38 IMPRI: imprimir para OPE parc puntocoma .
+
+    $default  reduce using rule 38 (IMPRI)
+
+
+state 116
+
+   39 SHO: show para OPE coma OPE . parc puntocoma
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+    parc        shift, and go to state 124
+
+
+state 117
+
+   44 PARAS: parafor para ESC OPE puntocoma . ALTE parc llaa CORPO llac
+
+    entero    shift, and go to state 1
+    decimal   shift, and go to state 2
+    caracter  shift, and go to state 3
+    booleano  shift, and go to state 4
+    cadena    shift, and go to state 5
+    id        shift, and go to state 42
+
+    VAL   go to state 16
+    ALTE  go to state 125
+
+
+state 118
+
+   47 REPE: repetir para OPE parc llaa . CORPO llac
+
+    entero    shift, and go to state 1
+    decimal   shift, and go to state 2
+    caracter  shift, and go to state 3
+    booleano  shift, and go to state 4
+    cadena    shift, and go to state 5
+    id        shift, and go to state 6
+    si        shift, and go to state 7
+    imprimir  shift, and go to state 8
+    show      shift, and go to state 9
+    parafor   shift, and go to state 10
+    repetir   shift, and go to state 11
+
+    $default  reduce using rule 3 (CORPO)
+
+    CORPO   go to state 126
+    CUERPO  go to state 14
+    VAR     go to state 15
+    VAL     go to state 16
+    ASIG    go to state 17
+    ALTE    go to state 18
+    IMPRI   go to state 19
+    SHO     go to state 20
+    SIS     go to state 21
+    PARAS   go to state 22
+    REPE    go to state 23
+
+
+state 119
+
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+   66    | para OPE parc OPE .
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+
+    suma        [reduce using rule 66 (OPE)]
+    menos       [reduce using rule 66 (OPE)]
+    multi       [reduce using rule 66 (OPE)]
+    division    [reduce using rule 66 (OPE)]
+    potencia    [reduce using rule 66 (OPE)]
+    igualdoble  [reduce using rule 66 (OPE)]
+    diferente   [reduce using rule 66 (OPE)]
+    menor       [reduce using rule 66 (OPE)]
+    menorigual  [reduce using rule 66 (OPE)]
+    mayor       [reduce using rule 66 (OPE)]
+    mayorigual  [reduce using rule 66 (OPE)]
+    ordoble     [reduce using rule 66 (OPE)]
+    anddoble    [reduce using rule 66 (OPE)]
+    para        [reduce using rule 66 (OPE)]
+    $default    reduce using rule 66 (OPE)
+
+
+state 120
+
+   65 OPE: OPE para OPE parc .
+
+    $default  reduce using rule 65 (OPE)
+
+
+state 121
+
+   18 CONTES: igual llaa . CONTESS llac
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    llaa        shift, and go to state 127
+    para        shift, and go to state 46
+
+    CONTESS  go to state 128
+    VAL      go to state 47
+    ALTE     go to state 48
+    NIDO     go to state 129
+    OPE      go to state 130
+
+
+state 122
+
+   14 VAR: id arreglo id MAS CONTES puntocoma .
+
+    $default  reduce using rule 14 (VAR)
+
+
+state 123
+
+   40 SIS: si para OPE parc llaa CORPO . llac ELS
+
+    llac  shift, and go to state 131
+
+
+state 124
+
+   39 SHO: show para OPE coma OPE parc . puntocoma
+
+    puntocoma  shift, and go to state 132
+
+
+state 125
+
+   44 PARAS: parafor para ESC OPE puntocoma ALTE . parc llaa CORPO llac
+
+    parc  shift, and go to state 133
+
+
+state 126
+
+   47 REPE: repetir para OPE parc llaa CORPO . llac
+
+    llac  shift, and go to state 134
+
+
+state 127
+
+   19 CONTESS: llaa . NIDO llac coma CONTESS
+   20        | llaa . NIDO llac
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    NIDO  go to state 135
+    OPE   go to state 130
+
+
+state 128
+
+   18 CONTES: igual llaa CONTESS . llac
+
+    llac  shift, and go to state 136
+
+
+state 129
+
+   21 CONTESS: NIDO .
+
+    $default  reduce using rule 21 (CONTESS)
+
+
+state 130
+
+   36 NIDO: OPE . coma NIDO
+   37     | OPE .
+   48 OPE: OPE . anddoble OPE
+   49    | OPE . ordoble OPE
+   50    | OPE . mayor OPE
+   51    | OPE . menor OPE
+   52    | OPE . menorigual OPE
+   53    | OPE . mayorigual OPE
+   54    | OPE . diferente OPE
+   56    | OPE . suma OPE
+   57    | OPE . menos OPE
+   58    | OPE . division OPE
+   59    | OPE . multi OPE
+   60    | OPE . potencia OPE
+   61    | OPE . igualdoble OPE
+   65    | OPE . para OPE parc
+
+    suma        shift, and go to state 68
+    menos       shift, and go to state 69
+    multi       shift, and go to state 70
+    division    shift, and go to state 71
+    potencia    shift, and go to state 72
+    igualdoble  shift, and go to state 74
+    diferente   shift, and go to state 75
+    coma        shift, and go to state 137
+    menor       shift, and go to state 76
+    menorigual  shift, and go to state 77
+    mayor       shift, and go to state 78
+    mayorigual  shift, and go to state 79
+    ordoble     shift, and go to state 80
+    anddoble    shift, and go to state 81
+    para        shift, and go to state 82
+
+    $default  reduce using rule 37 (NIDO)
+
+
+state 131
+
+   40 SIS: si para OPE parc llaa CORPO llac . ELS
+
+    sino  shift, and go to state 138
+
+    $default  reduce using rule 43 (ELS)
+
+    ELS  go to state 139
+
+
+state 132
+
+   39 SHO: show para OPE coma OPE parc puntocoma .
+
+    $default  reduce using rule 39 (SHO)
+
+
+state 133
+
+   44 PARAS: parafor para ESC OPE puntocoma ALTE parc . llaa CORPO llac
+
+    llaa  shift, and go to state 140
+
+
+state 134
+
+   47 REPE: repetir para OPE parc llaa CORPO llac .
+
+    $default  reduce using rule 47 (REPE)
+
+
+state 135
+
+   19 CONTESS: llaa NIDO . llac coma CONTESS
+   20        | llaa NIDO . llac
+
+    llac  shift, and go to state 141
+
+
+state 136
+
+   18 CONTES: igual llaa CONTESS llac .
+
+    $default  reduce using rule 18 (CONTES)
+
+
+state 137
+
+   36 NIDO: OPE coma . NIDO
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    para        shift, and go to state 46
+
+    VAL   go to state 47
+    ALTE  go to state 48
+    NIDO  go to state 142
+    OPE   go to state 130
+
+
+state 138
+
+   41 ELS: sino . llaa CORPO llac ELS
+   42    | sino . SIS
+
+    si    shift, and go to state 7
+    llaa  shift, and go to state 143
+
+    SIS  go to state 144
+
+
+state 139
+
+   40 SIS: si para OPE parc llaa CORPO llac ELS .
+
+    $default  reduce using rule 40 (SIS)
+
+
+state 140
+
+   44 PARAS: parafor para ESC OPE puntocoma ALTE parc llaa . CORPO llac
+
+    entero    shift, and go to state 1
+    decimal   shift, and go to state 2
+    caracter  shift, and go to state 3
+    booleano  shift, and go to state 4
+    cadena    shift, and go to state 5
+    id        shift, and go to state 6
+    si        shift, and go to state 7
+    imprimir  shift, and go to state 8
+    show      shift, and go to state 9
+    parafor   shift, and go to state 10
+    repetir   shift, and go to state 11
+
+    $default  reduce using rule 3 (CORPO)
+
+    CORPO   go to state 145
+    CUERPO  go to state 14
+    VAR     go to state 15
+    VAL     go to state 16
+    ASIG    go to state 17
+    ALTE    go to state 18
+    IMPRI   go to state 19
+    SHO     go to state 20
+    SIS     go to state 21
+    PARAS   go to state 22
+    REPE    go to state 23
+
+
+state 141
+
+   19 CONTESS: llaa NIDO llac . coma CONTESS
+   20        | llaa NIDO llac .
+
+    coma  shift, and go to state 146
+
+    $default  reduce using rule 20 (CONTESS)
+
+
+state 142
+
+   36 NIDO: OPE coma NIDO .
+
+    $default  reduce using rule 36 (NIDO)
+
+
+state 143
+
+   41 ELS: sino llaa . CORPO llac ELS
+
+    entero    shift, and go to state 1
+    decimal   shift, and go to state 2
+    caracter  shift, and go to state 3
+    booleano  shift, and go to state 4
+    cadena    shift, and go to state 5
+    id        shift, and go to state 6
+    si        shift, and go to state 7
+    imprimir  shift, and go to state 8
+    show      shift, and go to state 9
+    parafor   shift, and go to state 10
+    repetir   shift, and go to state 11
+
+    $default  reduce using rule 3 (CORPO)
+
+    CORPO   go to state 147
+    CUERPO  go to state 14
+    VAR     go to state 15
+    VAL     go to state 16
+    ASIG    go to state 17
+    ALTE    go to state 18
+    IMPRI   go to state 19
+    SHO     go to state 20
+    SIS     go to state 21
+    PARAS   go to state 22
+    REPE    go to state 23
+
+
+state 144
+
+   42 ELS: sino SIS .
+
+    $default  reduce using rule 42 (ELS)
+
+
+state 145
+
+   44 PARAS: parafor para ESC OPE puntocoma ALTE parc llaa CORPO . llac
+
+    llac  shift, and go to state 148
+
+
+state 146
+
+   19 CONTESS: llaa NIDO llac coma . CONTESS
+
+    entero      shift, and go to state 1
+    decimal     shift, and go to state 2
+    caracter    shift, and go to state 3
+    booleano    shift, and go to state 4
+    cadena      shift, and go to state 5
+    id          shift, and go to state 42
+    suma        shift, and go to state 43
+    menos       shift, and go to state 44
+    admiracion  shift, and go to state 45
+    llaa        shift, and go to state 127
+    para        shift, and go to state 46
+
+    CONTESS  go to state 149
+    VAL      go to state 47
+    ALTE     go to state 48
+    NIDO     go to state 129
+    OPE      go to state 130
+
+
+state 147
+
+   41 ELS: sino llaa CORPO . llac ELS
+
+    llac  shift, and go to state 150
+
+
+state 148
+
+   44 PARAS: parafor para ESC OPE puntocoma ALTE parc llaa CORPO llac .
+
+    $default  reduce using rule 44 (PARAS)
+
+
+state 149
+
+   19 CONTESS: llaa NIDO llac coma CONTESS .
+
+    $default  reduce using rule 19 (CONTESS)
+
+
+state 150
+
+   41 ELS: sino llaa CORPO llac . ELS
+
+    sino  shift, and go to state 138
+
+    $default  reduce using rule 43 (ELS)
+
+    ELS  go to state 151
+
+
+state 151
+
+   41 ELS: sino llaa CORPO llac ELS .
+
+    $default  reduce using rule 41 (ELS)

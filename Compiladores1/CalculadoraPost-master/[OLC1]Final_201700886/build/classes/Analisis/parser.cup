@@ -1,0 +1,192 @@
+package Analisis; // Paquete
+import java_cup.runtime.*; 
+import Programa.Nodo;
+import java.util.ArrayList;
+
+parser code
+{:  
+    public Nodo FINAL=null;
+    public String salida = "" ; 
+       
+    public void syntax_error(Symbol s)
+    {
+         
+        System.err.println("El analizador se recupero tras el error\nError en la Línea " + (s.right+1) +" Columna "+(s.left+1)+ ". Identificador "
+        +s.value + " no reconocido." );        
+    }
+
+    /**Metodo al que se llama en el momento en que ya no es posible una recuperación de errores.*/
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+        System.err.println("El analizador No se recupero tras el error\nError en la Línea " + (s.right+1)+ "Columna "+(s.left+1)+". Identificador " +
+        s.value + " no reconocido.");            
+    }
+    private int A(String S){
+
+        return   Integer.parseInt(S);
+    }
+    private int ComprobacionTipo(Nodo Primero,Nodo Segundo){
+        if(Primero.Tipo==1 || Primero.Tipo==2){
+            if(Segundo.Tipo==1||Segundo.Tipo==2){
+
+                if(Primero.Tipo==2||Segundo.Tipo==2){
+                return 2;
+
+            }else{
+                return 1;
+            }
+
+            }else{
+                return 0;
+            }
+
+        }else{
+            return 0;
+
+        }
+
+    }
+    public void setSalida(String cadena)
+    {
+        salida = cadena;
+    }
+:}
+
+
+/*Terminales*/
+
+terminal String entero,decimal,cadena,booleano, puntocoma,coma;
+terminal String suma, resta, multi, div, para, parc,esp;
+
+
+
+
+
+
+
+
+/*
+* Aquí están los no terminales
+*/
+non terminal Nodo INICIO;
+non terminal Nodo PROGRAMA;
+non terminal Nodo VALOR;
+non terminal Nodo EXPR;
+
+/* Precedencia */
+
+
+precedence left suma,resta;
+precedence left div,multi;
+
+
+
+/* ­­­­­­­­­­­­­­ Definición de la gramatica  ­­­­­­­­­­­ */
+start with INICIO; // indicamos con qué producción debe empezar la gramatica.
+////////PAGINA 8
+INICIO::=INICIO:a  PROGRAMA:b puntocoma{:  b.Lexema=a.Lexema+"; \n"+b.Lexema+";"; b.Post=a.Post+"\n"+b.Post; FINAL=b; RESULT=b;:}
+        |PROGRAMA:a puntocoma{: RESULT=a; FINAL=a; :}
+;
+
+PROGRAMA::= PROGRAMA:a coma VALOR:b    {: 
+int Compr=ComprobacionTipo(a,b);
+Nodo nodito;
+if(Compr==1){
+  nodito = new Nodo(1,Double.parseDouble(a.Lexema)+Double.parseDouble(b.Lexema)+"",a.Post+","+b.Post);
+}
+else  if(Compr==2){
+    nodito = new Nodo(2,Double.parseDouble(a.Lexema)+Double.parseDouble(b.Lexema)+"",a.Post+","+b.Post);
+} 
+else{
+ nodito = new Nodo(3,a.Lexema+","+b.Lexema+"",a.Post+","+b.Post);
+}
+
+
+ RESULT= nodito;
+ :}   
+    
+    |VALOR:a  {: RESULT=a;:}
+;   
+
+VALOR::= VALOR:a suma VALOR:b  {:
+int Compr=ComprobacionTipo(a,b);
+Nodo nodito;
+if(Compr==1){
+  nodito = new Nodo(1,Integer.parseInt(a.Lexema)+Integer.parseInt(b.Lexema)+"",a.Post+b.Post+"+");
+}
+else  if(Compr==2){
+    nodito = new Nodo(2,Double.parseDouble(a.Lexema)+Double.parseDouble(b.Lexema)+"",a.Post+b.Post+"+");
+} 
+else{
+ nodito = new Nodo(3,a.Lexema+b.Lexema+"+",a.Post+b.Post+"+");
+}
+RESULT= nodito;
+:}
+
+
+
+
+    |VALOR:a resta  VALOR:b {:
+    int Compr=ComprobacionTipo(a,b);
+Nodo nodito;
+if(Compr==1){
+  nodito = new Nodo(1,Integer.parseInt(a.Lexema)-Integer.parseInt(b.Lexema)+"",a.Post+b.Post+"-");
+}
+else  if(Compr==2){
+    nodito = new Nodo(2,Double.parseDouble(a.Lexema)-Double.parseDouble(b.Lexema)+"",a.Post+b.Post+"-");
+} 
+else{
+ nodito = new Nodo(3,a.Lexema+b.Lexema+"-",a.Post+b.Post+"-");
+}
+RESULT= nodito;
+    
+    :}
+
+
+
+
+    |VALOR:a multi VALOR:b {:
+     int Compr=ComprobacionTipo(a,b);
+Nodo nodito;
+if(Compr==1){
+  nodito = new Nodo(1,Integer.parseInt(a.Lexema)*Integer.parseInt(b.Lexema)+"",a.Post+b.Post+"*");
+}
+else  if(Compr==2){
+    nodito = new Nodo(2,Double.parseDouble(a.Lexema)*Double.parseDouble(b.Lexema)+"",a.Post+b.Post+"*");
+} 
+else{
+ nodito = new Nodo(3,a.Lexema+b.Lexema+"*",a.Post+b.Post+"*");
+}
+RESULT= nodito;
+    
+    
+    :}
+
+
+
+
+
+    |VALOR:a div VALOR:b {:
+     int Compr=ComprobacionTipo(a,b);
+Nodo nodito;
+if(Compr==1){
+  nodito = new Nodo(1,Integer.parseInt(a.Lexema)/Integer.parseInt(b.Lexema)+"",a.Post+b.Post+"/");
+}
+else  if(Compr==2){
+    nodito = new Nodo(2,Double.parseDouble(a.Lexema)/Double.parseDouble(b.Lexema)+"",a.Post+b.Post+"/");
+} 
+else{
+ nodito = new Nodo(3,a.Lexema+b.Lexema+"/",a.Post+b.Post+"/");
+}
+RESULT= nodito;
+    
+    
+    
+    :}
+    |EXPR:a{: RESULT= a;:}
+;
+EXPR::=entero:a{:Nodo nodito = new Nodo(1,a,a); RESULT= nodito;:}
+    |decimal:a{:Nodo nodito = new Nodo(2,a,a); RESULT= nodito;:}
+    |cadena:a{:Nodo nodito = new Nodo(3,a,a); RESULT= nodito;:}
+    |booleano:a{:Nodo nodito = new Nodo(4,a,a); RESULT= nodito;:}
+    |para EXPR:a parc {: RESULT= a;:}
+;

@@ -1,0 +1,1244 @@
+->Se agregaron 200 personas
+->Se agregaron 220 coches
+->Se agregaron 3 ventanas
+| Cola Espera | ->El  Persona 1 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 2 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 3 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 4 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 5 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 6 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 7 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 8 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 9 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 10 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 11 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 12 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 13 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 14 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 15 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 16 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 17 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 18 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 19 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 20 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 21 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 22 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 23 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 24 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 25 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 26 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 27 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 28 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 29 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 30 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 31 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 32 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 33 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 34 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 35 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 36 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 37 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 38 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 39 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 40 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 41 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 42 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 43 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 44 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 45 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 46 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 47 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 48 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 49 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 50 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 51 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 52 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 53 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 54 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 55 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 56 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 57 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 58 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 59 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 60 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 61 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 62 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 63 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 64 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 65 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 66 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 67 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 68 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 69 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 70 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 71 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 72 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 73 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 74 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 75 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 76 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 77 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 78 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 79 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 80 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 81 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 82 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 83 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 84 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 85 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 86 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 87 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 88 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 89 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 90 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 91 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 92 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 93 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 94 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 95 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 96 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 97 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 98 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 99 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 100 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 101 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 102 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 103 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 104 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 105 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 106 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 107 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 108 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 109 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 110 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 111 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 112 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 113 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 114 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 115 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 116 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 117 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 118 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 119 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 120 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 121 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 122 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 123 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 124 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 125 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 126 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 127 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 128 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 129 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 130 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 131 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 132 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 133 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 134 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 135 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 136 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 137 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 138 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 139 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 140 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 141 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 142 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 143 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 144 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 145 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 146 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 147 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 148 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 149 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 150 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 151 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 152 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 153 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 154 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 155 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 156 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 157 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 158 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 159 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 160 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 161 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 162 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 163 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 164 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 165 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 166 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 167 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 168 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 169 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 170 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 171 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 172 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 173 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 174 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 175 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 176 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 177 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 178 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 179 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 180 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 181 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 182 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 183 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 184 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 185 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 186 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 187 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 188 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 189 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 190 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 191 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 192 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 193 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 194 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 195 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 196 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 197 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 198 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 199 acaba de ingresar a la cola
+| Cola Espera | ->El  Persona 200 acaba de ingresar a la cola
+Coches2  Añadir  Coche: 1 en la fila de disponibles
+Coches2  Añadir  Coche: 2 en la fila de disponibles
+Coches2  Añadir  Coche: 3 en la fila de disponibles
+Coches2  Añadir  Coche: 4 en la fila de disponibles
+Coches1  Añadir  Coche: 5 en la fila de disponibles
+Coches1  Añadir  Coche: 6 en la fila de disponibles
+Coches2  Añadir  Coche: 7 en la fila de disponibles
+Coches2  Añadir  Coche: 8 en la fila de disponibles
+Coches2  Añadir  Coche: 9 en la fila de disponibles
+Coches1  Añadir  Coche: 10 en la fila de disponibles
+Coches1  Añadir  Coche: 11 en la fila de disponibles
+Coches2  Añadir  Coche: 12 en la fila de disponibles
+Coches1  Añadir  Coche: 13 en la fila de disponibles
+Coches1  Añadir  Coche: 14 en la fila de disponibles
+Coches2  Añadir  Coche: 15 en la fila de disponibles
+Coches1  Añadir  Coche: 16 en la fila de disponibles
+Coches1  Añadir  Coche: 17 en la fila de disponibles
+Coches1  Añadir  Coche: 18 en la fila de disponibles
+Coches2  Añadir  Coche: 19 en la fila de disponibles
+Coches1  Añadir  Coche: 20 en la fila de disponibles
+Coches2  Añadir  Coche: 21 en la fila de disponibles
+Coches2  Añadir  Coche: 22 en la fila de disponibles
+Coches2  Añadir  Coche: 23 en la fila de disponibles
+Coches2  Añadir  Coche: 24 en la fila de disponibles
+Coches2  Añadir  Coche: 25 en la fila de disponibles
+Coches1  Añadir  Coche: 26 en la fila de disponibles
+Coches2  Añadir  Coche: 27 en la fila de disponibles
+Coches2  Añadir  Coche: 28 en la fila de disponibles
+Coches1  Añadir  Coche: 29 en la fila de disponibles
+Coches2  Añadir  Coche: 30 en la fila de disponibles
+Coches2  Añadir  Coche: 31 en la fila de disponibles
+Coches1  Añadir  Coche: 32 en la fila de disponibles
+Coches1  Añadir  Coche: 33 en la fila de disponibles
+Coches1  Añadir  Coche: 34 en la fila de disponibles
+Coches2  Añadir  Coche: 35 en la fila de disponibles
+Coches2  Añadir  Coche: 36 en la fila de disponibles
+Coches2  Añadir  Coche: 37 en la fila de disponibles
+Coches1  Añadir  Coche: 38 en la fila de disponibles
+Coches2  Añadir  Coche: 39 en la fila de disponibles
+Coches1  Añadir  Coche: 40 en la fila de disponibles
+Coches2  Añadir  Coche: 41 en la fila de disponibles
+Coches1  Añadir  Coche: 42 en la fila de disponibles
+Coches1  Añadir  Coche: 43 en la fila de disponibles
+Coches1  Añadir  Coche: 44 en la fila de disponibles
+Coches2  Añadir  Coche: 45 en la fila de disponibles
+Coches1  Añadir  Coche: 46 en la fila de disponibles
+Coches2  Añadir  Coche: 47 en la fila de disponibles
+Coches1  Añadir  Coche: 48 en la fila de disponibles
+Coches1  Añadir  Coche: 49 en la fila de disponibles
+Coches2  Añadir  Coche: 50 en la fila de disponibles
+Coches1  Añadir  Coche: 51 en la fila de disponibles
+Coches2  Añadir  Coche: 52 en la fila de disponibles
+Coches1  Añadir  Coche: 53 en la fila de disponibles
+Coches1  Añadir  Coche: 54 en la fila de disponibles
+Coches1  Añadir  Coche: 55 en la fila de disponibles
+Coches2  Añadir  Coche: 56 en la fila de disponibles
+Coches1  Añadir  Coche: 57 en la fila de disponibles
+Coches1  Añadir  Coche: 58 en la fila de disponibles
+Coches2  Añadir  Coche: 59 en la fila de disponibles
+Coches2  Añadir  Coche: 60 en la fila de disponibles
+Coches1  Añadir  Coche: 61 en la fila de disponibles
+Coches1  Añadir  Coche: 62 en la fila de disponibles
+Coches1  Añadir  Coche: 63 en la fila de disponibles
+Coches1  Añadir  Coche: 64 en la fila de disponibles
+Coches1  Añadir  Coche: 65 en la fila de disponibles
+Coches1  Añadir  Coche: 66 en la fila de disponibles
+Coches2  Añadir  Coche: 67 en la fila de disponibles
+Coches2  Añadir  Coche: 68 en la fila de disponibles
+Coches1  Añadir  Coche: 69 en la fila de disponibles
+Coches2  Añadir  Coche: 70 en la fila de disponibles
+Coches2  Añadir  Coche: 71 en la fila de disponibles
+Coches2  Añadir  Coche: 72 en la fila de disponibles
+Coches2  Añadir  Coche: 73 en la fila de disponibles
+Coches2  Añadir  Coche: 74 en la fila de disponibles
+Coches2  Añadir  Coche: 75 en la fila de disponibles
+Coches2  Añadir  Coche: 76 en la fila de disponibles
+Coches1  Añadir  Coche: 77 en la fila de disponibles
+Coches2  Añadir  Coche: 78 en la fila de disponibles
+Coches1  Añadir  Coche: 79 en la fila de disponibles
+Coches2  Añadir  Coche: 80 en la fila de disponibles
+Coches1  Añadir  Coche: 81 en la fila de disponibles
+Coches1  Añadir  Coche: 82 en la fila de disponibles
+Coches1  Añadir  Coche: 83 en la fila de disponibles
+Coches2  Añadir  Coche: 84 en la fila de disponibles
+Coches1  Añadir  Coche: 85 en la fila de disponibles
+Coches2  Añadir  Coche: 86 en la fila de disponibles
+Coches2  Añadir  Coche: 87 en la fila de disponibles
+Coches2  Añadir  Coche: 88 en la fila de disponibles
+Coches2  Añadir  Coche: 89 en la fila de disponibles
+Coches1  Añadir  Coche: 90 en la fila de disponibles
+Coches1  Añadir  Coche: 91 en la fila de disponibles
+Coches1  Añadir  Coche: 92 en la fila de disponibles
+Coches2  Añadir  Coche: 93 en la fila de disponibles
+Coches1  Añadir  Coche: 94 en la fila de disponibles
+Coches1  Añadir  Coche: 95 en la fila de disponibles
+Coches1  Añadir  Coche: 96 en la fila de disponibles
+Coches1  Añadir  Coche: 97 en la fila de disponibles
+Coches2  Añadir  Coche: 98 en la fila de disponibles
+Coches1  Añadir  Coche: 99 en la fila de disponibles
+Coches1  Añadir  Coche: 100 en la fila de disponibles
+Coches1  Añadir  Coche: 101 en la fila de disponibles
+Coches1  Añadir  Coche: 102 en la fila de disponibles
+Coches1  Añadir  Coche: 103 en la fila de disponibles
+Coches1  Añadir  Coche: 104 en la fila de disponibles
+Coches2  Añadir  Coche: 105 en la fila de disponibles
+Coches2  Añadir  Coche: 106 en la fila de disponibles
+Coches2  Añadir  Coche: 107 en la fila de disponibles
+Coches1  Añadir  Coche: 108 en la fila de disponibles
+Coches1  Añadir  Coche: 109 en la fila de disponibles
+Coches2  Añadir  Coche: 110 en la fila de disponibles
+Coches2  Añadir  Coche: 111 en la fila de disponibles
+Coches2  Añadir  Coche: 112 en la fila de disponibles
+Coches1  Añadir  Coche: 113 en la fila de disponibles
+Coches2  Añadir  Coche: 114 en la fila de disponibles
+Coches2  Añadir  Coche: 115 en la fila de disponibles
+Coches1  Añadir  Coche: 116 en la fila de disponibles
+Coches1  Añadir  Coche: 117 en la fila de disponibles
+Coches1  Añadir  Coche: 118 en la fila de disponibles
+Coches1  Añadir  Coche: 119 en la fila de disponibles
+Coches2  Añadir  Coche: 120 en la fila de disponibles
+Coches2  Añadir  Coche: 121 en la fila de disponibles
+Coches2  Añadir  Coche: 122 en la fila de disponibles
+Coches2  Añadir  Coche: 123 en la fila de disponibles
+Coches1  Añadir  Coche: 124 en la fila de disponibles
+Coches2  Añadir  Coche: 125 en la fila de disponibles
+Coches1  Añadir  Coche: 126 en la fila de disponibles
+Coches2  Añadir  Coche: 127 en la fila de disponibles
+Coches2  Añadir  Coche: 128 en la fila de disponibles
+Coches1  Añadir  Coche: 129 en la fila de disponibles
+Coches1  Añadir  Coche: 130 en la fila de disponibles
+Coches1  Añadir  Coche: 131 en la fila de disponibles
+Coches1  Añadir  Coche: 132 en la fila de disponibles
+Coches1  Añadir  Coche: 133 en la fila de disponibles
+Coches1  Añadir  Coche: 134 en la fila de disponibles
+Coches2  Añadir  Coche: 135 en la fila de disponibles
+Coches2  Añadir  Coche: 136 en la fila de disponibles
+Coches1  Añadir  Coche: 137 en la fila de disponibles
+Coches2  Añadir  Coche: 138 en la fila de disponibles
+Coches2  Añadir  Coche: 139 en la fila de disponibles
+Coches1  Añadir  Coche: 140 en la fila de disponibles
+Coches2  Añadir  Coche: 141 en la fila de disponibles
+Coches1  Añadir  Coche: 142 en la fila de disponibles
+Coches2  Añadir  Coche: 143 en la fila de disponibles
+Coches2  Añadir  Coche: 144 en la fila de disponibles
+Coches1  Añadir  Coche: 145 en la fila de disponibles
+Coches1  Añadir  Coche: 146 en la fila de disponibles
+Coches1  Añadir  Coche: 147 en la fila de disponibles
+Coches2  Añadir  Coche: 148 en la fila de disponibles
+Coches1  Añadir  Coche: 149 en la fila de disponibles
+Coches1  Añadir  Coche: 150 en la fila de disponibles
+Coches1  Añadir  Coche: 151 en la fila de disponibles
+Coches2  Añadir  Coche: 152 en la fila de disponibles
+Coches1  Añadir  Coche: 153 en la fila de disponibles
+Coches1  Añadir  Coche: 154 en la fila de disponibles
+Coches2  Añadir  Coche: 155 en la fila de disponibles
+Coches1  Añadir  Coche: 156 en la fila de disponibles
+Coches2  Añadir  Coche: 157 en la fila de disponibles
+Coches2  Añadir  Coche: 158 en la fila de disponibles
+Coches1  Añadir  Coche: 159 en la fila de disponibles
+Coches2  Añadir  Coche: 160 en la fila de disponibles
+Coches2  Añadir  Coche: 161 en la fila de disponibles
+Coches1  Añadir  Coche: 162 en la fila de disponibles
+Coches1  Añadir  Coche: 163 en la fila de disponibles
+Coches1  Añadir  Coche: 164 en la fila de disponibles
+Coches2  Añadir  Coche: 165 en la fila de disponibles
+Coches2  Añadir  Coche: 166 en la fila de disponibles
+Coches2  Añadir  Coche: 167 en la fila de disponibles
+Coches1  Añadir  Coche: 168 en la fila de disponibles
+Coches2  Añadir  Coche: 169 en la fila de disponibles
+Coches1  Añadir  Coche: 170 en la fila de disponibles
+Coches1  Añadir  Coche: 171 en la fila de disponibles
+Coches2  Añadir  Coche: 172 en la fila de disponibles
+Coches2  Añadir  Coche: 173 en la fila de disponibles
+Coches2  Añadir  Coche: 174 en la fila de disponibles
+Coches1  Añadir  Coche: 175 en la fila de disponibles
+Coches2  Añadir  Coche: 176 en la fila de disponibles
+Coches2  Añadir  Coche: 177 en la fila de disponibles
+Coches1  Añadir  Coche: 178 en la fila de disponibles
+Coches1  Añadir  Coche: 179 en la fila de disponibles
+Coches1  Añadir  Coche: 180 en la fila de disponibles
+Coches1  Añadir  Coche: 181 en la fila de disponibles
+Coches2  Añadir  Coche: 182 en la fila de disponibles
+Coches2  Añadir  Coche: 183 en la fila de disponibles
+Coches2  Añadir  Coche: 184 en la fila de disponibles
+Coches1  Añadir  Coche: 185 en la fila de disponibles
+Coches1  Añadir  Coche: 186 en la fila de disponibles
+Coches1  Añadir  Coche: 187 en la fila de disponibles
+Coches1  Añadir  Coche: 188 en la fila de disponibles
+Coches1  Añadir  Coche: 189 en la fila de disponibles
+Coches1  Añadir  Coche: 190 en la fila de disponibles
+Coches1  Añadir  Coche: 191 en la fila de disponibles
+Coches2  Añadir  Coche: 192 en la fila de disponibles
+Coches2  Añadir  Coche: 193 en la fila de disponibles
+Coches1  Añadir  Coche: 194 en la fila de disponibles
+Coches2  Añadir  Coche: 195 en la fila de disponibles
+Coches1  Añadir  Coche: 196 en la fila de disponibles
+Coches1  Añadir  Coche: 197 en la fila de disponibles
+Coches2  Añadir  Coche: 198 en la fila de disponibles
+Coches1  Añadir  Coche: 199 en la fila de disponibles
+Coches2  Añadir  Coche: 200 en la fila de disponibles
+Coches1  Añadir  Coche: 201 en la fila de disponibles
+Coches2  Añadir  Coche: 202 en la fila de disponibles
+Coches2  Añadir  Coche: 203 en la fila de disponibles
+Coches2  Añadir  Coche: 204 en la fila de disponibles
+Coches1  Añadir  Coche: 205 en la fila de disponibles
+Coches1  Añadir  Coche: 206 en la fila de disponibles
+Coches2  Añadir  Coche: 207 en la fila de disponibles
+Coches1  Añadir  Coche: 208 en la fila de disponibles
+Coches1  Añadir  Coche: 209 en la fila de disponibles
+Coches2  Añadir  Coche: 210 en la fila de disponibles
+Coches2  Añadir  Coche: 211 en la fila de disponibles
+Coches2  Añadir  Coche: 212 en la fila de disponibles
+Coches2  Añadir  Coche: 213 en la fila de disponibles
+Coches2  Añadir  Coche: 214 en la fila de disponibles
+Coches1  Añadir  Coche: 215 en la fila de disponibles
+Coches1  Añadir  Coche: 216 en la fila de disponibles
+Coches1  Añadir  Coche: 217 en la fila de disponibles
+Coches2  Añadir  Coche: 218 en la fila de disponibles
+Coches2  Añadir  Coche: 219 en la fila de disponibles
+Coches1  Añadir  Coche: 220 en la fila de disponibles
+Ventanilla abierta:  Ventana 1
+Ventanilla abierta:  Ventana 2
+Ventanilla abierta:  Ventana 3
+ SIMULACION PROCESADA
+
+Hay 220 Coches Disponibles
+| Cola Espera | ->El  Persona 1 salio de la cola 
+El Persona 1 esta de compras
+
+| Cola Espera | ->El  Persona 2 salio de la cola 
+El Persona 2 esta de compras
+
+| Cola Espera | ->El  Persona 3 salio de la cola 
+El Persona 3 esta de compras
+
+| Cola Espera | ->El  Persona 4 salio de la cola 
+El Persona 4 esta de compras
+
+| Cola Espera | ->El  Persona 5 salio de la cola 
+El Persona 5 esta de compras
+
+| Cola Espera | ->El  Persona 6 salio de la cola 
+El Persona 6 esta de compras
+
+| Cola Espera | ->El  Persona 7 salio de la cola 
+El Persona 7 esta de compras
+
+| Cola Espera | ->El  Persona 8 salio de la cola 
+El Persona 8 esta de compras
+
+| Cola Espera | ->El  Persona 9 salio de la cola 
+El Persona 9 esta de compras
+
+| Cola Espera | ->El  Persona 10 salio de la cola 
+El Persona 10 esta de compras
+
+| Cola Espera | ->El  Persona 11 salio de la cola 
+El Persona 11 esta de compras
+
+| Cola Espera | ->El  Persona 12 salio de la cola 
+El Persona 12 esta de compras
+
+| Cola Espera | ->El  Persona 13 salio de la cola 
+El Persona 13 esta de compras
+
+| Cola Espera | ->El  Persona 14 salio de la cola 
+El Persona 14 esta de compras
+
+| Cola Espera | ->El  Persona 15 salio de la cola 
+El Persona 15 esta de compras
+
+| Cola Espera | ->El  Persona 16 salio de la cola 
+El Persona 16 esta de compras
+
+| Cola Espera | ->El  Persona 17 salio de la cola 
+El Persona 17 esta de compras
+
+| Cola Espera | ->El  Persona 18 salio de la cola 
+El Persona 18 esta de compras
+
+| Cola Espera | ->El  Persona 19 salio de la cola 
+El Persona 19 esta de compras
+
+| Cola Espera | ->El  Persona 20 salio de la cola 
+El Persona 20 esta de compras
+
+| Cola Espera | ->El  Persona 21 salio de la cola 
+El Persona 21 esta de compras
+
+| Cola Espera | ->El  Persona 22 salio de la cola 
+El Persona 22 esta de compras
+
+| Cola Espera | ->El  Persona 23 salio de la cola 
+El Persona 23 esta de compras
+
+| Cola Espera | ->El  Persona 24 salio de la cola 
+El Persona 24 esta de compras
+
+| Cola Espera | ->El  Persona 25 salio de la cola 
+El Persona 25 esta de compras
+
+| Cola Espera | ->El  Persona 26 salio de la cola 
+El Persona 26 esta de compras
+
+| Cola Espera | ->El  Persona 27 salio de la cola 
+El Persona 27 esta de compras
+
+| Cola Espera | ->El  Persona 28 salio de la cola 
+El Persona 28 esta de compras
+
+| Cola Espera | ->El  Persona 29 salio de la cola 
+El Persona 29 esta de compras
+
+| Cola Espera | ->El  Persona 30 salio de la cola 
+El Persona 30 esta de compras
+
+| Cola Espera | ->El  Persona 31 salio de la cola 
+El Persona 31 esta de compras
+
+| Cola Espera | ->El  Persona 32 salio de la cola 
+El Persona 32 esta de compras
+
+| Cola Espera | ->El  Persona 33 salio de la cola 
+El Persona 33 esta de compras
+
+| Cola Espera | ->El  Persona 34 salio de la cola 
+El Persona 34 esta de compras
+
+| Cola Espera | ->El  Persona 35 salio de la cola 
+El Persona 35 esta de compras
+
+| Cola Espera | ->El  Persona 36 salio de la cola 
+El Persona 36 esta de compras
+
+| Cola Espera | ->El  Persona 37 salio de la cola 
+El Persona 37 esta de compras
+
+| Cola Espera | ->El  Persona 38 salio de la cola 
+El Persona 38 esta de compras
+
+| Cola Espera | ->El  Persona 39 salio de la cola 
+El Persona 39 esta de compras
+
+| Cola Espera | ->El  Persona 40 salio de la cola 
+El Persona 40 esta de compras
+
+| Cola Espera | ->El  Persona 41 salio de la cola 
+El Persona 41 esta de compras
+
+| Cola Espera | ->El  Persona 42 salio de la cola 
+El Persona 42 esta de compras
+
+| Cola Espera | ->El  Persona 43 salio de la cola 
+El Persona 43 esta de compras
+
+| Cola Espera | ->El  Persona 44 salio de la cola 
+El Persona 44 esta de compras
+
+| Cola Espera | ->El  Persona 45 salio de la cola 
+El Persona 45 esta de compras
+
+| Cola Espera | ->El  Persona 46 salio de la cola 
+El Persona 46 esta de compras
+
+| Cola Espera | ->El  Persona 47 salio de la cola 
+El Persona 47 esta de compras
+
+| Cola Espera | ->El  Persona 48 salio de la cola 
+El Persona 48 esta de compras
+
+| Cola Espera | ->El  Persona 49 salio de la cola 
+El Persona 49 esta de compras
+
+| Cola Espera | ->El  Persona 50 salio de la cola 
+El Persona 50 esta de compras
+
+| Cola Espera | ->El  Persona 51 salio de la cola 
+El Persona 51 esta de compras
+
+| Cola Espera | ->El  Persona 52 salio de la cola 
+El Persona 52 esta de compras
+
+| Cola Espera | ->El  Persona 53 salio de la cola 
+El Persona 53 esta de compras
+
+| Cola Espera | ->El  Persona 54 salio de la cola 
+El Persona 54 esta de compras
+
+| Cola Espera | ->El  Persona 55 salio de la cola 
+El Persona 55 esta de compras
+
+| Cola Espera | ->El  Persona 56 salio de la cola 
+El Persona 56 esta de compras
+
+| Cola Espera | ->El  Persona 57 salio de la cola 
+El Persona 57 esta de compras
+
+| Cola Espera | ->El  Persona 58 salio de la cola 
+El Persona 58 esta de compras
+
+| Cola Espera | ->El  Persona 59 salio de la cola 
+El Persona 59 esta de compras
+
+| Cola Espera | ->El  Persona 60 salio de la cola 
+El Persona 60 esta de compras
+
+| Cola Espera | ->El  Persona 61 salio de la cola 
+El Persona 61 esta de compras
+
+| Cola Espera | ->El  Persona 62 salio de la cola 
+El Persona 62 esta de compras
+
+| Cola Espera | ->El  Persona 63 salio de la cola 
+El Persona 63 esta de compras
+
+| Cola Espera | ->El  Persona 64 salio de la cola 
+El Persona 64 esta de compras
+
+| Cola Espera | ->El  Persona 65 salio de la cola 
+El Persona 65 esta de compras
+
+| Cola Espera | ->El  Persona 66 salio de la cola 
+El Persona 66 esta de compras
+
+| Cola Espera | ->El  Persona 67 salio de la cola 
+El Persona 67 esta de compras
+
+| Cola Espera | ->El  Persona 68 salio de la cola 
+El Persona 68 esta de compras
+
+| Cola Espera | ->El  Persona 69 salio de la cola 
+El Persona 69 esta de compras
+
+| Cola Espera | ->El  Persona 70 salio de la cola 
+El Persona 70 esta de compras
+
+| Cola Espera | ->El  Persona 71 salio de la cola 
+El Persona 71 esta de compras
+
+| Cola Espera | ->El  Persona 72 salio de la cola 
+El Persona 72 esta de compras
+
+| Cola Espera | ->El  Persona 73 salio de la cola 
+El Persona 73 esta de compras
+
+| Cola Espera | ->El  Persona 74 salio de la cola 
+El Persona 74 esta de compras
+
+| Cola Espera | ->El  Persona 75 salio de la cola 
+El Persona 75 esta de compras
+
+| Cola Espera | ->El  Persona 76 salio de la cola 
+El Persona 76 esta de compras
+
+| Cola Espera | ->El  Persona 77 salio de la cola 
+El Persona 77 esta de compras
+
+| Cola Espera | ->El  Persona 78 salio de la cola 
+El Persona 78 esta de compras
+
+| Cola Espera | ->El  Persona 79 salio de la cola 
+El Persona 79 esta de compras
+
+| Cola Espera | ->El  Persona 80 salio de la cola 
+El Persona 80 esta de compras
+
+| Cola Espera | ->El  Persona 81 salio de la cola 
+El Persona 81 esta de compras
+
+| Cola Espera | ->El  Persona 82 salio de la cola 
+El Persona 82 esta de compras
+
+| Cola Espera | ->El  Persona 83 salio de la cola 
+El Persona 83 esta de compras
+
+| Cola Espera | ->El  Persona 84 salio de la cola 
+El Persona 84 esta de compras
+
+| Cola Espera | ->El  Persona 85 salio de la cola 
+El Persona 85 esta de compras
+
+| Cola Espera | ->El  Persona 86 salio de la cola 
+El Persona 86 esta de compras
+
+| Cola Espera | ->El  Persona 87 salio de la cola 
+El Persona 87 esta de compras
+
+| Cola Espera | ->El  Persona 88 salio de la cola 
+El Persona 88 esta de compras
+
+| Cola Espera | ->El  Persona 89 salio de la cola 
+El Persona 89 esta de compras
+
+| Cola Espera | ->El  Persona 90 salio de la cola 
+El Persona 90 esta de compras
+
+| Cola Espera | ->El  Persona 91 salio de la cola 
+El Persona 91 esta de compras
+
+| Cola Espera | ->El  Persona 92 salio de la cola 
+El Persona 92 esta de compras
+
+| Cola Espera | ->El  Persona 93 salio de la cola 
+El Persona 93 esta de compras
+
+| Cola Espera | ->El  Persona 94 salio de la cola 
+El Persona 94 esta de compras
+
+| Cola Espera | ->El  Persona 95 salio de la cola 
+El Persona 95 esta de compras
+
+| Cola Espera | ->El  Persona 96 salio de la cola 
+El Persona 96 esta de compras
+
+| Cola Espera | ->El  Persona 97 salio de la cola 
+El Persona 97 esta de compras
+
+| Cola Espera | ->El  Persona 98 salio de la cola 
+El Persona 98 esta de compras
+
+| Cola Espera | ->El  Persona 99 salio de la cola 
+El Persona 99 esta de compras
+
+| Cola Espera | ->El  Persona 100 salio de la cola 
+El Persona 100 esta de compras
+
+| Cola Espera | ->El  Persona 101 salio de la cola 
+El Persona 101 esta de compras
+
+| Cola Espera | ->El  Persona 102 salio de la cola 
+El Persona 102 esta de compras
+
+| Cola Espera | ->El  Persona 103 salio de la cola 
+El Persona 103 esta de compras
+
+| Cola Espera | ->El  Persona 104 salio de la cola 
+El Persona 104 esta de compras
+
+| Cola Espera | ->El  Persona 105 salio de la cola 
+El Persona 105 esta de compras
+
+| Cola Espera | ->El  Persona 106 salio de la cola 
+El Persona 106 esta de compras
+
+| Cola Espera | ->El  Persona 107 salio de la cola 
+El Persona 107 esta de compras
+
+| Cola Espera | ->El  Persona 108 salio de la cola 
+El Persona 108 esta de compras
+
+| Cola Espera | ->El  Persona 109 salio de la cola 
+El Persona 109 esta de compras
+
+| Cola Espera | ->El  Persona 110 salio de la cola 
+El Persona 110 esta de compras
+
+| Cola Espera | ->El  Persona 111 salio de la cola 
+El Persona 111 esta de compras
+
+| Cola Espera | ->El  Persona 112 salio de la cola 
+El Persona 112 esta de compras
+
+| Cola Espera | ->El  Persona 113 salio de la cola 
+El Persona 113 esta de compras
+
+| Cola Espera | ->El  Persona 114 salio de la cola 
+El Persona 114 esta de compras
+
+| Cola Espera | ->El  Persona 115 salio de la cola 
+El Persona 115 esta de compras
+
+| Cola Espera | ->El  Persona 116 salio de la cola 
+El Persona 116 esta de compras
+
+| Cola Espera | ->El  Persona 117 salio de la cola 
+El Persona 117 esta de compras
+
+| Cola Espera | ->El  Persona 118 salio de la cola 
+El Persona 118 esta de compras
+
+| Cola Espera | ->El  Persona 119 salio de la cola 
+El Persona 119 esta de compras
+
+| Cola Espera | ->El  Persona 120 salio de la cola 
+El Persona 120 esta de compras
+
+| Cola Espera | ->El  Persona 121 salio de la cola 
+El Persona 121 esta de compras
+
+| Cola Espera | ->El  Persona 122 salio de la cola 
+El Persona 122 esta de compras
+
+| Cola Espera | ->El  Persona 123 salio de la cola 
+El Persona 123 esta de compras
+
+| Cola Espera | ->El  Persona 124 salio de la cola 
+El Persona 124 esta de compras
+
+| Cola Espera | ->El  Persona 125 salio de la cola 
+El Persona 125 esta de compras
+
+| Cola Espera | ->El  Persona 126 salio de la cola 
+El Persona 126 esta de compras
+
+| Cola Espera | ->El  Persona 127 salio de la cola 
+El Persona 127 esta de compras
+
+| Cola Espera | ->El  Persona 128 salio de la cola 
+El Persona 128 esta de compras
+
+| Cola Espera | ->El  Persona 129 salio de la cola 
+El Persona 129 esta de compras
+
+| Cola Espera | ->El  Persona 130 salio de la cola 
+El Persona 130 esta de compras
+
+| Cola Espera | ->El  Persona 131 salio de la cola 
+El Persona 131 esta de compras
+
+| Cola Espera | ->El  Persona 132 salio de la cola 
+El Persona 132 esta de compras
+
+| Cola Espera | ->El  Persona 133 salio de la cola 
+El Persona 133 esta de compras
+
+| Cola Espera | ->El  Persona 134 salio de la cola 
+El Persona 134 esta de compras
+
+| Cola Espera | ->El  Persona 135 salio de la cola 
+El Persona 135 esta de compras
+
+| Cola Espera | ->El  Persona 136 salio de la cola 
+El Persona 136 esta de compras
+
+| Cola Espera | ->El  Persona 137 salio de la cola 
+El Persona 137 esta de compras
+
+| Cola Espera | ->El  Persona 138 salio de la cola 
+El Persona 138 esta de compras
+
+| Cola Espera | ->El  Persona 139 salio de la cola 
+El Persona 139 esta de compras
+
+| Cola Espera | ->El  Persona 140 salio de la cola 
+El Persona 140 esta de compras
+
+| Cola Espera | ->El  Persona 141 salio de la cola 
+El Persona 141 esta de compras
+
+| Cola Espera | ->El  Persona 142 salio de la cola 
+El Persona 142 esta de compras
+
+| Cola Espera | ->El  Persona 143 salio de la cola 
+El Persona 143 esta de compras
+
+| Cola Espera | ->El  Persona 144 salio de la cola 
+El Persona 144 esta de compras
+
+| Cola Espera | ->El  Persona 145 salio de la cola 
+El Persona 145 esta de compras
+
+| Cola Espera | ->El  Persona 146 salio de la cola 
+El Persona 146 esta de compras
+
+| Cola Espera | ->El  Persona 147 salio de la cola 
+El Persona 147 esta de compras
+
+| Cola Espera | ->El  Persona 148 salio de la cola 
+El Persona 148 esta de compras
+
+| Cola Espera | ->El  Persona 149 salio de la cola 
+El Persona 149 esta de compras
+
+| Cola Espera | ->El  Persona 150 salio de la cola 
+El Persona 150 esta de compras
+
+| Cola Espera | ->El  Persona 151 salio de la cola 
+El Persona 151 esta de compras
+
+| Cola Espera | ->El  Persona 152 salio de la cola 
+El Persona 152 esta de compras
+
+| Cola Espera | ->El  Persona 153 salio de la cola 
+El Persona 153 esta de compras
+
+| Cola Espera | ->El  Persona 154 salio de la cola 
+El Persona 154 esta de compras
+
+| Cola Espera | ->El  Persona 155 salio de la cola 
+El Persona 155 esta de compras
+
+| Cola Espera | ->El  Persona 156 salio de la cola 
+El Persona 156 esta de compras
+
+| Cola Espera | ->El  Persona 157 salio de la cola 
+El Persona 157 esta de compras
+
+| Cola Espera | ->El  Persona 158 salio de la cola 
+El Persona 158 esta de compras
+
+| Cola Espera | ->El  Persona 159 salio de la cola 
+El Persona 159 esta de compras
+
+| Cola Espera | ->El  Persona 160 salio de la cola 
+El Persona 160 esta de compras
+
+| Cola Espera | ->El  Persona 161 salio de la cola 
+El Persona 161 esta de compras
+
+| Cola Espera | ->El  Persona 162 salio de la cola 
+El Persona 162 esta de compras
+
+| Cola Espera | ->El  Persona 163 salio de la cola 
+El Persona 163 esta de compras
+
+| Cola Espera | ->El  Persona 164 salio de la cola 
+El Persona 164 esta de compras
+
+| Cola Espera | ->El  Persona 165 salio de la cola 
+El Persona 165 esta de compras
+
+| Cola Espera | ->El  Persona 166 salio de la cola 
+El Persona 166 esta de compras
+
+| Cola Espera | ->El  Persona 167 salio de la cola 
+El Persona 167 esta de compras
+
+| Cola Espera | ->El  Persona 168 salio de la cola 
+El Persona 168 esta de compras
+
+| Cola Espera | ->El  Persona 169 salio de la cola 
+El Persona 169 esta de compras
+
+| Cola Espera | ->El  Persona 170 salio de la cola 
+El Persona 170 esta de compras
+
+| Cola Espera | ->El  Persona 171 salio de la cola 
+El Persona 171 esta de compras
+
+| Cola Espera | ->El  Persona 172 salio de la cola 
+El Persona 172 esta de compras
+
+| Cola Espera | ->El  Persona 173 salio de la cola 
+El Persona 173 esta de compras
+
+| Cola Espera | ->El  Persona 174 salio de la cola 
+El Persona 174 esta de compras
+
+| Cola Espera | ->El  Persona 175 salio de la cola 
+El Persona 175 esta de compras
+
+| Cola Espera | ->El  Persona 176 salio de la cola 
+El Persona 176 esta de compras
+
+| Cola Espera | ->El  Persona 177 salio de la cola 
+El Persona 177 esta de compras
+
+| Cola Espera | ->El  Persona 178 salio de la cola 
+El Persona 178 esta de compras
+
+| Cola Espera | ->El  Persona 179 salio de la cola 
+El Persona 179 esta de compras
+
+| Cola Espera | ->El  Persona 180 salio de la cola 
+El Persona 180 esta de compras
+
+| Cola Espera | ->El  Persona 181 salio de la cola 
+El Persona 181 esta de compras
+
+| Cola Espera | ->El  Persona 182 salio de la cola 
+El Persona 182 esta de compras
+
+| Cola Espera | ->El  Persona 183 salio de la cola 
+El Persona 183 esta de compras
+
+| Cola Espera | ->El  Persona 184 salio de la cola 
+El Persona 184 esta de compras
+
+| Cola Espera | ->El  Persona 185 salio de la cola 
+El Persona 185 esta de compras
+
+| Cola Espera | ->El  Persona 186 salio de la cola 
+El Persona 186 esta de compras
+
+| Cola Espera | ->El  Persona 187 salio de la cola 
+El Persona 187 esta de compras
+
+| Cola Espera | ->El  Persona 188 salio de la cola 
+El Persona 188 esta de compras
+
+| Cola Espera | ->El  Persona 189 salio de la cola 
+El Persona 189 esta de compras
+
+| Cola Espera | ->El  Persona 190 salio de la cola 
+El Persona 190 esta de compras
+
+| Cola Espera | ->El  Persona 191 salio de la cola 
+El Persona 191 esta de compras
+
+| Cola Espera | ->El  Persona 192 salio de la cola 
+El Persona 192 esta de compras
+
+| Cola Espera | ->El  Persona 193 salio de la cola 
+El Persona 193 esta de compras
+
+| Cola Espera | ->El  Persona 194 salio de la cola 
+El Persona 194 esta de compras
+
+| Cola Espera | ->El  Persona 195 salio de la cola 
+El Persona 195 esta de compras
+
+| Cola Espera | ->El  Persona 196 salio de la cola 
+El Persona 196 esta de compras
+
+| Cola Espera | ->El  Persona 197 salio de la cola 
+El Persona 197 esta de compras
+
+| Cola Espera | ->El  Persona 198 salio de la cola 
+El Persona 198 esta de compras
+
+| Cola Espera | ->El  Persona 199 salio de la cola 
+El Persona 199 esta de compras
+
+| Cola Espera | ->El  Persona 200 salio de la cola 
+El Persona 200 esta de compras
+
+ No hay personas esperando 
+
+
+Informa que Persona 5 pase a pagar
+Pase a comprasPersona 5
+
+El Persona 5 salio de compras
+
+El Persona 5 sale de compras
+| Cola Paga | ->El  Persona 5 acaba de ingresar a la cola
+
+Ventana 1 Libre 
+| Cola Paga | ->El  Persona 5 salio de la cola 
+
+EL  Persona 5 debe pagar  Ventana 1 con Coche: 220
+
+Tiempo que falta = 10 , para  Persona 5
+
+
+--------------  Valor Coche: 44---------
+
+
+--------------  Valor Coche: 43---------
+
+
+--------------  Valor Coche: 42---------
+
+
+--------------  Valor Coche: 40---------
+
+
+--------------  Valor Coche: 38---------
+
+
+--------------  Valor Coche: 34---------
+
+
+--------------  Valor Coche: 33---------
+
+
+--------------  Valor Coche: 32---------
+
+
+--------------  Valor Coche: 29---------
+
+
+--------------  Valor Coche: 26---------
+
+
+--------------  Valor Coche: 20---------
+
+
+--------------  Valor Coche: 18---------
+
+
+--------------  Valor Coche: 17---------
+
+
+--------------  Valor Coche: 16---------
+
+
+--------------  Valor Coche: 14---------
+
+
+--------------  Valor Coche: 13---------
+
+
+--------------  Valor Coche: 11---------
+
+
+--------------  Valor Coche: 10---------
+
+
+--------------  Valor Coche: 6---------
+
+
+--------------  Valor Coche: 5---------
+
+El Persona 49 salio de compras
+
+| Cola Paga | ->El  Persona 49 acaba de ingresar a la cola
+| Cola Paga | ->El  Persona 49 salio de la cola 
+
+EL  Persona 49 debe pagar  Ventana 2 con Coche: 152
+
+
+--------------  Valor Coche: 44---------
+
+
+--------------  Valor Coche: 43---------
+
+
+--------------  Valor Coche: 42---------
+
+
+--------------  Valor Coche: 40---------
+
+
+--------------  Valor Coche: 38---------
+
+
+--------------  Valor Coche: 34---------
+
+
+--------------  Valor Coche: 33---------
+
+
+--------------  Valor Coche: 32---------
+
+
+--------------  Valor Coche: 29---------
+
+
+--------------  Valor Coche: 26---------
+
+
+--------------  Valor Coche: 20---------
+
+
+--------------  Valor Coche: 18---------
+
+
+--------------  Valor Coche: 17---------
+
+
+--------------  Valor Coche: 16---------
+
+
+--------------  Valor Coche: 14---------
+
+
+--------------  Valor Coche: 13---------
+
+
+--------------  Valor Coche: 11---------
+
+
+--------------  Valor Coche: 10---------
+
+
+--------------  Valor Coche: 6---------
+
+
+--------------  Valor Coche: 5---------
+
+El Persona 48 salio de compras
+
+| Cola Paga | ->El  Persona 48 acaba de ingresar a la cola
+| Cola Paga | ->El  Persona 48 salio de la cola 
+
+EL  Persona 48 debe pagar  Ventana 3 con Coche: 190
+
+El Persona 79 salio de compras
+
+| Cola Paga | ->El  Persona 79 acaba de ingresar a la cola
+
+--------------  Valor Coche: 44---------
+
+
+--------------  Valor Coche: 43---------
+
+
+--------------  Valor Coche: 42---------
+
+
+--------------  Valor Coche: 40---------
+
+
+--------------  Valor Coche: 38---------
+
+
+--------------  Valor Coche: 34---------
+
+
+--------------  Valor Coche: 33---------
+
+
+--------------  Valor Coche: 32---------
+
+
+--------------  Valor Coche: 29---------
+
+
+--------------  Valor Coche: 26---------
+
+
+--------------  Valor Coche: 20---------
+
+
+--------------  Valor Coche: 18---------
+
+
+--------------  Valor Coche: 17---------
+
+
+--------------  Valor Coche: 16---------
+
+
+--------------  Valor Coche: 14---------
+
+
+--------------  Valor Coche: 13---------
+
+
+--------------  Valor Coche: 11---------
+
+
+--------------  Valor Coche: 10---------
+
+
+--------------  Valor Coche: 6---------
+
+
+--------------  Valor Coche: 5---------
+

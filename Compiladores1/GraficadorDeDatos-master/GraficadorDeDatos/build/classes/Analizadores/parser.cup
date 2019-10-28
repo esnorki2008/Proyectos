@@ -1,0 +1,189 @@
+package Analizadores; // Paquete
+import java_cup.runtime.*; 
+import Nodos.*;
+import java.util.LinkedList;
+
+parser code
+{:
+	public String Errores="";
+     public LinkedList<GraficaBarra> GB = new LinkedList<GraficaBarra>();
+     public LinkedList<GraficaLineas> GL = new LinkedList<GraficaLineas>();
+     public LinkedList<NodoGaleria> NG = new LinkedList<NodoGaleria>();
+     public LinkedList<VarGlobales> VG = new LinkedList<VarGlobales>();
+
+    public String salida = "" ; 
+       
+    public void syntax_error(Symbol s)
+    {
+		Errores=Errores+"El analizador sintactico encontro un \nError en la Línea " + (s.right+1) +" Columna "+(s.left+1)+ ". Identificador "
+        +s.value + " no debería estar ahí.";
+		
+        System.err.println("El analizador sintactico se recupero tras el error\nError en la Línea " + (s.right+1) +" Columna "+(s.left+1)+ ". Identificador "
+        +s.value + " no debería estar ahí." );        
+    }
+
+    /**Metodo al que se llama en el momento en que ya no es posible una recuperación de errores.*/
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+		Errores=Errores+"\n"+"El analizador sintactico no se recuperó "+" Error en la Línea " + (s.right+1)+ "Columna "+(s.left+1)+". Identificador " +
+        s.value + " no reconocido.";
+		
+        System.err.println("El analizador No se recupero tras el error\nError en la Línea " + (s.right+1)+ "Columna "+(s.left+1)+". Identificador " +
+        s.value + " no reconocido.");            
+    }
+	
+    public boolean Letras(String Letra){
+    char[] Ch= Letra.toCharArray();
+    for(char C:Ch){
+    if(Character.isLetter(C)){return true;}
+    }
+    return false;
+    }
+	
+    public void setSalida(String cadena)
+    {
+        salida = cadena;
+		salida="";
+    }
+	
+		
+    
+:}
+
+
+/*Terminales*/
+
+terminal String entero,decimal,cadena,booleano,id,caracter, puntocoma,dospuntos,llaa,llac,cora,corc;
+terminal String suma, resta, multi, div, potencia, para, parc,ink;
+
+terminal String string,idt,titulo,titulox,tituloy,nombre,color,grosor,puntos,globales,igual,coma;
+terminal String definirxyline,graficabarras,graficalineas,ejex,ejey,puntosxy,galeria,prec,prea;
+
+
+/*
+* Aquí están los no terminales
+*/
+non terminal INICIO;
+non terminal  String INIT,STRD,INTD,INTC,SIGNO,DGD,DGC,STRG,GBD,GBC,GBP,ARRS,ARRI,LLO,GFD,GFC,GFP,XYLINE,XYLINEC,GLA,GLC,GLP,GBM,GFZ,TOP;
+
+
+/* Precedencia */
+precedence left suma, resta;
+precedence left multi, div;
+precedence left potencia;
+
+/* ­­­­­­­­­­­­­­ Definición de la gramatica  ­­­­­­­­­­­ */
+start with INICIO; // indicamos con qué producción debe empezar la gramatica.
+
+INICIO::= INIT:inform	 {:  setSalida(inform);:};
+
+INIT::= DGD:cadena1 INIT:cadena2  {:	:}
+        |GFD:cadena1 INIT:cadena2  {: 	 :}
+		|GBD:cadena1 INIT:cadena2  {: 	 :}
+		|GLA:cadena1 INIT:cadena2  {: 	  :}	
+		|DGD:cadena1   {: 	RESULT=cadena1;   :}
+		|GFD:cadena1   {: 	RESULT=cadena1;  :}
+		|GBD:cadena1   {: 	RESULT=cadena1;   :}
+		|GLA:cadena1   {: 	RESULT=cadena1;  :}
+		;
+
+STRD::= string id  igual STRG:val1  puntocoma	 {:   :};
+
+INTD::= ink id  igual INTC:val1  puntocoma	 {:   :};
+
+INTC::= entero	 {:  :}
+	| INTC:val1 SIGNO:val2 INTC:val3 {:   :}
+	| id {:   :}
+	| para INTC:val1 parc {:   :}
+;
+
+SIGNO::= suma {: RESULT="+";  :}
+	| resta{:  RESULT="-";:}
+	| multi {:  RESULT="*"; :}
+	| div {: RESULT="/";  :}
+;
+
+DGD::= globales llaa DGC:valor1 llac {:  :}
+;
+       
+DGC::= STRD:valor1 DGC:valor2 {:  :}
+       |INTD:valor1 DGC:valor2 {: 	:}
+	   |INTD:valor1  {: 	:}
+	   |STRD:valor1  {: 	:}
+       ;
+	   
+STRG::= cadena {:  :}
+	|id {:   :} 
+;
+
+GBD::= graficabarras:valor1 llaa GBC:valor2 llac{:   :}
+;
+
+GBC::= GBM:valor1 {:   :}
+;
+
+GBM::= GBP:valor1 {:   :}
+	|GBP:valor1 GBM:valor2 {:   :} 
+;
+
+GBP::= idt dospuntos STRG:valor1 puntocoma {:   :}
+	|titulo dospuntos STRG:valor1 puntocoma {:   :}
+	|ejex dospuntos cora ARRS:valor1 corc puntocoma {:   :}
+	|ejey dospuntos cora ARRI:valor1 corc puntocoma {:   :}
+	|puntosxy dospuntos cora LLO:valor1 corc puntocoma {:   :}
+	|titulox dospuntos STRG:valor1 puntocoma {:   :}
+	|tituloy dospuntos STRG:valor1 puntocoma {:   :}
+;	
+
+ARRS::=STRG:valor1 coma ARRS:valor2 {:   :}
+	|STRG:valor1 {:  :}
+;
+
+ARRI::=INTC:valor1 coma ARRI:valor2 {:   :}
+	|INTC:valor1 coma  INTC:valor2{:   :}
+	|
+;
+
+LLO::= llaa ARRI:valor1 llac coma LLO:valor2 {:   :}
+	|llaa ARRI:valor1 llac {:  :}
+;
+
+GFD::= graficalineas:valor1  llaa GFC:valor2 llac {:   :}
+;
+
+GFC::= GFZ:valor1 {:   :}
+;
+
+GFZ::= GFP:valor1 {:   :}
+	|GFP:valor1 GFZ:valor2 {:   :}
+;
+
+GFP::= idt dospuntos STRG:valor1 puntocoma {:   :}
+	|titulo dospuntos STRG:valor1 puntocoma {:   :}
+	|titulox dospuntos STRG:valor1 puntocoma {:   :}
+	|tituloy dospuntos STRG:valor1 puntocoma {:   :}
+	|XYLINE:valor1 {:   :}
+;
+
+XYLINE::= definirxyline prea TOP:valor1 prec {:   :}
+;
+
+TOP::=XYLINEC:valor1 {:   :}
+	|XYLINEC:valor1 TOP:valor2 {:   :}
+;
+
+XYLINEC::= nombre dospuntos STRG:valor1 puntocoma {:   :}
+	|color dospuntos STRG:valor1 puntocoma {:   :}
+	|grosor dospuntos INTC:valor1 puntocoma {:   :}
+	|puntos dospuntos cora LLO:valor1 corc puntocoma {:   :}
+;
+
+GLA::= galeria llaa GLC:valor1 llac {:    :}
+;
+
+GLC::=galeria para cadena coma GLP:valor1 parc puntocoma GLC:valor2 {:   :}
+	|galeria para cadena coma GLP:valor1 parc puntocoma{:   :}
+;
+
+GLP::= cadena coma GLP:valor1 {:   :}
+	|cadena{:   :}
+;

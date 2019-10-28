@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto2Compiladores1", "Proyecto2Compiladores1\Proyecto2Compiladores1.csproj", "{15BD136D-A297-4E38-99D6-61CD7D394709}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{714F1AF0-311B-41ED-9FBB-F65689A6AD23}"
+	ProjectSection(SolutionItems) = preProject
+		Proyecto2Compiladores1\Irony.dll = Proyecto2Compiladores1\Irony.dll
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15BD136D-A297-4E38-99D6-61CD7D394709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15BD136D-A297-4E38-99D6-61CD7D394709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15BD136D-A297-4E38-99D6-61CD7D394709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15BD136D-A297-4E38-99D6-61CD7D394709}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0B04233-6AB9-4323-9250-9AF1D5673FCA}
+	EndGlobalSection
+EndGlobal

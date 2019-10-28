@@ -1,0 +1,491 @@
+package Analizadores; // Paquete donde estará nuestro scanner
+import java_cup.runtime.Symbol; 
+import Nodos.*;
+import java.util.LinkedList;
+%% 
+
+%{
+    /*Area de declaración de codigo java. 
+    *Funciones y variables necesarias
+    *
+    */
+    String nombre;
+    public void imprimir(String cadena)
+    {
+    	System.out.println(cadena);
+    }
+	
+
+   public LinkedList<GraficaBarra> GB = new LinkedList<GraficaBarra>();
+   public LinkedList<GraficaLineas> GL = new LinkedList<GraficaLineas>();
+   public LinkedList<NodoGaleria> NG = new LinkedList<NodoGaleria>();
+   public LinkedList<VarGlobales> VG = new LinkedList<VarGlobales>();
+
+    GraficaLineas ObjetoLineas = new GraficaLineas();
+    GraficaBarra ObjetoBarras = new GraficaBarra();
+	NodoGaleria ObjetoGaleria = new NodoGaleria();
+	VarGlobales ObjetoGlobal = new VarGlobales();
+	
+    boolean Embargo=false;
+    boolean Pnt=false;
+    boolean Barras = false;
+    boolean Lineas = false;
+    boolean XYLineas = false;
+	
+	boolean Galo=false;
+	boolean PuXY=false;
+	boolean EjX = false;
+	boolean EjY = false;
+	
+    String Nombre="";
+	String Color=""; 
+	String Grosor="";
+	String Puntos="";
+    
+	String PuntosXY="";
+	String EjeX="";
+	String EjeY="";
+	String Galer="";
+	
+	
+    int Estado = -1;
+	
+
+	
+	private void VarGlo(String S) {
+        switch (Estado) {
+            case 1:
+                ObjetoBarras.Id=S;
+                break;
+				}
+	}
+	
+	
+      private void AsignacionesBarras(String S) {
+        switch (Estado) {
+            case 1:
+                ObjetoBarras.Id=S;
+                break;
+             case 16:
+               
+                break;
+             case 2:
+                 ObjetoBarras.Titulo=S;
+                break;
+             case 14:               
+				
+                break;
+             case 4:
+                 ObjetoBarras.TituloX=S;
+                break;
+             case 15:
+                
+                break;
+             case 5:
+                  ObjetoBarras.TituloY=S;
+                break;     
+
+        }
+		Estado=-1;
+    }
+
+    private void AsignacionesLineas(String S) {
+        switch (Estado) {
+            case 1:
+                ObjetoLineas.ID=S;
+                break;
+            case 3:
+                ObjetoLineas.Titulo=S;
+                break;
+            case 4:
+                ObjetoLineas.TituloX=S;
+                break;
+            case 5:
+                ObjetoLineas.TituloY=S;
+                break;
+
+        }
+        Estado=-1;
+    }
+    
+        private void XYLin(String S) {
+            switch (Estado) {
+            case 6:
+                Nombre=S;
+                break;
+            case 7:
+                Color=S;
+                break;
+            case 8:
+                Grosor=S;
+                break;
+            case 9:
+                Puntos=S;
+                break;
+
+        }
+        Estado=-1;
+        }
+
+	private void LlaveC(){
+	if(Galo){
+	 Galo=false;
+	}
+	if(Embargo){
+	//	VG.add(ObjetoGlobal);
+	//	ObjetoGlobal=new VarGlobales();
+		Embargo=false;
+	}
+	
+		if(XYLineas==false && PuXY==false){
+
+	  if (Barras) {
+               ObjetoBarras.PuntosXY=PuntosXY;
+               ObjetoBarras.EjeX=EjeX;
+               ObjetoBarras.EjeY=EjeY;
+			   EjeX="";
+			   EjeY="";
+			   PuntosXY="";
+            GB.add(ObjetoBarras);
+        }
+        if (Lineas) {
+			
+		        //  System.out.println(ObjetoLineas.ID+" "+ObjetoLineas.Titulo+" "+ObjetoLineas.TituloX+" "+ObjetoLineas.TituloY);
+
+            GL.add(ObjetoLineas);
+        }
+            Barras=false;
+			Lineas=false;
+            Estado=-1;
+            ObjetoLineas = new GraficaLineas();
+            ObjetoBarras = new GraficaBarra();
+        }
+       }
+	   
+	   
+	   private void PR(){
+		if(XYLineas){
+		//System.out.println(Nombre +" "+Color+" "+ Grosor+" "+ Puntos);
+                ObjetoLineas.CrearXYLine(Nombre, Color, Grosor, Puntos);
+                Nombre="";
+                Color="";
+                Grosor="";
+                Puntos="";
+        }
+                XYLineas=false;
+	   }
+	
+	     private int AsignarValoresTipo(String S) {
+        
+               
+        
+        
+
+        switch (S) {
+		
+			 case "id":
+                Estado = 1;
+                return sym.idt;
+            case "string":
+                Estado = 0;
+                return sym.string;
+			case "tituloy":
+                Estado = 5;
+                return sym.tituloy;
+           
+            case "int":
+                Estado = 2;
+                return sym.ink;
+            case "titulo":
+                Estado = 3;
+                return sym.titulo;
+            case "titulox":
+                Estado = 4;
+                return sym.titulox;
+            
+            case "nombre":
+                Estado = 6;
+                return sym.nombre;
+            case "color":
+                Estado = 7;
+                return sym.color;
+            case "grosor":
+                Estado = 8;
+                return sym.grosor;
+            case "puntos":
+                Estado = 9;
+                return sym.puntos;
+            case "definirglobales":
+				Embargo=true;
+                Estado = 10;
+                return sym.globales;
+            case "definirxyline":
+				
+                XYLineas=true;
+                Estado = 11;
+                return sym.definirxyline;
+            case "graficabarras":
+                Estado = 12;
+                Barras=true;
+
+                return sym.graficabarras;
+            case "graficalineas":
+                Estado = 13;
+                Lineas=true;
+				
+
+                return sym.graficalineas;
+            case "ejex":
+				EjX=true;
+                Estado = 14;
+                return sym.ejex;
+            case "ejey":
+				EjY=true;
+                Estado = 15;
+                return sym.ejey;
+            case "puntosxy":
+				PuXY=true;
+                Estado = 16;
+                return sym.puntosxy;
+            case "galeria":
+				Galo=true;
+                Estado = 17;
+                return sym.galeria;
+            default:
+              //  System.out.println(S+"  DEFAULT");
+                    if (Barras) {
+                        AsignacionesBarras(S);
+                    }
+                    if (Lineas) {
+					
+						if(Pnt){Puntos=Puntos+yytext();}
+
+						//System.out.println(S+"  DEB");
+                        AsignacionesLineas(S);
+                    }
+                    if(XYLineas){
+                        XYLin(S);
+                    }
+					if(Barras){
+						 if(EjX){EjeX=EjeX+yytext();}
+						 if(EjY){EjeY=EjeY+yytext();}
+					}
+					
+                break;
+
+        }
+		
+		
+		
+		if(Embargo){ObjetoGlobal.Nombre=S;}
+		if(Galo){
+	 Galer=Galer+S;
+	}
+        return sym.id;
+    }
+%}
+
+// Area de directivas
+%cupsym sym 
+%class scanner
+%cup
+%public
+%unicode
+
+%line
+%column
+%char
+%ignorecase
+
+
+// Area de definición de expresiones regulares. Tokens.
+Comentario = "//" [^\r\n]* [^\r\n]
+ComentarioMulti = "/*" [^/] ~"*/" | "/*" "/"+ "*/"
+entero =[0-9]+ 
+decimal =[0-9]+ "." [0-9]*
+cadena =[\"] [^\"\n]* [\"\n]
+letra =[a-zA-ZÑñ]+
+id ={letra}({letra}|{entero}|"_")*
+espacio = \t|\f|" "|\r|\n
+
+
+preg=[\u00BF]
+
+%%
+
+// Acciones
+/* Espacios en blanco */
+{espacio}     {/*Ignorar*/}
+{entero} { 
+
+if(Embargo){ObjetoGlobal.Tipo="Num"; ObjetoGlobal.ValorString=ObjetoGlobal.ValorString+yytext();}
+
+
+
+if(Barras){
+ if(PuXY){PuntosXY=PuntosXY+yytext();}
+ if(EjY){EjeY=EjeY+yytext();}
+}
+if(Pnt){Puntos=Puntos+yytext();}else{Grosor=yytext();}			return new Symbol(sym.entero,yycolumn,yyline,yytext());}
+
+
+
+{decimal} {		return new Symbol(sym.decimal,yycolumn,yyline,yytext());}
+
+{cadena} {
+        if(Embargo){ObjetoGlobal.Tipo="Cad"; ObjetoGlobal.ValorString=yytext();}
+
+					String S=yytext();
+					//System.out.println(S+"  "+Lineas+"	"+XYLineas);
+					
+					if (Barras) {
+                        AsignacionesBarras(S);
+                    }
+                    if (Lineas && XYLineas==false) {
+						//System.out.println(S+ "  Lins");
+                        AsignacionesLineas(S);
+                    }
+                    if(XYLineas){
+						//System.out.println(S+ "  XYYYLins");
+                        XYLin(S);
+                    }
+					if(EjX){
+						EjeX=EjeX+yytext();
+                    }
+	
+	if(Galo){
+	 Galer=Galer+yytext();
+	}
+
+return new Symbol(sym.cadena,yycolumn,yyline,yytext());
+
+
+}
+
+
+{id} {   return new Symbol(AsignarValoresTipo(yytext()),yycolumn,yyline,yytext());    }
+
+
+
+","    {
+
+if(Galo){
+	 Galer=Galer+yytext();
+	}
+
+
+if(Barras){
+ if(PuXY){PuntosXY=PuntosXY+yytext();}
+ if(EjX){EjeX=EjeX+yytext();}
+ if(EjY){EjeY=EjeY+yytext();}
+}
+
+if(XYLineas){Puntos=Puntos+yytext();} return new Symbol(sym.coma,yycolumn,yyline,yytext());}
+
+
+";"    {
+
+if(Embargo){
+		VG.add(ObjetoGlobal);
+		ObjetoGlobal=new VarGlobales();
+		
+	}
+
+if(Galo){
+ ObjetoGaleria.Galeria=Galer;
+	 NG.add(ObjetoGaleria);
+	 ObjetoGaleria = new NodoGaleria();
+	 Galer="";
+	}
+
+return new Symbol(sym.puntocoma,yycolumn,yyline,yytext());
+
+}
+":"    {return new Symbol(sym.dospuntos,yycolumn,yyline,yytext());}
+"("    {return new Symbol(sym.para,yycolumn,yyline,yytext());}
+")"    {return new Symbol(sym.parc,yycolumn,yyline,yytext());}
+
+"{"    {
+if(Barras){
+ if(PuXY){PuntosXY=PuntosXY+yytext();}
+
+}
+if(XYLineas){Puntos=Puntos+yytext();}	return new Symbol(sym.llaa,yycolumn,yyline,yytext());}
+
+
+"}"    {
+if(Barras){
+ if(PuXY){PuntosXY=PuntosXY+yytext();}
+
+}
+if(XYLineas){Puntos=Puntos+yytext();}	LlaveC();	return new Symbol(sym.llac,yycolumn,yyline,yytext());}
+
+"["    {
+
+if(Barras){
+ if(PuXY){PuntosXY=PuntosXY+yytext();}
+ if(EjX){EjeX=EjeX+yytext();}
+ if(EjY){EjeY=EjeY+yytext();}
+}
+if(XYLineas){Pnt=true; Puntos=Puntos+yytext();}		return new Symbol(sym.cora,yycolumn,yyline,yytext());}
+
+
+"="    {return new Symbol(sym.igual,yycolumn,yyline,yytext());}
+"]"    {
+if(Barras){
+if(PuXY){PuntosXY=PuntosXY+yytext();}
+ if(EjX){EjeX=EjeX+yytext();}
+ if(EjY){EjeY=EjeY+yytext();}
+
+PuXY=false;
+EjX=false;
+EjY=false;
+
+ 
+ 
+}
+if(XYLineas){
+Pnt=false; Puntos=Puntos+yytext();} 		return new Symbol(sym.corc,yycolumn,yyline,yytext());}
+
+"+"    {
+if(Pnt){Puntos=Puntos+yytext();}
+if(Barras){	 if(EjY){EjeY=EjeY+yytext();}		}
+if(Embargo){ObjetoGlobal.Tipo="Num"; ObjetoGlobal.ValorString=ObjetoGlobal.ValorString+yytext();}
+return new Symbol(sym.suma,yycolumn,yyline,yytext());
+}
+"-"    {
+if(Pnt){Puntos=Puntos+yytext();}
+if(Barras){	 if(EjY){EjeY=EjeY+yytext();}		}
+if(Embargo){ObjetoGlobal.Tipo="Num"; ObjetoGlobal.ValorString=ObjetoGlobal.ValorString+yytext();}
+return new Symbol(sym.resta,yycolumn,yyline,yytext());}
+
+"*"    {
+if(Pnt){Puntos=Puntos+yytext();}
+if(Barras){	 if(EjY){EjeY=EjeY+yytext();}		}
+if(Embargo){ObjetoGlobal.Tipo="Num"; ObjetoGlobal.ValorString=ObjetoGlobal.ValorString+yytext();}
+return new Symbol(sym.multi,yycolumn,yyline,yytext());}
+
+"/"    {
+if(Pnt){Puntos=Puntos+yytext();}
+if(Barras){	 if(EjY){EjeY=EjeY+yytext();}		}
+if(Embargo){ObjetoGlobal.Tipo="Num"; ObjetoGlobal.ValorString=ObjetoGlobal.ValorString+yytext();}
+return new Symbol(sym.div,yycolumn,yyline,yytext());}
+
+"^"    {return new Symbol(sym.potencia,yycolumn,yyline,yytext());}
+
+
+{preg}    { XYLineas=true; return new Symbol(sym.prea,yycolumn,yyline,yytext());}
+
+
+"?"    { PR(); return new Symbol(sym.prec,yycolumn,yyline,yytext());}
+
+
+{Comentario} { /*Se ignora.*/}
+{ComentarioMulti} { /*Se ignora.*/}
+/*Recolección de errores*/
+.   
+{               
+        System.err.println("Error lexico: "+yytext()+ " Linea:"+(yyline+1)+" Columna:"+(yycolumn+1));
+}
+
+

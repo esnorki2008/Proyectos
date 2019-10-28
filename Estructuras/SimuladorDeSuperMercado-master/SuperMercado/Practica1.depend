@@ -1,0 +1,171 @@
+# depslib dependency file v1.0
+1560969137 source:c:\cpp\practica1\main.cpp
+	<iostream>
+	<windows.h>
+	"Cajas.h"
+	"Carretas.h"
+	"Cliente.h"
+	"ClienteAB.h"
+	"Compras.h"
+	"Listas.h"
+	"Pago.h"
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<string>
+	<fstream>
+
+1560961551 source:c:\cpp\practica1\src\cajas.cpp
+	"Cajas.h"
+	<iostream>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<string>
+	<fstream>
+
+1560929851 c:\cpp\practica1\include\cajas.h
+	"ClienteAB.h"
+	<iostream>
+	<string>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<fstream>
+
+1560785583 c:\cpp\practica1\include\nododoble.h
+	<string>
+
+1560961803 source:c:\cpp\practica1\src\carretas.cpp
+	"Carretas.h"
+	<iostream>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<string>
+	<fstream>
+
+1560930065 c:\cpp\practica1\include\carretas.h
+	"Cliente.h"
+	<iostream>
+	<string>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<fstream>
+
+1560785511 c:\cpp\practica1\include\nodo.h
+	<string>
+
+1560962595 source:c:\cpp\practica1\src\compras.cpp
+	"Compras.h"
+	<iostream>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<string>
+	<fstream>
+
+1560930828 c:\cpp\practica1\include\compras.h
+	"ClienteAB.h"
+	<iostream>
+	<string>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<fstream>
+
+1560785496 source:c:\cpp\practica1\src\nodo.cpp
+	"Nodo.h"
+
+1560785568 source:c:\cpp\practica1\src\nododoble.cpp
+	"NodoDoble.h"
+	"NodoDoble.h"
+
+1560963144 source:c:\cpp\practica1\src\pago.cpp
+	"Pago.h"
+	<iostream>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<string>
+	<fstream>
+
+1560931258 c:\cpp\practica1\include\pago.h
+	"Cliente.h"
+	<iostream>
+	<string>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<fstream>
+
+1560962835 source:c:\cpp\practica1\src\listas.cpp
+	"Listas.h"
+	<iostream>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<string>
+	<fstream>
+
+1560931035 c:\cpp\practica1\include\listas.h
+	"Cliente.h"
+	<iostream>
+	<string>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<fstream>
+
+1560930146 c:\cpp\practica1\include\cliente.h
+	<iostream>
+	<string>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<fstream>
+
+1560961789 source:c:\cpp\practica1\src\cliente.cpp
+	"Cliente.h"
+	<iostream>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<string>
+	<fstream>
+
+1560930227 c:\cpp\practica1\include\clienteab.h
+	<iostream>
+	<string>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<fstream>
+
+1560961988 source:c:\cpp\practica1\src\clienteab.cpp
+	"ClienteAB.h"
+	<iostream>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<string>
+	<fstream>
+
+1560960740 source:c:\cpp\practica1\src\marketingsupermer.cpp
+	"MarketingSupermer.h"
+	<iostream>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<string>
+	<fstream>
+
+1560960658 c:\cpp\practica1\include\marketingsupermer.h
+	<iostream>
+	<string>
+	<stdlib.h>
+	<sstream>
+	<time.h>
+	<fstream>
+
