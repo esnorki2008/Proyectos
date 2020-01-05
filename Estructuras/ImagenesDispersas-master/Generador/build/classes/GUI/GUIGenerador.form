@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" pref="1008" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" pref="363" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="tab1">
+                <Property name="tabTitle" type="java.lang.String" value="tab1"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTabbedPane2" min="-2" pref="827" max="-2" attributes="0"/>
+                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButton1" pref="126" max="32767" attributes="0"/>
+                          <Component id="jButton2" max="32767" attributes="0"/>
+                          <Component id="jButton3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTabbedPane2" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" pref="38" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButton3" min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JTabbedPane" name="jTabbedPane2">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel3">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                      <JTabbedPaneConstraints tabName="tab1">
+                        <Property name="tabTitle" type="java.lang.String" value="tab1"/>
+                      </JTabbedPaneConstraints>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" pref="813" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jScrollPane1" pref="293" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTextArea" name="jTextArea1">
+                          <Properties>
+                            <Property name="columns" type="int" value="20"/>
+                            <Property name="rows" type="int" value="5"/>
+                            <Property name="text" type="java.lang.String" value="7{&#xa;    26,13,#FFCC00;&#xa;    26,14,#FFCC00;&#xa;    26,19,#FFCC00;&#xa;    27,14,#FFCC00;&#xa;}&#xa;11{&#xa;    13,6,#993300;&#xa;    15,7,#993300;&#xa;    15,8,#993300;&#xa;    18,14,#993300;&#xa;    18,15,#993300;&#xa;    18,16,#993300;&#xa;    19,15,#993300;&#xa;    34,6,#993300;&#xa;    34,7,#993300;&#xa;    34,8,#993300;&#xa;    35,10,#993300;&#xa;    35,11,#993300;&#xa;    35,14,#993300;&#xa;    35,15,#993300;&#xa;    35,16,#993300;&#xa;    35,17,#993300;&#xa;    35,18,#993300;&#xa;    36,5,#993300;&#xa;    36,6,#993300;&#xa;    36,7,#993300;&#xa;    36,8,#993300;&#xa;    36,9,#993300;&#xa;    36,15,#993300;&#xa;    37,5,#993300;&#xa;    37,13,#993300;&#xa;    37,15,#993300;&#xa;    37,16,#993300;&#xa;    38,5,#993300;&#xa;    38,6,#993300;&#xa;    38,12,#993300;&#xa;    38,13,#993300;&#xa;    38,15,#993300;&#xa;    38,16,#993300;&#xa;    38,17,#993300;&#xa;    38,18,#993300;&#xa;    39,5,#993300;&#xa;    39,6,#993300;&#xa;    39,7,#993300;&#xa;    39,8,#993300;&#xa;    39,9,#993300;&#xa;    39,10,#993300;&#xa;    39,11,#993300;&#xa;    39,12,#993300;&#xa;    39,13,#993300;&#xa;}&#xa;13{&#xa;    13,7,#CC3300;&#xa;    14,7,#CC3300;&#xa;    14,8,#CC3300;&#xa;    34,9,#CC3300;&#xa;    34,10,#CC3300;&#xa;    34,11,#CC3300;&#xa;    36,10,#CC3300;&#xa;    36,11,#CC3300;&#xa;    36,12,#CC3300;&#xa;    36,13,#CC3300;&#xa;    36,16,#CC3300;&#xa;    36,17,#CC3300;&#xa;    36,18,#CC3300;&#xa;    37,6,#CC3300;&#xa;    37,7,#CC3300;&#xa;    37,8,#CC3300;&#xa;    37,9,#CC3300;&#xa;    37,10,#CC3300;&#xa;    37,11,#CC3300;&#xa;    37,12,#CC3300;&#xa;    37,17,#CC3300;&#xa;    37,18,#CC3300;&#xa;    38,7,#CC3300;&#xa;    38,8,#CC3300;&#xa;    38,9,#CC3300;&#xa;    38,10,#CC3300;&#xa;    38,11,#CC3300;&#xa;}&#xa;12{&#xa;    17,13,#663300;&#xa;    17,14,#663300;&#xa;    17,15,#663300;&#xa;    17,16,#663300;&#xa;    18,13,#663300;&#xa;    18,17,#663300;&#xa;    19,14,#663300;&#xa;    19,16,#663300;&#xa;    19,17,#663300;&#xa;    19,18,#663300;&#xa;}&#xa;9{&#xa;    39,15,#FFFF99;&#xa;    39,16,#FFFF99;&#xa;    39,17,#FFFF99;&#xa;    40,6,#FFFF99;&#xa;    40,7,#FFFF99;&#xa;    40,8,#FFFF99;&#xa;    40,9,#FFFF99;&#xa;    40,10,#FFFF99;&#xa;    40,11,#FFFF99;&#xa;    40,12,#FFFF99;&#xa;    11,11,#FFFF99;&#xa;    11,12,#FFFF99;&#xa;    11,14,#FFFF99;&#xa;    11,15,#FFFF99;&#xa;    11,16,#FFFF99;&#xa;    11,17,#FFFF99;&#xa;    11,19,#FFFF99;&#xa;    12,10,#FFFF99;&#xa;    12,11,#FFFF99;&#xa;    12,12,#FFFF99;&#xa;    12,14,#FFFF99;&#xa;    12,15,#FFFF99;&#xa;    13,10,#FFFF99;&#xa;    13,11,#FFFF99;&#xa;    13,12,#FFFF99;&#xa;    13,14,#FFFF99;&#xa;    13,15,#FFFF99;&#xa;    13,18,#FFFF99;&#xa;    13,19,#FFFF99;&#xa;    13,20,#FFFF99;&#xa;    13,21,#FFFF99;&#xa;    14,10,#FFFF99;&#xa;    14,11,#FFFF99;&#xa;    14,12,#FFFF99;&#xa;    14,13,#FFFF99;&#xa;    14,14,#FFFF99;&#xa;    14,15,#FFFF99;&#xa;    14,17,#FFFF99;&#xa;    14,18,#FFFF99;&#xa;    14,19,#FFFF99;&#xa;    14,20,#FFFF99;&#xa;    14,21,#FFFF99;&#xa;    14,4,#FFFF99;&#xa;    14,5,#FFFF99;&#xa;    15,3,#FFFF99;&#xa;    15,5,#FFFF99;&#xa;    15,10,#FFFF99;&#xa;    15,11,#FFFF99;&#xa;    15,12,#FFFF99;&#xa;    15,13,#FFFF99;&#xa;    15,14,#FFFF99;&#xa;    15,15,#FFFF99;&#xa;    15,16,#FFFF99;&#xa;    15,17,#FFFF99;&#xa;    15,18,#FFFF99;&#xa;    15,19,#FFFF99;&#xa;    15,20,#FFFF99;&#xa;    15,21,#FFFF99;&#xa;    16,3,#FFFF99;&#xa;    16,6,#FFFF99;&#xa;    16,10,#FFFF99;&#xa;    16,18,#FFFF99;&#xa;    16,19,#FFFF99;&#xa;    16,20,#FFFF99;&#xa;    17,3,#FFFF99;&#xa;    17,6,#FFFF99;&#xa;    17,8,#FFFF99;&#xa;    17,9,#FFFF99;&#xa;    17,10,#FFFF99;&#xa;    18,4,#FFFF99;&#xa;    18,5,#FFFF99;&#xa;    18,6,#FFFF99;&#xa;    18,9,#FFFF99;&#xa;    18,10,#FFFF99;&#xa;}&#xa;8{&#xa;    27,13,#FF6600;&#xa;    27,19,#FF6600;&#xa;}&#xa;&#xa;10{&#xa;    10,13,#FF9966;&#xa;    10,14,#FF9966;&#xa;    10,15,#FF9966;&#xa;    10,16,#FF9966;&#xa;    10,17,#FF9966;&#xa;    10,18,#FF9966;&#xa;    10,19,#FF9966;&#xa;    11,10,#FF9966;&#xa;    12,9,#FF9966;&#xa;    12,16,#FF9966;&#xa;    13,9,#FF9966;&#xa;    13,17,#FF9966;&#xa;    14,3,#FF9966;&#xa;    14,16,#FF9966;&#xa;    14,22,#FF9966;&#xa;    15,2,#FF9966;&#xa;    15,22,#FF9966;&#xa;    16,2,#FF9966;&#xa;    16,5,#FF9966;&#xa;    16,11,#FF9966;&#xa;    16,17,#FF9966;&#xa;    16,21,#FF9966;&#xa;    17,2,#FF9966;&#xa;    17,4,#FF9966;&#xa;    17,7,#FF9966;&#xa;    17,11,#FF9966;&#xa;    17,18,#FF9966;&#xa;    17,19,#FF9966;&#xa;    17,20,#FF9966;&#xa;    18,3,#FF9966;&#xa;    18,7,#FF9966;&#xa;    18,8,#FF9966;&#xa;    18,11,#FF9966;&#xa;    19,7,#FF9966;&#xa;    19,8,#FF9966;&#xa;    19,9,#FF9966;&#xa;    19,10,#FF9966;&#xa;    19,11,#FF9966;&#xa;    19,12,#FF9966;&#xa;    20,11,#FF9966;&#xa;    20,12,#FF9966;&#xa;    20,13,#FF9966;&#xa;}&#xa;3{&#xa;    3,14,#666666;&#xa;    4,13,#666666;&#xa;    5,13,#666666;&#xa;    26,5,#666666;&#xa;    27,4,#666666;&#xa;    27,8,#666666;&#xa;    28,3,#666666;&#xa;    29,3,#666666;&#xa;    29,9,#666666;&#xa;    29,20,#666666;&#xa;    30,3,#666666;&#xa;    31,3,#666666;&#xa;    31,4,#666666;&#xa;    31,20,#666666;&#xa;    32,4,#666666;&#xa;    32,5,#666666;&#xa;    32,6,#666666;&#xa;    32,7,#666666;&#xa;    32,8,#666666;&#xa;}&#xa;5{&#xa;    21,9,#0000CC;&#xa;    21,14,#0000CC;&#xa;    22,10,#0000CC;&#xa;    22,15,#0000CC;&#xa;    25,16,#0000CC;&#xa;    25,18,#0000CC;&#xa;    26,10,#0000CC;&#xa;    26,11,#0000CC;&#xa;    27,10,#0000CC;&#xa;    27,11,#0000CC;&#xa;    28,11,#0000CC;&#xa;    28,12,#0000CC;&#xa;    28,15,#0000CC;&#xa;    29,11,#0000CC;&#xa;    29,12,#0000CC;&#xa;    29,13,#0000CC;&#xa;    30,11,#0000CC;&#xa;    31,10,#0000CC;&#xa;    31,11,#0000CC;&#xa;    31,18,#0000CC;&#xa;    32,10,#0000CC;&#xa;    32,11,#0000CC;&#xa;    32,12,#0000CC;&#xa;    32,17,#0000CC;&#xa;    33,12,#0000CC;&#xa;    33,13,#0000CC;&#xa;    33,14,#0000CC;&#xa;    33,15,#0000CC;&#xa;    33,16,#0000CC;&#xa;}&#xa;4{&#xa;    3,15,#CCCCCC;&#xa;    3,16,#CCCCCC;&#xa;    4,14,#CCCCCC;&#xa;    5,15,#CCCCCC;&#xa;    5,16,#CCCCCC;&#xa;    26,6,#CCCCCC;&#xa;    26,7,#CCCCCC;&#xa;    27,5,#CCCCCC;&#xa;    27,6,#CCCCCC;&#xa;    27,7,#CCCCCC;&#xa;    28,4,#CCCCCC;&#xa;    28,5,#CCCCCC;&#xa;    28,6,#CCCCCC;&#xa;    28,7,#CCCCCC;&#xa;    28,8,#CCCCCC;&#xa;    28,9,#CCCCCC;&#xa;    28,20,#CCCCCC;&#xa;    29,5,#CCCCCC;&#xa;    29,7,#CCCCCC;&#xa;    29,8,#CCCCCC;&#xa;    30,5,#CCCCCC;&#xa;    30,7,#CCCCCC;&#xa;    31,5,#CCCCCC;&#xa;    31,6,#CCCCCC;&#xa;    31,7,#CCCCCC;&#xa;    31,8,#CCCCCC;&#xa;}&#xa;6{&#xa;    23,11,#0000FF;&#xa;    23,16,#0000FF;&#xa;    24,11,#0000FF;&#xa;    24,12,#0000FF;&#xa;    24,17,#0000FF;&#xa;    25,11,#0000FF;&#xa;    25,12,#0000FF;&#xa;    25,17,#0000FF;&#xa;    26,16,#0000FF;&#xa;    26,17,#0000FF;&#xa;    26,18,#0000FF;&#xa;    27,16,#0000FF;&#xa;    27,17,#0000FF;&#xa;    27,18,#0000FF;&#xa;    28,16,#0000FF;&#xa;    28,17,#0000FF;&#xa;    28,18,#0000FF;&#xa;    29,14,#0000FF;&#xa;    29,15,#0000FF;&#xa;    29,16,#0000FF;&#xa;    29,17,#0000FF;&#xa;    29,18,#0000FF;&#xa;    30,12,#0000FF;&#xa;    30,13,#0000FF;&#xa;    30,14,#0000FF;&#xa;    30,15,#0000FF;&#xa;    30,16,#0000FF;&#xa;    30,17,#0000FF;&#xa;    30,18,#0000FF;&#xa;    31,12,#0000FF;&#xa;    31,13,#0000FF;&#xa;    31,14,#0000FF;&#xa;    31,15,#0000FF;&#xa;    31,16,#0000FF;&#xa;    31,17,#0000FF;&#xa;    32,13,#0000FF;&#xa;    32,14,#0000FF;&#xa;    32,15,#0000FF;&#xa;    32,16,#0000FF;&#xa;}&#xa;1{&#xa;    1,11,#CC0000;&#xa;    2,9,#CC0000;&#xa;    2,13,#CC0000;&#xa;    3,8,#CC0000;&#xa;    3,12,#CC0000;&#xa;    4,7,#CC0000;&#xa;    4,18,#CC0000;&#xa;    5,6,#CC0000;&#xa;    6,11,#CC0000;&#xa;    6,18,#CC0000;&#xa;    6,20,#CC0000;&#xa;    7,5,#CC0000;&#xa;    7,9,#CC0000;&#xa;    7,12,#CC0000;&#xa;    7,22,#CC0000;&#xa;    8,4,#CC0000;&#xa;    8,8,#CC0000;&#xa;    8,10,#CC0000;&#xa;    8,18,#CC0000;&#xa;    9,7,#CC0000;&#xa;    9,12,#CC0000;&#xa;    10,6,#CC0000;&#xa;    10,9,#CC0000;&#xa;    11,2,#CC0000;&#xa;    11,7,#CC0000;&#xa;    11,8,#CC0000;&#xa;    12,1,#CC0000;&#xa;    12,3,#CC0000;&#xa;    12,4,#CC0000;&#xa;    12,5,#CC0000;&#xa;    13,1,#CC0000;&#xa;    13,2,#CC0000;&#xa;    22,7,#CC0000;&#xa;    22,12,#CC0000;&#xa;    23,6,#CC0000;&#xa;    23,13,#CC0000;&#xa;    24,6,#CC0000;&#xa;    24,7,#CC0000;&#xa;    24,14,#CC0000;&#xa;    25,8,#CC0000;&#xa;    25,9,#CC0000;&#xa;}&#xa;2{&#xa;    1,12,#FF0000;&#xa;    1,13,#FF0000;&#xa;    1,14,#FF0000;&#xa;    1,15,#FF0000;&#xa;    1,16,#FF0000;&#xa;    2,10,#FF0000;&#xa;    2,11,#FF0000;&#xa;    2,12,#FF0000;&#xa;    2,17,#FF0000;&#xa;    3,9,#FF0000;&#xa;    3,10,#FF0000;&#xa;    3,11,#FF0000;&#xa;    3,18,#FF0000;&#xa;    4,8,#FF0000;&#xa;    4,9,#FF0000;&#xa;    4,10,#FF0000;&#xa;    4,11,#FF0000;&#xa;    4,15,#FF0000;&#xa;    4,16,#FF0000;&#xa;    5,7,#FF0000;&#xa;    5,8,#FF0000;&#xa;    5,9,#FF0000;&#xa;    5,10,#FF0000;&#xa;    5,11,#FF0000;&#xa;    5,14,#FF0000;&#xa;    5,17,#FF0000;&#xa;    6,6,#FF0000;&#xa;    6,7,#FF0000;&#xa;    6,8,#FF0000;&#xa;    6,9,#FF0000;&#xa;    6,10,#FF0000;&#xa;    6,19,#FF0000;&#xa;    7,6,#FF0000;&#xa;    7,7,#FF0000;&#xa;    7,8,#FF0000;&#xa;    7,13,#FF0000;&#xa;    7,14,#FF0000;&#xa;    7,15,#FF0000;&#xa;    7,16,#FF0000;&#xa;    7,17,#FF0000;&#xa;    7,18,#FF0000;&#xa;    7,19,#FF0000;&#xa;    7,20,#FF0000;&#xa;    7,21,#FF0000;&#xa;    8,5,#FF0000;&#xa;    8,6,#FF0000;&#xa;    8,7,#FF0000;&#xa;    8,11,#FF0000;&#xa;    8,12,#FF0000;&#xa;    8,13,#FF0000;&#xa;    8,14,#FF0000;&#xa;    8,15,#FF0000;&#xa;    8,16,#FF0000;&#xa;    8,17,#FF0000;&#xa;    9,4,#FF0000;&#xa;    9,5,#FF0000;&#xa;    9,6,#FF0000;&#xa;    9,9,#FF0000;&#xa;    9,10,#FF0000;&#xa;    9,11,#FF0000;&#xa;    10,4,#FF0000;&#xa;    10,5,#FF0000;&#xa;    10,8,#FF0000;&#xa;    11,3,#FF0000;&#xa;    11,4,#FF0000;&#xa;    11,5,#FF0000;&#xa;    12,2,#FF0000;&#xa;    22,8,#FF0000;&#xa;    22,13,#FF0000;&#xa;    23,7,#FF0000;&#xa;    23,8,#FF0000;&#xa;    23,9,#FF0000;&#xa;    23,14,#FF0000;&#xa;    24,8,#FF0000;&#xa;    24,9,#FF0000;&#xa;    24,15,#FF0000;&#xa;}&#xa;&#xa;0{&#xa;    0,11,#000000;&#xa;    0,12,#000000;&#xa;    0,13,#000000;&#xa;    0,14,#000000;&#xa;    0,15,#000000;&#xa;    0,16,#000000;&#xa;    1,9,#000000;&#xa;    1,10,#000000;&#xa;    1,17,#000000;&#xa;    2,8,#000000;&#xa;    2,14,#000000;&#xa;    2,15,#000000;&#xa;    2,16,#000000;&#xa;    2,18,#000000;&#xa;    3,7,#000000;&#xa;    3,13,#000000;&#xa;    3,17,#000000;&#xa;    3,19,#000000;&#xa;    4,6,#000000;&#xa;    4,12,#000000;&#xa;    4,17,#000000;&#xa;    4,19,#000000;&#xa;    5,5,#000000;&#xa;    5,12,#000000;&#xa;    5,18,#000000;&#xa;    5,19,#000000;&#xa;    5,20,#000000;&#xa;    6,5,#000000;&#xa;    6,12,#000000;&#xa;    6,13,#000000;&#xa;    6,14,#000000;&#xa;    6,15,#000000;&#xa;    6,16,#000000;&#xa;    6,17,#000000;&#xa;    6,21,#000000;&#xa;    6,22,#000000;&#xa;    7,4,#000000;&#xa;    7,10,#000000;&#xa;    7,11,#000000;&#xa;    7,23,#000000;&#xa;    8,3,#000000;&#xa;    8,9,#000000;&#xa;    8,19,#000000;&#xa;    8,20,#000000;&#xa;    8,21,#000000;&#xa;    8,22,#000000;&#xa;    8,23,#000000;&#xa;    9,3,#000000;&#xa;    9,8,#000000;&#xa;    9,13,#000000;&#xa;    9,14,#000000;&#xa;    9,15,#000000;&#xa;    9,16,#000000;&#xa;    9,17,#000000;&#xa;    9,18,#000000;&#xa;    9,19,#000000;&#xa;    9,20,#000000;&#xa;    9,21,#000000;&#xa;    9,22,#000000;&#xa;    10,2,#000000;&#xa;    10,3,#000000;&#xa;    10,7,#000000;&#xa;    10,10,#000000;&#xa;    10,11,#000000;&#xa;    10,12,#000000;&#xa;    10,20,#000000;&#xa;    11,1,#000000;&#xa;    11,6,#000000;&#xa;    11,9,#000000;&#xa;    11,13,#000000;&#xa;    11,18,#000000;&#xa;    11,20,#000000;&#xa;    12,0,#000000;&#xa;    12,6,#000000;&#xa;    12,7,#000000;&#xa;    12,8,#000000;&#xa;    12,13,#000000;&#xa;    12,17,#000000;&#xa;    12,18,#000000;&#xa;    12,19,#000000;&#xa;    12,20,#000000;&#xa;    12,21,#000000;&#xa;    13,0,#000000;&#xa;    13,3,#000000;&#xa;    13,4,#000000;&#xa;    13,5,#000000;&#xa;    13,8,#000000;&#xa;    13,13,#000000;&#xa;    13,16,#000000;&#xa;    13,22,#000000;&#xa;    14,1,#000000;&#xa;    14,2,#000000;&#xa;    14,6,#000000;&#xa;    14,9,#000000;&#xa;    14,23,#000000;&#xa;    15,1,#000000;&#xa;    15,4,#000000;&#xa;    15,6,#000000;&#xa;    15,9,#000000;&#xa;    15,23,#000000;&#xa;    16,1,#000000;&#xa;    16,4,#000000;&#xa;    16,7,#000000;&#xa;    16,8,#000000;&#xa;    16,9,#000000;&#xa;    16,12,#000000;&#xa;    16,13,#000000;&#xa;    16,14,#000000;&#xa;    16,15,#000000;&#xa;    16,16,#000000;&#xa;    16,22,#000000;&#xa;    17,1,#000000;&#xa;    17,5,#000000;&#xa;    17,12,#000000;&#xa;    17,17,#000000;&#xa;    17,21,#000000;&#xa;    18,2,#000000;&#xa;    18,12,#000000;&#xa;    18,18,#000000;&#xa;    18,19,#000000;&#xa;    18,20,#000000;&#xa;    19,3,#000000;&#xa;    19,4,#000000;&#xa;    19,5,#000000;&#xa;    19,6,#000000;&#xa;    19,13,#000000;&#xa;    19,19,#000000;&#xa;    20,7,#000000;&#xa;    20,8,#000000;&#xa;    20,9,#000000;&#xa;    20,10,#000000;&#xa;    20,14,#000000;&#xa;    20,15,#000000;&#xa;    20,16,#000000;&#xa;    20,17,#000000;&#xa;    20,18,#000000;&#xa;    21,7,#000000;&#xa;    21,8,#000000;&#xa;    21,10,#000000;&#xa;    21,11,#000000;&#xa;    21,12,#000000;&#xa;    21,13,#000000;&#xa;    21,15,#000000;&#xa;    21,16,#000000;&#xa;    22,6,#000000;&#xa;    22,9,#000000;&#xa;    22,11,#000000;&#xa;    22,14,#000000;&#xa;    22,16,#000000;&#xa;    23,5,#000000;&#xa;    23,10,#000000;&#xa;    23,12,#000000;&#xa;    23,15,#000000;&#xa;    23,17,#000000;&#xa;    24,5,#000000;&#xa;    24,10,#000000;&#xa;    24,13,#000000;&#xa;    24,16,#000000;&#xa;    24,18,#000000;&#xa;    25,4,#000000;&#xa;    25,5,#000000;&#xa;    25,6,#000000;&#xa;    25,7,#000000;&#xa;    25,10,#000000;&#xa;    25,13,#000000;&#xa;    25,14,#000000;&#xa;    25,15,#000000;&#xa;    25,19,#000000;&#xa;    26,4,#000000;&#xa;    26,8,#000000;&#xa;    26,9,#000000;&#xa;    26,12,#000000;&#xa;    26,15,#000000;&#xa;    26,20,#000000;&#xa;    27,3,#000000;&#xa;    27,9,#000000;&#xa;    27,12,#000000;&#xa;    27,15,#000000;&#xa;    27,20,#000000;&#xa;    28,2,#000000;&#xa;    28,10,#000000;&#xa;    28,13,#000000;&#xa;    28,14,#000000;&#xa;    28,19,#000000;&#xa;    28,21,#000000;&#xa;    29,2,#000000;&#xa;    29,4,#000000;&#xa;    29,6,#000000;&#xa;    29,10,#000000;&#xa;    29,19,#000000;&#xa;    29,21,#000000;&#xa;    30,2,#000000;&#xa;    30,4,#000000;&#xa;    30,6,#000000;&#xa;    30,8,#000000;&#xa;    30,9,#000000;&#xa;    30,10,#000000;&#xa;    30,19,#000000;&#xa;    30,20,#000000;&#xa;    30,21,#000000;&#xa;    31,2,#000000;&#xa;    31,9,#000000;&#xa;    31,19,#000000;&#xa;    31,21,#000000;&#xa;    32,3,#000000;&#xa;    32,9,#000000;&#xa;    32,18,#000000;&#xa;    32,20,#000000;&#xa;    33,4,#000000;&#xa;    33,5,#000000;&#xa;    33,6,#000000;&#xa;    33,7,#000000;&#xa;    33,8,#000000;&#xa;    33,9,#000000;&#xa;    33,10,#000000;&#xa;    33,11,#000000;&#xa;    33,17,#000000;&#xa;    34,5,#000000;&#xa;    34,12,#000000;&#xa;    34,13,#000000;&#xa;    34,14,#000000;&#xa;    34,15,#000000;&#xa;    34,16,#000000;&#xa;    34,17,#000000;&#xa;    34,18,#000000;&#xa;    35,5,#000000;&#xa;    35,6,#000000;&#xa;    35,7,#000000;&#xa;    35,8,#000000;&#xa;    35,9,#000000;&#xa;    35,12,#000000;&#xa;    35,13,#000000;&#xa;    35,19,#000000;&#xa;    36,4,#000000;&#xa;    36,14,#000000;&#xa;    36,19,#000000;&#xa;    37,4,#000000;&#xa;    37,14,#000000;&#xa;    37,19,#000000;&#xa;    38,4,#000000;&#xa;    38,14,#000000;&#xa;    38,19,#000000;&#xa;    39,4,#000000;&#xa;    39,14,#000000;&#xa;    39,18,#000000;&#xa;    40,4,#000000;&#xa;    40,5,#000000;&#xa;    40,13,#000000;&#xa;    40,14,#000000;&#xa;    40,15,#000000;&#xa;    40,16,#000000;&#xa;    40,17,#000000;&#xa;    41,5,#000000;&#xa;    41,6,#000000;&#xa;    41,7,#000000;&#xa;    41,8,#000000;&#xa;    41,9,#000000;&#xa;    41,10,#000000;&#xa;    41,11,#000000;&#xa;    41,12,#000000;&#xa;}&#xa;100{&#xa;    2,4,#000000;&#xa;    2,5,#000000;&#xa;    2,7,#000000;&#xa;    2,8,#000000;&#xa;    3,3,#000000;&#xa;    3,4,#000000;&#xa;    3,5,#000000;&#xa;    3,6,#000000;&#xa;    3,7,#000000;&#xa;    3,8,#000000;&#xa;    3,9,#000000;&#xa;    4,3,#000000;&#xa;    4,4,#000000;&#xa;    4,5,#000000;&#xa;    4,6,#000000;&#xa;    4,7,#000000;&#xa;    4,8,#000000;&#xa;    4,9,#000000;&#xa;    5,4,#000000;&#xa;    5,5,#000000;&#xa;    5,6,#000000;&#xa;    5,7,#000000;&#xa;    5,8,#000000;&#xa;    6,5,#000000;&#xa;    6,6,#000000;&#xa;    6,7,#000000;&#xa;    7,6,#000000;&#xa;}&#xa;&#x9;&#x9;&#x9;&#x9;"/>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="jPanel4">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                      <JTabbedPaneConstraints tabName="tab2">
+                        <Property name="tabTitle" type="java.lang.String" value="tab2"/>
+                      </JTabbedPaneConstraints>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" pref="813" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" pref="287" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTextArea" name="jTextArea2">
+                          <Properties>
+                            <Property name="columns" type="int" value="20"/>
+                            <Property name="rows" type="int" value="5"/>
+                            <Property name="text" type="java.lang.String" value="1{0,1,2,3,4,5,6,7,8,9,10,11,12,13}&#xa;2{5,6,7,8,9,10}&#xa;3{0,1,2,3,4,5}&#xa;4{0,100}&#xa;5{12,0}&#xa;6{13,12,9,4,0,1}&#xa;7{13,12,11,10,9,8,7,6,5,4,3,2,1,0}"/>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="jPanel5">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                      <JTabbedPaneConstraints tabName="tab3">
+                        <Property name="tabTitle" type="java.lang.String" value="tab3"/>
+                      </JTabbedPaneConstraints>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" pref="813" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" pref="287" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTextArea" name="jTextArea3">
+                          <Properties>
+                            <Property name="columns" type="int" value="20"/>
+                            <Property name="rows" type="int" value="5"/>
+                            <Property name="text" type="java.lang.String" value="userM:7,6;&#xa;userB:2;&#xa;userA:3,4;&#xa;userC:14;&#xa;userY:1,4,5;&#xa;userZ:;"/>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jButton1"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jButton2"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jButton3"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel2">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="tab2">
+                <Property name="tabTitle" type="java.lang.String" value="tab2"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="1006" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="337" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
