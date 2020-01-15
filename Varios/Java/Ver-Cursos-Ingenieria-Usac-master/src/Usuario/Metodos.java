@@ -23,11 +23,11 @@ public class Metodos {
        String[] Saltos = Texto.split(((char) 10)+"" );
     for(String Salto: Saltos){
         String[] Lineas = Salto.split("	");
-        if(Lineas.length !=6){
+        if(Lineas.length !=5 &&Lineas.length !=4 ){
             System.out.println(Lineas.length);
             System.out.println("La línea que comienza con '"+Lineas[0] + "' No está en el formato correcto ");}
         else{
-            Cursos Curso = new Cursos(Lineas[1],Lineas[2],Integer.parseInt(Lineas[3]));
+            Cursos Curso = new Cursos(Lineas[0],Lineas[2],Integer.parseInt(Lineas[2]));
              Aprobados.Añadir(Curso);
       //       System.out.println(Curso.Codigo());
     }
