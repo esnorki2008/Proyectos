@@ -128,16 +128,18 @@ void MoverArriba(int pattern, int del) {
     //CopiarAbajo();
 }
 void slidePattern(int Patron, int Delay) {
+  
+  if(Veces<80){
   Veces++;
-  if(Veces<80)
   MoverAbajo(Patron,Delay);
-  else if(Veces>81) {
+  }else if(Veces>81) {
   MoverArriba(Patron,Delay);
     
     Veces--;
   }else{
     MoverArriba(Patron,Delay);
       Veces=160;
+      Veces--;
     }
 }
 
