@@ -53,10 +53,10 @@ terminal String elses,coma,potencia,modular,suitc,casep,defaultp,breakp,whilep,d
 /*
 * Aquí están los no terminales
 */
-non terminal Nodo INICIO,LLAMADO;
-non terminal Nodo CUERPO,INSTR,BLOQUE,ASIGNACION,DECLA,TERNARIO,SI;
-non terminal Nodo VALOR,SUITCH,CUERPOSUITCH,MIENTRAS,HACERMIENTRAS,PARACICLO,TRANS;
-non terminal Nodo FUNCION,LISTAPARAM,FUNCIONP,LISTAVAL,RETORNO;
+non terminal Instruccion INICIO,LLAMADO;
+non terminal Instruccion CUERPO,INSTR,BLOQUE,ASIGNACION,DECLA,TERNARIO,SI;
+non terminal Instruccion VALOR,SUITCH,CUERPOSUITCH,MIENTRAS,HACERMIENTRAS,PARACICLO,TRANS;
+non terminal Instruccion FUNCION,LISTAPARAM,FUNCIONP,LISTAVAL,RETORNO;
 
 /* Precedencia */
 
@@ -73,7 +73,7 @@ start with INICIO; // Inicial
 ////////PAGINA 1
 INICIO::= CUERPO:a{:RESULT=a;:};
 CUERPO::=CUERPO:a INSTR:b{:RESULT=a; RESULT.Agregar(b);:}
-    |INSTR:a{: RESULT=new Nodo("CUERPO");  RESULT.Agregar(a);:}
+    |INSTR:a{: RESULT=new Cuerpo();  RESULT.Agregar(a);:}
 ;    
 INSTR::=BLOQUE:a {:RESULT=a;:}
     |ASIGNACION:a puntocom {:RESULT=a;:} 
