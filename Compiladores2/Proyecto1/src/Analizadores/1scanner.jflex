@@ -46,44 +46,41 @@ esp = \t|\f|" "|\r|\n
 // Acciones
 /* Espacios en blanco */
 
-{cadena} {  Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N);   return new Symbol(TipoCadena(yytext()),yycolumn,yyline,yytext().substring(1,yytext().length()-1).toLowerCase());}
+{cadena} {   return new Symbol(TipoCadena(yytext()),yycolumn,yyline,yytext().substring(1,yytext().length()-1).toLowerCase());}
 {esp}     {/*Ignorar*/}
-{entero} {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.entero,yycolumn,yyline,yytext());}
-{decimal} {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.decimal,yycolumn,yyline,yytext());}
-{id} {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); if(yytext().equals("true")||yytext().equals("false")){return new Symbol(sym.booleano,yycolumn,yyline,yytext());} return new Symbol(sym.id,yycolumn,yyline,yytext());}
-{caracter} {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.caracter,yycolumn,yyline,yytext());}
-"$" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.dolar,yycolumn,yyline,yytext());}
-"#" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.numeral,yycolumn,yyline,yytext());}
-"&&" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.anddoble,yycolumn,yyline,yytext());}
-"||" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.ordoble,yycolumn,yyline,yytext());}
-"[" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.cora,yycolumn,yyline,yytext());}
-"]" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.corc,yycolumn,yyline,yytext());}
-"{" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.llaa,yycolumn,yyline,yytext());}
-"}" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.llac,yycolumn,yyline,yytext());}
-"&" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.and,yycolumn,yyline,yytext());}
-"|" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.or,yycolumn,yyline,yytext());}
-"<=" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.menorigual,yycolumn,yyline,yytext());}
-">=" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.mayorigual,yycolumn,yyline,yytext());}
-"!=" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.diferente,yycolumn,yyline,yytext());}
-"==" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.igualdoble,yycolumn,yyline,yytext());}
-"=" {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.igual,yycolumn,yyline,yytext());}
-"," {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.coma,yycolumn,yyline,yytext());}
-"?"    {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.interro,yycolumn,yyline,yytext());}
-";"    {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.puntocoma,yycolumn,yyline,yytext());}
-"("    {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.para,yycolumn,yyline,yytext());}
-")"    {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.parc,yycolumn,yyline,yytext());}
-"+"    {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.suma,yycolumn,yyline,yytext());}
-"-"    {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.resta,yycolumn,yyline,yytext());}
-"*"    {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.multi,yycolumn,yyline,yytext());}
-"/"    {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.div,yycolumn,yyline,yytext());}
-">"    {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.may,yycolumn,yyline,yytext());}
-"<"    {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.men,yycolumn,yyline,yytext());}
-"!"    {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.admira,yycolumn,yyline,yytext());}
-"."    {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N); return new Symbol(sym.punto,yycolumn,yyline,yytext());}
+{entero} {return new Symbol(sym.entero,yycolumn,yyline,yytext());}
+{decimal} {return new Symbol(sym.decimal,yycolumn,yyline,yytext());}
+{id} {if(yytext().equals("true")||yytext().equals("false")){return new Symbol(sym.booleano,yycolumn,yyline,yytext());} return new Symbol(sym.id,yycolumn,yyline,yytext());}
+{caracter} {return new Symbol(sym.caracter,yycolumn,yyline,yytext());}
+"[" {return new Symbol(sym.cora,yycolumn,yyline,yytext());}
+"]" {return new Symbol(sym.corc,yycolumn,yyline,yytext());}
+"{" {return new Symbol(sym.llaa,yycolumn,yyline,yytext());}
+"}" {return new Symbol(sym.llac,yycolumn,yyline,yytext());}
+"&" {return new Symbol(sym.and,yycolumn,yyline,yytext());}
+"|" {return new Symbol(sym.or,yycolumn,yyline,yytext());}
+"<=" {return new Symbol(sym.menorigual,yycolumn,yyline,yytext());}
+">=" {return new Symbol(sym.mayorigual,yycolumn,yyline,yytext());}
+"!=" {return new Symbol(sym.diferente,yycolumn,yyline,yytext());}
+"==" {return new Symbol(sym.igualdoble,yycolumn,yyline,yytext());}
+"=" {return new Symbol(sym.igual,yycolumn,yyline,yytext());}
+"," {return new Symbol(sym.coma,yycolumn,yyline,yytext());}
+"?"    {return new Symbol(sym.interro,yycolumn,yyline,yytext());}
+";"    {return new Symbol(sym.puntocom,yycolumn,yyline,yytext());}
+"("    {return new Symbol(sym.para,yycolumn,yyline,yytext());}
+")"    {return new Symbol(sym.parc,yycolumn,yyline,yytext());}
+"+"    {return new Symbol(sym.suma,yycolumn,yyline,yytext());}
+"-"    {return new Symbol(sym.resta,yycolumn,yyline,yytext());}
+"*"    {return new Symbol(sym.multi,yycolumn,yyline,yytext());}
+"/"    {return new Symbol(sym.div,yycolumn,yyline,yytext());}
+">"    {return new Symbol(sym.may,yycolumn,yyline,yytext());}
+"<"    {return new Symbol(sym.men,yycolumn,yyline,yytext());}
+"!"    {return new Symbol(sym.admira,yycolumn,yyline,yytext());}
+"."    {return new Symbol(sym.punto,yycolumn,yyline,yytext());}
+":"    {return new Symbol(sym.doblepunto,yycolumn,yyline,yytext());}
+"^"    {return new Symbol(sym.potencia,yycolumn,yyline,yytext());}
 
-
-{Comentario} {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N);  /*Se ignora.*/}
-{ComentarioMulti} {Token N= new Token(yytext(),yycolumn,yyline);   BuenoT.add(N);  /*Se ignora.*/}
+{Comentario} {/*Se ignora.*/}
+{ComentarioMulti} {/*Se ignora.*/}
 /*Recolección de errores*/
 .   
 {               
