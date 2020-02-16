@@ -48,7 +48,7 @@ terminal String suma, resta, multi, div, para, parc,esp,interro;
 
 terminal String may,men,admira,salto,alineacion,igual,doblepunto;
 terminal String punto,ifv,and,or,llaa,llac,cora,corc,menorigual,mayorigual,diferente,igualdoble;
-terminal String elses,coma;
+terminal String elses,coma,potencia,modular,suitc,casep,defaultp,breakp,whilep,dop,forp,continuep,returnp,functionpp,inp,flecha;
 
 
 
@@ -62,16 +62,17 @@ terminal String elses,coma;
 */
 non terminal String INICIO;
 non terminal String CUERPO,INSTR,BLOQUE,ASIGNACION,DECLA,PUNTOCOMA,TERNARIO,SI,SINO,SINOP;
-non terminal String VALOR,SUITCH,CUERPOSUITCH,CAS,BREK,MIENTRAS,HACERMIENTRAS,PARA,TRANS;
-non terminal String FUNCION,LISTAPARAM,FUNCIONP,LISTAVAL,VALFUNC;
+non terminal String VALOR,SUITCH,CUERPOSUITCH,CAS,BREK,MIENTRAS,HACERMIENTRAS,PARACICLO,TRANS;
+non terminal String FUNCION,LISTAPARAM,FUNCIONP,LISTAVAL,VALFUNC,RETORNO;
+
 /* Precedencia */
-precedence left admira;
-precedence left ordoble;
-precedence left anddoble;
+
+precedence left or;
+precedence left and;
 precedence left igualdoble,diferente,men,may,menorigual,mayorigual;
 precedence left suma,resta;
-precedence left div,multi;
-
+precedence left div,multi,modular;
+precedence left admira,potencia;
 
 
 /* ­­­­­­­­­­­­­­ Definición de la gramatica  ­­­­­­­­­­­ */
@@ -88,9 +89,9 @@ INSTR::=BLOQUE
     |SUITCH
     |MIENTRAS
     |HACERMIENTRAS
-    |PARA
+    |PARACICLO
     |TRANS PUNTOCOMA
-    |id para LISTAVAL parc PUNTOCOMA
+    |VALOR
     ;
 
 BLOQUE::=llaa CUERPO llac;
@@ -118,3 +119,73 @@ SINOP::=SI
     ;
 
 //Pagina2    
+
+VALOR::=VALOR suma VALOR
+    |VALOR resta VALOR
+    |VALOR multi VALOR
+    |VALOR div VALOR
+    |VALOR potencia VALOR
+    |VALOR modular VALOR
+    |resta VALOR
+    |suma VALOR
+    |VALFUNC
+    |id
+    |VALOR igualdoble VALOR
+    |VALOR diferente VALOR
+    |VALOR mayorigual VALOR
+    |VALOR menorigual VALOR
+    |VALOR may VALOR
+    |VALOR men VALOR
+    |admira VALOR
+    |VALOR or VALOR
+    |VALOR and VALOR
+    |FUNCION
+    |entero
+    |cadena
+    |booleano
+    |decimal
+;
+//PAGINA 3
+SUITCH::= suitc para VALOR parc llaa CUERPOSUITCH llac
+;
+
+CUERPOSUITCH::=CUERPOSUITCH casep VALOR doblepunto CUERPO BREK
+    |CUERPOSUITCH defaultp  doblepunto CUERPO BREK
+    |casep VALOR doblepunto CUERPO BREK
+    |defaultp  doblepunto CUERPO BREK
+;
+
+BREK::= breakp PUNTOCOMA
+    |
+;
+
+MIENTRAS::= whilep para VALOR parc llaa CUERPO llac
+;
+
+HACERMIENTRAS::=dop llaa CUERPO llac para VALOR parc PUNTOCOMA
+;
+
+PARACICLO::= forp para id inp VALOR parc llaa CUERPO llac
+;
+TRANS::=breakp
+    |continuep
+    |returnp RETORNO
+;
+RETORNO::=VALOR
+    |
+;
+FUNCION::=functionpp para LISTAPARAM parc llaa CUERPO llac
+    |para LISTAPARAM parc FUNCIONP
+;
+LISTAPARAM::=LISTAPARAM coma ASIGNACION
+    |ASIGNACION
+;
+FUNCIONP::=LISTAPARAM parc flecha llaa CUERPO llac
+    |
+;
+
+LISTAVAL::=LISTAVAL coma VALOR
+    |VALOR
+;
+VALFUNC::=id para LISTAVAL parc PUNTOCOMA
+;

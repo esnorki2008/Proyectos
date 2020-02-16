@@ -38,13 +38,37 @@ la= [\u00E1]|[\u00E9]|[\u00ED]|[\u00F3]|[\u00FA]|[\u00F1]
 id =({letra}|{la})({letra}|{entero}|"_")*
 caracter="'"[^]"'"  
 esp = \t|\f|" "|\r|\n
-
-
-
+suitc=switch
+defaultp=default
+casep=case
+breakp=break
+whilep=while
+dop=do
+ifv=if
+elses=else
+forp=for
+continuep=continue
+returnp=return
+functionpp=function
+inp=in
 %%
 
 // Acciones
 /* Espacios en blanco */
+{inp} {return new Symbol(sym.inp,yycolumn,yyline,yytext());}
+{functionpp} {return new Symbol(sym.functionpp,yycolumn,yyline,yytext());}
+{returnp} {return new Symbol(sym.returnp,yycolumn,yyline,yytext());}
+{continuep} {return new Symbol(sym.continuep,yycolumn,yyline,yytext());}
+{forp} {return new Symbol(sym.forp,yycolumn,yyline,yytext());}
+{elses} {return new Symbol(sym.elses,yycolumn,yyline,yytext());}
+{ifv} {return new Symbol(sym.ifv,yycolumn,yyline,yytext());}
+{dop} {return new Symbol(sym.dop,yycolumn,yyline,yytext());}
+{whilep} {return new Symbol(sym.whilep,yycolumn,yyline,yytext());}
+{breakp} {return new Symbol(sym.breakp,yycolumn,yyline,yytext());}
+{casep} {return new Symbol(sym.casep,yycolumn,yyline,yytext());}
+{defaultp} {return new Symbol(sym.defaultp,yycolumn,yyline,yytext());}
+{suitc} {return new Symbol(sym.suitc,yycolumn,yyline,yytext());}
+
 
 {cadena} {   return new Symbol(TipoCadena(yytext()),yycolumn,yyline,yytext().substring(1,yytext().length()-1).toLowerCase());}
 {esp}     {/*Ignorar*/}
@@ -78,7 +102,8 @@ esp = \t|\f|" "|\r|\n
 "."    {return new Symbol(sym.punto,yycolumn,yyline,yytext());}
 ":"    {return new Symbol(sym.doblepunto,yycolumn,yyline,yytext());}
 "^"    {return new Symbol(sym.potencia,yycolumn,yyline,yytext());}
-
+"%%"    {return new Symbol(sym.modular,yycolumn,yyline,yytext());}
+"=>" {return new Symbol(sym.flecha,yycolumn,yyline,yytext());}
 {Comentario} {/*Se ignora.*/}
 {ComentarioMulti} {/*Se ignora.*/}
 /*Recolección de errores*/
