@@ -25,5 +25,8 @@ public class Cuerpo implements Instruccion{
             Ins.Ejecutar(Tabla);
         }
     }
+    public void Agregar(Instruccion Nueva){
+        this.Contenido.add(Nueva);
+    }
     
 }

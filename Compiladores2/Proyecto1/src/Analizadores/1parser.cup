@@ -8,7 +8,7 @@ parser code
     
 
     public String salida = "" ; 
-       
+    public Instruccion Raiz;   
     public void syntax_error(Symbol s)
     {
          
@@ -71,9 +71,9 @@ precedence left admira,potencia;
 /* ­­­­­­­­­­­­­­ Definición de la gramatica  ­­­­­­­­­­­ */
 start with INICIO; // Inicial
 ////////PAGINA 1
-INICIO::= CUERPO:a{:RESULT=a;:};
-CUERPO::=CUERPO:a INSTR:b{:RESULT=a; RESULT.Agregar(b);:}
-    |INSTR:a{: RESULT=new Cuerpo();  RESULT.Agregar(a);:}
+INICIO::= CUERPO:a{:RESULT=a; Raiz=a;:};
+CUERPO::=CUERPO:a INSTR:b{:RESULT=a; ((Cuerpo)RESULT).Agregar(b);:}
+    |INSTR:a{: RESULT=new Cuerpo();  ((Cuerpo)RESULT).Agregar(a);:}
 ;    
 INSTR::=BLOQUE:a {:RESULT=a;:}
     |ASIGNACION:a puntocom {:RESULT=a;:} 
@@ -87,17 +87,17 @@ INSTR::=BLOQUE:a {:RESULT=a;:}
     |LLAMADO:a {:RESULT=a;:}
     ;
 
-LLAMADO::=id:a para LISTAVAL:b parc puntocom{:RESULT=new Nodo("LLAMADO"); RESULT.Agregar(a); RESULT.Agregar(b);:}
+LLAMADO::=id:a para LISTAVAL:b parc puntocom{:RESULT=new LlamarFuncion(a,b);:}
 ;
 
-BLOQUE::=llaa CUERPO:a llac{:RESULT=new Nodo("BLOQUE"); RESULT.Agregar(a);:}
+BLOQUE::=llaa CUERPO:a llac{:RESULT=new Bloque(a);:}
 ;
 
-ASIGNACION::=id:a DECLA:b{:RESULT=new Nodo("ASIGNACION"); RESULT.Agregar(a) RESULT.Agregar(b);:}
+ASIGNACION::=id:a DECLA:b{::}
 ;
 
 DECLA::= igual VALOR:a{:RESULT=a;:}
-    |{:RESULT=new Nodo("DEFECTO");:}
+    |{::}
     ;
 
 
