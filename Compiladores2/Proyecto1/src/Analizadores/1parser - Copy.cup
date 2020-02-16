@@ -1,17 +1,24 @@
-package Analizadores; // Paquete
-import java_cup.runtime.*;
+package Analisis; // Paquete
+import java_cup.runtime.*; 
+import Motor.*;
 import java.util.ArrayList;
-import Arbol.*;
 
 parser code
 {:  
+    private String Funci="";
+    private ArrayList<Integer> NVeces = new ArrayList<Integer>();
+    public  ArrayList<Token> ErrorT = new ArrayList<Token> ();
+    private int NV=1;
     
+    public V9 MO = new V9();
+    private String ContenidoBoton="";
 
     public String salida = "" ; 
        
     public void syntax_error(Symbol s)
     {
-         
+        Token N= new Token(s.value.toString(),s.left+1,s.right+1);
+        ErrorT.add(N);
 
         System.err.println("El analizador se recupero tras el error\nError en la Línea " + (s.right+1) +" Columna "+(s.left+1)+ ". Identificador "
         +s.value + " no reconocido." );        
@@ -53,10 +60,10 @@ terminal String elses,coma,potencia,modular,suitc,casep,defaultp,breakp,whilep,d
 /*
 * Aquí están los no terminales
 */
-non terminal Nodo INICIO,LLAMADO;
-non terminal Nodo CUERPO,INSTR,BLOQUE,ASIGNACION,DECLA,TERNARIO,SI;
-non terminal Nodo VALOR,SUITCH,CUERPOSUITCH,MIENTRAS,HACERMIENTRAS,PARACICLO,TRANS;
-non terminal Nodo FUNCION,LISTAPARAM,FUNCIONP,LISTAVAL,RETORNO;
+non terminal String INICIO;
+non terminal String CUERPO,INSTR,BLOQUE,ASIGNACION,DECLA,TERNARIO,SI;
+non terminal String VALOR,SUITCH,CUERPOSUITCH,MIENTRAS,HACERMIENTRAS,PARACICLO,TRANS;
+non terminal String FUNCION,LISTAPARAM,FUNCIONP,LISTAVAL,RETORNO;
 
 /* Precedencia */
 
@@ -71,33 +78,28 @@ precedence left admira,potencia;
 /* ­­­­­­­­­­­­­­ Definición de la gramatica  ­­­­­­­­­­­ */
 start with INICIO; // Inicial
 ////////PAGINA 1
-INICIO::= CUERPO:a{:RESULT=a;:};
-CUERPO::=CUERPO:a INSTR:b{:RESULT=a; RESULT.Agregar(b);:}
-    |INSTR:a{: RESULT=new Nodo("CUERPO");  RESULT.Agregar(a);:}
+INICIO::= CUERPO{::};
+CUERPO::=CUERPO INSTR
+    |INSTR{: RESULT="";:}
 ;    
-INSTR::=BLOQUE:a {:RESULT=a;:}
-    |ASIGNACION:a puntocom {:RESULT=a;:} 
-    |TERNARIO:a {:RESULT=a;:}
-    |SI:a {:RESULT=a;:}
-    |SUITCH:a {:RESULT=a;:}
-    |MIENTRAS:a {:RESULT=a;:}
-    |HACERMIENTRAS:a {:RESULT=a;:}
-    |PARACICLO:a {:RESULT=a;:}
-    |TRANS:a {:RESULT=a;:}
-    |LLAMADO:a {:RESULT=a;:}
+INSTR::=BLOQUE
+    |ASIGNACION puntocom
+    |TERNARIO
+    |SI
+    |SUITCH
+    |MIENTRAS
+    |HACERMIENTRAS
+    |PARACICLO
+    |TRANS 
+    |id para LISTAVAL parc puntocom
     ;
 
-LLAMADO::=id:a para LISTAVAL:b parc puntocom{:RESULT=new Nodo("LLAMADO"); RESULT.Agregar(a); RESULT.Agregar(b);:}
-;
+BLOQUE::=llaa CUERPO llac;
 
-BLOQUE::=llaa CUERPO:a llac{:RESULT=new Nodo("BLOQUE"); RESULT.Agregar(a);:}
-;
+ASIGNACION::=id DECLA ;
 
-ASIGNACION::=id:a DECLA:b{:RESULT=new Nodo("ASIGNACION"); RESULT.Agregar(a) RESULT.Agregar(b);:}
-;
-
-DECLA::= igual VALOR:a{:RESULT=a;:}
-    |{:RESULT=new Nodo("DEFECTO");:}
+DECLA::= igual VALOR
+    |
     ;
 
 

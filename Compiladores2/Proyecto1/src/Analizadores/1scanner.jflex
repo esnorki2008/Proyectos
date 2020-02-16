@@ -1,7 +1,6 @@
-package Analisis; // Paquete donde estará nuestro scanner
+package Analizadores; // Paquete donde estará nuestro scanner
 import java_cup.runtime.Symbol; 
 import java.util.ArrayList;
-import Motor.*;
 %% 
 
 %{
@@ -70,7 +69,7 @@ inp=in
 {suitc} {return new Symbol(sym.suitc,yycolumn,yyline,yytext());}
 
 
-{cadena} {   return new Symbol(TipoCadena(yytext()),yycolumn,yyline,yytext().substring(1,yytext().length()-1).toLowerCase());}
+{cadena} {   return new Symbol(sym.cadena,yycolumn,yyline,yytext().substring(1,yytext().length()-1).toLowerCase());}
 {esp}     {/*Ignorar*/}
 {entero} {return new Symbol(sym.entero,yycolumn,yyline,yytext());}
 {decimal} {return new Symbol(sym.decimal,yycolumn,yyline,yytext());}
@@ -109,11 +108,10 @@ inp=in
 /*Recolección de errores*/
 .   
 {               
-    Token N= new Token(yytext(),yycolumn+1,yyline+1);
-    ErrorT.add(N);
+    
 
 
-     //   System.err.println("Error lexico: "+yytext()+ " Linea:"+(yyline+1)+" Columna:"+(yycolumn+1));
+        System.err.println("Error lexico: "+yytext()+ " Linea:"+(yyline+1)+" Columna:"+(yycolumn+1));
 }
 
 
