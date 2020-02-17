@@ -8,7 +8,7 @@ parser code
     
 
     public String salida = "" ; 
-       
+    public Instruccion Raiz;   
     public void syntax_error(Symbol s)
     {
          
@@ -71,9 +71,9 @@ precedence left admira,potencia;
 /* ­­­­­­­­­­­­­­ Definición de la gramatica  ­­­­­­­­­­­ */
 start with INICIO; // Inicial
 ////////PAGINA 1
-INICIO::= CUERPO:a{:RESULT=a;:};
-CUERPO::=CUERPO:a INSTR:b{:RESULT=a; RESULT.Agregar(b);:}
-    |INSTR:a{: RESULT=new Cuerpo();  RESULT.Agregar(a);:}
+INICIO::= CUERPO:a{:RESULT=a; Raiz=a;:};
+CUERPO::=CUERPO:a INSTR:b{:RESULT=a; ((Cuerpo)RESULT).Agregar(b);:}
+    |INSTR:a{: RESULT=new Cuerpo();  ((Cuerpo)RESULT).Agregar(a);:}
 ;    
 INSTR::=BLOQUE:a {:RESULT=a;:}
     |ASIGNACION:a puntocom {:RESULT=a;:} 
@@ -87,59 +87,60 @@ INSTR::=BLOQUE:a {:RESULT=a;:}
     |LLAMADO:a {:RESULT=a;:}
     ;
 
-LLAMADO::=id:a para LISTAVAL:b parc puntocom{:RESULT=new Nodo("LLAMADO"); RESULT.Agregar(a); RESULT.Agregar(b);:}
+LLAMADO::=id:a para LISTAVAL:b parc puntocom{:RESULT=new LlamarFuncion(a,b);:}
 ;
 
-BLOQUE::=llaa CUERPO:a llac{:RESULT=new Nodo("BLOQUE"); RESULT.Agregar(a);:}
+BLOQUE::=llaa CUERPO:a llac{:RESULT=new Bloque(a);:}
 ;
 
-ASIGNACION::=id:a DECLA:b{:RESULT=new Nodo("ASIGNACION"); RESULT.Agregar(a) RESULT.Agregar(b);:}
+ASIGNACION::=id:a DECLA:b{:RESULT=new Asignacion(a,b);:}
 ;
 
 DECLA::= igual VALOR:a{:RESULT=a;:}
-    |{:RESULT=new Nodo("DEFECTO");:}
+    |{:RESULT=null;:}
     ;
 
 
 
-TERNARIO::= VALOR interro INSTR doblepunto INSTR;
+TERNARIO::= VALOR:a interro INSTR:b doblepunto INSTR:c{:RESULT= new Ternario(a,b,c);:};
 
-SI::= ifv para VALOR parc llaa CUERPO llac 
-    |ifv para VALOR parc llaa CUERPO llac elses INSTR;
+SI::= ifv para VALOR:a parc llaa CUERPO:b llac{:RESULT = new Si(a,b,null);:}
+    |ifv para VALOR:a parc llaa CUERPO:b llac elses SI:c{:RESULT = new Si(a,b,c);:}
+    ;
 
 
 
 
 //Pagina2    
 
-VALOR::=VALOR suma VALOR 
-    |VALOR resta VALOR
-    |VALOR multi VALOR
-    |VALOR div VALOR
-    |VALOR potencia VALOR
-    |VALOR modular VALOR
-    |resta VALOR
-    |suma VALOR
-    |id para LISTAVAL parc 
-    |id
-    |VALOR igualdoble VALOR
-    |VALOR diferente VALOR
-    |VALOR mayorigual VALOR
-    |VALOR menorigual VALOR
-    |VALOR may VALOR
-    |VALOR men VALOR
-    |admira VALOR
-    |VALOR or VALOR
-    |VALOR and VALOR
-    |caracter
-    |FUNCION
-    |entero
-    |cadena
-    |booleano
-    |decimal
+VALOR::=VALOR:a suma:b VALOR:c {: RESULT=new Valor(b,a,c); :} //1
+    |VALOR:a resta:b VALOR:c {: RESULT=new Valor(b,a,c); :}
+    |VALOR:a multi:b VALOR:c {: RESULT=new Valor(b,a,c); :}
+    |VALOR:a div:b VALOR:c {: RESULT=new Valor(b,a,c); :}
+    |VALOR:a potencia:b VALOR:c {: RESULT=new Valor(b,a,c); :}
+    |VALOR:a modular:b VALOR:c {: RESULT=new Valor(b,a,c); :}
+    |resta:a VALOR:b {: RESULT=new Valor(a,b); :}
+    |suma:a VALOR:b{: RESULT=new Valor(a,b); :}
+    |id:a para LISTAVAL:b parc {: RESULT=new Valor("valorfuncion",b,a); :}
+    |id:a{: RESULT=new Valor("var",a); :}
+    |VALOR:a igualdoble:b VALOR:c{: RESULT=new Valor(b,a,c); :} 
+    |VALOR:a diferente:b VALOR:c{: RESULT=new Valor(b,a,c); :} 
+    |VALOR:a mayorigual:b VALOR:c{: RESULT=new Valor(b,a,c); :} 
+    |VALOR:a menorigual:b VALOR:c{: RESULT=new Valor(b,a,c); :} 
+    |VALOR:a may:b VALOR:c{: RESULT=new Valor(b,a,c); :} 
+    |VALOR:a men:b VALOR:c{: RESULT=new Valor(b,a,c); :} 
+    |admira:a VALOR:b{: RESULT=new Valor(a,b); :}
+    |VALOR:a or:b VALOR:c{: RESULT=new Valor(b,a,c); :}
+    |VALOR:a and:b VALOR:c{: RESULT=new Valor(b,a,c); :}
+    |caracter:a{: RESULT=new Valor("char",a); :}
+    |FUNCION:a{: RESULT=new Valor("declafuncion",a); :}
+    |entero:a{: RESULT=new Valor("entero",a); :}
+    |cadena:a{: RESULT=new Valor("cadena",a); :}
+    |booleano:a{: RESULT=new Valor("booleano",a); :}
+    |decimal:a{: RESULT=new Valor("decimal",a); :}
 ;
 //PAGINA 3
-SUITCH::= suitc para VALOR parc llaa CUERPOSUITCH llac
+SUITCH::= suitc para VALOR:a parc llaa CUERPOSUITCH:b llac{:b.Comparar(a);RESULT=b;:}
 ;
 
 CUERPOSUITCH::=CUERPOSUITCH casep VALOR doblepunto CUERPO TRANS

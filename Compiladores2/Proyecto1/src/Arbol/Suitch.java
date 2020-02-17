@@ -11,25 +11,20 @@ import java.util.List;
 
 /**
  *
- * @author 50241
+ * @author Norki
  */
-public class Cuerpo implements Instruccion{
+public class Suitch implements Instruccion{
     private List <Instruccion>Contenido;
-    public Cuerpo(){
+    
+    public  Suitch(){
         Contenido=new LinkedList<Instruccion>();
     }
-    
     public void Agregar(){
+        //Contenido.
     }
-    @Override    
+    @Override
     public void Ejecutar(TablaDeSimbolos Tabla) {
-        for (int i = 0; i < Contenido.size(); i++) {
-            Instruccion Ins=Contenido.get(i);
-            Ins.Ejecutar(Tabla);
-        }
-    }
-    public void Agregar(Instruccion Nueva){
-        this.Contenido.add(Nueva);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
