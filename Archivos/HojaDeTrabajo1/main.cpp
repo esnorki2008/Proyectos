@@ -198,6 +198,8 @@ int BuscarStruct(const char *Entrada){
         Seek=Seek+(int)sizeof(Str);
 
     }
+
+
     fclose(file);
     return -1;
 }
