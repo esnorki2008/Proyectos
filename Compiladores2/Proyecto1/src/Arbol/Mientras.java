@@ -6,22 +6,19 @@
 package Arbol;
 
 import Elementos.TablaDeSimbolos;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  *
  * @author Norki
  */
-public class ListaValores implements Instruccion{
-    private List <Valor>Contenido;
-    public ListaValores(Instruccion Nuevo){
-        this.Contenido=new LinkedList<Valor>();
-        this.Contenido.add((Valor)Nuevo);
+public class Mientras implements Instruccion{
+    private Valor Val;
+    private Instruccion Contenido;
+    public Mientras(Instruccion Val,Instruccion Contenido){
+        this.Val=(Valor)Val;
+        this.Contenido=Contenido;
     }
-    public void Agregar(Instruccion Nuevo){
-        this.Contenido.add((Valor)Nuevo);
-    }
+    
     @Override
     public void Ejecutar(TablaDeSimbolos Tabla) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -140,42 +140,40 @@ VALOR::=VALOR:a suma:b VALOR:c {: RESULT=new Valor(b,a,c); :} //1
     |decimal:a{: RESULT=new Valor("decimal",a); :}
 ;
 //PAGINA 3
-SUITCH::= suitc para VALOR:a parc llaa CUERPOSUITCH:b llac{:b.Comparar(a);RESULT=b;:}
+SUITCH::= suitc para VALOR:a parc llaa CUERPOSUITCH:b llac{:((Suitch)b).AgregarValor(a);RESULT=b;:}
 ;
 
-CUERPOSUITCH::=CUERPOSUITCH casep VALOR doblepunto CUERPO TRANS
-    |CUERPOSUITCH defaultp  doblepunto CUERPO TRANS
-    |casep VALOR doblepunto CUERPO TRANS
-    |defaultp  doblepunto CUERPO TRANS
+CUERPOSUITCH::=CUERPOSUITCH:a casep VALOR:b doblepunto CUERPO:c TRANS:d{:RESULT=a; ((Suitch)RESULT).Agregar(new CuerpoSuitch(b,c,d),true);:}
+    |CUERPOSUITCH:a defaultp  doblepunto CUERPO:b TRANS:c{:RESULT=a; ((Suitch)RESULT).Agregar(new CuerpoSuitch(b,c),false);:}
+    |casep VALOR:a doblepunto CUERPO:b TRANS:c{:Suitch S= new Suitch(); S.Agregar(new CuerpoSuitch(a,b,c),true); RESULT=S;:}
+    |defaultp  doblepunto CUERPO:a TRANS:b{:Suitch S= new Suitch(); S.Agregar(new CuerpoSuitch(a,b),false); RESULT=S;:}
 ;
 
 
 
-MIENTRAS::= whilep para VALOR parc llaa CUERPO llac
+MIENTRAS::= whilep para VALOR:a parc llaa CUERPO:b llac{:RESULT=new Mientras(a,b);:}
 ;
 
-HACERMIENTRAS::=dop llaa CUERPO llac para VALOR parc puntocom
+HACERMIENTRAS::=dop llaa CUERPO:a llac para VALOR:b parc puntocom{:RESULT=new HacerMientras(b,a);:}
 ;
 
-PARACICLO::= forp para id inp VALOR parc llaa CUERPO llac
+PARACICLO::= forp para id:a inp VALOR:b parc llaa CUERPO:c llac{:RESULT=new ParaCiclo(a,b,c);:}
 ;
-TRANS::=breakp puntocom
-    |continuep puntocom
-    |returnp RETORNO puntocom
+TRANS::=breakp puntocom{:RESULT=new Detencion(1);:}
+    |continuep puntocom{:RESULT=new Detencion(2);:}
+    |returnp RETORNO:a puntocom{:RESULT=new Detencion(3,a);:}
 ;
-RETORNO::=VALOR
-    |
+RETORNO::=VALOR:a{:RESULT=a;:}
+    |{:RESULT=null;:}
 ;
-FUNCION::=functionpp para LISTAPARAM parc llaa CUERPO llac
-    |para LISTAPARAM parc FUNCIONP
+FUNCION::=functionpp para LISTAPARAM:a parc llaa CUERPO:b llac{: RESULT= new Funcion(a,b);  :}
+    |para LISTAPARAM:a parc flecha llaa CUERPO:b llac{:  RESULT= new Funcion(a,b); :}
 ;
-LISTAPARAM::=LISTAPARAM coma ASIGNACION
-    |ASIGNACION
-;
-FUNCIONP::=LISTAPARAM parc flecha llaa CUERPO llac
-    |
+LISTAPARAM::=LISTAPARAM:a coma ASIGNACION:b{: ((ListaParametros)a).Agregar(b);  RESULT=a;   :}
+    |ASIGNACION:b{: RESULT= new ListaParametros(b);  :}
 ;
 
-LISTAVAL::=LISTAVAL coma VALOR
-    |VALOR
+
+LISTAVAL::=LISTAVAL:a coma VALOR:b{: ((ListaValores)a).Agregar(b);  RESULT=a; :}
+    |VALOR:b{:  RESULT= new ListaValores(b);  :}
 ;

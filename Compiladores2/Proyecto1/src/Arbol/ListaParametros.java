@@ -13,22 +13,14 @@ import java.util.List;
  *
  * @author Norki
  */
-public class Suitch implements Instruccion{
-    private List <Instruccion>Contenido;
-    private CuerpoSuitch Default;
-    private Valor Valer;
-    public  Suitch(){
-        Contenido=new LinkedList<Instruccion>();
+public class ListaParametros implements Instruccion{
+    private List <Valor>Contenido;
+    public ListaParametros(Instruccion Nuevo){
+        this.Contenido=new LinkedList<Valor>();
+        this.Contenido.add((Valor)Nuevo);
     }
-    public void AgregarValor(Instruccion Valor){
-        this.Valer=(Valor)Valor;
-    }
-    public void Agregar(CuerpoSuitch Nuevo,boolean Case){//true=case      false=default
-        if(!Case){
-            this.Default=Nuevo;
-        }else{
-            Contenido.add(Nuevo);
-        }
+    public void Agregar(Instruccion Nuevo){
+        this.Contenido.add((Valor)Nuevo);
     }
     @Override
     public void Ejecutar(TablaDeSimbolos Tabla) {

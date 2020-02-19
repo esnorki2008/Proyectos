@@ -6,21 +6,20 @@
 package Arbol;
 
 import Elementos.TablaDeSimbolos;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  *
  * @author Norki
  */
-public class ListaValores implements Instruccion{
-    private List <Valor>Contenido;
-    public ListaValores(Instruccion Nuevo){
-        this.Contenido=new LinkedList<Valor>();
-        this.Contenido.add((Valor)Nuevo);
+public class Detencion implements Instruccion{
+    private int Tipo;
+    private Instruccion Val;
+    public Detencion(int Tipo,Instruccion Val){
+        this.Val=Val;
+        this.Tipo=Tipo;
     }
-    public void Agregar(Instruccion Nuevo){
-        this.Contenido.add((Valor)Nuevo);
+    public Detencion(int Tipo){
+        this.Tipo=Tipo;
     }
     @Override
     public void Ejecutar(TablaDeSimbolos Tabla) {
