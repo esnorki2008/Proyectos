@@ -18,7 +18,10 @@ public class Cuerpo implements Instruccion{
     public Cuerpo(){
         Contenido=new LinkedList<Instruccion>();
     }
-    @Override
+    
+    public void Agregar(){
+    }
+    @Override    
     public void Ejecutar(TablaDeSimbolos Tabla) {
         for (int i = 0; i < Contenido.size(); i++) {
             Instruccion Ins=Contenido.get(i);
