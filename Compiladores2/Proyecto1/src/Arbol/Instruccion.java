@@ -15,5 +15,6 @@ import Elementos.TablaDeSimbolos;
 public interface Instruccion {
     /*Ejecutar Todo*/
     public void Ejecutar(TablaDeSimbolos Tabla);
-  
+    public String Graficar();
+    public String NombreGrafico();
 }

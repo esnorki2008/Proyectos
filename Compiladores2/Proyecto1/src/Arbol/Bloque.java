@@ -23,5 +23,18 @@ public class Bloque implements Instruccion {
         TablaDeSimbolos NuevaTabla=new TablaDeSimbolos(Tabla);//Diferente Ambito
         this.Contenido.Ejecutar(NuevaTabla);
     }
-    
+    @Override
+    public String Graficar() {
+        String Salida,Nombre;
+        Nombre=this.NombreGrafico();
+        Salida=Nombre+"[label=\"Bloque\"]";
+        Salida=Salida+"->"+Contenido.NombreGrafico()+"\n";
+        Salida=Salida+Contenido.Graficar();
+        return Salida;
+    }
+
+    @Override
+    public String NombreGrafico() {
+        return this.toString().replace(".", "").replace("@", "");
+    }
 }

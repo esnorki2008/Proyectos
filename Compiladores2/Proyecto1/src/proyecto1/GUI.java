@@ -79,6 +79,10 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        
+        
+         
         String Input=this.jTextArea1.getText();
         scanner lexico = new scanner(new BufferedReader(new StringReader(Input)));        
         parser sin = new parser(lexico);
@@ -87,6 +91,11 @@ public class GUI extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Proyecto1.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+     
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
