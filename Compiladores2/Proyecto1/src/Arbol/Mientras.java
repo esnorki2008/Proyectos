@@ -23,5 +23,23 @@ public class Mientras implements Instruccion{
     public void Ejecutar(TablaDeSimbolos Tabla) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String Graficar() {
+        String Salida, Nombre;
+        Nombre = this.NombreGrafico();
+        Salida = Nombre + "[label=\"Mientras\"]";
+        Salida=Salida+Val.Graficar();
+        Salida=Salida+Contenido.Graficar();
+
+        Salida = Salida + Nombre + "->" + Val.NombreGrafico() + "\n";
+        Salida = Salida + Nombre + "->" + Contenido.NombreGrafico() + "\n";
+        return Salida;
+    }
+
+    @Override
+    public String NombreGrafico() {
+        return this.toString().replace(".", "").replace("@", "");
+    }
     
 }

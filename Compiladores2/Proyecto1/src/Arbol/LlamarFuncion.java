@@ -20,7 +20,21 @@ public class LlamarFuncion implements Instruccion{
     }
     @Override
     public void Ejecutar(TablaDeSimbolos Tabla) {
-        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    }
+
+    @Override
+    public String Graficar() {
+        String Retorno;
+        Retorno=NombreGrafico()+"[label=\"LlamarFuncion: |"+Id+"|\"]";
+        Retorno=Retorno+((ListaValores)Valores).Graficar(this);
+        return Retorno; 
+    }
+
+    @Override
+    public String NombreGrafico() {
+        return this.toString().replace(".", "").replace("@", "");
     }
     
 }

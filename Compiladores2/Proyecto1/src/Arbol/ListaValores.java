@@ -26,5 +26,23 @@ public class ListaValores implements Instruccion{
     public void Ejecutar(TablaDeSimbolos Tabla) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String Graficar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public String Graficar(Instruccion Padre){
+        String Salida="";
+        int Tamanio=this.Contenido.size();
+        for(int i=0;i<Tamanio;i++){
+            Salida=Salida+Contenido.get(i).Graficar();
+            Salida=Salida+Padre.NombreGrafico()+"->"+Contenido.get(i).NombreGrafico()+"\n";
+        }
+        return Salida;
+    }
+    @Override
+    public String NombreGrafico() {
+        return this.toString().replace(".", "").replace("@", "");
+    }
     
 }

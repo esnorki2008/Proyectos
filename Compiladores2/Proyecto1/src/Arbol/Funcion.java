@@ -23,6 +23,23 @@ public class Funcion implements Instruccion {
     public void Ejecutar(TablaDeSimbolos Tabla) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String Graficar() {
+       String Retorno;
+        Retorno=NombreGrafico()+"[label=\"Funcion\"]";
+        Retorno=Retorno+Contenido.Graficar();
+        Retorno=Retorno+((ListaParametros)Lista).Graficar(this);
+        Retorno = Retorno +this.NombreGrafico()+ "->" + Contenido.NombreGrafico() + "\n";
+        return Retorno;  
+    }
+
+    @Override
+    public String NombreGrafico() {
+        return this.toString().replace(".", "").replace("@", "");
+    }
+
+    
     
     
 }

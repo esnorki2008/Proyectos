@@ -37,6 +37,7 @@ public class CuerpoSuitch implements Instruccion{
             Retorno=NombreGrafico() + "[label=\"Case\"]";
         else
             Retorno=NombreGrafico() + "[label=\"Default\"]";
+        
         Retorno = Retorno +Contenido.Graficar();
         Retorno = Retorno +Detener.Graficar();
         return Retorno;
@@ -46,5 +47,6 @@ public class CuerpoSuitch implements Instruccion{
     public String NombreGrafico() {
         return this.toString().replace(".", "").replace("@", "");
     }
+
     
 }

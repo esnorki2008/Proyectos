@@ -54,4 +54,6 @@ public class Cuerpo implements Instruccion {
     public String NombreGrafico() {
         return this.toString().replace(".", "").replace("@", "");
     }
+
+    
 }

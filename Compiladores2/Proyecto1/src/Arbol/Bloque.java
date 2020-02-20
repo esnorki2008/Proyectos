@@ -37,4 +37,5 @@ public class Bloque implements Instruccion {
     public String NombreGrafico() {
         return this.toString().replace(".", "").replace("@", "");
     }
+
 }
