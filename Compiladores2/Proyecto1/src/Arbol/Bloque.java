@@ -27,7 +27,7 @@ public class Bloque implements Instruccion {
     public String Graficar() {
         String Salida,Nombre;
         Nombre=this.NombreGrafico();
-        Salida=Nombre+"[label=\"Bloque\"]";
+        Salida=Nombre+"[label=\"Bloque\"]\n";
         Salida=Salida+"->"+Contenido.NombreGrafico()+"\n";
         Salida=Salida+Contenido.Graficar();
         return Salida;

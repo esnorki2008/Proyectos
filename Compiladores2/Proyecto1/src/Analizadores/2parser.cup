@@ -56,10 +56,10 @@ terminal String elses,coma,potencia,modular,suitc,casep,defaultp,breakp,whilep,d
 non terminal Instruccion INICIO,LLAMADO;
 non terminal Instruccion CUERPO,INSTR,BLOQUE,ASIGNACION,TERNARIO,SI;
 non terminal Instruccion VALOR,SUITCH,CUERPOSUITCH,MIENTRAS,HACERMIENTRAS,PARACICLO,TRANS;
-non terminal Instruccion FUNCION,LISTAPARAM,LISTAVAL,RETORNO,FINAL;
+non terminal Instruccion FUNCION,LISTAPARAM,LISTAVAL,RETORNO,PUNTOCOMA;
 
 /* Precedencia */
-
+precedence right interro,doblepunto;
 precedence left or;
 precedence left and;
 precedence left igualdoble,diferente,men,may,menorigual,mayorigual;
@@ -71,31 +71,39 @@ precedence left admira,potencia;
 /* ­­­­­­­­­­­­­­ Definición de la gramatica  ­­­­­­­­­­­ */
 start with INICIO; // Inicial
 ////////PAGINA 1
-INICIO::= CUERPO:a{:RESULT=a; Raiz=a;:};
-CUERPO::=CUERPO:a INSTR:b{:RESULT=a; ((Cuerpo)RESULT).Agregar(b);:}
-    |INSTR:a{: RESULT=new Cuerpo();  ((Cuerpo)RESULT).Agregar(a);:}
+INICIO::= CUERPO:a{:RESULT=a; Raiz=a;:}
+;
+CUERPO::=CUERPO:a INSTR:b PUNTOCOMA{:RESULT=a; ((Cuerpo)RESULT).Agregar(b);:}
+    |INSTR PUNTOCOMA{: RESULT=new Cuerpo();  ((Cuerpo)RESULT).Agregar(a);:}
 ;    
+PUNTOCOMA::=puntocom
+    |
+;
 INSTR::=BLOQUE:a {:RESULT=a;:}
-    |ASIGNACION:a  FINAL{:RESULT=a;:} 
-    |TERNARIO:a {:RESULT=a;:}
+    |ASIGNACION:a {:RESULT=a;:} 
     |SI:a {:RESULT=a;:}
     |SUITCH:a {:RESULT=a;:}
     |MIENTRAS:a {:RESULT=a;:}
     |HACERMIENTRAS:a {:RESULT=a;:}
     |PARACICLO:a {:RESULT=a;:}
-    |TRANS:a {:RESULT=a;:}
     |LLAMADO:a {:RESULT=a;:}
+    |TRANS:a {:RESULT=a;:}
     ;
 
+TRANS::=breakp {:RESULT=new Detencion(1);:}
+    |continuep{:RESULT=new Detencion(2);:}
+    |returnp RETORNO:a{:RESULT=new Detencion(3,a);:}
+;
+RETORNO::=para VALOR:a parc{:RESULT=a;:}
+    |{:RESULT=null;:}
+;
 LLAMADO::=id:a para LISTAPARAM:b parc {:RESULT=new LlamarFuncion(a,b);:}
 ;
-FINAL::=puntocom
-    |
-;
+
 BLOQUE::=llaa CUERPO:a llac{:RESULT=new Bloque(a);:}
 ;
 
-ASIGNACION::=id:a igual VALOR:b puntocom{:RESULT=new Asignacion(a,b);:}
+ASIGNACION::=id:a igual VALOR:b {:RESULT=new Asignacion(a,b);:}
 ;
 
 
@@ -138,6 +146,7 @@ VALOR::=VALOR:a suma:b VALOR:c {: RESULT=new Valor(b,a,c); :} //1
     |cadena:a{: RESULT=new Valor("cadena",a); :}
     |booleano:a{: RESULT=new Valor("booleano",a); :}
     |decimal:a{: RESULT=new Valor("decimal",a); :}
+    |TERNARIO:a {:RESULT=a;:}
 ;
 //PAGINA 3
 SUITCH::= suitc para VALOR:a parc llaa CUERPOSUITCH:b llac{:((Suitch)b).AgregarValor(a);RESULT=b;:}
@@ -154,18 +163,13 @@ CUERPOSUITCH::=CUERPOSUITCH:a casep VALOR:b doblepunto CUERPO:c TRANS:d{:RESULT=
 MIENTRAS::= whilep para VALOR:a parc llaa CUERPO:b llac{:RESULT=new Mientras(a,b);:}
 ;
 
-HACERMIENTRAS::=dop llaa CUERPO:a llac para VALOR:b parc puntocom{:RESULT=new HacerMientras(b,a);:}
+HACERMIENTRAS::=dop llaa CUERPO:a llac para VALOR:b parc {:RESULT=new HacerMientras(b,a);:}
 ;
 
 PARACICLO::= forp para id:a inp VALOR:b parc llaa CUERPO:c llac{:RESULT=new ParaCiclo(a,b,c);:}
 ;
-TRANS::=breakp puntocom{:RESULT=new Detencion(1);:}
-    |continuep puntocom{:RESULT=new Detencion(2);:}
-    |returnp RETORNO:a puntocom{:RESULT=new Detencion(3,a);:}
-;
-RETORNO::=VALOR:a{:RESULT=a;:}
-    |{:RESULT=null;:}
-;
+
+
 FUNCION::=functionpp para LISTAPARAM:a parc llaa CUERPO:b llac{: RESULT= new Funcion(a,b);  :}
     |para LISTAPARAM:a parc flecha llaa CUERPO:b llac{:  RESULT= new Funcion(a,b); :}
 ;

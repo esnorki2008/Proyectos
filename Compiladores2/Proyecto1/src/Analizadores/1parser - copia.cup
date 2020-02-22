@@ -54,9 +54,9 @@ terminal String elses,coma,potencia,modular,suitc,casep,defaultp,breakp,whilep,d
 * Aquí están los no terminales
 */
 non terminal Instruccion INICIO,LLAMADO;
-non terminal Instruccion CUERPO,INSTR,BLOQUE,ASIGNACION,TERNARIO,SI;
+non terminal Instruccion CUERPO,INSTR,BLOQUE,ASIGNACION,DECLA,TERNARIO,SI;
 non terminal Instruccion VALOR,SUITCH,CUERPOSUITCH,MIENTRAS,HACERMIENTRAS,PARACICLO,TRANS;
-non terminal Instruccion FUNCION,LISTAPARAM,LISTAVAL,RETORNO,FINAL;
+non terminal Instruccion FUNCION,LISTAPARAM,FUNCIONP,LISTAVAL,RETORNO;
 
 /* Precedencia */
 
@@ -76,7 +76,7 @@ CUERPO::=CUERPO:a INSTR:b{:RESULT=a; ((Cuerpo)RESULT).Agregar(b);:}
     |INSTR:a{: RESULT=new Cuerpo();  ((Cuerpo)RESULT).Agregar(a);:}
 ;    
 INSTR::=BLOQUE:a {:RESULT=a;:}
-    |ASIGNACION:a  FINAL{:RESULT=a;:} 
+    |ASIGNACION:a puntocom {:RESULT=a;:} 
     |TERNARIO:a {:RESULT=a;:}
     |SI:a {:RESULT=a;:}
     |SUITCH:a {:RESULT=a;:}
@@ -87,18 +87,18 @@ INSTR::=BLOQUE:a {:RESULT=a;:}
     |LLAMADO:a {:RESULT=a;:}
     ;
 
-LLAMADO::=id:a para LISTAPARAM:b parc {:RESULT=new LlamarFuncion(a,b);:}
+LLAMADO::=id:a para LISTAVAL:b parc puntocom{:RESULT=new LlamarFuncion(a,b);:}
 ;
-FINAL::=puntocom
-    |
-;
+
 BLOQUE::=llaa CUERPO:a llac{:RESULT=new Bloque(a);:}
 ;
 
-ASIGNACION::=id:a igual VALOR:b puntocom{:RESULT=new Asignacion(a,b);:}
+ASIGNACION::=id:a DECLA:b{:RESULT=new Asignacion(a,b);:}
 ;
 
-
+DECLA::= igual VALOR:a{:RESULT=a;:}
+    |{:RESULT=null;:}
+    ;
 
 
 

@@ -30,7 +30,7 @@ public class HacerMientras implements Instruccion {
     public String Graficar() {
         String Salida, Nombre;
         Nombre = this.NombreGrafico();
-        Salida = Nombre + "[label=\"HacerMientras\"]";
+        Salida = Nombre + "[label=\"HacerMientras\"]\n";
 
         Salida = Salida + Contenido.Graficar();
         Salida = Salida + Val.Graficar();

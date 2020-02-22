@@ -28,7 +28,7 @@ public class Mientras implements Instruccion{
     public String Graficar() {
         String Salida, Nombre;
         Nombre = this.NombreGrafico();
-        Salida = Nombre + "[label=\"Mientras\"]";
+        Salida = Nombre + "[label=\"Mientras\"]\n";
         Salida=Salida+Val.Graficar();
         Salida=Salida+Contenido.Graficar();
 

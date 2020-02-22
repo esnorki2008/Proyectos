@@ -40,10 +40,10 @@ public class Cuerpo implements Instruccion {
     public String Graficar() {
         String Salida, Nombre;
         Nombre = this.NombreGrafico();
-        Salida = Nombre + "[label=\"Cuerpo\"]";
+        Salida = Nombre + "[label=\"Cuerpo\"]\n";
         int Tamaño = Contenido.size();
         for (int i = 0; i < Tamaño; i++) {
-            Salida = Salida + "->" + Contenido.get(i).NombreGrafico() + "\n";
+            Salida = Salida+Nombre + "->" + Contenido.get(i).NombreGrafico() + "\n";
             Salida = Salida + Contenido.get(i).Graficar();
         }
 

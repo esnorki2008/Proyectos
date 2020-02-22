@@ -18,7 +18,7 @@ public class ParaCiclo implements Instruccion {
     public ParaCiclo(String Id,Instruccion Val,Instruccion Contenido){
         this.Val=(Valor)Val;
         this.Contenido=Contenido;
-        this.Id=Id;sdsadassda 
+        this.Id=Id;
     }
     
     @Override
@@ -30,10 +30,12 @@ public class ParaCiclo implements Instruccion {
     public String Graficar() {
         String Salida, Nombre;
         Nombre = this.NombreGrafico();
-        Salida = Nombre + "[label=\"ParaCiclo\"]";
+        Salida = Nombre + "[label=\"ParaCiclo\"]+\n";
+        Salida = Nombre + "VAL[label=\""+Id+"\"]+\n";
         Salida=Salida+Val.Graficar();
         Salida=Salida+Contenido.Graficar();
 
+        Salida = Salida + Nombre + "->VAL" + Nombre + "\n";
         Salida = Salida + Nombre + "->" + Val.NombreGrafico() + "\n";
         Salida = Salida + Nombre + "->" + Contenido.NombreGrafico() + "\n";
         return Salida;

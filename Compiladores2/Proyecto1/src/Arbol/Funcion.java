@@ -27,7 +27,7 @@ public class Funcion implements Instruccion {
     @Override
     public String Graficar() {
        String Retorno;
-        Retorno=NombreGrafico()+"[label=\"Funcion\"]";
+        Retorno=NombreGrafico()+"[label=\"Funcion\"]\n";
         Retorno=Retorno+Contenido.Graficar();
         Retorno=Retorno+((ListaParametros)Lista).Graficar(this);
         Retorno = Retorno +this.NombreGrafico()+ "->" + Contenido.NombreGrafico() + "\n";

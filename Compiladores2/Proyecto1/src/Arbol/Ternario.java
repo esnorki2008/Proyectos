@@ -23,4 +23,25 @@ public class Ternario implements Instruccion{
     public void Ejecutar(TablaDeSimbolos Tabla) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String Graficar() {
+        String Salida, Nombre;
+        Nombre = this.NombreGrafico();
+        Salida = Nombre + "[label=\"TERNARIO\"]+\n";
+        Salida=Salida+Valor.Graficar();
+        Salida=Salida+Verdadero.Graficar();
+        Salida=Salida+Falso.Graficar();
+
+       
+        Salida = Salida + Nombre + "->" + Valor.NombreGrafico() + "\n";
+        Salida = Salida + Nombre + "->" + Verdadero.NombreGrafico() + "\n";
+        Salida = Salida + Nombre + "->" + Falso.NombreGrafico() + "\n";
+        return Salida;
+    }
+
+    @Override
+    public String NombreGrafico() {
+        return this.toString().replace(".", "").replace("@", "");
+    }
 }

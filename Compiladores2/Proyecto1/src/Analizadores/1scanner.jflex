@@ -84,6 +84,7 @@ inp=in
 "<=" {return new Symbol(sym.menorigual,yycolumn,yyline,yytext());}
 ">=" {return new Symbol(sym.mayorigual,yycolumn,yyline,yytext());}
 "!=" {return new Symbol(sym.diferente,yycolumn,yyline,yytext());}
+"!>" {return new Symbol(sym.diferente,yycolumn,yyline,yytext());}
 "==" {return new Symbol(sym.igualdoble,yycolumn,yyline,yytext());}
 "=" {return new Symbol(sym.igual,yycolumn,yyline,yytext());}
 "," {return new Symbol(sym.coma,yycolumn,yyline,yytext());}

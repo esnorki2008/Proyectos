@@ -34,9 +34,9 @@ public class CuerpoSuitch implements Instruccion{
     public String Graficar() {
         String Retorno;
         if(Valor!=null)
-            Retorno=NombreGrafico() + "[label=\"Case\"]";
+            Retorno=NombreGrafico() + "[label=\"Case\"]\n";
         else
-            Retorno=NombreGrafico() + "[label=\"Default\"]";
+            Retorno=NombreGrafico() + "[label=\"Default\"]\n";
         
         Retorno = Retorno +Contenido.Graficar();
         Retorno = Retorno +Detener.Graficar();

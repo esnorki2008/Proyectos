@@ -32,13 +32,13 @@ public class Detencion implements Instruccion{
         String Retorno="nul*";
         switch(Tipo){
             case 1:
-                Retorno=Retorno=NombreGrafico() + "[label=\"Break\"]";
+                Retorno=Retorno=NombreGrafico() + "[label=\"Break\"]\n";
                 break;
             case 2:
-                Retorno=NombreGrafico() + "[label=\"Continue\"]";
+                Retorno=NombreGrafico() + "[label=\"Continue\"]\n";
                 break;
             case 3:
-                Retorno=NombreGrafico() + "[label=\"Return\"]";
+                Retorno=NombreGrafico() + "[label=\"Return\"]\n";
                 Retorno = Retorno +Val.Graficar();
                 break;
         }
