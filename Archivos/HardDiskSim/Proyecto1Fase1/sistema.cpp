@@ -34,13 +34,15 @@ void Sistema::CrearDirectorio(std::string Conte){
     std::string token;
 
     std::string Escritura="";
+
+
     while ((pos = s.find(delimiter)) != std::string::npos) {
         token = s.substr(0, pos);
         if(this->Func->IF("",token)){
 
         }else{
             Escritura=Escritura+"/"+token;
-
+            std::cout<<"Delimitar   "<<Escritura<<std::endl;
             if (mkdir(Escritura.data(), 0777) == -1){
 
             }
@@ -69,6 +71,7 @@ std::string Sistema::SplitRaid(std::string Conte){
 }
 void Sistema::Ejecutar(std::string  Ejecutar){
     std::cout<<"--------------EXEC---------------"<<std::endl;
+
     if(Func->ExisteArchivo(Ejecutar.data())==false){
         std::cout<<"No Existe Un Archivo En La Ubicacion "<<Ejecutar<<std::endl;
         return;
@@ -84,13 +87,22 @@ void Sistema::Ejecutar(std::string  Ejecutar){
 void Sistema::Crear(int Size, char Unit, char Fit[],  std::string  Path){
     std::cout<<"--------------MKDISK---------------"<<std::endl;
     CrearDirectorio(Path);
+    std::cout<<Path<<std::endl;
     M->Mkdisk(Size,Fit,Unit,Path.data());
     M->Mkdisk(Size,Fit,Unit,SplitRaid(Path).data());
     std::cout<<"-----------------------------------"<<std::endl;
 }
 void Sistema::BorrarDisco(std::string Path){
     std::cout<<"--------------RMDISK---------------"<<std::endl;
-    M->RMDISK(Path.data());
+    std::string Confirmacion;
+    std::cout<<"Desea Eliminar La Particion (s/n)"<<std::endl;
+    std::cin>>Confirmacion;
+    if(Func->IF(Confirmacion,"s")){
+        std::cout<<"Se Procedera A Eliminar"<<std::endl;
+        M->RMDISK(Path.data());
+    }else{
+        std::cout<<"Eliminacion de disco CANCELADA por parte del usuario"<<std::endl;
+    }
     std::cout<<"-----------------------------------"<<std::endl;
 }
 void Sistema::Formato(int Size, char Fit[2], char Unit, std::string Path, char Type, std::string Name){
