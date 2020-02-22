@@ -8,7 +8,7 @@ int columna=0;
 int anterior=0;
 int salto=1;
 %}
-direccion \/({identificador}\/)*{identificador}\.(disk|png|pdf|sh|txt)
+direccion \/({identificador}\/)*{identificador}\.(disk|png|pdf|sh|txt|jpg|jpeg)
 comentario  #[^\r\n]*[^\r\n]
 identificador ({letra}|"_")({letra}|{numero}|"_")*
 letra [a-zñA-ZÑ]

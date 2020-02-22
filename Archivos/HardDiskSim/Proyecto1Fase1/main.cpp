@@ -23,22 +23,23 @@ int main()
 {
 
 
-   /* Functions *Fu = new Functions();
+    Functions *Fu = new Functions();
     Sistema *Ex= new Sistema();
     while (true) {
 
         std::cout<<"--------------MANEJO DE RAID---------------"<<std::endl;
         std::cout<<"Ingrese La Ubicacion Del Archivo A Procesar O Escriba Salir Para Salir"<<std::endl;
         std::string Exec;
-        std::cin >> Exec;
-
+        //std::cin >> Exec;
+        Exec="/home/andhy/Descargas/Entrada.sh";
         if(Fu->IF("salir",Exec)){
             std::cout<<"Saliendo Del Programa"<<std::endl;
             return 1;
         }
         Ex->Ejecutar(Exec);
+        break;
     }
-*/
+
 
 
     /*Functions *Fun = new Functions();

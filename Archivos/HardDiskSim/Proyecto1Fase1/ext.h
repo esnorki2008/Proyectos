@@ -8,7 +8,7 @@
 #include "recuperacion.h"
 class EXT
 {
-public:    
+public:
     //Cambiar Dueño
     void CambiarPropietarioNormalRecursivo(int Comienzo,const char *PathVirtual,const char *PathReal,int NuevoDuenio,int OPE);
     void FIND(int Comienzo,std::string PathVirtual,const char *PathReal);

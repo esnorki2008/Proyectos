@@ -1165,7 +1165,7 @@ void Menu::NewMenu(){
 
 
 
-    if(true){
+    if(false){
     Fun->Out("-----------------NewMenu--------------");
     Mkdisk(2,"ff",'M',"/home/pc/Documents/Archivos/Prueba/Disco.disk");
     FDisk(1,"ff",'M',"/home/pc/Documents/Archivos/Prueba/Disco.disk",'p',"a");

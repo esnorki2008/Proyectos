@@ -62,16 +62,17 @@ int main()
 void MostrarTodo(){
     FILE* file;
     Str Info;
-    file = fopen("alumnos_[201700886]", "r+");
-    fseek(file,0,SEEK_SET );
+    file = fopen("alumnos_[201700886]", "r");
+    //fseek(file,0,SEEK_SET );
 
     std::cout<<"***********************************************"<<std::endl;
     std::cout<<"Información De Todos Los Alumnos Y Profesores"<<std::endl;;
     while (!feof(file)) // Leer Al Fin
     {
 
-        if(!feof(file)){
         fread(&Info, sizeof(Str), 1, file);
+        if(!feof(file)){
+
         std::cout<<"***********************************************"<<std::endl;
         std::cout<<"Tipo: "<<Info.Tipo<<std::endl
                 <<"Apellido1: "<<Info.Apellido1<<std::endl
