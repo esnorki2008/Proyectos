@@ -28,8 +28,9 @@ public class Asignacion implements Instruccion{
     public String Graficar() {
         String Salida,Nombre;
         Nombre=this.NombreGrafico();
-        Salida=Nombre+"["+"\"Asignar:\n"+ Id+"\"]\n";
-        Salida=Salida+"->"+Valor.NombreGrafico()+"\n";
+        Salida=Nombre+"[label="+"\"Asignar:"+ Id+"\"]\n";
+        Salida=Salida+Valor.Graficar();
+        Salida=Salida+Nombre+"->"+Valor.NombreGrafico()+"\n";
         return Salida;
     }
 

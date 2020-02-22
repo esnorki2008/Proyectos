@@ -29,7 +29,6 @@ public class Valor implements Instruccion {
         this.Valor1=null;
         this.Valor2=null;
         TamOpe=2;
-        ValorPuntual=null;
         this.ValorPuntual=ValorPuntual;
     }
     public Valor(String Tipo,Instruccion Valor1,Instruccion Valor2){
@@ -56,21 +55,20 @@ public class Valor implements Instruccion {
     public String Graficar() {
         String Nombre=NombreGrafico()+"T";
         String Retorno;
-        Retorno = NombreGrafico() + "[label=\"Valor\"]";
-        Retorno = Retorno+Nombre + "[label=\""+TipoOpe+"\"]";
+        Retorno = this.NombreGrafico() + "[label=\"Valor\"]"+"\n";
+        Retorno = Retorno+Nombre + "[label=\""+TipoOpe+"\"]"+"\n";
         Retorno = Retorno +NombreGrafico() +"->" + Nombre + "\n";
         
         if(this.Valor1!=null){
-            Retorno = Retorno + Nombre +"->" +Valor1.NombreGrafico();
+            Retorno = Retorno + Nombre +"->" +Valor1.NombreGrafico()+"\n";
             Retorno = Retorno + Valor1.Graficar();
         }
         if(this.Valor2!=null){
-            Retorno = Retorno + Nombre +"->" +Valor2.NombreGrafico();
+            Retorno = Retorno + Nombre +"->" +Valor2.NombreGrafico()+"\n";
             Retorno = Retorno + Valor2.Graficar();
         }
         if (this.ValorPuntual != null) {
-            Retorno = NombreGrafico() + "[label=\"ValorPuntual\"]";
-            Retorno = Retorno + Nombre+"V" + "[label=\"" + ValorPuntual + "\"]";
+            Retorno = Retorno + Nombre + "V[label=\"" + ValorPuntual + "\"]\n";
             Retorno = Retorno + Nombre + "->" + Nombre+"V" + "\n";
         }
         return Retorno;

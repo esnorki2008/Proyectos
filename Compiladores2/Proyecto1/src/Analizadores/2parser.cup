@@ -74,7 +74,7 @@ start with INICIO; // Inicial
 INICIO::= CUERPO:a{:RESULT=a; Raiz=a;:}
 ;
 CUERPO::=CUERPO:a INSTR:b PUNTOCOMA{:RESULT=a; ((Cuerpo)RESULT).Agregar(b);:}
-    |INSTR PUNTOCOMA{: RESULT=new Cuerpo();  ((Cuerpo)RESULT).Agregar(a);:}
+    |INSTR:a PUNTOCOMA{: RESULT=new Cuerpo();  ((Cuerpo)RESULT).Agregar(a);:}
 ;    
 PUNTOCOMA::=puntocom
     |

@@ -8,6 +8,11 @@ package proyecto1;
 import Analizadores.parser;
 import Analizadores.scanner;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +54,7 @@ public class GUI extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("\"var5=var4; var5=var3;\"");
+        jTextArea1.setText("var5=var4;\n var5=var3;");
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -77,7 +82,23 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void EscribirArchivo(String Contenido) {
+        String Path = "C:\\Users\\Norki\\Desktop\\Proyectos\\Compiladores2\\Proyecto1\\src\\Analizadores\\Codigo.dot";
+        String PathIma = "C:\\Users\\Norki\\Desktop\\Proyectos\\Compiladores2\\Proyecto1\\src\\Analizadores\\Imagen.png";
+        String Comando="dot -Tpng " +Path +" -o "+PathIma;
+        
+        Contenido="digraph G {\n"+Contenido+"\n}";
+        try {
+            FileWriter myWriter = new FileWriter(Path);
+            myWriter.write(Contenido);
+            myWriter.close();
+            Process p = Runtime.getRuntime().exec(Comando);
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        
+}
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
         
@@ -91,7 +112,7 @@ public class GUI extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Proyecto1.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        EscribirArchivo(sin.Raiz.Graficar());
         
      
         

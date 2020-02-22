@@ -5,13 +5,29 @@
  */
 package Elementos;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author 50241
  */
 public class TablaDeSimbolos {
-    TablaDeSimbolos Padre;
+    private TablaDeSimbolos Padre;
+    private LinkedList ListaMetodos;
+    private LinkedList ListaVariables;
+    
     public TablaDeSimbolos(TablaDeSimbolos Padre){
         this.Padre=Padre;
+        ListaMetodos=new LinkedList();
+        ListaVariables=new LinkedList();
+    }
+    
+    public Objeto Buscar(String Id){
+        int Tama;
+        Tama=ListaMetodos.size();
+        for(int i=0;i<Tama;i++){
+            
+        }
+    
     }
 }

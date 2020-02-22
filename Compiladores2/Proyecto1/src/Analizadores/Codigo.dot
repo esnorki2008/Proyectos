@@ -1,0 +1,20 @@
+digraph G {
+ArbolCuerpo4f132aa2[label="Cuerpo"]
+ArbolCuerpo4f132aa2->ArbolAsignacion4f4c5c01
+ArbolAsignacion4f4c5c01[label="Asignar:var5"]
+ArbolValor3246c161[label="Valor"]
+ArbolValor3246c161T[label="var"]
+ArbolValor3246c161->ArbolValor3246c161T
+ArbolValor3246c161TV[label="var4"]
+ArbolValor3246c161T->ArbolValor3246c161TV
+ArbolAsignacion4f4c5c01->ArbolValor3246c161
+ArbolCuerpo4f132aa2->ArbolAsignacion631f9985
+ArbolAsignacion631f9985[label="Asignar:var5"]
+ArbolValor358ff97e[label="Valor"]
+ArbolValor358ff97eT[label="var"]
+ArbolValor358ff97e->ArbolValor358ff97eT
+ArbolValor358ff97eTV[label="var12123"]
+ArbolValor358ff97eT->ArbolValor358ff97eTV
+ArbolAsignacion631f9985->ArbolValor358ff97e
+
+}
