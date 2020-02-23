@@ -42,7 +42,7 @@ void Sistema::CrearDirectorio(std::string Conte){
 
         }else{
             Escritura=Escritura+"/"+token;
-            std::cout<<"Delimitar   "<<Escritura<<std::endl;
+
             if (mkdir(Escritura.data(), 0777) == -1){
 
             }
@@ -156,7 +156,7 @@ void Sistema::Desmontar(std::string Name){
 }
 void Sistema::Reportes(std::string Id, std::string Name, std::string Path){
     std::cout<<"-------------REPORTES--------------"<<std::endl;
-
+    CrearDirectorio(Path);
     M->REP(Id.data(),Name.data(),Path.data());    
     if (Func->ExisteArchivo(Path.data())) {
         std::cout<<"Reporte De:"<<Id<<" De Tipo: "<<Name<<" Existe En:"<<Path<<std::endl;

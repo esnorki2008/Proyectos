@@ -31,7 +31,7 @@ int main()
         std::cout<<"Ingrese La Ubicacion Del Archivo A Procesar O Escriba Salir Para Salir"<<std::endl;
         std::string Exec;
         //std::cin >> Exec;
-        Exec="/home/andhy/Descargas/Entrada.sh";
+        Exec="/home/andhy/Descargas/Entrada2.sh";
         if(Fu->IF("salir",Exec)){
             std::cout<<"Saliendo Del Programa"<<std::endl;
             return 1;
