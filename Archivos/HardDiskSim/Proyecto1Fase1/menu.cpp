@@ -554,6 +554,7 @@ void Menu::RMDISK(const char *Path){
     \brief Busca Si El Tamaño Disponible En El Disco Danto Path Y Tamaño Requerido Del Bloque .
 */
 void Menu::FDISKAdd(int Size, const char *Path, const char *Name){
+    std::cout<<"Operacion Sobre:"<<std::endl<<Path<<std::endl;
     if(Size>0){
         AgregarMas(Size,Path,Name);
     }else{
