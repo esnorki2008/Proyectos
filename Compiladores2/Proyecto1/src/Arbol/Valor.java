@@ -6,6 +6,11 @@
 package Arbol;
 
 import Arbol.Operacion.*;
+import Arbol.Operacion.Numerica.Division;
+import Arbol.Operacion.Numerica.Modular;
+import Arbol.Operacion.Numerica.Multiplicacion;
+import Arbol.Operacion.Numerica.Positivo;
+import Arbol.Operacion.Numerica.Potencia;
 import Arbol.Operacion.Numerica.Resta;
 import Arbol.Operacion.Numerica.Suma;
 import Elementos.TablaDeSimbolos;
@@ -152,12 +157,39 @@ public class Valor implements Instruccion {
         Object Out;
         switch (this.TipoOpe.toLowerCase()) {
             case "+":
-                Ope = new Suma();
+                if (TamOpe == 3) {
+                    Ope = new Suma();
+                    Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                    this.Tipo = Ope.GetTipo();
+                    return Out;
+                } else {
+                    Ope = new Positivo();
+                    Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Tabla);
+                    this.Tipo = Ope.GetTipo();
+                    return Out;
+                }
+            case "-":
+                Ope = new Resta();
                 Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
                 this.Tipo = Ope.GetTipo();
                 return Out;
-            case "-":
-                Ope = new Resta();
+            case "*":
+                Ope = new Multiplicacion();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "/":
+                Ope = new Division();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "^":
+                Ope = new Potencia();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "%%":
+                Ope = new Modular();
                 Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
                 this.Tipo = Ope.GetTipo();
                 return Out;
@@ -176,6 +208,8 @@ public class Valor implements Instruccion {
                 } else {
                     return false;
                 }
+            case "decimal":
+                return Double.parseDouble(this.ValorPuntual);
         }
         System.out.println(TipoOpe + "    --      " + this.ValorPuntual);
         return Retorno;

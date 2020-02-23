@@ -11,10 +11,9 @@ import Excepciones.Excepcion;
 
 /**
  *
- * @author Norki
+ * @author 50241
  */
-public class Resta extends Operacion{
-
+public class Modular extends Operacion{
     private Object Tipo1(Object Exec1, Object Exec2, int Tipo, TablaDeSimbolos Tabla) {
         if (Exec1 == null) {
             Exec1 = 0.0;
@@ -25,15 +24,15 @@ public class Resta extends Operacion{
                     Exec2 = 0.0;
                 }
                 this.ValorTipo=1;
-                return (double)Exec1-(double)Exec2;
+                return (double)Exec1%(double)Exec2;
             case 2:
                 if (Exec2 == null) {
                     Exec2 = 0;
                 }
                 this.ValorTipo=1;
-                return (double)Exec1-(int)Exec2;
+                return (double)Exec1%(int)Exec2;
             default:
-                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Restar "+this.TipoATexto(1)+" Con "+this.TipoATexto(Tipo)));
+                Tabla.AgregarExcepcion(new Excepcion("No Se Hacer Modular  "+this.TipoATexto(1)+" Con "+this.TipoATexto(Tipo)));
                 return null;
         }
     }
@@ -47,15 +46,15 @@ public class Resta extends Operacion{
                     Exec2 = 0.0;
                 }
                 this.ValorTipo=1;
-                return (int)Exec1-(double)Exec2;
+                return (int)Exec1%(double)Exec2;
             case 2:
                 if (Exec2 == null) {
                     Exec2 = 0;
                 }
                 this.ValorTipo=2;
-                return (int)Exec1-(int)Exec2;
+                return (int)Exec1%(int)Exec2;
             default:
-                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Restar "+this.TipoATexto(2)+" Con "+this.TipoATexto(Tipo)));
+                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Hacer Modular "+this.TipoATexto(2)+" Con "+this.TipoATexto(Tipo)));
                 return null;
         }
     }
@@ -68,9 +67,8 @@ public class Resta extends Operacion{
             case 2:
                 return Tipo2(Valor1, Valor2, Tip2, Tabla);
             default:
-                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Restar "+this.TipoATexto(Tip1)+" Con "+this.TipoATexto(Tip2)));
+                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Hacer Modular "+this.TipoATexto(Tip1)+" Con "+this.TipoATexto(Tip2)));
                 return null;
         }
     }
-    
 }

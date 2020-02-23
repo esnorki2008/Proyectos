@@ -24,8 +24,8 @@ import java.util.logging.Logger;
  */
 public class Analisis {
     private void EscribirArchivo(String Contenido) {
-        String Path = "C:\\Users\\Norki\\Desktop\\Proyectos\\Compiladores2\\Proyecto1\\src\\Analizadores\\Codigo.dot";
-        String PathIma = "C:\\Users\\Norki\\Desktop\\Proyectos\\Compiladores2\\Proyecto1\\src\\Analizadores\\Imagen.png";
+        String Path = "Codigo.dot";
+        String PathIma = "Imagen.png";
         String Comando="dot -Tpng " +Path +" -o "+PathIma;
         
         Contenido="digraph G {\n"+Contenido+"\n}";

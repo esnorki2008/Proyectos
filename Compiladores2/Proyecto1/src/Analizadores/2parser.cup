@@ -146,6 +146,7 @@ VALOR::=VALOR:a suma:b VALOR:c {: RESULT=new Valor(b,a,c); :} //1
     |cadena:a{: RESULT=new Valor("cadena",a); :}
     |booleano:a{: RESULT=new Valor("booleano",a); :}
     |decimal:a{: RESULT=new Valor("decimal",a); :}
+    |para VALOR:a parc{:RESULT=a;:}
     |TERNARIO:a {:RESULT=a;:}
 ;
 //PAGINA 3
