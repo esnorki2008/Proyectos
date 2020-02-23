@@ -5,6 +5,9 @@
  */
 package Arbol;
 
+import Arbol.Operacion.*;
+import Arbol.Operacion.Numerica.Resta;
+import Arbol.Operacion.Numerica.Suma;
 import Elementos.TablaDeSimbolos;
 
 /**
@@ -12,64 +15,191 @@ import Elementos.TablaDeSimbolos;
  * @author Norki
  */
 public class Valor implements Instruccion {
-    private Instruccion Valor1,Valor2;
+
+    /**
+     * @return the Valor1
+     */
+    public Instruccion getValor1() {
+        return Valor1;
+    }
+
+    /**
+     * @param Valor1 the Valor1 to set
+     */
+    public void setValor1(Instruccion Valor1) {
+        this.Valor1 = Valor1;
+    }
+
+    /**
+     * @return the Valor2
+     */
+    public Instruccion getValor2() {
+        return Valor2;
+    }
+
+    /**
+     * @param Valor2 the Valor2 to set
+     */
+    public void setValor2(Instruccion Valor2) {
+        this.Valor2 = Valor2;
+    }
+
+    /**
+     * @return the TipoOpe
+     */
+    public String getTipoOpe() {
+        return TipoOpe;
+    }
+
+    /**
+     * @param TipoOpe the TipoOpe to set
+     */
+    public void setTipoOpe(String TipoOpe) {
+        this.TipoOpe = TipoOpe;
+    }
+
+    /**
+     * @return the TamOpe
+     */
+    public int getTamOpe() {
+        return TamOpe;
+    }
+
+    /**
+     * @param TamOpe the TamOpe to set
+     */
+    public void setTamOpe(int TamOpe) {
+        this.TamOpe = TamOpe;
+    }
+
+    /**
+     * @return the ValorPuntual
+     */
+    public String getValorPuntual() {
+        return ValorPuntual;
+    }
+
+    /**
+     * @param ValorPuntual the ValorPuntual to set
+     */
+    public void setValorPuntual(String ValorPuntual) {
+        this.ValorPuntual = ValorPuntual;
+    }
+    private Instruccion Valor1, Valor2;
     private String TipoOpe;
     private int TamOpe;
     private String ValorPuntual;
-    public Valor(String Tipo,Instruccion Valor1,String ValorPuntual){
-        this.TipoOpe=Tipo;
-        this.Valor1=Valor1;
-        this.Valor2=null;
-        TamOpe=4;
-        ValorPuntual=null;
-        this.ValorPuntual=ValorPuntual;
+    private Object SalidaValor;
+    private int Tipo = -1;
+
+    public int getTipo() {
+        return Tipo;
     }
-    public Valor(String Tipo,String ValorPuntual){
-        this.TipoOpe=Tipo;
-        this.Valor1=null;
-        this.Valor2=null;
-        TamOpe=2;
-        this.ValorPuntual=ValorPuntual;
+
+    public Valor(String Tipo, Instruccion Valor1, String ValorPuntual) {
+        this.TipoOpe = Tipo;
+        this.Valor1 = Valor1;
+        this.Valor2 = null;
+        TamOpe = 4;
+        ValorPuntual = null;
+        this.ValorPuntual = ValorPuntual;
     }
-    public Valor(String Tipo,Instruccion Valor1,Instruccion Valor2){
-        this.TipoOpe=Tipo;
-        this.Valor1=Valor1;
-        this.Valor2=Valor2;
-        TamOpe=3;
-        ValorPuntual=null;
+
+    public Valor(String Tipo, String ValorPuntual) {
+        this.TipoOpe = Tipo;
+        this.Valor1 = null;
+        this.Valor2 = null;
+        TamOpe = 2;
+        this.ValorPuntual = ValorPuntual;
     }
-    public Valor(String Tipo,Instruccion Valor1){
-        this.TipoOpe=Tipo;
-        this.Valor1=Valor1;
-        this.Valor2=null;
-        TamOpe=2;
-        ValorPuntual=null;
+
+    public Valor(String Tipo, Instruccion Valor1, Instruccion Valor2) {
+        this.TipoOpe = Tipo;
+        this.Valor1 = Valor1;
+        this.Valor2 = Valor2;
+        TamOpe = 3;
+        ValorPuntual = null;
     }
-    
+
+    public Valor(String Tipo, Instruccion Valor1) {
+        this.TipoOpe = Tipo;
+        this.Valor1 = Valor1;
+        this.Valor2 = null;
+        TamOpe = 2;
+        ValorPuntual = null;
+    }
+
+    public Object SalidaEjecucion() {
+        return SalidaValor;
+    }
+
     @Override
     public void Ejecutar(TablaDeSimbolos Tabla) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SalidaValor = CargarDatos(Tabla);
+    }
+
+    private Object CargarDatos(TablaDeSimbolos Tabla) {
+        Object Retorno = null;
+        Operacion Ope = null;
+        Valor Val1 = (Valor) Valor1;
+        Valor Val2 = (Valor) Valor2;
+        if (Val1 != null) {
+            Val1.Ejecutar(Tabla);
+        }
+        if (Val2 != null) {
+            Val2.Ejecutar(Tabla);
+        }
+        Object Out;
+        switch (this.TipoOpe.toLowerCase()) {
+            case "+":
+                Ope = new Suma();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "-":
+                Ope = new Resta();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "var":
+                return Tabla.BuscarVariable(this.ValorPuntual);
+            case "entero":
+                this.Tipo = 2;
+                return Integer.parseInt(this.ValorPuntual);
+            case "cadena":
+                this.Tipo = 3;
+                return (this.ValorPuntual);
+            case "booleano":
+                this.Tipo = 0;
+                if (this.ValorPuntual.equalsIgnoreCase("true")) {
+                    return true;
+                } else {
+                    return false;
+                }
+        }
+        System.out.println(TipoOpe + "    --      " + this.ValorPuntual);
+        return Retorno;
     }
 
     @Override
     public String Graficar() {
-        String Nombre=NombreGrafico()+"T";
+        String Nombre = NombreGrafico() + "T";
         String Retorno;
-        Retorno = this.NombreGrafico() + "[label=\"Valor\"]"+"\n";
-        Retorno = Retorno+Nombre + "[label=\""+TipoOpe+"\"]"+"\n";
-        Retorno = Retorno +NombreGrafico() +"->" + Nombre + "\n";
-        
-        if(this.Valor1!=null){
-            Retorno = Retorno + Nombre +"->" +Valor1.NombreGrafico()+"\n";
-            Retorno = Retorno + Valor1.Graficar();
+        Retorno = this.NombreGrafico() + "[label=\"Valor\"]" + "\n";
+        Retorno = Retorno + Nombre + "[label=\"" + getTipoOpe() + "\"]" + "\n";
+        Retorno = Retorno + NombreGrafico() + "->" + Nombre + "\n";
+
+        if (this.getValor1() != null) {
+            Retorno = Retorno + Nombre + "->" + getValor1().NombreGrafico() + "\n";
+            Retorno = Retorno + getValor1().Graficar();
         }
-        if(this.Valor2!=null){
-            Retorno = Retorno + Nombre +"->" +Valor2.NombreGrafico()+"\n";
-            Retorno = Retorno + Valor2.Graficar();
+        if (this.getValor2() != null) {
+            Retorno = Retorno + Nombre + "->" + getValor2().NombreGrafico() + "\n";
+            Retorno = Retorno + getValor2().Graficar();
         }
-        if (this.ValorPuntual != null) {
-            Retorno = Retorno + Nombre + "V[label=\"" + ValorPuntual + "\"]\n";
-            Retorno = Retorno + Nombre + "->" + Nombre+"V" + "\n";
+        if (this.getValorPuntual() != null) {
+            Retorno = Retorno + Nombre + "V[label=\"" + getValorPuntual() + "\"]\n";
+            Retorno = Retorno + Nombre + "->" + Nombre + "V" + "\n";
         }
         return Retorno;
     }
@@ -78,5 +208,5 @@ public class Valor implements Instruccion {
     public String NombreGrafico() {
         return this.toString().replace(".", "").replace("@", "");
     }
-    
+
 }

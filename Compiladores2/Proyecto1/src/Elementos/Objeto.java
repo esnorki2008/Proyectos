@@ -13,5 +13,4 @@ package Elementos;
 //2 Metodo
 public interface Objeto {
     public int Tipo();
-    public String Nombre();
 }

@@ -97,7 +97,7 @@ TRANS::=breakp {:RESULT=new Detencion(1);:}
 RETORNO::=para VALOR:a parc{:RESULT=a;:}
     |{:RESULT=null;:}
 ;
-LLAMADO::=id:a para LISTAPARAM:b parc {:RESULT=new LlamarFuncion(a,b);:}
+LLAMADO::=id:a para LISTAVAL:b parc {:RESULT=new LlamarFuncion(a,b);:}
 ;
 
 BLOQUE::=llaa CUERPO:a llac{:RESULT=new Bloque(a);:}

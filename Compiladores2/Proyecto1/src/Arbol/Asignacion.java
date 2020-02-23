@@ -21,7 +21,16 @@ public class Asignacion implements Instruccion{
     
     @Override
     public void Ejecutar(TablaDeSimbolos Tabla) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Valor Val=(Valor)this.Valor;
+        if (Val.getTipoOpe().equalsIgnoreCase("declafuncion")) {
+            Tabla.ActualizarMetodo(Id, (Funcion)Valor);
+            System.out.println("Es Declaracion Funcion");
+        }else{
+            Val.Ejecutar(Tabla);
+            Object ValorVariable=Val.SalidaEjecucion();
+            Tabla.ActualizarVariable(Id,ValorVariable,Val.getTipo());
+            System.out.println("No Func");
+        }
     }
 
     @Override

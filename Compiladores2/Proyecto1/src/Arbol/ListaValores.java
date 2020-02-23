@@ -14,13 +14,27 @@ import java.util.List;
  * @author Norki
  */
 public class ListaValores implements Instruccion{
+
+    /**
+     * @return the Contenido
+     */
+    public List <Valor> getContenido() {
+        return Contenido;
+    }
+
+    /**
+     * @param Contenido the Contenido to set
+     */
+    public void setContenido(List <Valor> Contenido) {
+        this.Contenido = Contenido;
+    }
     private List <Valor>Contenido;
     public ListaValores(Instruccion Nuevo){
         this.Contenido=new LinkedList<Valor>();
         this.Contenido.add((Valor)Nuevo);
     }
     public void Agregar(Instruccion Nuevo){
-        this.Contenido.add((Valor)Nuevo);
+        this.getContenido().add((Valor)Nuevo);
     }
     @Override
     public void Ejecutar(TablaDeSimbolos Tabla) {
@@ -33,10 +47,10 @@ public class ListaValores implements Instruccion{
     }
     public String Graficar(Instruccion Padre){
         String Salida="";
-        int Tamanio=this.Contenido.size();
+        int Tamanio=this.getContenido().size();
         for(int i=0;i<Tamanio;i++){
-            Salida=Salida+Contenido.get(i).Graficar();
-            Salida=Salida+Padre.NombreGrafico()+"->"+Contenido.get(i).NombreGrafico()+"\n";
+            Salida=Salida+getContenido().get(i).Graficar();
+            Salida=Salida+Padre.NombreGrafico()+"->"+getContenido().get(i).NombreGrafico()+"\n";
         }
         return Salida;
     }

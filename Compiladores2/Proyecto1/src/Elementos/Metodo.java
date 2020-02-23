@@ -6,6 +6,7 @@
 package Elementos;
 
 import Arbol.Cuerpo;
+import Arbol.Funcion;
 import Arbol.Instruccion;
 
 /**
@@ -13,9 +14,9 @@ import Arbol.Instruccion;
  * @author Norki
  */
 public class Metodo implements Objeto{
-    public Cuerpo Raiz;
-    public String Nombre;
-    public Metodo(String Nombre,Cuerpo Raiz){
+    private Funcion Raiz;
+    private String Nombre;
+    public Metodo(String Nombre,Funcion Raiz){
         this.Raiz=Raiz;
         this.Nombre=Nombre;
     }
@@ -23,6 +24,34 @@ public class Metodo implements Objeto{
     @Override
     public int Tipo() {
         return 2;
+    }
+
+    /**
+     * @return the Raiz
+     */
+    public Funcion getRaiz() {
+        return Raiz;
+    }
+
+    /**
+     * @param Raiz the Raiz to set
+     */
+    public void setRaiz(Funcion Raiz) {
+        this.Raiz = Raiz;
+    }
+
+    /**
+     * @return the Nombre
+     */
+    public String getNombre() {
+        return Nombre;
+    }
+
+    /**
+     * @param Nombre the Nombre to set
+     */
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
     
 }

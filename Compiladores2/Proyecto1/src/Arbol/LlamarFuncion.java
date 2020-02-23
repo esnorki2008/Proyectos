@@ -5,6 +5,7 @@
  */
 package Arbol;
 
+import Arbol.Funciones.Print;
 import Elementos.TablaDeSimbolos;
 
 /**
@@ -20,10 +21,13 @@ public class LlamarFuncion implements Instruccion{
     }
     @Override
     public void Ejecutar(TablaDeSimbolos Tabla) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
+        switch(Id.toLowerCase()){
+            case "print":
+                new Print(Valores,Tabla);
+                break;
+        }
     }
-
+    
     @Override
     public String Graficar() {
         String Retorno;

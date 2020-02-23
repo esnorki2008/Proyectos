@@ -7,7 +7,6 @@ package Arbol;
 
 import Elementos.TablaDeSimbolos;
 
-
 /**
  *
  * @author 50241

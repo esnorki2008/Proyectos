@@ -20,7 +20,7 @@ public class Bloque implements Instruccion {
     /*Ejecutar Todo El Contenido*/
     @Override
     public void Ejecutar(TablaDeSimbolos Tabla) {
-        TablaDeSimbolos NuevaTabla=new TablaDeSimbolos(Tabla);//Diferente Ambito
+        TablaDeSimbolos NuevaTabla=new TablaDeSimbolos(Tabla,Tabla.Padre());//Diferente Ambito
         this.Contenido.Ejecutar(NuevaTabla);
     }
     @Override

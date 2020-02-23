@@ -13,10 +13,10 @@ import Elementos.TablaDeSimbolos;
  */
 public class Funcion implements Instruccion {
     private Instruccion Lista;
-    private Instruccion Contenido;
+    private Cuerpo Contenido;
     public Funcion(Instruccion Lista,Instruccion Contenido){
         this.Lista=Lista;
-        this.Contenido=Contenido;
+        this.Contenido=(Cuerpo)Contenido;
     }
     
     @Override
