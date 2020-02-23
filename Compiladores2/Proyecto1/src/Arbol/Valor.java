@@ -6,9 +6,11 @@
 package Arbol;
 
 import Arbol.Operacion.*;
+import Arbol.Operacion.Logica.Igualdad;
 import Arbol.Operacion.Numerica.Division;
 import Arbol.Operacion.Numerica.Modular;
 import Arbol.Operacion.Numerica.Multiplicacion;
+import Arbol.Operacion.Numerica.Negativo;
 import Arbol.Operacion.Numerica.Positivo;
 import Arbol.Operacion.Numerica.Potencia;
 import Arbol.Operacion.Numerica.Resta;
@@ -169,10 +171,17 @@ public class Valor implements Instruccion {
                     return Out;
                 }
             case "-":
-                Ope = new Resta();
-                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
-                this.Tipo = Ope.GetTipo();
-                return Out;
+                if (TamOpe == 3) {
+                    Ope = new Resta();
+                    Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                    this.Tipo = Ope.GetTipo();
+                    return Out;
+                } else {
+                    Ope = new Negativo();
+                    Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Tabla);
+                    this.Tipo = Ope.GetTipo();
+                    return Out;
+                }
             case "*":
                 Ope = new Multiplicacion();
                 Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
@@ -210,11 +219,94 @@ public class Valor implements Instruccion {
                 }
             case "decimal":
                 return Double.parseDouble(this.ValorPuntual);
+            default:
+                return OperacionesNumericas(Tabla);
         }
-        System.out.println(TipoOpe + "    --      " + this.ValorPuntual);
-        return Retorno;
+        //System.out.println(TipoOpe + "    --      " + this.ValorPuntual);
+        //return Retorno;
     }
-
+    private Object OperacionesNumericas(TablaDeSimbolos Tabla) {
+        Operacion Ope = null;
+        Valor Val1 = (Valor) Valor1;
+        Valor Val2 = (Valor) Valor2;
+        if (Val1 != null) {
+            Val1.Ejecutar(Tabla);
+        }
+        if (Val2 != null) {
+            Val2.Ejecutar(Tabla);
+        }
+        Object Out=null;
+        switch (this.TipoOpe.toLowerCase()) {
+            case "+":
+                if (TamOpe == 3) {
+                    Ope = new Suma();
+                    Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                    this.Tipo = Ope.GetTipo();
+                    return Out;
+                } else {
+                    Ope = new Positivo();
+                    Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Tabla);
+                    this.Tipo = Ope.GetTipo();
+                    return Out;
+                }
+            case "-":
+                if (TamOpe == 3) {
+                    Ope = new Resta();
+                    Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                    this.Tipo = Ope.GetTipo();
+                    return Out;
+                } else {
+                    Ope = new Negativo();
+                    Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Tabla);
+                    this.Tipo = Ope.GetTipo();
+                    return Out;
+                }
+            case "*":
+                Ope = new Multiplicacion();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "/":
+                Ope = new Division();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "^":
+                Ope = new Potencia();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "%%":
+                Ope = new Modular();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            default :
+                return OperacionesLogicas(Tabla);
+        }
+    }
+    private Object OperacionesLogicas(TablaDeSimbolos Tabla){
+        Operacion Ope = null;
+        Valor Val1 = (Valor) Valor1;
+        Valor Val2 = (Valor) Valor2;
+        if (Val1 != null) {
+            Val1.Ejecutar(Tabla);
+        }
+        if (Val2 != null) {
+            Val2.Ejecutar(Tabla);
+        }
+        Object Out=null;
+        switch (this.TipoOpe.toLowerCase()) {
+            case "==":
+                Ope = new Igualdad();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            default :
+                System.out.println(TipoOpe + "    --      " + this.ValorPuntual);
+                return Out;
+        }
+    }
     @Override
     public String Graficar() {
         String Nombre = NombreGrafico() + "T";
