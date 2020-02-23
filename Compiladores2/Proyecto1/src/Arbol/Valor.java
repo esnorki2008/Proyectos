@@ -6,7 +6,16 @@
 package Arbol;
 
 import Arbol.Operacion.*;
+import Arbol.Operacion.Logica.And;
+import Arbol.Operacion.Logica.Desiguales;
 import Arbol.Operacion.Logica.Igualdad;
+import Arbol.Operacion.Logica.MayorIgualQue;
+import Arbol.Operacion.Logica.MayorQue;
+import Arbol.Operacion.Logica.MenorIgualQue;
+import Arbol.Operacion.Logica.MenorQue;
+import Arbol.Operacion.Logica.Not;
+import Arbol.Operacion.Logica.Or;
+import Arbol.Operacion.Logica.Ternario;
 import Arbol.Operacion.Numerica.Division;
 import Arbol.Operacion.Numerica.Modular;
 import Arbol.Operacion.Numerica.Multiplicacion;
@@ -92,7 +101,7 @@ public class Valor implements Instruccion {
     public void setValorPuntual(String ValorPuntual) {
         this.ValorPuntual = ValorPuntual;
     }
-    private Instruccion Valor1, Valor2;
+    private Instruccion Valor1, Valor2,Valor3;
     private String TipoOpe;
     private int TamOpe;
     private String ValorPuntual;
@@ -107,6 +116,7 @@ public class Valor implements Instruccion {
         this.TipoOpe = Tipo;
         this.Valor1 = Valor1;
         this.Valor2 = null;
+        this.Valor3 = null;
         TamOpe = 4;
         ValorPuntual = null;
         this.ValorPuntual = ValorPuntual;
@@ -116,6 +126,7 @@ public class Valor implements Instruccion {
         this.TipoOpe = Tipo;
         this.Valor1 = null;
         this.Valor2 = null;
+        this.Valor3 = null;
         TamOpe = 2;
         this.ValorPuntual = ValorPuntual;
     }
@@ -124,6 +135,15 @@ public class Valor implements Instruccion {
         this.TipoOpe = Tipo;
         this.Valor1 = Valor1;
         this.Valor2 = Valor2;
+        this.Valor3 = null;
+        TamOpe = 3;
+        ValorPuntual = null;
+    }
+    public Valor(String Tipo, Instruccion Valor1, Instruccion Valor2,Instruccion Valor3) {
+        this.TipoOpe = Tipo;
+        this.Valor1 = Valor1;
+        this.Valor2 = Valor2;
+        this.Valor3 = Valor3;
         TamOpe = 3;
         ValorPuntual = null;
     }
@@ -132,6 +152,7 @@ public class Valor implements Instruccion {
         this.TipoOpe = Tipo;
         this.Valor1 = Valor1;
         this.Valor2 = null;
+        this.Valor3 = null;
         TamOpe = 2;
         ValorPuntual = null;
     }
@@ -146,7 +167,6 @@ public class Valor implements Instruccion {
     }
 
     private Object CargarDatos(TablaDeSimbolos Tabla) {
-        Object Retorno = null;
         Operacion Ope = null;
         Valor Val1 = (Valor) Valor1;
         Valor Val2 = (Valor) Valor2;
@@ -300,6 +320,55 @@ public class Valor implements Instruccion {
             case "==":
                 Ope = new Igualdad();
                 Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "!=":
+                Ope = new Desiguales();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case ">":
+                Ope = new MayorQue();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case ">=":  
+                Ope = new MayorIgualQue();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "<":
+                Ope = new MenorQue();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "<=":
+                Ope = new MenorIgualQue();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "&":
+                Ope = new And();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "|":
+                Ope = new Or();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "!":
+                Ope = new Not();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Tabla);
+                this.Tipo = Ope.GetTipo();
+                return Out;
+            case "ternario":
+                Valor Val3 = (Valor) Valor3;
+                if (Val3 != null) {
+                    Val3.Ejecutar(Tabla);
+                }
+                Ope = new Ternario();
+                Out = Ope.Operar(Val1.SalidaEjecucion(), Val1.Tipo, Val2.SalidaEjecucion(), Val2.Tipo, Val3.SalidaEjecucion(), Val3.Tipo, Tabla);
                 this.Tipo = Ope.GetTipo();
                 return Out;
             default :

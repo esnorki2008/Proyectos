@@ -19,9 +19,11 @@ public class Proyecto1 {
     /**
      * @param args argumentos de la linea de comando
      */
+    
     public static void main(String[] args) {
        GUI G = new GUI();
        G.setVisible(true);
+       
     }
     /**
      * Método que interpreta el contenido del archivo que se encuentra en el path

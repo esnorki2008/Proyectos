@@ -14,6 +14,9 @@ import Elementos.TablaDeSimbolos;
  */
 public abstract class Operacion {
 
+    public  Object Operar(Object Valor1, int Tip1, Object Valor2, int Tip2, Object Valor3, int Tip3, TablaDeSimbolos Tabla){
+       return null;
+    }
     public abstract Object Operar(Object Valor1,int Tip1, Object Valor2,int Tip2, TablaDeSimbolos Tabla);
     public  Object Operar(Object Valor1,int Tip1,TablaDeSimbolos Tabla){return null;}
 
@@ -57,5 +60,42 @@ public abstract class Operacion {
 
     public double Flotante(Object Valor) {
         return (Double) Valor;
+    }
+    
+    public boolean MayorQue(String Primero, String Segundo) {
+        Primero=Primero.toLowerCase().trim();
+        Segundo=Primero.toLowerCase().trim();
+        int Salida= Primero.compareTo(Segundo);
+        if(Salida<0)
+            return true;
+        else
+            return false;
+    }
+    public boolean MayorIgualQue(String Primero, String Segundo) {
+        Primero=Primero.toLowerCase().trim();
+        Segundo=Primero.toLowerCase().trim();
+        int Salida= Primero.compareTo(Segundo);
+        if(Salida<=0 )
+            return true;
+        else
+            return false;
+    }
+    public boolean MenorQue(String Primero, String Segundo) {
+        Primero=Primero.toLowerCase().trim();
+        Segundo=Primero.toLowerCase().trim();
+        int Salida= Primero.compareTo(Segundo);
+        if(Salida>0)
+            return true;
+        else
+            return false;
+    }
+    public boolean MenorIgualQue(String Primero, String Segundo) {
+        Primero=Primero.toLowerCase().trim();
+        Segundo=Primero.toLowerCase().trim();
+        int Salida= Primero.compareTo(Segundo);
+        if(Salida>=0 )
+            return true;
+        else
+            return false;
     }
 }

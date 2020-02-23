@@ -54,7 +54,7 @@ public class GUI extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("var5=4+5;\nprint(580+20+50)");
+        jTextArea1.setText("var5=4+5;\nprint(5==5?5+5:5-5)");
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

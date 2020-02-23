@@ -110,7 +110,7 @@ ASIGNACION::=id:a igual VALOR:b {:RESULT=new Asignacion(a,b);:}
 
 
 
-TERNARIO::= VALOR:a interro INSTR:b doblepunto INSTR:c{:RESULT= new Ternario(a,b,c);:};
+TERNARIO::= VALOR:a interro VALOR:b doblepunto VALOR:c{:RESULT= new Valor("ternario",a,b,c);:};
 
 SI::= ifv para VALOR:a parc llaa CUERPO:b llac{:RESULT = new Si(a,b,null);:}
     |ifv para VALOR:a parc llaa CUERPO:b llac elses SI:c{:RESULT = new Si(a,b,c);:}

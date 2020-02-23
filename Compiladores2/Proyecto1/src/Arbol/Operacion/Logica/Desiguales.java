@@ -11,10 +11,9 @@ import Excepciones.Excepcion;
 
 /**
  *
- * @author 50241
+ * @author Norki
  */
-public class Igualdad extends Operacion{
-
+public class Desiguales extends Operacion{
     private Object Tipo0(Object Exec1, Object Exec2, int Tipo, TablaDeSimbolos Tabla) {
         if (Exec1 == null) {
             Exec1 = false;
@@ -25,9 +24,9 @@ public class Igualdad extends Operacion{
                     Exec2 = false;
                 }
                 this.ValorTipo=0;
-                return (boolean)Exec1==(boolean)Exec2 ;
+                return !((boolean)Exec1==(boolean)Exec2);
             default:
-                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Comparar "+this.TipoATexto(0)+" Con "+this.TipoATexto(3)));
+                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Comparar Diferencias "+this.TipoATexto(0)+" Con "+this.TipoATexto(3)));
                 return null;
         }
     }
@@ -42,15 +41,15 @@ public class Igualdad extends Operacion{
                     Exec2 = 0.0;
                 }
                 this.ValorTipo=0;
-                return Flotante(Exec1) == Flotante(Exec2);
+                return !(Flotante(Exec1) == Flotante(Exec2));
             case 2:
                 if (Exec2 == null) {
                     Exec2 = 0;
                 }
                 this.ValorTipo=0;
-                return (Flotante(Exec1) == Entero(Exec2));
+                return !((Flotante(Exec1) == Entero(Exec2)));
             default:
-                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Comparar "+this.TipoATexto(1)+" Con "+this.TipoATexto(Tipo)));
+                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Comparar Diferencias "+this.TipoATexto(1)+" Con "+this.TipoATexto(Tipo)));
                 return null;
         }
     }
@@ -65,15 +64,15 @@ public class Igualdad extends Operacion{
                     Exec2 = 0.0;
                 }
                 this.ValorTipo=0;
-                return (Flotante(Exec2) == Entero(Exec1));
+                return !((Flotante(Exec2) == Entero(Exec1)));
             case 2:
                 if (Exec2 == null) {
                     Exec2 = 0;
                 }
                 this.ValorTipo  = 0;
-                return (Entero(Exec1) == Entero(Exec2));
+                return !((Entero(Exec1) == Entero(Exec2)));
             default:
-                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Comparar "+this.TipoATexto(2)+" Con "+this.TipoATexto(Tipo)));
+                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Comparar Diferencias"+this.TipoATexto(2)+" Con "+this.TipoATexto(Tipo)));
                 return null;
         }
     }
@@ -88,9 +87,9 @@ public class Igualdad extends Operacion{
                     Exec2 = "";
                 }
                 this.ValorTipo=0;
-                return Cadena(Exec1).toLowerCase().equals(Cadena(Exec2).toLowerCase());
+                return !(Cadena(Exec1).toLowerCase().equals(Cadena(Exec2).toLowerCase()));
             default:
-                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Comparar "+this.TipoATexto(3)+" Con "+this.TipoATexto(Tipo)));
+                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Comparar Diferencias "+this.TipoATexto(3)+" Con "+this.TipoATexto(Tipo)));
                 return null;
         }
     }
@@ -107,9 +106,8 @@ public class Igualdad extends Operacion{
             case 3:
                 return Tipo3(Valor1, Valor2, Tip2, Tabla);
             default:
-                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Comparar "+this.TipoATexto(Tip1)+" Con "+this.TipoATexto(Tip2)));
+                Tabla.AgregarExcepcion(new Excepcion("No Se Puede Comparar Dieferencias "+this.TipoATexto(Tip1)+" Con "+this.TipoATexto(Tip2)));
                 return null;
         }
     }
-    
 }
