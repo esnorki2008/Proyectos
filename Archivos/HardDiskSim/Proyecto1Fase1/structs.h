@@ -65,6 +65,7 @@ typedef struct Montado{
     PAR Particion;
     EBR Logica;
     int Numero;
+    std::string Nombre;
     bool EsLogica;
 }MOU;
 

@@ -558,6 +558,7 @@ void Menu::FDISKAdd(int Size, const char *Path, const char *Name){
     if(Size>0){
         AgregarMas(Size,Path,Name);
     }else{
+
         AgregarMenos(Size,Path,Name);
     }
 }
@@ -624,6 +625,10 @@ void Menu::AgregarMas(int Size, const char *Path, const char *Name){
 
 }
 void Menu::AgregarMenos(int Size, const char *Path, const char *Name){
+    if(Size<0){
+        Size=Size*-1;
+    }
+
     FILE *f;
     MBR Main;
     f=fopen(Path,"r+");
@@ -864,7 +869,7 @@ void Menu::DeleteFast(PAR Parti, const char *Path){
         Extended=Main.mbr_partition[i];
         if(Fun->IF(Parti.part_name,Extended.part_name)){
             this->FillPAR(&Extended);
-            std::cout<<Extended.part_status<<" {*}"<<std::endl;
+            //std::cout<<Extended.part_status<<" {*}"<<std::endl;
 
             for (int j=i;j<3;j++) {
                 Main.mbr_partition[j]=Main.mbr_partition[j+1];

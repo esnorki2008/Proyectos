@@ -655,7 +655,15 @@ void Disco::AgregarParticion(const char *Nombre){
             PAR Part=Main.mbr_partition[ParIndex];
             Mont.Particion=Part;
         }
+        for (int i=0;i<Lista.count();i++) {
+            MOU Compro =this->Lista.at(i);
+            if(Fun->IF(Compro.Nombre,Nombre)){
+                std::cout<<"Error Esa Particion Ya Fue Montada   "<<Nombre<<std::endl;
+                return;
+            }
+        }
         Mont.Numero=this->Lista.count()+1;
+        Mont.Nombre=Nombre;
         this->Lista<<Mont;
         std::cout<<"Se monto la particion:'"<<Nombre << "'  con el alias:'"<<this->Apodo<<Mont.Numero<<"' En El Disco De  "<<this->Path<<std::endl ;
     }
@@ -768,11 +776,11 @@ void Disco::Reporte(const char *ID, const char *Path, const char *Tipo){
                     R->Graphviz(Tempo->Path.data(),Path);
                 }else if(Fun->IF(Tipo,"mbr")){
                     //Tipo De Reporet eEBR o MBR
-                    if(!Te.EsLogica){
+                    //if(!Te.EsLogica){
                         R->ReporteTablaMBR(Tempo->Path.data(),Path,Te.Numero);
-                    }else{                       
-                        R->ReporteTablaEBR(Te.Logica,Path,Te.Numero);
-                    }
+                    //}else{
+                    //    R->ReporteTablaEBR(Te.Logica,Path,Te.Numero);
+                    //}
 
                 }else if(Fun->IF(Tipo,"bm_inode")){
                     R->Reportebm_Inodo(InicioParti,Tempo->Path.data(),Path);

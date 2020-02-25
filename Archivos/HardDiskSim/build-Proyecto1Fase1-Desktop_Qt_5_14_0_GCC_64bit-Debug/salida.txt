@@ -1,0 +1,1 @@
+fdisk -add=-7 -unit=K -path=/home/archivos/fase1/Disco1.disk -name=Part3 

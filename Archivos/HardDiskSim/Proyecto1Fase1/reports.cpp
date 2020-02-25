@@ -27,7 +27,7 @@ std::string Reports::GraficarInodos(int Comienzo, const char *PathReal){
     Concatenar=Concatenar+NuevaFila("darkslategray1","deepskyblue4","i_mtime",Fun->FechaString(&Inodo.i_mtime))+"\n";
     for(int i=0;i<15;i++){
         Concatenar=Concatenar+"<TR>"+"<TD  BGCOLOR=\""+"darkslategray1"+"\">"+"i_block"+std::to_string(i)+"</TD><TD PORT=\"P"+std::to_string(i)+"\" BGCOLOR=\""+"deepskyblue4"+"\">"+std::to_string(Inodo.i_block[i])+"</TD>  </TR> \n";
-     }
+    }
     std::string Type="";
     Type+=Inodo.i_type;
     Concatenar=Concatenar+NuevaFila("darkslategray1","deepskyblue4","i_type",Type)+"\n";
@@ -41,7 +41,7 @@ std::string Reports::GraficarInodos(int Comienzo, const char *PathReal){
 
     for(int i=0;i<15;i++){
         if(Inodo.i_block[i]!=-1)
-        Concatenar=Concatenar+"I"+std::to_string(Comienzo)+":P"+std::to_string(i)+"->B"+std::to_string(Inodo.i_block[i])+" [dir=both arrowtail = diamond] \n";
+            Concatenar=Concatenar+"I"+std::to_string(Comienzo)+":P"+std::to_string(i)+"->B"+std::to_string(Inodo.i_block[i])+" [dir=both arrowtail = diamond] \n";
     }
 
 
@@ -123,9 +123,9 @@ std::string Reports::GraficarBloqueContenido(int Comienzo, const char *PathReal)
     Concatenar=Concatenar+"<TR><TD COLSPAN=\"2\" BGCOLOR=\"deeppink3\" > Bloque_"+std::to_string(Comienzo)+"</TD></TR>\n";
 
 
-        std::string Prueba=Dato.b_content;
-        Prueba=Prueba.substr(0,64);
-        Concatenar=Concatenar+NuevaFila("deeppink","floralwhite","Contenido",Prueba)+"\n";
+    std::string Prueba=Dato.b_content;
+    Prueba=Prueba.substr(0,64);
+    Concatenar=Concatenar+NuevaFila("deeppink","floralwhite","Contenido",Prueba)+"\n";
     Concatenar=Concatenar+"</TABLE>>] \n";
 
 
@@ -274,6 +274,40 @@ void Reports::ReporteTablaMBR(const char *Path,const char *Guardar,int Num){
     fread(&Main,sizeof(MBR),1,f);
     fclose(f);
 
+    int ExtendIndex=Fun->HasExtended(Path);
+    std::string ReportEBR="";
+    if(ExtendIndex!=0 && ExtendIndex !=-1){
+
+        PAR Extend=Main.mbr_partition[ExtendIndex-1];
+
+        std::queue <RDI> Cola= this->LlenarLogicas(Path,Extend.part_start,Extend.part_start+Extend.part_size);
+
+
+        f=fopen(Path,"r+");
+        if (!f){
+            return;
+        }
+        EBR Sub;
+
+        int Cont=0;
+        while(!Cola.empty()){
+            Cont++;
+            RDI NewAva=Cola.front();
+            if(NewAva.Size>0){
+                switch (NewAva.Type) {
+                case 3:{
+                    fseek(f,NewAva.Begin,SEEK_SET);
+                    fread(&Sub,sizeof(EBR),1,f);
+                    ReportEBR=ReportEBR+TablaEBR(Sub,Cont);
+                }
+
+                }
+            }
+            Cola.pop();
+        }
+        fclose(f);
+
+    }
 
     std::string Reporte="";
     Reporte =Reporte+"digraph Gr { \n graph [ratio=fill]; \n graph [bb=\"0,0,352,154\"];"+ "node [label=\"\\N\", fontsize=15, shape=plaintext]; ";
@@ -291,7 +325,9 @@ void Reports::ReporteTablaMBR(const char *Path,const char *Guardar,int Num){
             Reporte = Reporte+this->TablaPAR(Parti,i+1);
         }
     }
-    Reporte = Reporte+"\n </TABLE> \n >]; \n}";
+
+    Reporte = Reporte+"\n </TABLE> \n >];"+ ReportEBR+"\n}";
+
     char Cop[1+Reporte.size()];
     strcpy(Cop,Reporte.c_str());
     f=fopen("G.dot","w");
@@ -310,13 +346,24 @@ void Reports::ReporteTablaMBR(const char *Path,const char *Guardar,int Num){
 
 
 std::string Reports::TablaEBR(EBR Extendida,int Num){
-    std::string  Reporte="";
+    std::string  Reporte="\n \n";
+    Reporte =Reporte+"Conte"+std::to_string(Num)+"[label=< <TABLE BORDER=\"1\" ALIGN=\"center\" COLOR=\"#03fc20\">";
+    Reporte = Reporte+"\n <TR>  <TD> Nombre </TD><TD> Valor </TD> </TR> \n";
+    //Contenido MBR
+
+    std::string Exte=Extendida.part_fit;
+    if(Exte.length()>2){
+        Exte=Exte.substr(0,2);
+    }
+
+
     Reporte = Reporte+"\n <TR>  <TD> "+"par_status_"+std::to_string(Num)+" </TD><TD> "+Extendida.part_status+"</TD> </TR> \n";
-    Reporte = Reporte+"\n <TR>  <TD> "+"par_fit_"+std::to_string(Num)+" </TD><TD> "+Extendida.part_fit+"</TD> </TR> \n";
+    Reporte = Reporte+"\n <TR>  <TD> "+"par_fit_"+std::to_string(Num)+" </TD><TD> "+Exte+"</TD> </TR> \n";
     Reporte = Reporte+"\n <TR>  <TD> "+"par_start_"+std::to_string(Num)+" </TD><TD> "+std::to_string(Extendida.part_start)+"</TD> </TR> \n";
     Reporte = Reporte+"\n <TR>  <TD> "+"par_size_"+std::to_string(Num)+" </TD><TD> "+std::to_string(Extendida.part_size)+"</TD> </TR> \n";
-    Reporte = Reporte+"\n <TR>  <TD> "+"par_name_"+std::to_string(Num)+" </TD><TD> "+std::to_string(Extendida.part_next)+"</TD> </TR> \n";
+    Reporte = Reporte+"\n <TR>  <TD> "+"par_next_"+std::to_string(Num)+" </TD><TD> "+std::to_string(Extendida.part_next)+"</TD> </TR> \n";
     Reporte = Reporte+"\n <TR>  <TD> "+"par_name_"+std::to_string(Num)+" </TD><TD> "+Extendida.part_name+"</TD> </TR> \n";
+    Reporte = Reporte+"\n </TABLE> \n >]; \n";
     return Reporte;
 }
 void Reports::ReporteTablaEBR(EBR Extendida, const char *Guardar,int Num){
@@ -347,93 +394,81 @@ void Reports::ReporteTablaEBR(EBR Extendida, const char *Guardar,int Num){
     CMD = CMD+Guardar;
     const char *command = CMD.data();
     system(command);
-
-
-
-
-
-
 }
-
-
-
-
-
-
 std::string Reports::GraphE(RDI Dita,const char *Path,std::queue <RDI> Que){
     std::string Retu="";
     Retu="\n <TD> <TABLE BORDER=\"1\" > ";
     Retu=Retu+" <TR  ><TD  BORDER=\"1\" > Extendida: "+Dita.Info+ " </TD></TR>";
-   // std::string Num=std::to_string((Dita.Size)/Fun->FileSize(Path)*100);
+    // std::string Num=std::to_string((Dita.Size)/Fun->FileSize(Path)*100);
     Retu=Retu+" <TR  ><TD   > <TABLE BORDER=\"0\" > <TR > "+GraphL(Path,Que)+ " </TR> </TABLE> </TD></TR>";
     Retu=Retu+"</TABLE> </TD>";
     return Retu;
 }
 std::string Reports::GraphL(const char *Path, std::queue<RDI> Que){
-        std::string Retu="";
-        if(Que.empty()){
-            FILE *f;
-            MBR Main;
-            f=fopen(Path,"r+");
-            if (!f){
-                return "<TD></TD>";
-            }
-            fread(&Main,sizeof(MBR),1,f);
-            fclose(f);
-            int Index=Fun->HasExtended(Path)-1;
-            PAR Ext=Main.mbr_partition[Index];
-            std::string Salida="<TD> Espacio Libre";
-            std::ostringstream Str;
-            Str << std::fixed;
-            Str << std::setprecision(2);
-            double Calc=double((int((Ext.part_size))))*100/double(Fun->FileSize(Path));
-            Str << Calc;
-            std::string Num = Str.str();
-            Salida = Salida+Num+"</TD>";
-            return Salida;
-
+    std::string Retu="";
+    if(Que.empty()){
+        FILE *f;
+        MBR Main;
+        f=fopen(Path,"r+");
+        if (!f){
+            return "<TD></TD>";
         }
-        while(!Que.empty()){
+        fread(&Main,sizeof(MBR),1,f);
+        fclose(f);
+        int Index=Fun->HasExtended(Path)-1;
+        PAR Ext=Main.mbr_partition[Index];
+        std::string Salida="<TD> Espacio Libre";
+        std::ostringstream Str;
+        Str << std::fixed;
+        Str << std::setprecision(2);
+        double Calc=double((int((Ext.part_size))))*100/double(Fun->FileSize(Path));
+        Str << Calc;
+        std::string Num = Str.str();
+        Salida = Salida+Num+"</TD>";
+        return Salida;
 
-            RDI NewAva=Que.front();
-            if(NewAva.Size>0){
-                switch (NewAva.Type) {
-                case 3:{
-                    Retu=Retu+"\n <TD> <TABLE BORDER=\"1\" > ";
-                    Retu=Retu+" <TR  ><TD  BORDER=\"1\" > EBR "+ " </TD></TR>";
-                    Retu=Retu+" <TR  ><TD   >  "+NewAva.Info+" </TD></TR>";
-                    Retu=Retu+"</TABLE> </TD>";
+    }
+    while(!Que.empty()){
+
+        RDI NewAva=Que.front();
+        if(NewAva.Size>0){
+            switch (NewAva.Type) {
+            case 3:{
+                Retu=Retu+"\n <TD> <TABLE BORDER=\"1\" > ";
+                Retu=Retu+" <TR  ><TD  BORDER=\"1\" > EBR "+ " </TD></TR>";
+                Retu=Retu+" <TR  ><TD   >  "+NewAva.Info+" </TD></TR>";
+                Retu=Retu+"</TABLE> </TD>";
 
 
-                    Retu=Retu+"\n <TD> <TABLE BORDER=\"1\" > ";
-                    Retu=Retu+" <TR  ><TD  BORDER=\"1\" > Logica: "+NewAva.Info+ " </TD></TR>";
-                    std::ostringstream Str;
-                    Str << std::fixed;
-                    Str << std::setprecision(2);
-                    double Calc=double((int((NewAva.Size))))*100/double(Fun->FileSize(Path));
-                    Str << Calc;
-                    std::string Num = Str.str();
-                    Retu=Retu+" <TR  ><TD   >  "+Num+ " </TD></TR>";
-                    Retu=Retu+"</TABLE> </TD>";
-                    break;
-                }
-                case 4:{
-                    Retu=Retu+"\n <TD> <TABLE BORDER=\"1\" > ";
-                    Retu=Retu+" <TR  ><TD  BORDER=\"1\" > Espacio Libre: "+" </TD></TR>";
-                    std::ostringstream Str;
-                    Str << std::fixed;
-                    Str << std::setprecision(2);
-                    double Calc=double((int((NewAva.Size))))*100/double(Fun->FileSize(Path));
-                    Str << Calc;
-                    std::string Num = Str.str();
-                    Retu=Retu+" <TR  ><TD   >  "+Num+ " </TD></TR>";
-                    Retu=Retu+"</TABLE> </TD>";
-                    break;
-                }
-                }
+                Retu=Retu+"\n <TD> <TABLE BORDER=\"1\" > ";
+                Retu=Retu+" <TR  ><TD  BORDER=\"1\" > Logica: "+NewAva.Info+ " </TD></TR>";
+                std::ostringstream Str;
+                Str << std::fixed;
+                Str << std::setprecision(2);
+                double Calc=double((int((NewAva.Size))))*100/double(Fun->FileSize(Path));
+                Str << Calc;
+                std::string Num = Str.str();
+                Retu=Retu+" <TR  ><TD   >  "+Num+ " </TD></TR>";
+                Retu=Retu+"</TABLE> </TD>";
+                break;
             }
-            Que.pop();
+            case 4:{
+                Retu=Retu+"\n <TD> <TABLE BORDER=\"1\" > ";
+                Retu=Retu+" <TR  ><TD  BORDER=\"1\" > Espacio Libre: "+" </TD></TR>";
+                std::ostringstream Str;
+                Str << std::fixed;
+                Str << std::setprecision(2);
+                double Calc=double((int((NewAva.Size))))*100/double(Fun->FileSize(Path));
+                Str << Calc;
+                std::string Num = Str.str();
+                Retu=Retu+" <TR  ><TD   >  "+Num+ " </TD></TR>";
+                Retu=Retu+"</TABLE> </TD>";
+                break;
+            }
+            }
         }
+        Que.pop();
+    }
     return Retu;
 }
 std::string Reports::GraphP(RDI Dita,const char *Path){
@@ -522,7 +557,7 @@ void Reports::Graphviz(const char *Path,const char *Guardar){
     const char *command = CMD.data();
     system(command);
 
-   // std::cout<<Graph<<std::endl;
+    // std::cout<<Graph<<std::endl;
 }
 //Llena Cola De Primarias Y Extendidas
 std::queue <RDI> Reports::PARTReport(const char *Path){
@@ -597,12 +632,47 @@ std::queue <RDI> Reports::PARTReport(const char *Path){
 void Reports::FillQueue(std::queue<RDI> *Q1, std::queue<RDI> Q2){
     std::queue <RDI> Retu;
     while(!Q2.empty()){
-            RDI NewAva=Q2.front();
-            if(NewAva.Size>0){
-                Q1->push(NewAva);
-            }
-            Q2.pop();
+        RDI NewAva=Q2.front();
+        if(NewAva.Size>0){
+            Q1->push(NewAva);
         }
+        Q2.pop();
+    }
+}
+std::queue <RDI> Reports::LlenarLogicas(const char *Path, int Begin, int End){
+
+
+    std::queue <RDI> Dita;
+    FILE *f;
+    EBR Cur;
+    //Logic.part_next=0;
+    int LogicIndex=Begin;
+    f=fopen(Path,"r+");
+    if (!f){
+        return Dita;
+    }
+    RDI Nueva;
+    while(LogicIndex!=-1){
+
+
+        fseek(f,LogicIndex,SEEK_SET);
+        fread(&Cur,sizeof(EBR),1,f);
+
+        LogicIndex=Cur.part_next;
+
+
+        if(Cur.part_status=='t'){
+            Nueva.Begin=Cur.part_start;
+            Nueva.End=Cur.part_start+Cur.part_size;
+            Nueva.Size=Nueva.End-Nueva.Begin;
+            Nueva.Info=Cur.part_name;
+            Nueva.Type=3;
+            Dita.push(Nueva);
+            Begin=Cur.part_start+Cur.part_size;
+        }
+    }
+    fclose(f);
+    return Dita;
 }
 //Llena Cola De Logicas
 std::queue <RDI> Reports::LogicReport(const char *Path, int Begin, int End){
@@ -616,54 +686,54 @@ std::queue <RDI> Reports::LogicReport(const char *Path, int Begin, int End){
         return Dita;
     }
 
-        //Cola para los fit
-        //std::queue <EBR> Dita;
+    //Cola para los fit
+    //std::queue <EBR> Dita;
 
-RDI Nueva;
-        while(LogicIndex!=-1){
-            fseek(f,LogicIndex,SEEK_SET);
-            fread(&Cur,sizeof(EBR),1,f);
-            LogicIndex=Cur.part_next;
+    RDI Nueva;
+    while(LogicIndex!=-1){
+        fseek(f,LogicIndex,SEEK_SET);
+        fread(&Cur,sizeof(EBR),1,f);
+        LogicIndex=Cur.part_next;
 
-            Nueva.Begin=Begin;
-            Nueva.End=Cur.part_start;
-            Nueva.Size=Nueva.End-Nueva.Begin;
-            Nueva.Info="Espacio Disponible";
-            Nueva.Type=4;
-            if(Nueva.Size>0){
-            Dita.push(Nueva);
-            }
-
-
-            if(Cur.part_status=='t'){
-
-
-
-
-
-               Nueva.Begin=Cur.part_start;
-               Nueva.End=Cur.part_start+Cur.part_size;
-               Nueva.Size=Nueva.End-Nueva.Begin;
-               Nueva.Info=Cur.part_name;
-               Nueva.Type=3;
-               Dita.push(Nueva);
-
-
-
-               Begin=Cur.part_start+Cur.part_size;
-            }
-    }
         Nueva.Begin=Begin;
-        Nueva.End=End;
+        Nueva.End=Cur.part_start;
         Nueva.Size=Nueva.End-Nueva.Begin;
         Nueva.Info="Espacio Disponible";
         Nueva.Type=4;
         if(Nueva.Size>0){
-        Dita.push(Nueva);
+            Dita.push(Nueva);
         }
 
 
-        fclose(f);
-        return Dita;
+        if(Cur.part_status=='t'){
+
+
+
+
+
+            Nueva.Begin=Cur.part_start;
+            Nueva.End=Cur.part_start+Cur.part_size;
+            Nueva.Size=Nueva.End-Nueva.Begin;
+            Nueva.Info=Cur.part_name;
+            Nueva.Type=3;
+            Dita.push(Nueva);
+
+
+
+            Begin=Cur.part_start+Cur.part_size;
+        }
+    }
+    Nueva.Begin=Begin;
+    Nueva.End=End;
+    Nueva.Size=Nueva.End-Nueva.Begin;
+    Nueva.Info="Espacio Disponible";
+    Nueva.Type=4;
+    if(Nueva.Size>0){
+        Dita.push(Nueva);
+    }
+
+
+    fclose(f);
+    return Dita;
 
 }

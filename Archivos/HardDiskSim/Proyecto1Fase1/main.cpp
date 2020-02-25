@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include "structs.h"
 #include "parser.h"
-
 #include "functions.h"
 #include "sistema.h"
 
@@ -21,23 +20,34 @@ extern int yyparse();
 
 int main()
 {
+    printf("\n");
+
 
 
     Functions *Fu = new Functions();
-    Sistema *Ex= new Sistema();
     while (true) {
-
-        std::cout<<"--------------MANEJO DE RAID---------------"<<std::endl;
-        std::cout<<"Ingrese La Ubicacion Del Archivo A Procesar O Escriba Salir Para Salir"<<std::endl;
-        std::string Exec;
-        //std::cin >> Exec;
-        Exec="/home/andhy/Descargas/Entrada2.sh";
+        std::cout<<"\x1B[32m"<<"--------------MANEJO DE RAID---------------"<<std::endl;
+        std::cout<<"Ingrese El Comando , Escriba Salir O Limpiar "<<std::endl;
+        char Exec[1000];
+        std::cin.getline(Exec,1000);
         if(Fu->IF("salir",Exec)){
             std::cout<<"Saliendo Del Programa"<<std::endl;
             return 1;
+        }else if(Fu->IF("limpiar",Exec)){
+            std::system("clear");
+        }else{
+            std::ofstream Archivo("salida.txt");
+            //Archivo<<"exec -path=/home/andhy/Descargas/Entrada2.sh";
+            //Archivo<<"exec -path=/home/andhy/Descargas/E0.sh";
+            Archivo <<Exec;
+            Archivo.close();
+            const char* x = "salida.txt";
+            FILE* input = fopen(x, "r" );
+            yyrestart(input);
+            yyparse();
+
+            //return 1;
         }
-        Ex->Ejecutar(Exec);
-        break;
     }
 
 

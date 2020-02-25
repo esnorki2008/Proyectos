@@ -20,6 +20,7 @@ private:
     std::string TablaPAR(PAR Parti,int Num);
     std::string TablaEBR(EBR Extendida,int Num);
     //GRAFICO
+    std::queue <RDI> LlenarLogicas(const char *Path, int Begin, int End);
     std::queue <RDI> LogicReport(const char *Path, int Begin, int End);
     std::queue <RDI> PARTReport(const char *Path);
     std::string GraphP(RDI Dita,const char *Path);
