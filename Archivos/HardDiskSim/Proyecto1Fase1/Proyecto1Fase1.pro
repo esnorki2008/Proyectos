@@ -15,6 +15,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Fase1/hola.cpp \
+    Fase1/mkdisk.cpp \
     disco.cpp \
     ext.cpp \
     functions.cpp \
@@ -33,6 +35,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    Fase1/hola.h \
+    Fase1/mkdisk.h \
     disco.h \
     ext.h \
     functions.h \
@@ -45,3 +49,6 @@ HEADERS += \
     sistema.h \
     structs.h \
     structsext.h
+
+DISTFILES += \
+    Fase1/Dummy
