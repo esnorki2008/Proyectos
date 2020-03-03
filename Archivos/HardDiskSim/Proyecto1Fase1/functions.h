@@ -8,6 +8,9 @@
 class Functions
 {
 public:
+    void FillName(char Arra[16],const char *Input);
+    void FillDisk(int Begin,int Size,char Character,const char *Path);
+    void FillPAR(PAR *NPAR);
     Functions();
     int GenerarNumeroRandom();
     void Fecha(struct tm *Dita);

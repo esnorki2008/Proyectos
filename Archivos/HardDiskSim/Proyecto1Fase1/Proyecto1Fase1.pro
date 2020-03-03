@@ -15,8 +15,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Fase1/hola.cpp \
+    Fase1/fdisk.cpp \
+    Fase1/fdiskadd.cpp \
+    Fase1/fdiskdelete.cpp \
     Fase1/mkdisk.cpp \
+    Fase1/rmdisk.cpp \
     disco.cpp \
     ext.cpp \
     functions.cpp \
@@ -35,8 +38,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    Fase1/hola.h \
+    Fase1/fdisk.h \
+    Fase1/fdiskadd.h \
+    Fase1/fdiskdelete.h \
     Fase1/mkdisk.h \
+    Fase1/rmdisk.h \
     disco.h \
     ext.h \
     functions.h \

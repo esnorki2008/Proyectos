@@ -15,6 +15,47 @@ Functions::Functions()
 {
 
 }
+void Functions::FillName(char *Arra, const char *Input){
+    Arra[0]='C';
+    for(int i=0;i<16;i++){
+        Arra[i]=' ';
+    }
+    strcpy(Arra, Input);
+}
+void Functions::FillPAR(PAR *NPAR){
+    NPAR->part_status='f';
+    NPAR->part_type='p';
+    NPAR->part_fit[0]='f';
+    NPAR->part_fit[1]='f';
+    NPAR->part_start=0;
+    NPAR->part_size=0;
+}
+void Functions::FillDisk(int Begin, int Size, char Character,const char *Path){
+    FILE *f;
+    f=fopen(Path,"r+");
+    int Kilo=Size/1024;
+    if(Kilo>0){
+        char Buffi[1024];
+        for (int i=0;i<1024;i++) {
+            Buffi[i]=Character;
+        }
+
+        fseek(f,Begin,SEEK_SET);
+        for(int i=0;i<Kilo;i++){
+
+            fwrite(&Buffi,sizeof (Buffi),1,f);
+        }
+
+    }
+    Size=Size-Kilo*1024;
+    Begin=Begin+(Kilo*1024);
+    fseek(f,Begin,SEEK_SET);
+    for(int i=0;i<Size;i++){
+
+        fwrite(&Character,sizeof (Character),1,f);
+    }
+    fclose(f);
+}
 std::string Functions::DecimalBinario(char Decimal){
     std::string Retorno="";
     switch (Decimal) {
@@ -765,86 +806,4 @@ int Functions::FileSize(const char *Path){
 void Functions::Out(const char *Path){
     qDebug() << Path;
 }
-/*
-int Functions::LogicalFirstFit(int Size, const char *Path, int Begin, int End){
-    FILE *f;
 
-    EBR Logic;
-    //Logic.part_next=0;
-    int LogicIndex=Begin;
-
-    f=fopen(Path,"r+");
-    if (!f){
-        return-1;
-    }
-
-    fseek(f,LogicIndex,SEEK_SET);
-    fread(&Logic,sizeof(EBR),1,f);
-    std::queue <AVA> Dita;
-    EBR First;
-    fseek(f,Begin,SEEK_SET);
-    fread(&First,sizeof(EBR),1,f);
-    EBR Next;
-    while(LogicIndex!=-1){
-
-        fseek(f,LogicIndex,SEEK_SET);
-        fread(&Logic,sizeof(EBR),1,f);
-        LogicIndex=Logic.part_next;
-
-        if(LogicIndex!=-1){
-            fseek(f,LogicIndex,SEEK_SET);
-            fread(&Next,sizeof(EBR),1,f);
-
-            AVA NewAva;
-            NewAva.Begin=Logic.part_start+Logic.part_size;
-            NewAva.End=Next.part_start;
-            NewAva.Size=NewAva.End-NewAva.Begin;
-            std::cout<<NewAva.Begin<<"___"<<NewAva.End<<"___"<<NewAva.Size<<std::endl;
-            Dita.push(NewAva);
-
-            Begin=Next.part_start+Next.part_size;
-        //Es el primero Y no tiene siguiente ARREGLAR
-        }else if (Logic.part_start==Begin && strcmp(Logic.part_name, First.part_name)==0 ) {
-
-            AVA NewAva;
-            NewAva.Begin=Logic.part_start+Logic.part_size;
-            NewAva.End=End;
-            NewAva.Size=NewAva.End-NewAva.Begin;
-            Dita.push(NewAva);
-
-            Begin=End;
-
-        }
-    }
-
-    fclose(f);
-
-
-
-    AVA NewAva;
-    NewAva.Begin=Begin;
-    NewAva.End=End;
-    NewAva.Size=NewAva.End-NewAva.Begin;
-    Dita.push(NewAva);
-
-    //Cola para los fit
-
-
-
-
-        while(!Dita.empty()){
-
-            NewAva=Dita.front();
-            //std::cout<<NewAva.Begin<<"___"<<NewAva.End<<"___"<<NewAva.Size<<std::endl;
-            if(NewAva.Size>0){
-                if(NewAva.Size>=Size){
-
-                    return NewAva.Begin;
-                }
-            }
-            Dita.pop();
-        }
-        return -1;
-}
-
-*/
