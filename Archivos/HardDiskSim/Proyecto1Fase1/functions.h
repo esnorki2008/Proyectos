@@ -5,9 +5,27 @@
 #include <time.h>
 #include "structs.h"
 #include <algorithm>
+#include "structsext.h"
 class Functions
 {
 public:
+    //Auxiliares EXT
+    //Buscar Inodo Libre
+    int InodoLibre(SPB *Super,const char* Path);
+    //Buscar Bloque Libre
+    int BloqueLibre(SPB *Super,const char* Path);
+    int BloqueLibreConte(SPB *Super,const char* Path);
+    int DarPrimeraPos(SPB *Super,const char* Path);
+    //Llenar Espacios
+    void LlenarVacio(int Begin, int Size, char Character,const char *Path);
+    //Calcular la cantidad de estructruas
+    int CalcularCantidad(int Tamanio);
+    //CrearFormato
+    SPB LlenarSuperBloque(int Tipo,int Comienzo,int Cantidad);
+    //Inicio
+    void IniciarInodo(INO *Inodo,int i_uid,int i_gid,int i_size,int PrimerBloque,char Tipo,int Perm);
+    void IniciarBloqueCarpeta(BCA *Bloque);
+    //
     void FillName(char Arra[16],const char *Input);
     void FillDisk(int Begin,int Size,char Character,const char *Path);
     void FillPAR(PAR *NPAR);
@@ -42,6 +60,7 @@ private:
     int FirstFit(int Size,const char *Path);
     int WorstFit(int Size,const char *Path);
     int BestFit(int Size,const char *Path);
+
 
 };
 

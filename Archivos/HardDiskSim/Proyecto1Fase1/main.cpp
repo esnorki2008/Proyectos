@@ -40,8 +40,6 @@ int main()
             std::system("clear");
         }else{
             std::ofstream Archivo("salida.txt");
-            //Archivo<<"exec -path=/home/andhy/Descargas/Entrada2.sh";
-            //Archivo<<"exec -path=/home/andhy/Descargas/E0.sh";
             Archivo <<Exec;
             Archivo.close();
             const char* x = "salida.txt";

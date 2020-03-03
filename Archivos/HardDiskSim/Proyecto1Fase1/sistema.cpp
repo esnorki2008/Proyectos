@@ -21,9 +21,12 @@
 extern int yyrestart( FILE* archivo);//METODO QUE PASA EL ARCHIVO A FLEX
 extern int yyparse();
 //FASE 2
-void Sistema::MKFS(std::string Ejecutar, std::string Type){
+void Sistema::MKFS(std::string Ejecutar, std::string Type,bool Tipo){
     std::cout<<"--------------MKFS---------------"<<std::endl;
-    M->MKFS(Ejecutar.data(),Type.data(),1);
+    if(Tipo)
+        M->MKFS(Ejecutar.data(),Type.data(),1);
+    else
+        M->MKFS(Ejecutar.data(),Type.data(),1);
     std::cout<<"-----------------------------------"<<std::endl;
 }
 //FASE 1
@@ -76,10 +79,23 @@ void Sistema::Ejecutar(std::string  Ejecutar){
         std::cout<<"No Existe Un Archivo En La Ubicacion "<<Ejecutar<<std::endl;
         return;
     }else{
-        const char* x = Ejecutar.data();
-        FILE* input = fopen(x, "r" );
-        yyrestart(input);//SE PASA LA CADENA DE ENTRADA A FLEX
-        yyparse();//SE INICIA LA COMPILACION
+
+          std::ofstream Archivo("exec.txt");
+          FILE* input = fopen("exec.txt", "r" );
+
+
+          std::ifstream file(Ejecutar);
+          std::string str;
+          while (std::getline(file, str)) {
+            Archivo <<str;
+
+            yyrestart(input);//SE PASA LA CADENA DE ENTRADA A FLEX
+            yyparse();//SE INICIA LA COMPILACION
+
+            Archivo.clear();
+          }
+        fclose(input);
+        Archivo.close();
     }
     std::cout<<"-----------------------------------"<<std::endl;
 }

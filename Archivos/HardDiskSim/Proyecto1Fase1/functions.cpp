@@ -15,6 +15,232 @@ Functions::Functions()
 {
 
 }
+int Functions::InodoLibre(SPB *Super,const char* Path){
+    int Out=-1;
+    FILE *f;
+    f=fopen(Path,"r+");
+    int Ubi=Super->s_bm_inode_start;
+    int Tamanio=Super->s_inodes_count;
+    //Ubicarse En el BM
+    fseek(f,Ubi,SEEK_SET);
+    char Lectura;
+    //std::cout<<"/////////////////////// "<< Super->s_block_start<<std::endl;
+    for(int i=0;i<Tamanio;i++){
+        fread(&Lectura,sizeof(Lectura),1,f);
+        if(Lectura=='0'){
+            Out= Super->s_inode_start+(i*Super->s_inode_size);
+            fseek(f,Ubi+i,SEEK_SET);
+            char Actualizar='1';
+            fwrite(&Actualizar,sizeof (Actualizar),1,f);
+            break;
+        }else if(Lectura!='1'){
+            std::cout<<"El Disco En "<<Path<<"Presenta Errores, Se Recomienda Restaurarlo "<<std::endl;
+            break;
+        }else if(Lectura!='1' && Lectura!='0'){
+            std::cout<<"El Disco En "<<Path<<"Presenta Errores, Se Recomienda Restaurarlo '"<<Lectura<<"'"<<std::endl;
+            break;
+        }
+    }
+    //std::cout<<"/////////////////////// "<< Super->s_block_start<<std::endl;
+    fclose(f);
+    return Out;
+}
+int Functions::BloqueLibre(SPB *Super, const char *Path){
+    int Out=-1;
+    FILE *f;
+    f=fopen(Path,"r+");
+    int Ubi=Super->s_bm_block_start;
+    int Tamanio=Super->s_blocks_count;
+    //Ubicarse En el BM
+    fseek(f,Ubi,SEEK_SET);
+    char Lectura;
+
+
+
+    for(int i=0;i<Tamanio;i++){
+        fread(&Lectura,sizeof(Lectura),1,f);
+        if(Lectura=='0'){
+            //ARREGLAR
+            Super->s_block_start= Super->s_inode_start+Super->s_inodes_count*(int(sizeof (INO)));
+            //
+            Out= Super->s_block_start+(i*Super->s_block_size);
+            fseek(f,Ubi+i,SEEK_SET);
+            char Actualizar='1';
+            fwrite(&Actualizar,sizeof (Actualizar),1,f);
+
+
+            break;
+        }else if(Lectura!='1'){
+            std::cout<<"El Disco En "<<Path<<"Presenta Errores, Se Recomienda Restaurarlo "<<std::endl;
+            break;
+        }else if(Lectura!='1' && Lectura!='0'){
+            std::cout<<"El Disco En "<<Path<<"Presenta Errores, Se Recomienda Restaurarlo '"<<Lectura<<"'"<<std::endl;
+            break;
+        }
+    }
+    fclose(f);
+
+
+    return Out;
+
+}
+int Functions::BloqueLibreConte(SPB *Super, const char *Path){
+    if(ValPrimeraPos==-1){
+        int Retorno=DarPrimeraPos(Super,Path);
+        //Poner Primera Posicion
+        ValPrimeraPos=Retorno;
+
+        if(Retorno==-1){
+            std::cout<<"No Hay Espacio Contiguo Para Colocar El Archivo "<<std::endl;
+        }else{
+            ValTamanio=0;
+        }
+        return Retorno;
+    }
+    ValTamanio++;
+    return ValPrimeraPos+(ValTamanio)*(int(sizeof (BAR)));
+}
+int Functions::DarPrimeraPos(SPB *Super, const char *Path){
+    int Out=-1;
+        FILE *f;
+        f=fopen(Path,"r+");
+        int Ubi=Super->s_bm_block_start;
+        int Tamanio=Super->s_blocks_count;
+        //Ubicarse En el BM
+        char Lectura;
+        int Contador=0;
+        for(int i=0;i<Tamanio;i++){
+            //Leer Cada Uno
+            fseek(f,Ubi+i,SEEK_SET);
+            fread(&Lectura,sizeof(Lectura),1,f);
+            //Si Libre Sumar 1
+            if(Lectura=='0'){
+                Contador++;
+                //Si Es El Primer '0' Indicar Salida
+                if(Contador==1)
+                    Out=Super->s_block_start+(i*Super->s_block_size);
+                //Si Supera El Espacio Buscado
+                if(Contador>=ValTamanio){
+                    //Colocar En El Primero
+                    Lectura='1';
+                    fseek(f,Ubi+i,SEEK_SET);
+                    fread(&Lectura,sizeof(Lectura),1,f);
+                    break;
+                }
+            }else{
+                //Si Ocupado Reiniciar
+                Contador=0;
+            }
+
+            //fwrite(&Actualizar,sizeof (Actualizar),1,f);
+        }
+
+        fclose(f);
+
+        return Out;
+}
+
+void Functions::IniciarBloqueCarpeta(BCA *Bloque){
+    for(int i=0;i<4;i++){
+        Bloque->content[i].b_inodo=-1;
+        for(int j=0;j<12;j++){
+        Bloque->content[i].b_name[j]='*';
+        }
+    }
+}
+
+void Functions::IniciarInodo(INO *Inodo, int i_uid, int i_gid, int i_size, int PrimerBloque, char Tipo,int Perm){
+    Inodo->i_uid=i_uid;
+    Inodo->i_gid=i_gid;
+    Inodo->i_size=i_size;
+    Fecha(&Inodo->i_atime);
+    Fecha(&Inodo->i_ctime);
+    Fecha(&Inodo->i_mtime);
+    Inodo->i_block[0]=PrimerBloque;
+    for(int i=1;i<15;i++){
+        Inodo->i_block[i]=-1;
+    }
+    Inodo->i_type=Tipo;
+    Inodo->i_perm=2110110010;
+}
+void Functions::LlenarVacio(int Begin, int Size, char Character,const char *Path){
+    FILE *f;
+    f=fopen(Path,"r+");
+    int Kilo=Size/1024;
+    if(Kilo>0){
+        char Buffi[1024];
+        for (int i=0;i<1024;i++) {
+            Buffi[i]=Character;
+        }
+
+        fseek(f,Begin,SEEK_SET);
+        for(int i=0;i<Kilo;i++){
+
+            fwrite(&Buffi,sizeof (Buffi),1,f);
+        }
+
+    }
+    Size=Size-Kilo*1024;
+    Begin=Begin+(Kilo*1024);
+    fseek(f,Begin,SEEK_SET);
+    for(int i=0;i<Size;i++){
+
+        fwrite(&Character,sizeof (Character),1,f);
+    }
+    fclose(f);
+}
+
+int Functions::CalcularCantidad(int Tamanio){
+
+    int PesoEstructuras=0;
+    //Tipo  1 EXT2  Tipo 2 EXT3
+    PesoEstructuras=4+3*int(sizeof (BCA))+int(sizeof (INO))+int(sizeof (JOR));
+    Tamanio = Tamanio-int(sizeof (SPB));
+    int Sal=Tamanio/PesoEstructuras;
+    //std::cout<<"QQ "<<Tamanio <<"   "<<Tamanio%PesoEstructuras<<std::endl;
+    return Sal;
+}
+SPB Functions::LlenarSuperBloque(int Tipo,int Comienzo,int Cantidad){
+    SPB Nuevo;
+    //TipoDeFormato
+    Nuevo.s_filesystem_type=Tipo;
+    //Cantidad Inodos
+    Nuevo.s_inodes_count=Cantidad;
+    //Cantidad Bloques
+    Nuevo.s_blocks_count=Cantidad*3;
+    //Cantidad Inodos Libre
+    Nuevo.s_free_inodes_count=Cantidad;
+    //Cantidad Bloques Libre
+    Nuevo.s_free_blocks_count=Cantidad*3;
+    //Fecha Montado
+    Fun->Fecha(&Nuevo.s_mtime);
+    //Fecha Desmontado
+    Fun->Fecha(&Nuevo.s_umtime);
+    //VecesMontado
+    Nuevo.s_mnt_count=0;
+    //NumeroMagico
+    Nuevo.s_magic=0xEF53;
+    //Tamaño Inodo
+    Nuevo.s_inode_size=int(sizeof (INO));
+    //Tamaño Bloque
+    Nuevo.s_block_size=int(sizeof (BAP));
+    //Primer Inodo Libre
+    //Primer Bloque Libre
+    //Inicio BMInodo
+    Nuevo.s_bm_inode_start=Comienzo+int(sizeof (SPB))+Cantidad*int(sizeof (JOR));
+    //Inicio BMBloque
+    Nuevo.s_bm_block_start=Nuevo.s_bm_inode_start+Cantidad;
+    //Inicio Inodo
+    Nuevo.s_inode_start=Nuevo.s_bm_block_start+Cantidad*3;
+    Nuevo.s_first_ino=Nuevo.s_inode_start;
+    //Inicio Bloque
+    Nuevo.s_block_start= Nuevo.s_inode_start+Cantidad*(int(sizeof (INO)));
+    Nuevo.s_first_blo=Nuevo.s_block_start;
+    return Nuevo;
+}
+
+
+
 void Functions::FillName(char *Arra, const char *Input){
     Arra[0]='C';
     for(int i=0;i<16;i++){

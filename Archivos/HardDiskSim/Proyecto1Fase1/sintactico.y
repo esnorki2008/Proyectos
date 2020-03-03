@@ -21,6 +21,10 @@ std::string toString(const char *TEXT){
 int yyerror(const char* mens){
 //metodo que se llama al haber un error sintactico
 //SE IMPRIME EN CONSOLA EL ERROR
+std::string Confirmar;
+std::cout<<" Se Encontro Un Error En La Linea Superior Escriba Para Confirmar"<<std::endl;
+std::cin>>Confirmar;
+
 std::cout <<mens<<" "<<yytext<< std::endl;
 return 0;
 }
@@ -75,6 +79,7 @@ struct STRREPORTE{
 struct STRSEXT{
 	std::string Id;
 	std::string Type; 
+	bool Ext3=false;
 };
 struct STRSINGRE{ 
 	std::string Usr;
@@ -367,7 +372,7 @@ INGRE:INGRE usr igual TERMIIDENTI{$1->Usr=$4; $$=$1;}
 ;
 EXT3:EXT3 id igual TERMIIDENTI{$1->Id=$4; $$=$1;}
 	|EXT3 typep igual TERMIIDENTI{$1->Type=$4; $$=$1;}
-	|EXT3 fs{}
+	|EXT3 fs{ $$=$1; $$->Ext3=true;}
 	|mkfs{$$= new STRSEXT();}
 ;	
 
@@ -411,8 +416,8 @@ OPCION:CREAR {  if($1->BSize && $1->BUnit && $1->BPath){Ope->Crear($1->Size,$1->
 	|EJECUTAR {/*Desde Produ*/}
 
 
-	|EXT3{}
-    |INGRE{}
+	|EXT3{Ope->Mkfs($1->Id,$1->Type,$1->Ext3);}
+    |INGRE{Ope->($1->usr,$1->pwd,$1->id);}
     |SALIR{}
     |HACERGRUPO{}
     |BORRARGRUPO{}

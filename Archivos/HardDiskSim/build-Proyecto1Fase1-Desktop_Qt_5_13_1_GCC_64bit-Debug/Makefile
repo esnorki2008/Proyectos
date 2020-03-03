@@ -57,6 +57,7 @@ SOURCES       = ../Proyecto1Fase1/Fase1/fdisk.cpp \
 		../Proyecto1Fase1/Fase1/fdiskdelete.cpp \
 		../Proyecto1Fase1/Fase1/mkdisk.cpp \
 		../Proyecto1Fase1/Fase1/rmdisk.cpp \
+		../Proyecto1Fase1/Fase2/mkfs.cpp \
 		../Proyecto1Fase1/disco.cpp \
 		../Proyecto1Fase1/ext.cpp \
 		../Proyecto1Fase1/functions.cpp \
@@ -73,6 +74,7 @@ OBJECTS       = fdisk.o \
 		fdiskdelete.o \
 		mkdisk.o \
 		rmdisk.o \
+		mkfs.o \
 		disco.o \
 		ext.o \
 		functions.o \
@@ -262,6 +264,7 @@ DIST          = ../Proyecto1Fase1/Fase1/Dummy \
 		../Proyecto1Fase1/Fase1/fdiskdelete.h \
 		../Proyecto1Fase1/Fase1/mkdisk.h \
 		../Proyecto1Fase1/Fase1/rmdisk.h \
+		../Proyecto1Fase1/Fase2/mkfs.h \
 		../Proyecto1Fase1/disco.h \
 		../Proyecto1Fase1/ext.h \
 		../Proyecto1Fase1/functions.h \
@@ -278,6 +281,7 @@ DIST          = ../Proyecto1Fase1/Fase1/Dummy \
 		../Proyecto1Fase1/Fase1/fdiskdelete.cpp \
 		../Proyecto1Fase1/Fase1/mkdisk.cpp \
 		../Proyecto1Fase1/Fase1/rmdisk.cpp \
+		../Proyecto1Fase1/Fase2/mkfs.cpp \
 		../Proyecto1Fase1/disco.cpp \
 		../Proyecto1Fase1/ext.cpp \
 		../Proyecto1Fase1/functions.cpp \
@@ -662,8 +666,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Proyecto1Fase1/Fase1/fdisk.h ../Proyecto1Fase1/Fase1/fdiskadd.h ../Proyecto1Fase1/Fase1/fdiskdelete.h ../Proyecto1Fase1/Fase1/mkdisk.h ../Proyecto1Fase1/Fase1/rmdisk.h ../Proyecto1Fase1/disco.h ../Proyecto1Fase1/ext.h ../Proyecto1Fase1/functions.h ../Proyecto1Fase1/menu.h ../Proyecto1Fase1/operacionusuario.h ../Proyecto1Fase1/parser.h ../Proyecto1Fase1/recuperacion.h ../Proyecto1Fase1/reports.h ../Proyecto1Fase1/scanner.h ../Proyecto1Fase1/sistema.h ../Proyecto1Fase1/structs.h ../Proyecto1Fase1/structsext.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Proyecto1Fase1/Fase1/fdisk.cpp ../Proyecto1Fase1/Fase1/fdiskadd.cpp ../Proyecto1Fase1/Fase1/fdiskdelete.cpp ../Proyecto1Fase1/Fase1/mkdisk.cpp ../Proyecto1Fase1/Fase1/rmdisk.cpp ../Proyecto1Fase1/disco.cpp ../Proyecto1Fase1/ext.cpp ../Proyecto1Fase1/functions.cpp ../Proyecto1Fase1/main.cpp ../Proyecto1Fase1/menu.cpp ../Proyecto1Fase1/operacionusuario.cpp ../Proyecto1Fase1/parser.cpp ../Proyecto1Fase1/recuperacion.cpp ../Proyecto1Fase1/reports.cpp ../Proyecto1Fase1/scanner.cpp ../Proyecto1Fase1/sistema.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Proyecto1Fase1/Fase1/fdisk.h ../Proyecto1Fase1/Fase1/fdiskadd.h ../Proyecto1Fase1/Fase1/fdiskdelete.h ../Proyecto1Fase1/Fase1/mkdisk.h ../Proyecto1Fase1/Fase1/rmdisk.h ../Proyecto1Fase1/Fase2/mkfs.h ../Proyecto1Fase1/disco.h ../Proyecto1Fase1/ext.h ../Proyecto1Fase1/functions.h ../Proyecto1Fase1/menu.h ../Proyecto1Fase1/operacionusuario.h ../Proyecto1Fase1/parser.h ../Proyecto1Fase1/recuperacion.h ../Proyecto1Fase1/reports.h ../Proyecto1Fase1/scanner.h ../Proyecto1Fase1/sistema.h ../Proyecto1Fase1/structs.h ../Proyecto1Fase1/structsext.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Proyecto1Fase1/Fase1/fdisk.cpp ../Proyecto1Fase1/Fase1/fdiskadd.cpp ../Proyecto1Fase1/Fase1/fdiskdelete.cpp ../Proyecto1Fase1/Fase1/mkdisk.cpp ../Proyecto1Fase1/Fase1/rmdisk.cpp ../Proyecto1Fase1/Fase2/mkfs.cpp ../Proyecto1Fase1/disco.cpp ../Proyecto1Fase1/ext.cpp ../Proyecto1Fase1/functions.cpp ../Proyecto1Fase1/main.cpp ../Proyecto1Fase1/menu.cpp ../Proyecto1Fase1/operacionusuario.cpp ../Proyecto1Fase1/parser.cpp ../Proyecto1Fase1/recuperacion.cpp ../Proyecto1Fase1/reports.cpp ../Proyecto1Fase1/scanner.cpp ../Proyecto1Fase1/sistema.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -1064,6 +1068,9 @@ rmdisk.o: ../Proyecto1Fase1/Fase1/rmdisk.cpp ../Proyecto1Fase1/Fase1/rmdisk.h \
 		../Proyecto1Fase1/disco.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QList
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rmdisk.o ../Proyecto1Fase1/Fase1/rmdisk.cpp
+
+mkfs.o: ../Proyecto1Fase1/Fase2/mkfs.cpp ../Proyecto1Fase1/Fase2/mkfs.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mkfs.o ../Proyecto1Fase1/Fase2/mkfs.cpp
 
 disco.o: ../Proyecto1Fase1/disco.cpp ../Proyecto1Fase1/disco.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QList \

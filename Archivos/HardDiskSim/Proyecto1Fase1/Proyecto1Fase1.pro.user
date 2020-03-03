@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<<<<<<< HEAD
-<!-- Written by QtCreator 4.11.1, 2020-03-01T19:57:14. -->
-=======
-<!-- Written by QtCreator 4.11.1, 2020-03-01T18:46:18. -->
->>>>>>> 1280b530346ced99cc78182ea94d8830f313f25d
+<!-- Written by QtCreator 4.11.1, 2020-03-02T21:38:01. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -289,14 +285,9 @@
     </valuelist>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-<<<<<<< HEAD
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/pc/Documents/GitHub/Proyectos/Archivos/HardDiskSim/Proyecto1Fase1/Proyecto1Fase1.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/pc/Documents/GitHub/Proyectos/Archivos/HardDiskSim/Proyecto1Fase1/Proyecto1Fase1.pro</value>
-=======
     <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
->>>>>>> 1280b530346ced99cc78182ea94d8830f313f25d
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>
@@ -306,11 +297,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-<<<<<<< HEAD
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/pc/Documents/GitHub/Proyectos/Archivos/HardDiskSim/build-Proyecto1Fase1-Desktop_Qt_5_13_1_GCC_64bit-Debug</value>
-=======
     <value type="QString" key="RunConfiguration.WorkingDirectory.default"></value>
->>>>>>> 1280b530346ced99cc78182ea94d8830f313f25d
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

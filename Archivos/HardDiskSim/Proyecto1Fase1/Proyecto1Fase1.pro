@@ -20,6 +20,7 @@ SOURCES += \
     Fase1/fdiskdelete.cpp \
     Fase1/mkdisk.cpp \
     Fase1/rmdisk.cpp \
+    Fase2/mkfs.cpp \
     disco.cpp \
     ext.cpp \
     functions.cpp \
@@ -43,6 +44,7 @@ HEADERS += \
     Fase1/fdiskdelete.h \
     Fase1/mkdisk.h \
     Fase1/rmdisk.h \
+    Fase2/mkfs.h \
     disco.h \
     ext.h \
     functions.h \
