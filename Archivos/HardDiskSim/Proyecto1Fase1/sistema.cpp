@@ -99,7 +99,7 @@ void Sistema::BorrarDisco(std::string Path){
     std::cin>>Confirmacion;
     if(Func->IF(Confirmacion,"s")){
         std::cout<<"Se Procedera A Eliminar"<<std::endl;
-        M->RMDISK(Path.data());
+        M->Rmdisk(Path.data());
     }else{
         std::cout<<"Eliminacion de disco CANCELADA por parte del usuario"<<std::endl;
     }
