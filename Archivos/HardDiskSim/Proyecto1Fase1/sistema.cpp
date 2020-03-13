@@ -21,7 +21,7 @@
 extern int yyrestart( FILE* archivo);//METODO QUE PASA EL ARCHIVO A FLEX
 extern int yyparse();
 //FASE 2
-void Sistema::MKFS(std::string Ejecutar, std::string Type,bool Tipo){
+void Sistema::Mkfs(std::string Ejecutar, std::string Type,bool Tipo){
     std::cout<<"--------------MKFS---------------"<<std::endl;
     if(Tipo)
         M->MKFS(Ejecutar.data(),Type.data(),1);

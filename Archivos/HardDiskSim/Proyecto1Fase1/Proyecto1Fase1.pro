@@ -20,10 +20,20 @@ SOURCES += \
     Fase1/fdiskdelete.cpp \
     Fase1/mkdisk.cpp \
     Fase1/rmdisk.cpp \
+    Fase2/cat.cpp \
+    Fase2/chmod_chown.cpp \
+    Fase2/cp.cpp \
+    Fase2/edit.cpp \
+    Fase2/find.cpp \
+    Fase2/mkfile_mkdir.cpp \
     Fase2/mkfs.cpp \
+    Fase2/mv.cpp \
+    Fase2/rem.cpp \
+    Fase2/ren.cpp \
     disco.cpp \
     ext.cpp \
     functions.cpp \
+    functionsext.cpp \
         main.cpp \
     menu.cpp \
     operacionusuario.cpp \
@@ -44,10 +54,20 @@ HEADERS += \
     Fase1/fdiskdelete.h \
     Fase1/mkdisk.h \
     Fase1/rmdisk.h \
+    Fase2/cat.h \
+    Fase2/chmod_chown.h \
+    Fase2/cp.h \
+    Fase2/edit.h \
+    Fase2/find.h \
+    Fase2/mkfile_mkdir.h \
     Fase2/mkfs.h \
+    Fase2/mv.h \
+    Fase2/rem.h \
+    Fase2/ren.h \
     disco.h \
     ext.h \
     functions.h \
+    functionsext.h \
     menu.h \
     operacionusuario.h \
     parser.h \

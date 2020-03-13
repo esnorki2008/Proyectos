@@ -1,143 +1,9 @@
 #include "functions.h"
-#include <ctime>
-#include <cstdlib>
-#include <iostream>
-#include <fstream>
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <stdio.h>
-#include <string.h>
-#include <sstream>
 
+#include "functionsext.h"
 Functions::Functions()
 {
 
-}
-int Functions::InodoLibre(SPB *Super,const char* Path){
-    int Out=-1;
-    FILE *f;
-    f=fopen(Path,"r+");
-    int Ubi=Super->s_bm_inode_start;
-    int Tamanio=Super->s_inodes_count;
-    //Ubicarse En el BM
-    fseek(f,Ubi,SEEK_SET);
-    char Lectura;
-    //std::cout<<"/////////////////////// "<< Super->s_block_start<<std::endl;
-    for(int i=0;i<Tamanio;i++){
-        fread(&Lectura,sizeof(Lectura),1,f);
-        if(Lectura=='0'){
-            Out= Super->s_inode_start+(i*Super->s_inode_size);
-            fseek(f,Ubi+i,SEEK_SET);
-            char Actualizar='1';
-            fwrite(&Actualizar,sizeof (Actualizar),1,f);
-            break;
-        }else if(Lectura!='1'){
-            std::cout<<"El Disco En "<<Path<<"Presenta Errores, Se Recomienda Restaurarlo "<<std::endl;
-            break;
-        }else if(Lectura!='1' && Lectura!='0'){
-            std::cout<<"El Disco En "<<Path<<"Presenta Errores, Se Recomienda Restaurarlo '"<<Lectura<<"'"<<std::endl;
-            break;
-        }
-    }
-    //std::cout<<"/////////////////////// "<< Super->s_block_start<<std::endl;
-    fclose(f);
-    return Out;
-}
-int Functions::BloqueLibre(SPB *Super, const char *Path){
-    int Out=-1;
-    FILE *f;
-    f=fopen(Path,"r+");
-    int Ubi=Super->s_bm_block_start;
-    int Tamanio=Super->s_blocks_count;
-    //Ubicarse En el BM
-    fseek(f,Ubi,SEEK_SET);
-    char Lectura;
-
-
-
-    for(int i=0;i<Tamanio;i++){
-        fread(&Lectura,sizeof(Lectura),1,f);
-        if(Lectura=='0'){
-            //ARREGLAR
-            Super->s_block_start= Super->s_inode_start+Super->s_inodes_count*(int(sizeof (INO)));
-            //
-            Out= Super->s_block_start+(i*Super->s_block_size);
-            fseek(f,Ubi+i,SEEK_SET);
-            char Actualizar='1';
-            fwrite(&Actualizar,sizeof (Actualizar),1,f);
-
-
-            break;
-        }else if(Lectura!='1'){
-            std::cout<<"El Disco En "<<Path<<"Presenta Errores, Se Recomienda Restaurarlo "<<std::endl;
-            break;
-        }else if(Lectura!='1' && Lectura!='0'){
-            std::cout<<"El Disco En "<<Path<<"Presenta Errores, Se Recomienda Restaurarlo '"<<Lectura<<"'"<<std::endl;
-            break;
-        }
-    }
-    fclose(f);
-
-
-    return Out;
-
-}
-int Functions::BloqueLibreConte(SPB *Super, const char *Path){
-    if(ValPrimeraPos==-1){
-        int Retorno=DarPrimeraPos(Super,Path);
-        //Poner Primera Posicion
-        ValPrimeraPos=Retorno;
-
-        if(Retorno==-1){
-            std::cout<<"No Hay Espacio Contiguo Para Colocar El Archivo "<<std::endl;
-        }else{
-            ValTamanio=0;
-        }
-        return Retorno;
-    }
-    ValTamanio++;
-    return ValPrimeraPos+(ValTamanio)*(int(sizeof (BAR)));
-}
-int Functions::DarPrimeraPos(SPB *Super, const char *Path){
-    int Out=-1;
-        FILE *f;
-        f=fopen(Path,"r+");
-        int Ubi=Super->s_bm_block_start;
-        int Tamanio=Super->s_blocks_count;
-        //Ubicarse En el BM
-        char Lectura;
-        int Contador=0;
-        for(int i=0;i<Tamanio;i++){
-            //Leer Cada Uno
-            fseek(f,Ubi+i,SEEK_SET);
-            fread(&Lectura,sizeof(Lectura),1,f);
-            //Si Libre Sumar 1
-            if(Lectura=='0'){
-                Contador++;
-                //Si Es El Primer '0' Indicar Salida
-                if(Contador==1)
-                    Out=Super->s_block_start+(i*Super->s_block_size);
-                //Si Supera El Espacio Buscado
-                if(Contador>=ValTamanio){
-                    //Colocar En El Primero
-                    Lectura='1';
-                    fseek(f,Ubi+i,SEEK_SET);
-                    fread(&Lectura,sizeof(Lectura),1,f);
-                    break;
-                }
-            }else{
-                //Si Ocupado Reiniciar
-                Contador=0;
-            }
-
-            //fwrite(&Actualizar,sizeof (Actualizar),1,f);
-        }
-
-        fclose(f);
-
-        return Out;
 }
 
 void Functions::IniciarBloqueCarpeta(BCA *Bloque){
@@ -148,7 +14,6 @@ void Functions::IniciarBloqueCarpeta(BCA *Bloque){
         }
     }
 }
-
 void Functions::IniciarInodo(INO *Inodo, int i_uid, int i_gid, int i_size, int PrimerBloque, char Tipo,int Perm){
     Inodo->i_uid=i_uid;
     Inodo->i_gid=i_gid;
@@ -213,9 +78,9 @@ SPB Functions::LlenarSuperBloque(int Tipo,int Comienzo,int Cantidad){
     //Cantidad Bloques Libre
     Nuevo.s_free_blocks_count=Cantidad*3;
     //Fecha Montado
-    Fun->Fecha(&Nuevo.s_mtime);
+    Fecha(&Nuevo.s_mtime);
     //Fecha Desmontado
-    Fun->Fecha(&Nuevo.s_umtime);
+    Fecha(&Nuevo.s_umtime);
     //VecesMontado
     Nuevo.s_mnt_count=0;
     //NumeroMagico
@@ -238,6 +103,12 @@ SPB Functions::LlenarSuperBloque(int Tipo,int Comienzo,int Cantidad){
     Nuevo.s_first_blo=Nuevo.s_block_start;
     return Nuevo;
 }
+
+
+
+
+
+
 
 
 
@@ -350,7 +221,6 @@ void Functions::EscribirRandom(int Num){
     //std::cout<<Escritura<<std::endl;
 }
 bool Functions::Valido(int Num){
-    Functions *F = new Functions();
     std::ifstream t("Dita.txt");
     std::stringstream buffer;
     buffer << t.rdbuf();

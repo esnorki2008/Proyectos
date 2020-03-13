@@ -6,16 +6,22 @@
 #include "structs.h"
 #include <algorithm>
 #include "structsext.h"
+#include <ctime>
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <stdio.h>
+#include <string.h>
+#include <sstream>
+
 class Functions
 {
 public:
-    //Auxiliares EXT
-    //Buscar Inodo Libre
-    int InodoLibre(SPB *Super,const char* Path);
-    //Buscar Bloque Libre
-    int BloqueLibre(SPB *Super,const char* Path);
-    int BloqueLibreConte(SPB *Super,const char* Path);
-    int DarPrimeraPos(SPB *Super,const char* Path);
+
     //Llenar Espacios
     void LlenarVacio(int Begin, int Size, char Character,const char *Path);
     //Calcular la cantidad de estructruas

@@ -3,6 +3,17 @@
 #include "ext.h"
 #include "recuperacion.h"
 #include "queue"
+#include "Fase2/cat.h"
+#include "Fase2/chmod_chown.h"
+#include "Fase2/cp.h"
+#include "Fase2/edit.h"
+#include "Fase2/find.h"
+#include "Fase2/mkfile_mkdir.h"
+#include "Fase2/mkfs.h"
+#include "Fase2/mv.h"
+#include "Fase2/rem.h"
+#include "Fase2/ren.h"
+//CHOWN
 void Disco::PropietarioArchivoParticion(const char *Nombre, const char *Path, int Tipo, int Perm, IUG Permiso){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
@@ -11,7 +22,6 @@ void Disco::PropietarioArchivoParticion(const char *Nombre, const char *Path, in
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
-                EXT *E = new EXT(Permiso);
                 const char* Real=Tempo->Path.data();
                 int Comienzo;
                 //Es Logica
@@ -30,8 +40,8 @@ void Disco::PropietarioArchivoParticion(const char *Nombre, const char *Path, in
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
-                E->CambiarPropietarioNormalRecursivo(Super.s_first_ino,Path,Tempo->Path.data(),Perm,Tipo);
-                //E->CambiarPermisosNormalRecursivo(Super.s_first_ino,Path,Tempo->Path.data(),Tipo,Perm);
+                new CHMOD_CHOWN(Super.s_first_ino,Path,Tempo->Path.data(),Perm,Tipo,Permiso,true);
+                //E->CambiarPropietarioNormalRecursivo(Super.s_first_ino,Path,Tempo->Path.data(),Perm,Tipo);
                 return ;
             }
         }
@@ -41,7 +51,7 @@ void Disco::PropietarioArchivoParticion(const char *Nombre, const char *Path, in
     std::cout<<"No Se Encontro La Particion "<<Nombre<<" Para Poder Modificar Permisos"<<std::endl;
     return ;
 }
-
+//
 std::queue<JOR> Disco::Recuperar(int Comienzo,const char *Path){
     Recuperacion *Recuva  = new Recuperacion();
     std::queue<JOR>  Cola=Recuva->ListaDeOperaciones(Comienzo,Path);
@@ -90,6 +100,7 @@ std::queue<JOR> Disco::RecuperarInformacion(const char *Nombre){
     std::queue<JOR> Vacia;
     return Vacia;
 }
+//LOSS
 void Disco::PerderInformacion(const char *Nombre){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
@@ -173,8 +184,7 @@ void Disco::MoverArchivoParticion(const char *Nombre, const char *PathOrigen, co
         for (int i=0;i<Tempo->Lista.count();i++) {
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
-            if(Fun->IF(NombreParti,Nombre)){
-                EXT *E = new EXT(Permiso);
+            if(Fun->IF(NombreParti,Nombre)){                
                 const char* Real=Tempo->Path.data();
                 int Comienzo;
                 //Es Logica
@@ -193,7 +203,9 @@ void Disco::MoverArchivoParticion(const char *Nombre, const char *PathOrigen, co
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
-                E->MoverCarpetaArchivo(&Super,Super.s_first_ino,PathOrigen,Tempo->Path.data(),PathDestino);
+
+                new MV(Permiso,&Super,Super.s_first_ino,PathOrigen,Tempo->Path.data(),PathDestino);
+                //E->MoverCarpetaArchivo(&Super,Super.s_first_ino,PathOrigen,Tempo->Path.data(),PathDestino);
 
 
                 return ;
@@ -205,6 +217,7 @@ void Disco::MoverArchivoParticion(const char *Nombre, const char *PathOrigen, co
     std::cout<<"No Se Encontro La Particion "<<Nombre<<" Para Poder MOVER"<<std::endl;
     return ;
 }
+//CP
 void Disco::CopiarArchivoParticion(const char *Nombre, const char *PathOrigen, const char *PathDestino, IUG Permiso){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
@@ -213,7 +226,7 @@ void Disco::CopiarArchivoParticion(const char *Nombre, const char *PathOrigen, c
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
-                EXT *E = new EXT(Permiso);
+                //EXT *E = new EXT(Permiso);
                 const char* Real=Tempo->Path.data();
                 int Comienzo;
                 //Es Logica
@@ -232,7 +245,9 @@ void Disco::CopiarArchivoParticion(const char *Nombre, const char *PathOrigen, c
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
-                E->CopiarCarpetaArchivo(&Super,Super.s_first_ino,PathOrigen,Tempo->Path.data(),PathDestino);
+
+                new CP(&Super,Super.s_first_ino,PathOrigen,Tempo->Path.data(),PathDestino,Permiso);
+                //E->CopiarCarpetaArchivo(&Super,Super.s_first_ino,PathOrigen,Tempo->Path.data(),PathDestino);
 
 
                 return ;
@@ -244,6 +259,7 @@ void Disco::CopiarArchivoParticion(const char *Nombre, const char *PathOrigen, c
     std::cout<<"No Se Encontro La Particion "<<Nombre<<" Para Poder COPIAR "<<std::endl;
     return ;
 }
+//FIND
 void Disco::BuscarArchivoParticion(const char *Nombre, const char *PathBase, const char *NombreBusqueda, IUG Permiso){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
@@ -252,7 +268,7 @@ void Disco::BuscarArchivoParticion(const char *Nombre, const char *PathBase, con
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
-                EXT *E = new EXT(Permiso);
+                //EXT *E = new EXT(Permiso);
                 const char* Real=Tempo->Path.data();
                 int Comienzo;
                 //Es Logica
@@ -271,8 +287,8 @@ void Disco::BuscarArchivoParticion(const char *Nombre, const char *PathBase, con
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
-                E->FIND(Super.s_first_ino,PathBase,Tempo->Path.data());
-
+                //E->FIND(Super.s_first_ino,PathBase,Tempo->Path.data());
+                new FIND(Super.s_first_ino,PathBase,Tempo->Path.data(),Permiso);
 
                 return ;
             }
@@ -283,6 +299,7 @@ void Disco::BuscarArchivoParticion(const char *Nombre, const char *PathBase, con
     std::cout<<"No Se Encontro La Particion "<<Nombre<<" Para Poder FIND "<<std::endl;
     return ;
 }
+//REN
 void Disco::RenombrarArchivoParticion(const char *Nombre, const char *NuevoNombre, const char *Path, IUG Permiso){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
@@ -291,7 +308,7 @@ void Disco::RenombrarArchivoParticion(const char *Nombre, const char *NuevoNombr
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
-                EXT *E = new EXT(Permiso);
+                //EXT *E = new EXT(Permiso);
                 const char* Real=Tempo->Path.data();
                 int Comienzo;
                 //Es Logica
@@ -310,8 +327,8 @@ void Disco::RenombrarArchivoParticion(const char *Nombre, const char *NuevoNombr
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
-                E->CambiarNombre(Super.s_first_ino,Path,Tempo->Path.data(),NuevoNombre);
-
+                //E->CambiarNombre(Super.s_first_ino,Path,Tempo->Path.data(),NuevoNombre);
+                new REN(Super.s_first_ino,Path,Tempo->Path.data(),NuevoNombre,Permiso);
                 return ;
             }
         }
@@ -330,7 +347,7 @@ void Disco::PermisoArchivoParticion(const char *Nombre,const char *Path,int Tipo
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
-                EXT *E = new EXT(Permiso);
+                //EXT *E = new EXT(Permiso);
                 const char* Real=Tempo->Path.data();
                 int Comienzo;
                 //Es Logica
@@ -350,7 +367,8 @@ void Disco::PermisoArchivoParticion(const char *Nombre,const char *Path,int Tipo
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
 
-                E->CambiarPermisosNormalRecursivo(Super.s_first_ino,Path,Tempo->Path.data(),Tipo,Perm);
+                //E->CambiarPermisosNormalRecursivo(Super.s_first_ino,Path,Tempo->Path.data(),Tipo,Perm);
+                new CHMOD_CHOWN(Super.s_first_ino,Path,Tempo->Path.data(),Tipo,Perm,Permiso,false);
                 return ;
             }
         }
@@ -362,6 +380,7 @@ void Disco::PermisoArchivoParticion(const char *Nombre,const char *Path,int Tipo
 }
 
 
+//REM
 void Disco::BorrarArchivoParticion(const char *Nombre, const char *Path,IUG Permiso){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
@@ -370,7 +389,7 @@ void Disco::BorrarArchivoParticion(const char *Nombre, const char *Path,IUG Perm
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
-                EXT *E = new EXT(Permiso);
+                //EXT *E = new EXT(Permiso);
                 const char* Real=Tempo->Path.data();
                 int Comienzo;
                 //Es Logica
@@ -391,8 +410,8 @@ void Disco::BorrarArchivoParticion(const char *Nombre, const char *Path,IUG Perm
                 fclose(f);
                 //std::cout<<Super.s_block_start<<std::endl;
 
-                E->EliminarArchivoCarpeta(&Super,Super.s_first_ino,Path,Tempo->Path.data());
-
+                //E->EliminarArchivoCarpeta(&Super,Super.s_first_ino,Path,Tempo->Path.data());
+                new REM(&Super,Super.s_first_ino,Path,Tempo->Path.data(),Permiso);
                 return ;
             }
         }
@@ -402,7 +421,7 @@ void Disco::BorrarArchivoParticion(const char *Nombre, const char *Path,IUG Perm
     std::cout<<"No Se Encontro La Particion "<<Nombre<<" Para Poder Leerla"<<std::endl;
     return ;
 }
-
+//CAT
 std::string Disco::LeerArchivoParticion(const char *Nombre, const char *Path,IUG Permiso){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
@@ -411,7 +430,7 @@ std::string Disco::LeerArchivoParticion(const char *Nombre, const char *Path,IUG
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
-                EXT *E = new EXT(Permiso);
+                //EXT *E = new EXT(Permiso);
                 const char* Real=Tempo->Path.data();
                 int Comienzo;
                 //Es Logica
@@ -431,9 +450,10 @@ std::string Disco::LeerArchivoParticion(const char *Nombre, const char *Path,IUG
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
                 //std::cout<<Super.s_block_start<<std::endl;
-                std::string Lectura=E->LeerArchivo(Super.s_first_ino,Tempo->Path.data(),Path);
+                //std::string Lectura=E->LeerArchivo(Super.s_first_ino,Tempo->Path.data(),Path);
+                CAT *Archivo=new CAT(Permiso);;
 
-                return Lectura;
+                return Archivo->LeerArchivo(Super.s_first_ino,Tempo->Path.data(),Path);
             }
         }
         Tempo=Tempo->Siguiente;
@@ -442,7 +462,7 @@ std::string Disco::LeerArchivoParticion(const char *Nombre, const char *Path,IUG
     std::cout<<"No Se Encontro La Particion "<<Nombre<<" Para Poder Leerla"<<std::endl;
     return "";
 }
-
+//EDIT
 void Disco::ExpandirArchivoParticion(const char *Nombre, const char *Path,  std::string Contenido,IUG Permiso){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
@@ -451,7 +471,7 @@ void Disco::ExpandirArchivoParticion(const char *Nombre, const char *Path,  std:
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
-                EXT *E = new EXT(Permiso);
+                //EXT *E = new EXT(Permiso);
                 const char* Real=Tempo->Path.data();
                 int Comienzo;
                 //Es Logica
@@ -471,8 +491,8 @@ void Disco::ExpandirArchivoParticion(const char *Nombre, const char *Path,  std:
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
                 //std::cout<<Super.s_block_start<<std::endl;
-
-                E->ExpandirArchivo(&Super,Super.s_first_ino,Path,Real,Contenido);
+                new EDIT(&Super,Super.s_first_ino,Path,Real,Contenido,Permiso);
+                //E->ExpandirArchivo(&Super,Super.s_first_ino,Path,Real,Contenido);
                 return;
             }
         }
@@ -482,7 +502,7 @@ void Disco::ExpandirArchivoParticion(const char *Nombre, const char *Path,  std:
     std::cout<<"No Se Encontro La Particion "<<Nombre<<" Para Crear Carpeta"<<std::endl;
 }
 
-
+//MKFILE
 void Disco::CrearArchivoParticion(const char *Nombre, const char *Path, char Padre, std::string Contenido,IUG Permiso){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
@@ -491,7 +511,7 @@ void Disco::CrearArchivoParticion(const char *Nombre, const char *Path, char Pad
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
-                EXT *E = new EXT(Permiso);
+                //EXT *E = new EXT(Permiso);
                 const char* Real=Tempo->Path.data();
                 int Comienzo;
                 //Es Logica
@@ -512,9 +532,11 @@ void Disco::CrearArchivoParticion(const char *Nombre, const char *Path, char Pad
                 fclose(f);
                 //std::cout<<Super.s_block_start<<std::endl;
                 if(Padre=='0'){
-                    E->CrearArchivoSimple(&Super,Super.s_first_ino,Path,Real,Contenido);
+                    new MKFILE_MKDIR(&Super,Super.s_first_ino,Path,Real,Contenido,false,false,Permiso);
+                    //E->CrearArchivoSimple(&Super,Super.s_first_ino,Path,Real,Contenido);
                 }else{
-                   E->CrearArchivoCompleto(&Super,Super.s_first_ino,Path,Real,Contenido);
+                    new MKFILE_MKDIR(&Super,Super.s_first_ino,Path,Real,Contenido,false,true,Permiso);
+                   //E->CrearArchivoCompleto(&Super,Super.s_first_ino,Path,Real,Contenido);
                 }
 
                 return;
@@ -525,7 +547,7 @@ void Disco::CrearArchivoParticion(const char *Nombre, const char *Path, char Pad
 
     std::cout<<"No Se Encontro La Particion "<<Nombre<<" Para Crear Carpeta"<<std::endl;
 }
-
+//MKDIR
 void Disco::CrearCarpetaParticion(const char *Nombre, const char *Path, char Padre,IUG Permiso){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
@@ -534,7 +556,7 @@ void Disco::CrearCarpetaParticion(const char *Nombre, const char *Path, char Pad
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
-                EXT *E = new EXT(Permiso);
+                //EXT *E = new EXT(Permiso);
                 const char* Real=Tempo->Path.data();
                 int Comienzo;
                 //Es Logica
@@ -555,9 +577,11 @@ void Disco::CrearCarpetaParticion(const char *Nombre, const char *Path, char Pad
                 fclose(f);
                 //std::cout<<Super.s_block_start<<std::endl;
                 if(Padre=='0'){
-                    E->CrearCarpetaSimple(&Super,Super.s_first_ino,Path,Real);
+                    //E->CrearCarpetaSimple(&Super,Super.s_first_ino,Path,Real);
+                    new MKFILE_MKDIR(&Super,Super.s_first_ino,Path,Real,"",true,false,Permiso);
                 }else{
-                    E->CrearCarpetaCompleto(&Super,Super.s_first_ino,Path,Real);
+                    //E->CrearCarpetaCompleto(&Super,Super.s_first_ino,Path,Real);
+                    new MKFILE_MKDIR(&Super,Super.s_first_ino,Path,Real,"",true,true,Permiso);
                 }
 
                 return;
@@ -569,6 +593,7 @@ void Disco::CrearCarpetaParticion(const char *Nombre, const char *Path, char Pad
     std::cout<<"No Se Encontro La Particion "<<Nombre<<" Para Crear Carpeta"<<std::endl;
 
 }
+//MKFS
 void Disco::FormatearParticion(const char *Nombre,IUG Permiso,int Tipo){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
@@ -577,7 +602,7 @@ void Disco::FormatearParticion(const char *Nombre,IUG Permiso,int Tipo){
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
-                EXT *E = new EXT(Permiso);
+                //EXT *E = new EXT(Permiso);
                 std::string Path=Tempo->Path;
                 int TamanioStruct;
                 int TamanioParticion;
@@ -595,8 +620,8 @@ void Disco::FormatearParticion(const char *Nombre,IUG Permiso,int Tipo){
                 }
 
                 //Tipo De Formato
-
-                    E->EstructurarFormatoEXT3(Comienzo,TamanioParticion,TamanioStruct,Path,Tipo);
+                    new MKFS(Comienzo,TamanioParticion,TamanioStruct,Path,Tipo,Permiso);
+                    //E->EstructurarFormatoEXT3(Comienzo,TamanioParticion,TamanioStruct,Path,Tipo);
                     std::cout<<"Se Formateo La Particion "<<Nombre<<" Con El Formato EXT3 Del Disco Ubicado En "<<Tempo->Path<<std::endl;
 
 

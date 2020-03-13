@@ -4,16 +4,16 @@
 #include <iostream>
 #include <time.h>
 #include "structsext.h"
-#include "functions.h"
+#include "functionsext.h"
 
-class MKFS
+class MKFS :public FunctionsExt
 {
 public:
-    MKFS(int ComienzoParticion,int TamanioParticion,int TamanioStruct,std::string Direcc,int Tipo);
+    MKFS(int ComienzoParticion,int TamanioParticion,int TamanioStruct,std::string Direcc,int Tipo,IUG Permiso);
 private:
 
     //
-    Functions *Fun;
+    IUG Permiso;
 
     //Hacer Formato
     void EstructurarFormatoEXT3(int ComienzoParticion,int TamanioParticion,int TamanioStruct,std::string Direcc,int Tipo);
