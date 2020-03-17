@@ -97,7 +97,7 @@ bool MKFILE_MKDIR::CrearArchivoSimple(SPB *Super, int Comienzo, const char *Path
     fseek(f,PosPadre,SEEK_SET);
     fread(&Inodo,sizeof(Inodo),1,f);
     fclose(f);
-    int Num;
+    int Num=-1;
     Num=CarpetaArchivoSimpleDirectos(&Inodo,Super,PosPadre,PathReal,NombreCarpeta,Contenido);
     if(Num==1)
         return true;
@@ -251,10 +251,11 @@ int MKFILE_MKDIR::CarpetaArchivoSimpleInDirectos(INO *Ino, SPB *Super, int PosPa
     INO Inodo=*Ino;
     //Posicion De Un Bloque De Directos Con Alguna Ranura
     for(int i=0;i<3;i++){
-        int Pos=Inodo.i_block[12+i];
+        int Pos=Inodo.i_block[12+i];      
         if(Pos==-1){
             //Se Crean Los Bloques Indirectos
             Pos=CrearIndirectos(i+1,0,Super,PathReal);
+            std::cout<<"Creando Indirectos      "<<Pos<<std::endl;
             if(Pos==-1 || Pos==0){
                 //Si No Se Puede Crear Retornar
                 std::cout<<"Cancelando POR NO PODER CREAR INDIRECTO "<<Pos<<std::endl;
@@ -271,7 +272,7 @@ int MKFILE_MKDIR::CarpetaArchivoSimpleInDirectos(INO *Ino, SPB *Super, int PosPa
         }
 
         //El Indirecto En La Posicion Pos Si Existe
-        int Busqueda=BuscarIndirectos(Super,0,0,Pos,PathVirtual,PathReal,2);
+        int Busqueda=BuscarIndirectos(Super,i+1,0,Pos,PathVirtual,PathReal,2);
         if(Busqueda!=-1){
             //Bloque Directo Existente
             int Valor=-1;

@@ -501,9 +501,12 @@ int FunctionsExt::BuscarDirectos(int Comienzo, std::string PathVirtual, const ch
         }else if(Tipo==2)
             //Tipo 2 Pra Posocion Del Bloque Directo, Al crear Carpetas
         {
-            if(Contenido.b_inodo==-1)
+            if(Contenido.b_inodo==-1){
+
                 return Comienzo;
-        }else if(Tipo==3 && Contenido.b_inodo!=-1){
+
+             }
+        }else if(Tipo==3 && Contenido.b_inodo!=-1){//Tipo 3
 
             if(IF(Nombre,PathVirtual)){
 
@@ -533,9 +536,20 @@ int FunctionsExt::BuscarIndirectos(SPB *Super,int Nivel, int NivelActual, int Co
     fseek(f,Comienzo,SEEK_SET);
     fread(&Apunta,sizeof(Apunta),1,f);
     fclose(f);
+
+
+
+
     for(int i=0;i<16;i++){
         int Valor=Apunta.b_pointers[i];
+
+
         if(Valor!=-1){
+
+
+
+
+
             Valor=BuscarIndirectos(Super,Nivel,NivelActual+1,Valor,PathVirtual,PathReal,Tipo);
             if(Valor==-2){
                 return -2;
@@ -543,17 +557,45 @@ int FunctionsExt::BuscarIndirectos(SPB *Super,int Nivel, int NivelActual, int Co
 
             if(Valor!=-1){
                 return Valor;
+
+
             }
         }else if(Tipo==2){
+
+
+
+
+
             int BloqueDirectoNuevo=BloqueLibre(Super,PathReal);
+
+            if(BloqueDirectoNuevo==-1)
+                    return -1;
             FILE *f;
             f=fopen(PathReal,"r+");
+
+
+
+
+
+            //Escribiendo el Directo
             fseek(f,BloqueDirectoNuevo,SEEK_SET);
-            BCA BloqueDirecto;
+            BCA BloqueDirecto;            
             IniciarBloqueCarpeta(&BloqueDirecto);
+            //std::cout<<BloqueDirecto.content[2].b_name<<std::endl;
+
             fwrite(&BloqueDirecto,sizeof (BloqueDirecto),1,f);
+            //Actualizando Indirectos
+
+
+            fseek(f,Comienzo,SEEK_SET);
+            Apunta.b_pointers[i]=BloqueDirectoNuevo;
+            fwrite(&Apunta,sizeof (Apunta),1,f);
+
+
             fclose(f);
             //Crear El Directo
+
+
             return BloqueDirectoNuevo;
 
         }
@@ -711,18 +753,37 @@ int FunctionsExt::BuscarActual(int Comienzo, std::string PathVirtual, const char
     return  Punteros;
 }
 int FunctionsExt::CrearIndirectos(int Nivel, int NivelActual, SPB *Super, const char *PathReal){
-    if(Nivel==NivelActual)
-        return 0;
+    BAP Apuntador;
+    for(int i=0;i<16;i++){
+         Apuntador.b_pointers[i]=-1;
+    }
 
+    if(Nivel==NivelActual){
+        //ARREGLAR  crear directos
+        int Actual=BloqueLibre(Super,PathReal);
+
+        //std::cout<<"Function BORRAR     "<<Actual<<std::endl;
+        FILE *f;
+        BCA Carpeta;
+        IniciarBloqueCarpeta(&Carpeta);
+
+        f=fopen(PathReal,"r+");
+        //Actualizar Indirecto
+        fseek(f,Actual,SEEK_SET);
+        fwrite(&Carpeta,sizeof (Carpeta),1,f);
+        //Actualizar Indirecto
+        fclose(f);
+
+
+
+        return Actual;
+    }
     int PosicionPadre=BloqueLibre(Super,PathReal);
     if(PosicionPadre==-1){
         std::cout<<"No Se Puedo Encontrar Un Bloque Libre"<<std::endl;
         return -1;
     }
-    BAP Apuntador;
-    for(int i=0;i<16;i++){
-         Apuntador.b_pointers[i]=-1;
-    }
+
     for(int i=0;i<16;i++){
         int Hijo=CrearIndirectos(Nivel,NivelActual+1,Super,PathReal);
         if(Hijo==-1){
@@ -730,7 +791,9 @@ int FunctionsExt::CrearIndirectos(int Nivel, int NivelActual, SPB *Super, const 
             break;
         }else if(Hijo!=0){
             //Posicion De Cada Hijo;
+            //std::cout<<" Hola "<<Hijo<<std::endl;
             Apuntador.b_pointers[i]=Hijo;
+            break;
         }
     }
 

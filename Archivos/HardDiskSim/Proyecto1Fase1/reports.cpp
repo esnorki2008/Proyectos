@@ -80,6 +80,7 @@ std::string Reports::GraficarDirectos(int Comienzo,const char *PathReal,int Tipo
     fseek(f,Comienzo,SEEK_SET);
     fread(&Carpeta,sizeof(Carpeta),1,f);
     fclose(f);
+
     std::string Concatenar="";
     Concatenar=Concatenar+"B"+std::to_string(Comienzo)+" [ label=< <TABLE BGCOLOR=\"white\">";
     Concatenar=Concatenar+"<TR><TD COLSPAN=\"2\" BGCOLOR=\"chartreuse4\" > Bloque_"+std::to_string(Comienzo)+"</TD></TR>\n";
@@ -102,6 +103,7 @@ std::string Reports::GraficarDirectos(int Comienzo,const char *PathReal,int Tipo
     for(int i=0;i<4;i++){
         CON Contenido=Carpeta.content[i];
         if(Contenido.b_inodo!=-1){
+
             if(Tipo==0){
                 Concatenar=Concatenar+GraficarInodos(Contenido.b_inodo,PathReal);
             }else{
@@ -109,6 +111,7 @@ std::string Reports::GraficarDirectos(int Comienzo,const char *PathReal,int Tipo
             }
         }
     }
+
     return Concatenar;
 }
 std::string Reports::GraficarBloqueContenido(int Comienzo, const char *PathReal){
@@ -133,6 +136,7 @@ std::string Reports::GraficarBloqueContenido(int Comienzo, const char *PathReal)
 }
 std::string Reports::GraficarIndirectos(int Nivel, int NivelActual, int Comienzo,  const char *PathReal,int Tipo){
     if(Nivel==NivelActual){
+
         return GraficarDirectos(Comienzo,PathReal,Tipo);
     }
     FILE *f;
@@ -142,12 +146,24 @@ std::string Reports::GraficarIndirectos(int Nivel, int NivelActual, int Comienzo
     fread(&Apunta,sizeof(Apunta),1,f);
     fclose(f);
     std::string Concatenar="";
+    std::string Punteros="";
+    //Graficando El Inodo
+    Concatenar=Concatenar+"B"+std::to_string(Comienzo)+" [ label=< <TABLE BGCOLOR=\"white\">";
+    Concatenar=Concatenar+"<TR><TD COLSPAN=\"2\" BGCOLOR=\"darkgoldenrod4\" > Bloque_Indirecto_"+std::to_string(Comienzo)+"</TD></TR>\n";
+
     for(int i=0;i<16;i++){
         int Valor=Apunta.b_pointers[i];
+
+        Concatenar=Concatenar+"<TR>"+"<TD  BGCOLOR=\""+"darkgoldenrod1"+"\">"+"Puntero"+std::to_string(i)+"</TD><TD PORT=\"P"+std::to_string(i)+"\" BGCOLOR=\""+"gold"+"\">"+std::to_string(Apunta.b_pointers[i])+"</TD>  </TR> \n";
         if(Valor!=-1){
-            Concatenar=Concatenar+GraficarIndirectos(Nivel,NivelActual,Valor,PathReal,Tipo);
+            Punteros=Punteros+"B"+std::to_string(Comienzo)+":P"+std::to_string(i)+"->B"+std::to_string(Valor)+" [dir=both arrowtail = diamond] \n";
+            //Graficando Punteros
+            Punteros=Punteros+GraficarIndirectos(Nivel,NivelActual+1,Valor,PathReal,Tipo);
         }
     }
+    Concatenar=Concatenar+"</TABLE>>] \n";
+    Concatenar=Concatenar+Punteros;
+
     return Concatenar;
 }
 
@@ -162,9 +178,13 @@ void Reports::ReporteArbol(int Inicio, const char *Disco, const char *Path){
     fclose(f);
     int ComienzoInodo=Leer.s_first_ino;
     std::string Graphviz="";
+
     Graphviz=Graphviz+"digraph G { \n rankdir=LR node \n [shape=plaintext] \n";
     Graphviz=Graphviz+ GraficarInodos(ComienzoInodo,Disco)+"\n";
     Graphviz=Graphviz+"} \n";
+
+
+
     f=fopen("Arbol.dot","w");
     //Leer Super Bloque De La Particion
     fwrite(Graphviz.data(),Graphviz.length(),1,f);
