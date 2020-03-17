@@ -96,7 +96,7 @@ struct STRSPER{
 };
 struct STRSARCH{
 	std::string Path;
-	std::string P;
+	std::string P="0";
 	std::string Size;
 	std::string Cont;   
 };
@@ -339,8 +339,8 @@ VERCONTE: cat file igual TERMIDIRECC {}
 ;
 
 NUEVOARCHIVO:NUEVOARCHIVO path igual TERMIDIRECC {$1->Path=$4; $$=$1;}
-    |NUEVOARCHIVO p igual TERMIIDENTI {$1->P=$4; $$=$1;}
-    |NUEVOARCHIVO size igual TERMIIDENTI {$1->Size=$4; $$=$1;}
+    |NUEVOARCHIVO p  {$1->P="1"; $$=$1;}
+    |NUEVOARCHIVO size igual entero {$1->Size=$4; $$=$1;}
     |NUEVOARCHIVO cont igual TERMIDIRECC {$1->Cont=$4; $$=$1;}
     |mkfile{$$=new STRSARCH();}
 ;
@@ -427,7 +427,7 @@ OPCION:CREAR {  if($1->BSize && $1->BUnit && $1->BPath){Ope->Crear($1->Size,$1->
     |HACERUSUARIO{}
     |BORRARUSUARIO{}
     |PERMISO{}
-    |NUEVOARCHIVO{}
+    |NUEVOARCHIVO{Ope->Mkfile($1->Path,$1->P,$1->Size,$1->Cont);}
     |VERCONTE{}
     |REMOVER{}
     |EDITARCHIVO{}
