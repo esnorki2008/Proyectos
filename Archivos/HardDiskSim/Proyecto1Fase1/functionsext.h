@@ -7,60 +7,60 @@ class FunctionsExt : public Functions
 public:
     //Auxiliares EXT
     //Buscar Inodo Libre
-    int InodoLibre(SPB *Super,const char* Path);
+    long InodoLibre(SPB *Super,const char* Path);
     //Buscar Bloque Libre
-    int BloqueLibre(SPB *Super,const char* Path);
-    int BloqueLibreConte(SPB *Super,const char* Path);
-    int DarPrimeraPos(SPB *Super,const char* Path);
+    long BloqueLibre(SPB *Super,const char* Path);
+    long BloqueLibreConte(SPB *Super,const char* Path);
+    long DarPrimeraPos(SPB *Super,const char* Path);
     //Auxiliares
-    bool EliminarArchivoCarpetaPadre(SPB *Super,int Comienzo,const char *PathVirtual,const char *PathReal,int Hijo);
+    bool EliminarArchivoCarpetaPadre(SPB *Super,long Comienzo,const char *PathVirtual,const char *PathReal,long Hijo);
     //Eliminar
-    bool EliminarBloqueContenido(SPB *Super,int Comienzo,const char *PathReal);
-    bool EliminarInodo(SPB *Super,int Comienzo,const char *PathReal);
-    bool EliminarDirectos(SPB *Super,int Comienzo,const char *PathReal, int Tipo , int Elim);
-    bool EliminarIndirectos(SPB *Super,int Nivel, int NivelActual,int Comienzo,const char *PathReal, int Tipo, int Elim);
+    bool EliminarBloqueContenido(SPB *Super,long Comienzo,const char *PathReal);
+    bool EliminarInodo(SPB *Super,long Comienzo,const char *PathReal);
+    bool EliminarDirectos(SPB *Super,long Comienzo,const char *PathReal, long Tipo , long Elim);
+    bool EliminarIndirectos(SPB *Super,long Nivel, long NivelActual,long Comienzo,const char *PathReal, long Tipo, long Elim);
     //Auxiliares
     void CantidadVeces(std::string Contenido);
     void DuplicarInodo(INO *Original,INO *Copia);
     //Busqueda
-    int BuscarInodos(int Comienzo,std::string PathVirtual,const char *PathReal);
-    int BuscarDirectos(int Comienzo,std::string PathVirtual,const char *PathReal,int Tipo);
-    int BuscarIndirectos(SPB *Super,int Nivel,int NivelActual,int Comienzo,std::string PathVirtual,const char *PathReal,int Tipo);
-    int BuscarPadre(int Comienzo,std::string PathVirtual,const char *PathReal);
+    long BuscarInodos(long Comienzo,std::string PathVirtual,const char *PathReal);
+    long BuscarDirectos(long Comienzo,std::string PathVirtual,const char *PathReal,long Tipo);
+    long BuscarIndirectos(SPB *Super,long Nivel,long NivelActual,long Comienzo,std::string PathVirtual,const char *PathReal,long Tipo);
+    long BuscarPadre(long Comienzo,std::string PathVirtual,const char *PathReal);
     //Permisos
-    std::string PermisosEnElPadre(int Comienzo,const char * PathReal,IUG Permiso);
-    bool TienePermiso(int Comienzo,const char * PathReal,std::string Info,IUG Permiso);
+    std::string PermisosEnElPadre(long Comienzo,const char * PathReal,IUG Permiso);
+    bool TienePermiso(long Comienzo,const char * PathReal,std::string Info,IUG Permiso);
     //Nombre De La Cosa A Crear
     std::string PathArchivo(const char *PathVirtual);
     std::string NombreACrear(const char *PathVirtual);
     //Contador
     //CantidadDeBarras
-    int CantidadBarras(std::string Path);
+    long CantidadBarras(std::string Path);
     FunctionsExt();
     //
-    int BuscarActual(int Comienzo,std::string PathVirtual,const char *PathReal);
+    long BuscarActual(long Comienzo,std::string PathVirtual,const char *PathReal);
     //
-    int CrearIndirectos(int Nivel,int NivelActual,SPB *Super,const char *PathReal);
+    long CrearIndirectos(long Nivel,long NivelActual,SPB *Super,const char *PathReal);
     //Reduce Un String Enviado En Tamanio Y Devuelve Lo Que Se Redujo
-    std::string ReducirTamanio(std::string *Ingreso,int Num);
+    std::string ReducirTamanio(std::string *Ingreso,long Num);
     //Redux
     std::string Reducir(std::string *Entrada);
     //Contenido En El Archivo
-    std::string ColocarContenidoArchivo(int PosDirecto,SPB *Super,const char *PathReal,std::string Contenido);
+    std::string ColocarContenidoArchivo(long PosDirecto,SPB *Super,const char *PathReal,std::string Contenido);
     //ComprobarPermisos
-    bool PermisoInodo(int Comienzo,const char *PathReal,IUG Permiso);
-    bool PermisoDirectos(int Comienzo,const char *PathReal,IUG Permiso);
-    bool PermisoIndirectos(int Nivel, int NivelActual,int Comienzo,const char *PathReal,IUG Permiso);
+    bool PermisoInodo(long Comienzo,const char *PathReal,IUG Permiso);
+    bool PermisoDirectos(long Comienzo,const char *PathReal,IUG Permiso);
+    bool PermisoIndirectos(long Nivel, long NivelActual,long Comienzo,const char *PathReal,IUG Permiso);
     //Liberar
-    void LiberarBloque(SPB *Super,const char *PathReal,int Comienzo);
-    void LiberarInodo(SPB *Super,const char *PathReal,int Comienzo);
+    void LiberarBloque(SPB *Super,const char *PathReal,long Comienzo);
+    void LiberarInodo(SPB *Super,const char *PathReal,long Comienzo);
     //ContenidoArchivoDirecto
-    std::string ContenidoArchivoDirectos(INO *Ino,SPB *Super,int PosPadre, const char *PathReal ,std::string Contenido);
+    std::string ContenidoArchivoDirectos(INO *Ino,SPB *Super,long PosPadre, const char *PathReal ,std::string Contenido);
     //ContenidoArchivoIndirecto
-    std::string ContenidoArchivoInDirectos(INO *Ino,SPB *Super,int PosPadre, const char *PathReal,const char *PathVirtual ,std::string Contenido);
+    std::string ContenidoArchivoInDirectos(INO *Ino,SPB *Super,long PosPadre, const char *PathReal,const char *PathVirtual ,std::string Contenido);
 private:
-    int ValPrimeraPos=-1;
-    int ValTamanio=-1;
+    long ValPrimeraPos=-1;
+    long ValTamanio=-1;
 };
 
 #endif // FUNCTIONSEXT_H

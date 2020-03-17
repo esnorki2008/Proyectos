@@ -7,17 +7,17 @@ FunctionsExt::FunctionsExt()
 
 //
 
-int FunctionsExt::InodoLibre(SPB *Super,const char* Path){
-    int Out=-1;
+long FunctionsExt::InodoLibre(SPB *Super,const char* Path){
+    long Out=-1;
     FILE *f;
     f=fopen(Path,"r+");
-    int Ubi=Super->s_bm_inode_start;
-    int Tamanio=Super->s_inodes_count;
+    long Ubi=Super->s_bm_inode_start;
+    long Tamanio=Super->s_inodes_count;
     //Ubicarse En el BM
     fseek(f,Ubi,SEEK_SET);
     char Lectura;
     //std::cout<<"/////////////////////// "<< Super->s_block_start<<std::endl;
-    for(int i=0;i<Tamanio;i++){
+    for(long i=0;i<Tamanio;i++){
         fread(&Lectura,sizeof(Lectura),1,f);
         if(Lectura=='0'){
             Out= Super->s_inode_start+(i*Super->s_inode_size);
@@ -37,23 +37,23 @@ int FunctionsExt::InodoLibre(SPB *Super,const char* Path){
     fclose(f);
     return Out;
 }
-int FunctionsExt::BloqueLibre(SPB *Super, const char *Path){
-    int Out=-1;
+long FunctionsExt::BloqueLibre(SPB *Super, const char *Path){
+    long Out=-1;
     FILE *f;
     f=fopen(Path,"r+");
-    int Ubi=Super->s_bm_block_start;
-    int Tamanio=Super->s_blocks_count;
+    long Ubi=Super->s_bm_block_start;
+    long Tamanio=Super->s_blocks_count;
     //Ubicarse En el BM
     fseek(f,Ubi,SEEK_SET);
     char Lectura;
 
 
 
-    for(int i=0;i<Tamanio;i++){
+    for(long i=0;i<Tamanio;i++){
         fread(&Lectura,sizeof(Lectura),1,f);
         if(Lectura=='0'){
             //ARREGLAR
-            Super->s_block_start= Super->s_inode_start+Super->s_inodes_count*(int(sizeof (INO)));
+            Super->s_block_start= Super->s_inode_start+Super->s_inodes_count*(long(sizeof (INO)));
             //
             Out= Super->s_block_start+(i*Super->s_block_size);
             fseek(f,Ubi+i,SEEK_SET);
@@ -76,9 +76,9 @@ int FunctionsExt::BloqueLibre(SPB *Super, const char *Path){
     return Out;
 
 }
-int FunctionsExt::BloqueLibreConte(SPB *Super, const char *Path){
+long FunctionsExt::BloqueLibreConte(SPB *Super, const char *Path){
     /*if(ValPrimeraPos==-1){
-        int Retorno=DarPrimeraPos(Super,Path);
+        long Retorno=DarPrimeraPos(Super,Path);
         //Poner Primera Posicion
         ValPrimeraPos=Retorno;
 
@@ -90,19 +90,19 @@ int FunctionsExt::BloqueLibreConte(SPB *Super, const char *Path){
         return Retorno;
     }
     ValTamanio++;
-    return ValPrimeraPos+(ValTamanio)*(int(sizeof (BAR)));*/
+    return ValPrimeraPos+(ValTamanio)*(long(sizeof (BAR)));*/
     return BloqueLibre(Super,Path);
 }
-int FunctionsExt::DarPrimeraPos(SPB *Super, const char *Path){
-    int Out=-1;
+long FunctionsExt::DarPrimeraPos(SPB *Super, const char *Path){
+    long Out=-1;
         FILE *f;
         f=fopen(Path,"r+");
-        int Ubi=Super->s_bm_block_start;
-        int Tamanio=Super->s_blocks_count;
+        long Ubi=Super->s_bm_block_start;
+        long Tamanio=Super->s_blocks_count;
         //Ubicarse En el BM
         char Lectura;
-        int Contador=0;
-        for(int i=0;i<Tamanio;i++){
+        long Contador=0;
+        for(long i=0;i<Tamanio;i++){
             //Leer Cada Uno
             fseek(f,Ubi+i,SEEK_SET);
             fread(&Lectura,sizeof(Lectura),1,f);
@@ -134,7 +134,7 @@ int FunctionsExt::DarPrimeraPos(SPB *Super, const char *Path){
 }
 
 //DEL
-bool FunctionsExt::EliminarDirectos(SPB *Super,int Comienzo, const char *PathReal, int Tipo, int Elim){
+bool FunctionsExt::EliminarDirectos(SPB *Super,long Comienzo, const char *PathReal, long Tipo, long Elim){
     FILE *f;
     f=fopen(PathReal,"r+");
     BCA Carpeta;
@@ -142,7 +142,7 @@ bool FunctionsExt::EliminarDirectos(SPB *Super,int Comienzo, const char *PathRea
     fread(&Carpeta,sizeof(Carpeta),1,f);
     fclose(f);
     std::string Concatenar="";
-    for(int i=0;i<4;i++){
+    for(long i=0;i<4;i++){
         CON Contenido=Carpeta.content[i];
 
         if(Contenido.b_inodo!=-1){
@@ -167,11 +167,11 @@ bool FunctionsExt::EliminarDirectos(SPB *Super,int Comienzo, const char *PathRea
     LiberarBloque(Super,PathReal,Comienzo);
     return false;
 }
-bool FunctionsExt::EliminarBloqueContenido(SPB *Super,int Comienzo,const char *PathReal){
+bool FunctionsExt::EliminarBloqueContenido(SPB *Super,long Comienzo,const char *PathReal){
     LiberarBloque(Super,PathReal,Comienzo);
     return true;
 }
-bool FunctionsExt::EliminarIndirectos(SPB *Super,int Nivel, int NivelActual, int Comienzo,  const char *PathReal, int Tipo, int Elim){
+bool FunctionsExt::EliminarIndirectos(SPB *Super,long Nivel, long NivelActual, long Comienzo,  const char *PathReal, long Tipo, long Elim){
     if(Nivel==NivelActual){
         return EliminarDirectos(Super,Comienzo,PathReal,Tipo,Elim);
     }
@@ -181,8 +181,8 @@ bool FunctionsExt::EliminarIndirectos(SPB *Super,int Nivel, int NivelActual, int
     fseek(f,Comienzo,SEEK_SET);
     fread(&Apunta,sizeof(Apunta),1,f);
     fclose(f);
-    for(int i=0;i<16;i++){
-        int Valor=Apunta.b_pointers[i];
+    for(long i=0;i<16;i++){
+        long Valor=Apunta.b_pointers[i];
         if(Valor!=-1){
             EliminarIndirectos(Super,Nivel,NivelActual+1,Valor,PathReal,Tipo,Elim);
         }
@@ -192,25 +192,25 @@ bool FunctionsExt::EliminarIndirectos(SPB *Super,int Nivel, int NivelActual, int
 
     return true;
 }
-bool FunctionsExt::EliminarInodo(SPB *Super,int Comienzo, const char *PathReal){
+bool FunctionsExt::EliminarInodo(SPB *Super,long Comienzo, const char *PathReal){
     FILE *f;
     f=fopen(PathReal,"r+");
     INO Carpeta;
     fseek(f,Comienzo,SEEK_SET);
     fread(&Carpeta,sizeof(Carpeta),1,f);
     fclose(f);
-    int Tipo=0;
+    long Tipo=0;
     if(Carpeta.i_type=='1')
         Tipo=1;
-    for(int i=0;i<12;i++){
-        int Apuntador=Carpeta.i_block[i];
+    for(long i=0;i<12;i++){
+        long Apuntador=Carpeta.i_block[i];
         if(Apuntador!=-1){
             EliminarIndirectos(Super,0,0,Apuntador,PathReal,Tipo,10);
         }
     }
 
-    for(int i=0;i<3;i++){
-        int Apuntador=Carpeta.i_block[i+12];
+    for(long i=0;i<3;i++){
+        long Apuntador=Carpeta.i_block[i+12];
         if(Apuntador!=-1){
             EliminarIndirectos(Super,1+i,0,Apuntador,PathReal,Tipo,10);
         }
@@ -221,8 +221,8 @@ bool FunctionsExt::EliminarInodo(SPB *Super,int Comienzo, const char *PathReal){
 }
 
 //Eliminar Archivo
-bool FunctionsExt::EliminarArchivoCarpetaPadre(SPB *Super, int Comienzo, const char *PathVirtual, const char *PathReal, int Hijo){
-    int Actual=BuscarPadre(Comienzo,PathVirtual,PathReal);
+bool FunctionsExt::EliminarArchivoCarpetaPadre(SPB *Super, long Comienzo, const char *PathVirtual, const char *PathReal, long Hijo){
+    long Actual=BuscarPadre(Comienzo,PathVirtual,PathReal);
     if(Actual==-1){
         std::cout<<"No Se Encontro Una Carpeta O Archivo En "<<PathVirtual<<" No Se Pudo Borrar"<<std::endl;
         return false;
@@ -236,8 +236,8 @@ bool FunctionsExt::EliminarArchivoCarpetaPadre(SPB *Super, int Comienzo, const c
     fread(&Carpeta,sizeof(Carpeta),1,f);
     fclose(f);
     bool Retorno=false;
-    for(int i=0;i<12;i++){
-        int Apuntador=Carpeta.i_block[i];
+    for(long i=0;i<12;i++){
+        long Apuntador=Carpeta.i_block[i];
         if(Apuntador!=-1){
             Retorno=EliminarIndirectos(Super,0,0,Apuntador,PathReal,4,Hijo);
             if(Retorno)
@@ -245,8 +245,8 @@ bool FunctionsExt::EliminarArchivoCarpetaPadre(SPB *Super, int Comienzo, const c
         }
     }
 
-    for(int i=0;i<3;i++){
-        int Apuntador=Carpeta.i_block[i+12];
+    for(long i=0;i<3;i++){
+        long Apuntador=Carpeta.i_block[i+12];
         if(Apuntador!=-1){
             Retorno=EliminarIndirectos(Super,1+i,0,Apuntador,PathReal,4,Hijo);
             if(Retorno)
@@ -268,7 +268,7 @@ void FunctionsExt::DuplicarInodo(INO *Original, INO *Copia){
     Copia->i_mtime=Original->i_mtime;
 }
 void FunctionsExt::CantidadVeces(std::string Contenido){
-    int Div = int(Contenido.length())/64;
+    long Div = long(Contenido.length())/64;
     if(Contenido.length()%64!=0)
         Div++;
       ValTamanio=Div;
@@ -277,18 +277,18 @@ void FunctionsExt::CantidadVeces(std::string Contenido){
 
 //Contenido
 //
-std::string FunctionsExt::ContenidoArchivoDirectos(INO *Ino, SPB *Super, int PosPadre, const char *PathReal,  std::string Contenido){
+std::string FunctionsExt::ContenidoArchivoDirectos(INO *Ino, SPB *Super, long PosPadre, const char *PathReal,  std::string Contenido){
     INO Inodo=*Ino;
-    for(int i=0;i<12;i++){
+    for(long i=0;i<12;i++){
         if(IF(Contenido,""))
             return "";
 
-        int Pos=Inodo.i_block[i];
+        long Pos=Inodo.i_block[i];
 
           if(Pos==-1){
             //Crea Bloque Directo Y Se Manda A Crear Carpeta
 
-            int EspacioBloque=BloqueLibre(Super,PathReal);
+            long EspacioBloque=BloqueLibre(Super,PathReal);
 
             if(EspacioBloque==-1){
                 std::cout<<"No Se Pudo Crear El Bloque, Insuficiente Tamanio"<<std::endl;
@@ -326,16 +326,30 @@ std::string FunctionsExt::ContenidoArchivoDirectos(INO *Ino, SPB *Super, int Pos
             }
         }
     }
+
+
+
+
+
+
     return Contenido;
 }
-std::string FunctionsExt::ContenidoArchivoInDirectos(INO *Ino, SPB *Super, int PosPadre, const char *PathReal, const char *PathVirtual,  std::string Contenido){
+std::string FunctionsExt::ContenidoArchivoInDirectos(INO *Ino, SPB *Super, long PosPadre, const char *PathReal, const char *PathVirtual,  std::string Contenido){
     INO Inodo=*Ino;
+    FILE *f;
+    f=fopen(PathReal,"r+");
+    fseek(f,PosPadre,SEEK_SET);
+    fread(&Inodo,sizeof (Inodo),1,f);
+    fclose(f);
+
+
+
     //Posicion De Un Bloque De Directos Con Alguna Ranura
-    for(int i=0;i<3;i++){
+    for(long i=0;i<3;i++){
         if(IF(Contenido,""))
             return "";
 
-        int Pos=Inodo.i_block[12+i];
+        long Pos=Inodo.i_block[12+i];
         if(Pos==-1){
             //Se Crean Los Bloques Indirectos
             Pos=CrearIndirectos(i+1,0,Super,PathReal);
@@ -357,7 +371,7 @@ std::string FunctionsExt::ContenidoArchivoInDirectos(INO *Ino, SPB *Super, int P
         }
 
         //El Indirecto En La Posicion Pos Si Existe
-        int Busqueda=BuscarIndirectos(Super,i+1,0,Pos,PathVirtual,PathReal,4);
+        long Busqueda=BuscarIndirectos(Super,i+1,0,Pos,PathVirtual,PathReal,4);
         if(Busqueda!=-1){
             //Bloque Directo Existente
             std::string  Valor;
@@ -365,38 +379,41 @@ std::string FunctionsExt::ContenidoArchivoInDirectos(INO *Ino, SPB *Super, int P
 
 
             Parametro=ReducirTamanio(&Contenido,64*4);
-            Valor=ColocarContenidoArchivo(Pos,Super,PathReal,Parametro);
+            Valor=ColocarContenidoArchivo(Busqueda,Super,PathReal,Parametro);
             if(!IF(Valor,"")){
                 Contenido=Contenido+Parametro;
             }
         }
 
     }
+
+
+
     return Contenido;
 }
 //Liberar
-void FunctionsExt::LiberarInodo(SPB *Super, const char *PathReal, int Comienzo){
+void FunctionsExt::LiberarInodo(SPB *Super, const char *PathReal, long Comienzo){
     FILE *f;
     f=fopen(PathReal,"r+");
     char Actual='0';
-    int See=Super->s_bm_inode_start+(Comienzo-Super->s_inode_start)/Super->s_inode_size;
+    long See=Super->s_bm_inode_start+(Comienzo-Super->s_inode_start)/Super->s_inode_size;
     fseek(f,See,SEEK_SET);
     fwrite(&Actual,sizeof(Actual),1,f);
     fclose(f);
 }
-void FunctionsExt::LiberarBloque(SPB *Super, const char *PathReal,int Comienzo){
+void FunctionsExt::LiberarBloque(SPB *Super, const char *PathReal,long Comienzo){
     FILE *f;
     f=fopen(PathReal,"r+");
     char Actual='0';
-    int See=Super->s_bm_block_start+(Comienzo-Super->s_block_start)/Super->s_block_size;
+    long See=Super->s_bm_block_start+(Comienzo-Super->s_block_start)/Super->s_block_size;
     fseek(f,See,SEEK_SET);
     fwrite(&Actual,sizeof(Actual),1,f);
     fclose(f);
 
 }
 //Busqueda
-int FunctionsExt::BuscarPadre(int Comienzo, std::string PathVirtual, const char *PathReal){
-    int Num=BuscarInodos(Comienzo,PathVirtual,PathReal);
+long FunctionsExt::BuscarPadre(long Comienzo, std::string PathVirtual, const char *PathReal){
+    long Num=BuscarInodos(Comienzo,PathVirtual,PathReal);
     if(Num==-2){
         std::cout<<"OPTI"<<std::endl;
         return-1;
@@ -405,10 +422,10 @@ int FunctionsExt::BuscarPadre(int Comienzo, std::string PathVirtual, const char 
 
 }
 //BSUCA EN EL INODO
-int FunctionsExt::BuscarInodos(int Comienzo, std::string PathVirtual, const char *PathReal){
+long FunctionsExt::BuscarInodos(long Comienzo, std::string PathVirtual, const char *PathReal){
     //std::cout<<"InodoPathVirtual"<<"  "<<PathVirtual<<"     "<<Comienzo<<std::endl;
 
-    int Contador=CantidadBarras(PathVirtual);
+    long Contador=CantidadBarras(PathVirtual);
 
 
     FILE *f;
@@ -431,8 +448,8 @@ int FunctionsExt::BuscarInodos(int Comienzo, std::string PathVirtual, const char
 
         return Comienzo;
     }
-    for(int i=0;i<12;i++){
-        int Comprobar=Inodo.i_block[i];
+    for(long i=0;i<12;i++){
+        long Comprobar=Inodo.i_block[i];
 
 
 
@@ -454,8 +471,8 @@ int FunctionsExt::BuscarInodos(int Comienzo, std::string PathVirtual, const char
     }
 
 
-    for(int i=0;i<3;i++){
-        int Busq=BuscarIndirectos(nullptr,1+i,0,Inodo.i_block[12+i],PathVirtual,PathReal,1);
+    for(long i=0;i<3;i++){
+        long Busq=BuscarIndirectos(nullptr,1+i,0,Inodo.i_block[12+i],PathVirtual,PathReal,1);
         if(Busq==-2)
             return -2;
 
@@ -465,7 +482,7 @@ int FunctionsExt::BuscarInodos(int Comienzo, std::string PathVirtual, const char
 
     return -1;
 }
-int BloqueContenidoArchivo(int Comienzo ,const char *PathReal){
+long BloqueContenidoArchivo(long Comienzo ,const char *PathReal){
     FILE *f;
     f=fopen(PathReal,"r+");
     BCA Carpeta;
@@ -474,9 +491,11 @@ int BloqueContenidoArchivo(int Comienzo ,const char *PathReal){
     fclose(f);
 
 
-    for(int i=0;i<4;i++){
+
+    for(long i=0;i<4;i++){
         CON Conten=Carpeta.content[i];
         if(Conten.b_inodo==-1){
+            std::cout<<"TIRAR EL CURSO"<<std::endl;
             std::cout<<Comienzo<<std::endl;
             return Comienzo;
         }
@@ -485,7 +504,7 @@ int BloqueContenidoArchivo(int Comienzo ,const char *PathReal){
 
     return -1;
 }
-int FunctionsExt::BuscarDirectos(int Comienzo, std::string PathVirtual, const char *PathReal,int Tipo){
+long FunctionsExt::BuscarDirectos(long Comienzo, std::string PathVirtual, const char *PathReal,long Tipo){
     if(Tipo==4)//Contenido De Archivos
         return BloqueContenidoArchivo(Comienzo,PathReal);
 
@@ -502,7 +521,7 @@ int FunctionsExt::BuscarDirectos(int Comienzo, std::string PathVirtual, const ch
 
     std::string NombreActual=Reducir(&NombreTotal);
 
-    for(int i=0;i<4;i++){
+    for(long i=0;i<4;i++){
 
         CON Contenido=Carpeta.content[i];
 
@@ -517,7 +536,7 @@ int FunctionsExt::BuscarDirectos(int Comienzo, std::string PathVirtual, const ch
             }
 
             if(IF(Nombre,NombreActual) && Contenido.b_inodo!=-1){
-                int Busq=BuscarInodos(Contenido.b_inodo,NombreTotal,PathReal);
+                long Busq=BuscarInodos(Contenido.b_inodo,NombreTotal,PathReal);
                 if(Busq==-1 || Busq==-2){
 
                     return -2;
@@ -551,13 +570,11 @@ int FunctionsExt::BuscarDirectos(int Comienzo, std::string PathVirtual, const ch
 
     return -1;
 }
-int FunctionsExt::BuscarIndirectos(SPB *Super,int Nivel, int NivelActual, int Comienzo, std::string PathVirtual, const char *PathReal,int Tipo){
+long FunctionsExt::BuscarIndirectos(SPB *Super,long Nivel, long NivelActual, long Comienzo, std::string PathVirtual, const char *PathReal,long Tipo){
 
 
 
     if(Nivel==NivelActual){
-
-
         return BuscarDirectos(Comienzo,PathVirtual,PathReal,Tipo);
     }
     FILE *f;
@@ -570,8 +587,8 @@ int FunctionsExt::BuscarIndirectos(SPB *Super,int Nivel, int NivelActual, int Co
 
 
 
-    for(int i=0;i<16;i++){
-        int Valor=Apunta.b_pointers[i];
+    for(long i=0;i<16;i++){
+        long Valor=Apunta.b_pointers[i];
 
 
         if(Valor!=-1){
@@ -591,13 +608,10 @@ int FunctionsExt::BuscarIndirectos(SPB *Super,int Nivel, int NivelActual, int Co
 
 
             }
-        }else if(Tipo==2){
+        }else if(Tipo==2 || Tipo==4){
 
 
-
-
-
-            int BloqueDirectoNuevo=BloqueLibre(Super,PathReal);
+            long BloqueDirectoNuevo=BloqueLibre(Super,PathReal);
 
             if(BloqueDirectoNuevo==-1)
                     return -1;
@@ -635,7 +649,7 @@ int FunctionsExt::BuscarIndirectos(SPB *Super,int Nivel, int NivelActual, int Co
 }
 
 //Permisos
-std::string FunctionsExt::PermisosEnElPadre(int Comienzo, const char *PathReal,IUG Permiso){
+std::string FunctionsExt::PermisosEnElPadre(long Comienzo, const char *PathReal,IUG Permiso){
     FILE *f;
     f=fopen(PathReal,"r+");
     INO Carpeta;
@@ -643,7 +657,7 @@ std::string FunctionsExt::PermisosEnElPadre(int Comienzo, const char *PathReal,I
     fread(&Carpeta,sizeof(Carpeta),1,f);
     fclose(f);
 
-    int Selec=3;
+    long Selec=3;
     if(Carpeta.i_uid==Permiso.Uid){
         Selec=1;
     }else if(Carpeta.i_gid==Permiso.Gid){
@@ -677,14 +691,14 @@ std::string FunctionsExt::PermisosEnElPadre(int Comienzo, const char *PathReal,I
         std::cout<<"Error En La Particion, Permisos n Leer Correctamente"<<std::endl;
     return Comparar;
 }
-bool FunctionsExt::TienePermiso(int Comienzo, const char *PathReal, std::string Info,IUG Permiso){
+bool FunctionsExt::TienePermiso(long Comienzo, const char *PathReal, std::string Info,IUG Permiso){
     std::string PermisoCarpeta=PermisosEnElPadre(Comienzo,PathReal,Permiso);
     if(IF(PermisoCarpeta,""))
         return false;
 
 
 
-    for(int i=0;i<3;i++){
+    for(long i=0;i<3;i++){
         char Com=PermisoCarpeta.data()[i];
         char Per=Info.data()[i];
         if(Per=='1'){
@@ -737,10 +751,10 @@ std::string FunctionsExt::NombreACrear(const char *PathVirtual){
     return s;
 }
 //Cuenta Cuantas '/' Hay en un string
-int FunctionsExt::CantidadBarras(std::string Path){
-    int Contador=0;
-    int Longitud=Path.length();
-    for(int i=0;i<Longitud;i++){
+long FunctionsExt::CantidadBarras(std::string Path){
+    long Contador=0;
+    long Longitud=Path.length();
+    for(long i=0;i<Longitud;i++){
         if('/'==Path.at(i)){
             Contador++;
         }
@@ -748,9 +762,9 @@ int FunctionsExt::CantidadBarras(std::string Path){
     return Contador;
 }
 //BuscarActual
-int FunctionsExt::BuscarActual(int Comienzo, std::string PathVirtual, const char *PathReal){
+long FunctionsExt::BuscarActual(long Comienzo, std::string PathVirtual, const char *PathReal){
     PathVirtual=PathVirtual.substr(1);
-    int Busq=BuscarPadre(Comienzo,(PathVirtual),PathReal);
+    long Busq=BuscarPadre(Comienzo,(PathVirtual),PathReal);
     if(Busq==-1)
         return Busq;
     std::string Nombre=NombreACrear(PathVirtual.data());
@@ -760,18 +774,18 @@ int FunctionsExt::BuscarActual(int Comienzo, std::string PathVirtual, const char
     fseek(f,Comienzo,SEEK_SET);
     fread(&Carpeta,sizeof(Carpeta),1,f);
     fclose(f);
-    int Punteros=-1;
+    long Punteros=-1;
 
-    for(int i=0;i<12;i++){
-        int Apuntador=Carpeta.i_block[i];
+    for(long i=0;i<12;i++){
+        long Apuntador=Carpeta.i_block[i];
         if(Apuntador!=-1){
              Punteros=BuscarIndirectos(nullptr,0,0,Apuntador,Nombre,PathReal,3);
              if(Punteros!=-1)
                  return Punteros;
         }
     }
-    for(int i=0;i<3;i++){
-        int Apuntador=Carpeta.i_block[12+i];
+    for(long i=0;i<3;i++){
+        long Apuntador=Carpeta.i_block[12+i];
         if(Apuntador!=-1){
             Punteros=BuscarIndirectos(nullptr,1+i,0,Apuntador,Nombre,PathReal,3);
             if(Punteros!=-1)
@@ -783,15 +797,15 @@ int FunctionsExt::BuscarActual(int Comienzo, std::string PathVirtual, const char
 
     return  Punteros;
 }
-int FunctionsExt::CrearIndirectos(int Nivel, int NivelActual, SPB *Super, const char *PathReal){
+long FunctionsExt::CrearIndirectos(long Nivel, long NivelActual, SPB *Super, const char *PathReal){
     BAP Apuntador;
-    for(int i=0;i<16;i++){
+    for(long i=0;i<16;i++){
          Apuntador.b_pointers[i]=-1;
     }
 
     if(Nivel==NivelActual){
         //ARREGLAR  crear directos
-        int Actual=BloqueLibre(Super,PathReal);
+        long Actual=BloqueLibre(Super,PathReal);
 
         //std::cout<<"Function BORRAR     "<<Actual<<std::endl;
         FILE *f;
@@ -809,14 +823,14 @@ int FunctionsExt::CrearIndirectos(int Nivel, int NivelActual, SPB *Super, const 
 
         return Actual;
     }
-    int PosicionPadre=BloqueLibre(Super,PathReal);
+    long PosicionPadre=BloqueLibre(Super,PathReal);
     if(PosicionPadre==-1){
         std::cout<<"No Se Puedo Encontrar Un Bloque Libre"<<std::endl;
         return -1;
     }
 
-    for(int i=0;i<16;i++){
-        int Hijo=CrearIndirectos(Nivel,NivelActual+1,Super,PathReal);
+    for(long i=0;i<16;i++){
+        long Hijo=CrearIndirectos(Nivel,NivelActual+1,Super,PathReal);
         if(Hijo==-1){
             std::cout<<" Se Llego Al Limite De Apuntadores "<<std::endl;
             break;
@@ -838,8 +852,8 @@ int FunctionsExt::CrearIndirectos(int Nivel, int NivelActual, SPB *Super, const 
 }
 
 //REDUCIR TAMANIO String
-std::string FunctionsExt::ReducirTamanio(std::string *Ingreso, int Num){
-    int Longitud=Ingreso->length();
+std::string FunctionsExt::ReducirTamanio(std::string *Ingreso, long Num){
+    long Longitud=Ingreso->length();
     std::string Copia="";
     if(Longitud>Num){
        Copia=Ingreso->substr(0,Num);
@@ -854,8 +868,8 @@ std::string FunctionsExt::ReducirTamanio(std::string *Ingreso, int Num){
 //Redux
 std::string FunctionsExt::Reducir(std::string *Entrada){
 
-    int Longitud=int(Entrada->length());
-    for(int i=0;i<Longitud;i++){
+    long Longitud=long(Entrada->length());
+    for(long i=0;i<Longitud;i++){
         char Letra=char((*Entrada)[i]);
         if(Letra=='/'){
             std::string  Salida=Entrada->substr(0,i);
@@ -868,8 +882,8 @@ std::string FunctionsExt::Reducir(std::string *Entrada){
     *Entrada="";
     return Salida;
 }
-std::string FunctionsExt::ColocarContenidoArchivo(int PosDirecto, SPB *Super, const char *PathReal, std::string Contenido){
-    int Longitud=Contenido.length();
+std::string FunctionsExt::ColocarContenidoArchivo(long PosDirecto, SPB *Super, const char *PathReal, std::string Contenido){
+    long Longitud=Contenido.length();
     if(Longitud>64*4){
         std::cout<<"STRING MUY GRANDFEE"<<std::endl;
         return Contenido;
@@ -880,10 +894,10 @@ std::string FunctionsExt::ColocarContenidoArchivo(int PosDirecto, SPB *Super, co
     fseek(f,PosDirecto,SEEK_SET);
     BCA Directo;
     fread(&Directo,sizeof(Directo),1,f);
-    for(int z=0;z<4;z++){
+    for(long z=0;z<4;z++){
         if(IF(Contenido,""))
             break;
-        int Pos=Directo.content[z].b_inodo;
+        long Pos=Directo.content[z].b_inodo;
 
         if(Pos==-1){
 
@@ -892,8 +906,8 @@ std::string FunctionsExt::ColocarContenidoArchivo(int PosDirecto, SPB *Super, co
 
             strcpy(Directo.content[z].b_name,Sub.c_str());
             //Inodo Nuevo
-            //int Libre = BloqueLibre(Super,PathReal);
-            int Libre = BloqueLibreConte(Super,PathReal);
+            //long Libre = BloqueLibre(Super,PathReal);
+            long Libre = BloqueLibreConte(Super,PathReal);
             Directo.content[z].b_inodo=Libre;
 
             //Se Reduce
@@ -917,7 +931,7 @@ std::string FunctionsExt::ColocarContenidoArchivo(int PosDirecto, SPB *Super, co
             fseek(f,Pos,SEEK_SET);
             fread(&Cont,sizeof(Cont),1,f);
             std::string Almacenado=Cont.b_content;
-            int Llenar=64-(Almacenado.length());
+            long Llenar=64-(Almacenado.length());
 
 
 
@@ -942,7 +956,7 @@ std::string FunctionsExt::ColocarContenidoArchivo(int PosDirecto, SPB *Super, co
 }
 //Contenido
 //Verificar Si Tiene Permisos
-bool FunctionsExt::PermisoDirectos(int Comienzo, const char *PathReal,IUG Permiso){
+bool FunctionsExt::PermisoDirectos(long Comienzo, const char *PathReal,IUG Permiso){
     FILE *f;
     f=fopen(PathReal,"r+");
     BCA Carpeta;
@@ -951,7 +965,7 @@ bool FunctionsExt::PermisoDirectos(int Comienzo, const char *PathReal,IUG Permis
     fclose(f);
     std::string Concatenar="";
     bool Comp=true;
-    for(int i=0;i<4;i++){
+    for(long i=0;i<4;i++){
         CON Contenido=Carpeta.content[i];
 
         if(Contenido.b_inodo!=-1){
@@ -962,7 +976,7 @@ bool FunctionsExt::PermisoDirectos(int Comienzo, const char *PathReal,IUG Permis
     }
     return true;
 }
-bool FunctionsExt::PermisoIndirectos(int Nivel, int NivelActual, int Comienzo,  const char *PathReal,IUG Permiso){
+bool FunctionsExt::PermisoIndirectos(long Nivel, long NivelActual, long Comienzo,  const char *PathReal,IUG Permiso){
     if(Nivel==NivelActual){
         return PermisoDirectos(Comienzo,PathReal,Permiso);
     }
@@ -973,8 +987,8 @@ bool FunctionsExt::PermisoIndirectos(int Nivel, int NivelActual, int Comienzo,  
     fread(&Apunta,sizeof(Apunta),1,f);
     fclose(f);
     bool Com=true;
-    for(int i=0;i<16;i++){
-        int Valor=Apunta.b_pointers[i];
+    for(long i=0;i<16;i++){
+        long Valor=Apunta.b_pointers[i];
         if(Valor!=-1){
             Com=PermisoIndirectos(Nivel,NivelActual+1,Valor,PathReal,Permiso);
             if(Com==false)
@@ -984,7 +998,7 @@ bool FunctionsExt::PermisoIndirectos(int Nivel, int NivelActual, int Comienzo,  
 
     return true;
 }
-bool FunctionsExt::PermisoInodo(int Comienzo, const char *PathReal,IUG Permiso){
+bool FunctionsExt::PermisoInodo(long Comienzo, const char *PathReal,IUG Permiso){
     FILE *f;
     f=fopen(PathReal,"r+");
     INO Carpeta;
@@ -999,8 +1013,8 @@ bool FunctionsExt::PermisoInodo(int Comienzo, const char *PathReal,IUG Permiso){
         return true;
 
     bool Comp=true;
-    for(int i=0;i<12;i++){
-        int Apuntador=Carpeta.i_block[i];
+    for(long i=0;i<12;i++){
+        long Apuntador=Carpeta.i_block[i];
         if(Apuntador!=-1){
             Comp=PermisoIndirectos(0,0,Apuntador,PathReal,Permiso);
             if(Comp==false)
@@ -1008,8 +1022,8 @@ bool FunctionsExt::PermisoInodo(int Comienzo, const char *PathReal,IUG Permiso){
         }
     }
 
-    for(int i=0;i<3;i++){
-        int Apuntador=Carpeta.i_block[i+12];
+    for(long i=0;i<3;i++){
+        long Apuntador=Carpeta.i_block[i+12];
         if(Apuntador!=-1){
             Comp=PermisoIndirectos(1+i,0,Apuntador,PathReal,Permiso);
             if(Comp==false)

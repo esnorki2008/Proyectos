@@ -1,6 +1,6 @@
 #include "mkfile_mkdir.h"
 
-MKFILE_MKDIR::MKFILE_MKDIR(SPB *Super, int Comienzo, const char *PathVirtual, const char *PathReal, std::string Contenido,bool EsCarpeta, bool EsCompleto,IUG Permiso)
+MKFILE_MKDIR::MKFILE_MKDIR(SPB *Super, long Comienzo, const char *PathVirtual, const char *PathReal, std::string Contenido,bool EsCarpeta, bool EsCompleto,IUG Permiso)
 {
     this->Permiso=Permiso;
     if(EsCarpeta){
@@ -21,8 +21,8 @@ MKFILE_MKDIR::MKFILE_MKDIR(SPB *Super, int Comienzo, const char *PathVirtual, co
 }
 
 //CrearArchivo
-bool MKFILE_MKDIR::CrearArchivoCompleto(SPB *Super, int Comienzo, const char *PathVirtual, const char *PathReal, std::string Contenido){
-    int PosPadre=0;
+bool MKFILE_MKDIR::CrearArchivoCompleto(SPB *Super, long Comienzo, const char *PathVirtual, const char *PathReal, std::string Contenido){
+    long PosPadre=0;
     if(IF(Contenido,"")){
         Contenido=Contenido+" ";
     }
@@ -57,7 +57,7 @@ bool MKFILE_MKDIR::CrearArchivoCompleto(SPB *Super, int Comienzo, const char *Pa
     fread(&Inodo,sizeof(Inodo),1,f);
     fclose(f);
 
-    int Num;
+    long Num;
     Num=CarpetaArchivoSimpleDirectos(&Inodo,Super,PosPadre,PathReal,NombreCarpeta,Contenido);
     if(Num==-2)
         return false;
@@ -70,8 +70,8 @@ bool MKFILE_MKDIR::CrearArchivoCompleto(SPB *Super, int Comienzo, const char *Pa
 
     return false;
 }
-bool MKFILE_MKDIR::CrearArchivoSimple(SPB *Super, int Comienzo, const char *PathVirtual, const char *PathReal, std::string Contenido){
-    int PosPadre=0;
+bool MKFILE_MKDIR::CrearArchivoSimple(SPB *Super, long Comienzo, const char *PathVirtual, const char *PathReal, std::string Contenido){
+    long PosPadre=0;
     if(IF(Contenido,"")){
         Contenido=Contenido+" ";
     }
@@ -98,7 +98,7 @@ bool MKFILE_MKDIR::CrearArchivoSimple(SPB *Super, int Comienzo, const char *Path
     fseek(f,PosPadre,SEEK_SET);
     fread(&Inodo,sizeof(Inodo),1,f);
     fclose(f);
-    int Num=-1;
+    long Num=-1;
     Num=CarpetaArchivoSimpleDirectos(&Inodo,Super,PosPadre,PathReal,NombreCarpeta,Contenido);
     if(Num==1)
         return true;
@@ -111,12 +111,12 @@ bool MKFILE_MKDIR::CrearArchivoSimple(SPB *Super, int Comienzo, const char *Path
     return false;
 }
 //CarpetaSimple
-bool MKFILE_MKDIR::CrearCarpetaSimple(SPB *Super,int Comienzo, const char *PathVirtual, const char *PathReal){
+bool MKFILE_MKDIR::CrearCarpetaSimple(SPB *Super,long Comienzo, const char *PathVirtual, const char *PathReal){
     /*if(BuscarActual(Comienzo,PathVirtual,PathReal)!=-1)
         return true;
 */
 
-    int PosPadre=0;
+    long PosPadre=0;
     if(CantidadBarras(PathVirtual)==1){
         PosPadre=Comienzo;
     }else{
@@ -139,7 +139,7 @@ bool MKFILE_MKDIR::CrearCarpetaSimple(SPB *Super,int Comienzo, const char *PathV
     fseek(f,PosPadre,SEEK_SET);
     fread(&Inodo,sizeof(Inodo),1,f);
     fclose(f);
-    int Num=CarpetaArchivoSimpleDirectos(&Inodo,Super,PosPadre,PathReal,NombreCarpeta,"");
+    long Num=CarpetaArchivoSimpleDirectos(&Inodo,Super,PosPadre,PathReal,NombreCarpeta,"");
     if(Num==1)
         return true;
     if(Num==-2)
@@ -150,7 +150,7 @@ bool MKFILE_MKDIR::CrearCarpetaSimple(SPB *Super,int Comienzo, const char *PathV
     return false;
 }
 //CarpetaCompletaUsandoLaSimple
-bool MKFILE_MKDIR::CrearCarpetaCompleto(SPB *Super,int Comienzo, const char *PathVirtual, const char *PathReal){
+bool MKFILE_MKDIR::CrearCarpetaCompleto(SPB *Super,long Comienzo, const char *PathVirtual, const char *PathReal){
     std::string s = PathVirtual;
     std::string delimiter = "/";
     size_t pos = 0;
@@ -176,18 +176,18 @@ bool MKFILE_MKDIR::CrearCarpetaCompleto(SPB *Super,int Comienzo, const char *Pat
 }
 
 //Crear CarpetasYArchivos
-int MKFILE_MKDIR::CarpetaArchivoSimpleDirectos(INO *Ino,SPB *Super,int PosPadre, const char *PathReal ,std::string NombreCarpeta,std::string Contenido){
+long MKFILE_MKDIR::CarpetaArchivoSimpleDirectos(INO *Ino,SPB *Super,long PosPadre, const char *PathReal ,std::string NombreCarpeta,std::string Contenido){
     INO Inodo=*Ino;
     FILE *f;
     f=fopen(PathReal,"r+");
     BCA BloqueDirecto;
 
 
-    for(int i=0;i<12;i++){
-        int Pos=Inodo.i_block[i];
+    for(long i=0;i<12;i++){
+        long Pos=Inodo.i_block[i];
         fseek(f,Pos,SEEK_SET);
         fread(&BloqueDirecto,sizeof (BloqueDirecto),1,f);
-            for(int j=0;j<4;j++){
+            for(long j=0;j<4;j++){
                 CON Con=BloqueDirecto.content[j];
                 if(IF(NombreCarpeta,Con.b_name)){
                     fclose(f);
@@ -198,13 +198,13 @@ int MKFILE_MKDIR::CarpetaArchivoSimpleDirectos(INO *Ino,SPB *Super,int PosPadre,
 
     }
     fclose(f);
-    for(int i=0;i<12;i++){
-        int Pos=Inodo.i_block[i];
+    for(long i=0;i<12;i++){
+        long Pos=Inodo.i_block[i];
 
           if(Pos==-1){
             //Crea Bloque Directo Y Se Manda A Crear Carpeta
 
-            int EspacioBloque=BloqueLibre(Super,PathReal);
+            long EspacioBloque=BloqueLibre(Super,PathReal);
 
             if(EspacioBloque==-1){
                 std::cout<<"No Se Pudo Crear El Bloque, Insuficiente Tamanio"<<std::endl;
@@ -221,7 +221,7 @@ int MKFILE_MKDIR::CarpetaArchivoSimpleDirectos(INO *Ino,SPB *Super,int PosPadre,
             fwrite(&Inodo,sizeof (Inodo),1,f);
             fclose(f);
 
-            int Colocacion=0;
+            long Colocacion=0;
             if(IF("",Contenido))
             Colocacion=ColocarCarpeta(NombreCarpeta,EspacioBloque,Super,PathReal);
             else
@@ -233,7 +233,7 @@ int MKFILE_MKDIR::CarpetaArchivoSimpleDirectos(INO *Ino,SPB *Super,int PosPadre,
 
         }else{
             //Como Posicion Es Valida Se Prueba Colocar Carpeta
-            int Valor=-1;
+            long Valor=-1;
             if(IF("",Contenido))
             Valor=ColocarCarpeta(NombreCarpeta,Pos,Super,PathReal);
             else
@@ -248,11 +248,11 @@ int MKFILE_MKDIR::CarpetaArchivoSimpleDirectos(INO *Ino,SPB *Super,int PosPadre,
     }
     return -1;
 }
-int MKFILE_MKDIR::CarpetaArchivoSimpleInDirectos(INO *Ino, SPB *Super, int PosPadre, const char *PathReal,const char *PathVirtual, std::string NombreCarpeta,std::string Contenido){
+long MKFILE_MKDIR::CarpetaArchivoSimpleInDirectos(INO *Ino, SPB *Super, long PosPadre, const char *PathReal,const char *PathVirtual, std::string NombreCarpeta,std::string Contenido){
     INO Inodo=*Ino;
     //Posicion De Un Bloque De Directos Con Alguna Ranura
-    for(int i=0;i<3;i++){
-        int Pos=Inodo.i_block[12+i];      
+    for(long i=0;i<3;i++){
+        long Pos=Inodo.i_block[12+i];      
         if(Pos==-1){
             //Se Crean Los Bloques Indirectos
             Pos=CrearIndirectos(i+1,0,Super,PathReal);
@@ -273,10 +273,10 @@ int MKFILE_MKDIR::CarpetaArchivoSimpleInDirectos(INO *Ino, SPB *Super, int PosPa
         }
 
         //El Indirecto En La Posicion Pos Si Existe
-        int Busqueda=BuscarIndirectos(Super,i+1,0,Pos,PathVirtual,PathReal,2);
+        long Busqueda=BuscarIndirectos(Super,i+1,0,Pos,PathVirtual,PathReal,2);
         if(Busqueda!=-1){
             //Bloque Directo Existente
-            int Valor=-1;
+            long Valor=-1;
             if(IF("",Contenido))
             Valor=ColocarCarpeta(NombreCarpeta,Busqueda,Super,PathReal);
             else
@@ -291,15 +291,15 @@ int MKFILE_MKDIR::CarpetaArchivoSimpleInDirectos(INO *Ino, SPB *Super, int PosPa
     return -1;
 }
 //ColocarCarpetaEnElBloque
-int MKFILE_MKDIR::ColocarCarpeta(std::string NombreCarpeta,int PosDirecto, SPB *Super, const char *PathReal){
+long MKFILE_MKDIR::ColocarCarpeta(std::string NombreCarpeta,long PosDirecto, SPB *Super, const char *PathReal){
     FILE *f;
     f=fopen(PathReal,"r+");
     fseek(f,PosDirecto,SEEK_SET);
     BCA Directo;
     fread(&Directo,sizeof(Directo),1,f);
-    for(int z=0;z<4;z++){
+    for(long z=0;z<4;z++){
 
-        int Pos=Directo.content[z].b_inodo;
+        long Pos=Directo.content[z].b_inodo;
 
         if(Pos==-1){
 
@@ -308,7 +308,7 @@ int MKFILE_MKDIR::ColocarCarpeta(std::string NombreCarpeta,int PosDirecto, SPB *
             Sub=NombreCarpeta.substr(0,12);
             strcpy(Directo.content[z].b_name,Sub.c_str());
             //Inodo Nuevo
-            int Libre = InodoLibre(Super,PathReal);
+            long Libre = InodoLibre(Super,PathReal);
             Directo.content[z].b_inodo=Libre;
 
             //Se Coloca La Carpeta
@@ -331,15 +331,15 @@ int MKFILE_MKDIR::ColocarCarpeta(std::string NombreCarpeta,int PosDirecto, SPB *
     return -1;
 }
 //ColocarArchivo
-int MKFILE_MKDIR::ColocarArchivo(std::string NombreCarpeta, int PosDirecto, SPB *Super, const char *PathReal, std::string Contenido){
+long MKFILE_MKDIR::ColocarArchivo(std::string NombreCarpeta, long PosDirecto, SPB *Super, const char *PathReal, std::string Contenido){
     FILE *f;
     f=fopen(PathReal,"r+");
     fseek(f,PosDirecto,SEEK_SET);
     BCA Directo;
     fread(&Directo,sizeof(Directo),1,f);
-    for(int z=0;z<4;z++){
+    for(long z=0;z<4;z++){
 
-        int Pos=Directo.content[z].b_inodo;
+        long Pos=Directo.content[z].b_inodo;
 
         if(Pos==-1){
 
@@ -348,9 +348,12 @@ int MKFILE_MKDIR::ColocarArchivo(std::string NombreCarpeta, int PosDirecto, SPB 
             Sub=NombreCarpeta.substr(0,12);
             strcpy(Directo.content[z].b_name,Sub.c_str());
             //Inodo Nuevo
-            int Libre = InodoLibre(Super,PathReal);
+            long Libre = InodoLibre(Super,PathReal);
             Directo.content[z].b_inodo=Libre;
-
+            if(Libre==-1){
+                std::cout<<"No Se Pudo Crear Inodos"<<std::endl;
+                return-1;
+             }
             //Se Coloca Archivo
             fseek(f,Libre,SEEK_SET);
             INO Archivo;
@@ -363,7 +366,22 @@ int MKFILE_MKDIR::ColocarArchivo(std::string NombreCarpeta, int PosDirecto, SPB 
             fwrite(&Directo,sizeof (Directo),1,f);
             fclose(f);
 
+
+
+
             std::string Retor=ContenidoArchivoDirectos(&Archivo,Super,Libre,PathReal,Contenido);
+
+
+            FILE *f;
+            INO Inodo1;
+            f=fopen(PathReal,"r+");
+            fseek(f,Libre,SEEK_SET);
+            fread(&Inodo1,sizeof (Inodo),1,f);
+            fclose(f);
+
+
+
+
             if(IF(Retor,"")){
                 return 1;
             }else{

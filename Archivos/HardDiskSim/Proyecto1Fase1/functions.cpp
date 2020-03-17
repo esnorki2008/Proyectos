@@ -22,7 +22,7 @@ void Functions::IniciarInodo(INO *Inodo, int i_uid, int i_gid, int i_size, int P
     Fecha(&Inodo->i_ctime);
     Fecha(&Inodo->i_mtime);
     Inodo->i_block[0]=PrimerBloque;
-    for(int i=1;i<15;i++){
+    for(int i=1;i<16;i++){
         Inodo->i_block[i]=-1;
     }
     Inodo->i_type=Tipo;
