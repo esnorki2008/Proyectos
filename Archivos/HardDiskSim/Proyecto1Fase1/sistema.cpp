@@ -23,38 +23,38 @@ extern int yyparse();
 //FASE 2
 void Sistema::Mkfile(std::string Path, std::string P, std::string Num, std::string Cont){
     std::cout<<"--------------MKFILE---------------"<<std::endl;
-    if(Func->ExisteArchivo(Cont.data())){
-
     std::string Contenido="";
 
-    std::ifstream file(Cont);//Lectura
-    std::string str;
-    while (std::getline(file, str)) {
-          Contenido=Contenido+str;
+    bool RutaVacio=  Func->IF(Cont,"");
+    if(!RutaVacio){
+        bool Valido=Func->ExisteArchivo(Cont.data());
+        if(Valido){
+            std::ifstream file(Cont);//Lectura
+            std::string str;
+            while (std::getline(file, str)) {
+              Contenido=Contenido+str;
+              }
+        }else{
+            std::cout<<"El Archivo En La Ruta       "<<Cont<<"No Existe"<<std::endl;
+        }
     }
 
-    int Limite=std::atoi(Num.data());//Tamaños
-    int Tamanio=Contenido.length();
-    if(Tamanio<1){
-        std::cout<<"El Numero En El Parametro Num Es Menor a 0"<<Cont<<std::endl;
-        return;
-    }
+    if((!Func->IF(Num,"0")) && RutaVacio){
+        Contenido="";
+        int Tamanio=std::atoi(Num.data());//Tamaños
 
-    if(Tamanio>Limite){
-        std::cout<<"El Tamanio Que Se Intenta Ingresar Es Superior Al Limite Especificado, Ruta Del Archivo: "<<Cont<<std::endl;
-        Contenido=Contenido.substr(0,Limite);
-    }
-    else if(Tamanio<Limite){
-        std::cout<<"El Tamanio Que Se Intenta Ingresar Es Inferior Al Limite Especificado, Ruta Del Archivo: "<<Cont<<std::endl;
-        Contenido=Contenido.substr(0,Tamanio);
-    }else{//Tamaño Correcto
-        Contenido=Contenido.substr(0,Tamanio);
-    }
+        if(Tamanio<0){
+            std::cout<<"El Tamanio Especificado Es Negativo  MKFILE RUTA:   "<<Path<<"  Numero  "<<Num<<std::endl;
+            return ;
+        }
 
+        for (int i=0;i<Tamanio;i++) {
+            Contenido=Contenido+"0";
+        }
+    }
+    //std::cout<<Contenido<<std::endl;
     M->MKFILE(Path.data(),P[0],Contenido.data());
-    }else{
-        std::cout<<"El Archivo En La Ruta       "<<Cont<<"No Existe"<<std::endl;
-    }
+
     std::cout<<"-----------------------------------"<<std::endl;
 }
 void Sistema::Mkdir(std::string Path, std::string P){

@@ -339,11 +339,13 @@ std::string FunctionsExt::ContenidoArchivoInDirectos(INO *Ino, SPB *Super, int P
         if(Pos==-1){
             //Se Crean Los Bloques Indirectos
             Pos=CrearIndirectos(i+1,0,Super,PathReal);
-            if(Pos!=-1 && Pos!=0){
+            if(Pos==-1 || Pos==0){
                 //Si No Se Puede Crear Retornar
-                std::cout<<"Cancelando POR NO PODER CREAR INDIRECTO"<<std::endl;
+                std::cout<<"Cancelando Colocacion POR NO PODER CREAR INDIRECTO      "<<Pos <<std::endl;
                 return Contenido;
             }else{
+
+
                 Inodo.i_block[12+i]=Pos;
                 //Escribir Inodo Modificado
                 FILE *f;
@@ -355,11 +357,13 @@ std::string FunctionsExt::ContenidoArchivoInDirectos(INO *Ino, SPB *Super, int P
         }
 
         //El Indirecto En La Posicion Pos Si Existe
-        int Busqueda=BuscarIndirectos(Super,0,0,Pos,PathVirtual,PathReal,2);
+        int Busqueda=BuscarIndirectos(Super,i+1,0,Pos,PathVirtual,PathReal,4);
         if(Busqueda!=-1){
             //Bloque Directo Existente
             std::string  Valor;
             std::string Parametro;
+
+
             Parametro=ReducirTamanio(&Contenido,64*4);
             Valor=ColocarContenidoArchivo(Pos,Super,PathReal,Parametro);
             if(!IF(Valor,"")){
@@ -461,8 +465,29 @@ int FunctionsExt::BuscarInodos(int Comienzo, std::string PathVirtual, const char
 
     return -1;
 }
-int FunctionsExt::BuscarDirectos(int Comienzo, std::string PathVirtual, const char *PathReal,int Tipo){
+int BloqueContenidoArchivo(int Comienzo ,const char *PathReal){
+    FILE *f;
+    f=fopen(PathReal,"r+");
+    BCA Carpeta;
+    fseek(f,Comienzo,SEEK_SET);
+    fread(&Carpeta,sizeof(Carpeta),1,f);
+    fclose(f);
 
+
+    for(int i=0;i<4;i++){
+        CON Conten=Carpeta.content[i];
+        if(Conten.b_inodo==-1){
+            std::cout<<Comienzo<<std::endl;
+            return Comienzo;
+        }
+    }
+
+
+    return -1;
+}
+int FunctionsExt::BuscarDirectos(int Comienzo, std::string PathVirtual, const char *PathReal,int Tipo){
+    if(Tipo==4)//Contenido De Archivos
+        return BloqueContenidoArchivo(Comienzo,PathReal);
 
     FILE *f;
     f=fopen(PathReal,"r+");
@@ -470,6 +495,9 @@ int FunctionsExt::BuscarDirectos(int Comienzo, std::string PathVirtual, const ch
     fseek(f,Comienzo,SEEK_SET);
     fread(&Carpeta,sizeof(Carpeta),1,f);
     fclose(f);
+
+
+
     std::string NombreTotal =PathVirtual.substr(1);
 
     std::string NombreActual=Reducir(&NombreTotal);
@@ -528,6 +556,8 @@ int FunctionsExt::BuscarIndirectos(SPB *Super,int Nivel, int NivelActual, int Co
 
 
     if(Nivel==NivelActual){
+
+
         return BuscarDirectos(Comienzo,PathVirtual,PathReal,Tipo);
     }
     FILE *f;
@@ -551,6 +581,7 @@ int FunctionsExt::BuscarIndirectos(SPB *Super,int Nivel, int NivelActual, int Co
 
 
             Valor=BuscarIndirectos(Super,Nivel,NivelActual+1,Valor,PathVirtual,PathReal,Tipo);
+
             if(Valor==-2){
                 return -2;
             }

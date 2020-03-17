@@ -44,7 +44,7 @@ bool MKFILE_MKDIR::CrearArchivoCompleto(SPB *Super, int Comienzo, const char *Pa
         }
     }
 
-    if(!TienePermiso(PosPadre,PathReal,"010",Permiso)==false){
+    if(!TienePermiso(PosPadre,PathReal,"010",Permiso)){
         std::cout<<"No Se Pudo Crear El Archivo "<<NombreArchivo  <<" La Sesion Actual No Tiene Los Permisos Necesarios Para La Ruta"<<PathReal<<std::endl;
         return false;
     }
@@ -57,7 +57,8 @@ bool MKFILE_MKDIR::CrearArchivoCompleto(SPB *Super, int Comienzo, const char *Pa
     fread(&Inodo,sizeof(Inodo),1,f);
     fclose(f);
 
-    int Num=CarpetaArchivoSimpleDirectos(&Inodo,Super,PosPadre,PathReal,NombreCarpeta,Contenido);
+    int Num;
+    Num=CarpetaArchivoSimpleDirectos(&Inodo,Super,PosPadre,PathReal,NombreCarpeta,Contenido);
     if(Num==-2)
         return false;
 
@@ -366,7 +367,7 @@ int MKFILE_MKDIR::ColocarArchivo(std::string NombreCarpeta, int PosDirecto, SPB 
             if(IF(Retor,"")){
                 return 1;
             }else{
-                std::string Retor=ContenidoArchivoInDirectos(&Archivo,Super,Libre,PathReal,"",Contenido);
+                Retor=ContenidoArchivoInDirectos(&Archivo,Super,Libre,PathReal,"",Retor);
             }
 
             if(IF(Retor,"")){

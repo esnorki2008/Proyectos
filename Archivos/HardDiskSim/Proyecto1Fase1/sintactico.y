@@ -97,8 +97,8 @@ struct STRSPER{
 struct STRSARCH{
 	std::string Path;
 	std::string P="0";
-	std::string Size;
-	std::string Cont;   
+	std::string Size="0";
+	std::string Cont="";   
 };
 struct STRSEDIT{
 	std::string Path;
@@ -328,7 +328,7 @@ RENOMBRAR:RENOMBRAR name igual TERMIIDENTI{$1->Name=$4; $$=$1;}
 ;
 
 EDITARCHIVO:EDITARCHIVO path igual TERMIDIRECC{$1->Path=$4; $$=$1;}
-    |EDITARCHIVO cont igual TERMIMUC{$1->Cont=$4->Concatenar; $$=$1;}
+    |EDITARCHIVO cont igual TERMIDIRECC{$1->Cont=$4->Concatenar; $$=$1;}
     |edit{$$= new STRSEDIT();}
 ;
 
