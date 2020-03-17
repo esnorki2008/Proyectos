@@ -1,6 +1,6 @@
 #include "rmdisk.h"
 
-RMDISK::RMDISK(const char *Path, Disco *PrimerDisco)
+RMDISK::RMDISK(const char *Path)
 {
     this->Fun=new Functions();
     if(Fun->ExisteArchivo(Path)==false){

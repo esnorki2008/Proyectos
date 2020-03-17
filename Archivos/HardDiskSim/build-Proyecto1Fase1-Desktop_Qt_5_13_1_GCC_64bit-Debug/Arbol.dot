@@ -1,0 +1,403 @@
+digraph G { 
+ rankdir=LR node 
+ [shape=plaintext] 
+I3077352 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3077352</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">5812456</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+I3077352:P0->B5812456 [dir=both arrowtail = diamond] 
+B5812456 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="chartreuse4" > Bloque_5812456</TD></TR>
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">users.txt</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo0</TD><TD PORT="P0" BGCOLOR="darkolivegreen1">3077608</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">home</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo1</TD><TD PORT="P1" BGCOLOR="darkolivegreen1">3077864</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">************</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo2</TD><TD PORT="P2" BGCOLOR="darkolivegreen1">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">************</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo3</TD><TD PORT="P3" BGCOLOR="darkolivegreen1">-1</TD>  </TR> 
+</TABLE>>] 
+B5812456:P0->I3077608 [dir=both arrowtail = diamond] 
+B5812456:P1->I3077864 [dir=both arrowtail = diamond] 
+I3077608 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3077608</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">5812520</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+I3077608:P0->B5812520 [dir=both arrowtail = diamond] 
+B5812520 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="chartreuse4" > Bloque_5812520</TD></TR>
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">......</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo0</TD><TD PORT="P0" BGCOLOR="darkolivegreen1">5812584</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">************</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo1</TD><TD PORT="P1" BGCOLOR="darkolivegreen1">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">************</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo2</TD><TD PORT="P2" BGCOLOR="darkolivegreen1">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">************</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo3</TD><TD PORT="P3" BGCOLOR="darkolivegreen1">-1</TD>  </TR> 
+</TABLE>>] 
+B5812520:P0->B5812584 [dir=both arrowtail = diamond] 
+B5812584 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="deeppink3" > Bloque_5812584</TD></TR>
+<TR><TD BGCOLOR="deeppink">Contenido</TD><TD BGCOLOR="floralwhite">1,G,root
+1,U,root,root,123
+</TD>  </TR>
+</TABLE>>] 
+I3077864 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3077864</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">5812648</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">5812712</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">5812776</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+I3077864:P0->B5812648 [dir=both arrowtail = diamond] 
+I3077864:P1->B5812712 [dir=both arrowtail = diamond] 
+I3077864:P2->B5812776 [dir=both arrowtail = diamond] 
+B5812648 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="chartreuse4" > Bloque_5812648</TD></TR>
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">casa1</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo0</TD><TD PORT="P0" BGCOLOR="darkolivegreen1">3078120</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">casa2</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo1</TD><TD PORT="P1" BGCOLOR="darkolivegreen1">3078376</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">casa3</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo2</TD><TD PORT="P2" BGCOLOR="darkolivegreen1">3078632</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">casa4</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo3</TD><TD PORT="P3" BGCOLOR="darkolivegreen1">3078888</TD>  </TR> 
+</TABLE>>] 
+B5812648:P0->I3078120 [dir=both arrowtail = diamond] 
+B5812648:P1->I3078376 [dir=both arrowtail = diamond] 
+B5812648:P2->I3078632 [dir=both arrowtail = diamond] 
+B5812648:P3->I3078888 [dir=both arrowtail = diamond] 
+I3078120 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3078120</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+I3078376 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3078376</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+I3078632 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3078632</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+I3078888 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3078888</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+B5812712 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="chartreuse4" > Bloque_5812712</TD></TR>
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">casa5</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo0</TD><TD PORT="P0" BGCOLOR="darkolivegreen1">3079144</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">casa6</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo1</TD><TD PORT="P1" BGCOLOR="darkolivegreen1">3079400</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">casa7</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo2</TD><TD PORT="P2" BGCOLOR="darkolivegreen1">3079656</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">casa8</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo3</TD><TD PORT="P3" BGCOLOR="darkolivegreen1">3079912</TD>  </TR> 
+</TABLE>>] 
+B5812712:P0->I3079144 [dir=both arrowtail = diamond] 
+B5812712:P1->I3079400 [dir=both arrowtail = diamond] 
+B5812712:P2->I3079656 [dir=both arrowtail = diamond] 
+B5812712:P3->I3079912 [dir=both arrowtail = diamond] 
+I3079144 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3079144</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+I3079400 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3079400</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+I3079656 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3079656</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+I3079912 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3079912</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+B5812776 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="chartreuse4" > Bloque_5812776</TD></TR>
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">casa9</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo0</TD><TD PORT="P0" BGCOLOR="darkolivegreen1">3080168</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">casa10</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo1</TD><TD PORT="P1" BGCOLOR="darkolivegreen1">3080424</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">************</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo2</TD><TD PORT="P2" BGCOLOR="darkolivegreen1">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkseagreen3">b_name</TD><TD BGCOLOR="darkolivegreen1">************</TD>  </TR>
+<TR><TD  BGCOLOR="darkseagreen3">b_inodo3</TD><TD PORT="P3" BGCOLOR="darkolivegreen1">-1</TD>  </TR> 
+</TABLE>>] 
+B5812776:P0->I3080168 [dir=both arrowtail = diamond] 
+B5812776:P1->I3080424 [dir=both arrowtail = diamond] 
+I3080168 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3080168</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+I3080424 [ label=< <TABLE BGCOLOR="white"><TR><TD COLSPAN="2" BGCOLOR="darkturquoise" > Inodo_3080424</TD></TR>
+<TR><TD BGCOLOR="darkslategray1">i_uid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_gid</TD><TD BGCOLOR="deepskyblue4">1</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_size</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_atime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_ctime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_mtime</TD><TD BGCOLOR="deepskyblue4">16/3/2020  18:41/51</TD>  </TR>
+<TR><TD  BGCOLOR="darkslategray1">i_block0</TD><TD PORT="P0" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block1</TD><TD PORT="P1" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block2</TD><TD PORT="P2" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block3</TD><TD PORT="P3" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block4</TD><TD PORT="P4" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block5</TD><TD PORT="P5" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block6</TD><TD PORT="P6" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block7</TD><TD PORT="P7" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block8</TD><TD PORT="P8" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block9</TD><TD PORT="P9" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block10</TD><TD PORT="P10" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block11</TD><TD PORT="P11" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block12</TD><TD PORT="P12" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block13</TD><TD PORT="P13" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD  BGCOLOR="darkslategray1">i_block14</TD><TD PORT="P14" BGCOLOR="deepskyblue4">-1</TD>  </TR> 
+<TR><TD BGCOLOR="darkslategray1">i_type</TD><TD BGCOLOR="deepskyblue4">0</TD>  </TR>
+<TR><TD BGCOLOR="darkslategray1">i_perm</TD><TD BGCOLOR="deepskyblue4">2110110010</TD>  </TR>
+</TABLE>>] 
+
+} 

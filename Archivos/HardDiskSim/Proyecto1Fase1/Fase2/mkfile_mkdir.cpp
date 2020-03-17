@@ -64,7 +64,7 @@ bool MKFILE_MKDIR::CrearArchivoCompleto(SPB *Super, int Comienzo, const char *Pa
     if(Num==1)
         return true;
 
-    if(CarpetaArchivoSimpleInDirectos(&Inodo,Super,PosPadre,PathReal,PathVirtual,NombreCarpeta,Contenido))
+    if(CarpetaArchivoSimpleInDirectos(&Inodo,Super,PosPadre,PathReal,PathVirtual,NombreCarpeta,Contenido)!=-1)
         return true;
 
     return false;
@@ -162,7 +162,7 @@ bool MKFILE_MKDIR::CrearCarpetaCompleto(SPB *Super,int Comienzo, const char *Pat
         }else{
         Escritura=Escritura+"/"+token;
                 if(BuscarActual(Comienzo,Escritura.data(),PathReal)==-1){
-
+                    std::cout<<"Creando Carpeta "<<Escritura.data()<<std::endl;
                     CrearCarpetaSimple(Super,Comienzo,Escritura.data(),PathReal);
                 }
         }
@@ -276,10 +276,10 @@ int MKFILE_MKDIR::CarpetaArchivoSimpleInDirectos(INO *Ino, SPB *Super, int PosPa
             //Bloque Directo Existente
             int Valor=-1;
             if(IF("",Contenido))
-            Valor=ColocarCarpeta(NombreCarpeta,Pos,Super,PathReal);
+            Valor=ColocarCarpeta(NombreCarpeta,Busqueda,Super,PathReal);
             else
-            Valor=ColocarArchivo(NombreCarpeta,Pos,Super,PathReal,Contenido);
-            if(Valor!=-1){
+            Valor=ColocarArchivo(NombreCarpeta,Busqueda,Super,PathReal,Contenido);
+            if(Valor!=-1 && Valor!=-2){
                 //Se Creo La Carpeta
                 return 1;
             }

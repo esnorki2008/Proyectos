@@ -77,7 +77,7 @@ int FunctionsExt::BloqueLibre(SPB *Super, const char *Path){
 
 }
 int FunctionsExt::BloqueLibreConte(SPB *Super, const char *Path){
-    if(ValPrimeraPos==-1){
+    /*if(ValPrimeraPos==-1){
         int Retorno=DarPrimeraPos(Super,Path);
         //Poner Primera Posicion
         ValPrimeraPos=Retorno;
@@ -90,7 +90,8 @@ int FunctionsExt::BloqueLibreConte(SPB *Super, const char *Path){
         return Retorno;
     }
     ValTamanio++;
-    return ValPrimeraPos+(ValTamanio)*(int(sizeof (BAR)));
+    return ValPrimeraPos+(ValTamanio)*(int(sizeof (BAR)));*/
+    return BloqueLibre(Super,Path);
 }
 int FunctionsExt::DarPrimeraPos(SPB *Super, const char *Path){
     int Out=-1;
@@ -714,9 +715,10 @@ int FunctionsExt::CrearIndirectos(int Nivel, int NivelActual, SPB *Super, const 
         return 0;
 
     int PosicionPadre=BloqueLibre(Super,PathReal);
-    if(PosicionPadre==-1)
+    if(PosicionPadre==-1){
+        std::cout<<"No Se Puedo Encontrar Un Bloque Libre"<<std::endl;
         return -1;
-
+    }
     BAP Apuntador;
     for(int i=0;i<16;i++){
          Apuntador.b_pointers[i]=-1;

@@ -33,6 +33,9 @@ int main()
         std::cout<<"Ingrese El Comando , Escriba Salir O Limpiar "<<std::endl;
         char Exec[1000];
         std::cin.getline(Exec,1000);
+
+
+
         if(Fu->IF("salir",Exec)){
             std::cout<<"Saliendo Del Programa"<<std::endl;
             return 1;

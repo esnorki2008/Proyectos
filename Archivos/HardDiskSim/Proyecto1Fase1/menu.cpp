@@ -517,7 +517,7 @@ void Menu::MOUNT(const char *Path,const char *Name){
 
 //REMOVE DISK
 void Menu::Rmdisk(const char *Path){
-    new RMDISK(Path,this->PrimerDisco);
+    new RMDISK(Path);
 
 }
 //FDISKADD

@@ -10,7 +10,7 @@
 class RMDISK
 {
 public:
-    RMDISK(const char *Path, Disco *PrimerDisco);
+    RMDISK(const char *Path);
 private:
     Disco *PrimerDisco;
     bool DisponibleBorrarDisco(const char *Path);

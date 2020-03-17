@@ -21,6 +21,16 @@
 extern int yyrestart( FILE* archivo);//METODO QUE PASA EL ARCHIVO A FLEX
 extern int yyparse();
 //FASE 2
+void Sistema::Mkdir(std::string Path, std::string P){
+    std::cout<<"--------------MKDIR---------------"<<std::endl;
+    M->MKDIR(Path.data(),P[0]);
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+void Sistema::Login(std::string Usr, std::string Pwd, std::string Id){
+    std::cout<<"--------------Login---------------"<<std::endl;
+    M->LOGIN(Usr.data(),Pwd.data(),Id.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+}
 void Sistema::Mkfs(std::string Ejecutar, std::string Type,bool Tipo){
     std::cout<<"--------------MKFS---------------"<<std::endl;
     if(Tipo)
@@ -80,22 +90,34 @@ void Sistema::Ejecutar(std::string  Ejecutar){
         return;
     }else{
 
-          std::ofstream Archivo("exec.txt");
-          FILE* input = fopen("exec.txt", "r" );
 
+        FILE* input = fopen(Ejecutar.data(), "r" );
+        yyrestart(input);//SE PASA LA CADENA DE ENTRADA A FLEX
+        yyparse();//SE INICIA LA COMPILACION
+        fclose(input);
 
+/*
           std::ifstream file(Ejecutar);
           std::string str;
+          Functions *F = new Functions();
           while (std::getline(file, str)) {
-            Archivo <<str;
+            if(!F->IF("",str)){
+                std::ofstream Archivo("exec.txt");
+                Archivo <<str;
+                Archivo.close();
+                std::cout<<"Ejecutando "<<std::endl<<std::endl;
+                std::cout<<std::endl<<"{"<<str<<"}"<<std::endl;
+                FILE* input = fopen("exec.txt", "r+" );
+                //input = fopen("exec.txt", "r" );
+                yyrestart(input);//SE PASA LA CADENA DE ENTRADA A FLEX
+                yyparse();//SE INICIA LA COMPILACION
+                fclose(input);
+            }
+          }*/
 
-            yyrestart(input);//SE PASA LA CADENA DE ENTRADA A FLEX
-            yyparse();//SE INICIA LA COMPILACION
 
-            Archivo.clear();
-          }
-        fclose(input);
-        Archivo.close();
+
+
     }
     std::cout<<"-----------------------------------"<<std::endl;
 }

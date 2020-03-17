@@ -6,7 +6,9 @@ class Sistema
 {
 public:
     //FASE 2
+    void Login(std::string Usr,std::string Pwd,std::string Id);
     void Mkfs(std::string Ejecutar,std::string Type,bool Tipo);
+    void Mkdir(std::string Path,std::string P);
     //FASE 1
     void Ejecutar(std::string Ejecutar);
     void CrearDirectorio(std::string Conte);

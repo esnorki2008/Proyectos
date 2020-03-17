@@ -57,10 +57,20 @@ SOURCES       = ../Proyecto1Fase1/Fase1/fdisk.cpp \
 		../Proyecto1Fase1/Fase1/fdiskdelete.cpp \
 		../Proyecto1Fase1/Fase1/mkdisk.cpp \
 		../Proyecto1Fase1/Fase1/rmdisk.cpp \
+		../Proyecto1Fase1/Fase2/cat.cpp \
+		../Proyecto1Fase1/Fase2/chmod_chown.cpp \
+		../Proyecto1Fase1/Fase2/cp.cpp \
+		../Proyecto1Fase1/Fase2/edit.cpp \
+		../Proyecto1Fase1/Fase2/find.cpp \
+		../Proyecto1Fase1/Fase2/mkfile_mkdir.cpp \
 		../Proyecto1Fase1/Fase2/mkfs.cpp \
+		../Proyecto1Fase1/Fase2/mv.cpp \
+		../Proyecto1Fase1/Fase2/rem.cpp \
+		../Proyecto1Fase1/Fase2/ren.cpp \
 		../Proyecto1Fase1/disco.cpp \
 		../Proyecto1Fase1/ext.cpp \
 		../Proyecto1Fase1/functions.cpp \
+		../Proyecto1Fase1/functionsext.cpp \
 		../Proyecto1Fase1/main.cpp \
 		../Proyecto1Fase1/menu.cpp \
 		../Proyecto1Fase1/operacionusuario.cpp \
@@ -74,10 +84,20 @@ OBJECTS       = fdisk.o \
 		fdiskdelete.o \
 		mkdisk.o \
 		rmdisk.o \
+		cat.o \
+		chmod_chown.o \
+		cp.o \
+		edit.o \
+		find.o \
+		mkfile_mkdir.o \
 		mkfs.o \
+		mv.o \
+		rem.o \
+		ren.o \
 		disco.o \
 		ext.o \
 		functions.o \
+		functionsext.o \
 		main.o \
 		menu.o \
 		operacionusuario.o \
@@ -241,7 +261,6 @@ DIST          = ../Proyecto1Fase1/Fase1/Dummy \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/qt_config.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/spec_post.prf \
-		../Proyecto1Fase1/.qmake.stash \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/toolchain.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -264,10 +283,20 @@ DIST          = ../Proyecto1Fase1/Fase1/Dummy \
 		../Proyecto1Fase1/Fase1/fdiskdelete.h \
 		../Proyecto1Fase1/Fase1/mkdisk.h \
 		../Proyecto1Fase1/Fase1/rmdisk.h \
+		../Proyecto1Fase1/Fase2/cat.h \
+		../Proyecto1Fase1/Fase2/chmod_chown.h \
+		../Proyecto1Fase1/Fase2/cp.h \
+		../Proyecto1Fase1/Fase2/edit.h \
+		../Proyecto1Fase1/Fase2/find.h \
+		../Proyecto1Fase1/Fase2/mkfile_mkdir.h \
 		../Proyecto1Fase1/Fase2/mkfs.h \
+		../Proyecto1Fase1/Fase2/mv.h \
+		../Proyecto1Fase1/Fase2/rem.h \
+		../Proyecto1Fase1/Fase2/ren.h \
 		../Proyecto1Fase1/disco.h \
 		../Proyecto1Fase1/ext.h \
 		../Proyecto1Fase1/functions.h \
+		../Proyecto1Fase1/functionsext.h \
 		../Proyecto1Fase1/menu.h \
 		../Proyecto1Fase1/operacionusuario.h \
 		../Proyecto1Fase1/parser.h \
@@ -281,10 +310,20 @@ DIST          = ../Proyecto1Fase1/Fase1/Dummy \
 		../Proyecto1Fase1/Fase1/fdiskdelete.cpp \
 		../Proyecto1Fase1/Fase1/mkdisk.cpp \
 		../Proyecto1Fase1/Fase1/rmdisk.cpp \
+		../Proyecto1Fase1/Fase2/cat.cpp \
+		../Proyecto1Fase1/Fase2/chmod_chown.cpp \
+		../Proyecto1Fase1/Fase2/cp.cpp \
+		../Proyecto1Fase1/Fase2/edit.cpp \
+		../Proyecto1Fase1/Fase2/find.cpp \
+		../Proyecto1Fase1/Fase2/mkfile_mkdir.cpp \
 		../Proyecto1Fase1/Fase2/mkfs.cpp \
+		../Proyecto1Fase1/Fase2/mv.cpp \
+		../Proyecto1Fase1/Fase2/rem.cpp \
+		../Proyecto1Fase1/Fase2/ren.cpp \
 		../Proyecto1Fase1/disco.cpp \
 		../Proyecto1Fase1/ext.cpp \
 		../Proyecto1Fase1/functions.cpp \
+		../Proyecto1Fase1/functionsext.cpp \
 		../Proyecto1Fase1/main.cpp \
 		../Proyecto1Fase1/menu.cpp \
 		../Proyecto1Fase1/operacionusuario.cpp \
@@ -458,7 +497,6 @@ Makefile: ../Proyecto1Fase1/Proyecto1Fase1.pro /home/pc/Qt/5.13.1/gcc_64/mkspecs
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/qt_config.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/toolchain.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -632,7 +670,6 @@ Makefile: ../Proyecto1Fase1/Proyecto1Fase1.pro /home/pc/Qt/5.13.1/gcc_64/mkspecs
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/qt_config.prf:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/toolchain.prf:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/default_pre.prf:
@@ -666,8 +703,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Proyecto1Fase1/Fase1/fdisk.h ../Proyecto1Fase1/Fase1/fdiskadd.h ../Proyecto1Fase1/Fase1/fdiskdelete.h ../Proyecto1Fase1/Fase1/mkdisk.h ../Proyecto1Fase1/Fase1/rmdisk.h ../Proyecto1Fase1/Fase2/mkfs.h ../Proyecto1Fase1/disco.h ../Proyecto1Fase1/ext.h ../Proyecto1Fase1/functions.h ../Proyecto1Fase1/menu.h ../Proyecto1Fase1/operacionusuario.h ../Proyecto1Fase1/parser.h ../Proyecto1Fase1/recuperacion.h ../Proyecto1Fase1/reports.h ../Proyecto1Fase1/scanner.h ../Proyecto1Fase1/sistema.h ../Proyecto1Fase1/structs.h ../Proyecto1Fase1/structsext.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Proyecto1Fase1/Fase1/fdisk.cpp ../Proyecto1Fase1/Fase1/fdiskadd.cpp ../Proyecto1Fase1/Fase1/fdiskdelete.cpp ../Proyecto1Fase1/Fase1/mkdisk.cpp ../Proyecto1Fase1/Fase1/rmdisk.cpp ../Proyecto1Fase1/Fase2/mkfs.cpp ../Proyecto1Fase1/disco.cpp ../Proyecto1Fase1/ext.cpp ../Proyecto1Fase1/functions.cpp ../Proyecto1Fase1/main.cpp ../Proyecto1Fase1/menu.cpp ../Proyecto1Fase1/operacionusuario.cpp ../Proyecto1Fase1/parser.cpp ../Proyecto1Fase1/recuperacion.cpp ../Proyecto1Fase1/reports.cpp ../Proyecto1Fase1/scanner.cpp ../Proyecto1Fase1/sistema.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Proyecto1Fase1/Fase1/fdisk.h ../Proyecto1Fase1/Fase1/fdiskadd.h ../Proyecto1Fase1/Fase1/fdiskdelete.h ../Proyecto1Fase1/Fase1/mkdisk.h ../Proyecto1Fase1/Fase1/rmdisk.h ../Proyecto1Fase1/Fase2/cat.h ../Proyecto1Fase1/Fase2/chmod_chown.h ../Proyecto1Fase1/Fase2/cp.h ../Proyecto1Fase1/Fase2/edit.h ../Proyecto1Fase1/Fase2/find.h ../Proyecto1Fase1/Fase2/mkfile_mkdir.h ../Proyecto1Fase1/Fase2/mkfs.h ../Proyecto1Fase1/Fase2/mv.h ../Proyecto1Fase1/Fase2/rem.h ../Proyecto1Fase1/Fase2/ren.h ../Proyecto1Fase1/disco.h ../Proyecto1Fase1/ext.h ../Proyecto1Fase1/functions.h ../Proyecto1Fase1/functionsext.h ../Proyecto1Fase1/menu.h ../Proyecto1Fase1/operacionusuario.h ../Proyecto1Fase1/parser.h ../Proyecto1Fase1/recuperacion.h ../Proyecto1Fase1/reports.h ../Proyecto1Fase1/scanner.h ../Proyecto1Fase1/sistema.h ../Proyecto1Fase1/structs.h ../Proyecto1Fase1/structsext.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Proyecto1Fase1/Fase1/fdisk.cpp ../Proyecto1Fase1/Fase1/fdiskadd.cpp ../Proyecto1Fase1/Fase1/fdiskdelete.cpp ../Proyecto1Fase1/Fase1/mkdisk.cpp ../Proyecto1Fase1/Fase1/rmdisk.cpp ../Proyecto1Fase1/Fase2/cat.cpp ../Proyecto1Fase1/Fase2/chmod_chown.cpp ../Proyecto1Fase1/Fase2/cp.cpp ../Proyecto1Fase1/Fase2/edit.cpp ../Proyecto1Fase1/Fase2/find.cpp ../Proyecto1Fase1/Fase2/mkfile_mkdir.cpp ../Proyecto1Fase1/Fase2/mkfs.cpp ../Proyecto1Fase1/Fase2/mv.cpp ../Proyecto1Fase1/Fase2/rem.cpp ../Proyecto1Fase1/Fase2/ren.cpp ../Proyecto1Fase1/disco.cpp ../Proyecto1Fase1/ext.cpp ../Proyecto1Fase1/functions.cpp ../Proyecto1Fase1/functionsext.cpp ../Proyecto1Fase1/main.cpp ../Proyecto1Fase1/menu.cpp ../Proyecto1Fase1/operacionusuario.cpp ../Proyecto1Fase1/parser.cpp ../Proyecto1Fase1/recuperacion.cpp ../Proyecto1Fase1/reports.cpp ../Proyecto1Fase1/scanner.cpp ../Proyecto1Fase1/sistema.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -1069,8 +1106,719 @@ rmdisk.o: ../Proyecto1Fase1/Fase1/rmdisk.cpp ../Proyecto1Fase1/Fase1/rmdisk.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QList
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rmdisk.o ../Proyecto1Fase1/Fase1/rmdisk.cpp
 
-mkfs.o: ../Proyecto1Fase1/Fase2/mkfs.cpp ../Proyecto1Fase1/Fase2/mkfs.h
+cat.o: ../Proyecto1Fase1/Fase2/cat.cpp ../Proyecto1Fase1/Fase2/cat.h \
+		../Proyecto1Fase1/functionsext.h \
+		../Proyecto1Fase1/functions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QDebug \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qdebug.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobal.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlogging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qflags.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmutex.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhash.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qchar.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiterator.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstring.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringliteral.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringview.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpair.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvector.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpoint.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qregexp.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlocale.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvariant.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qset.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/structsext.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cat.o ../Proyecto1Fase1/Fase2/cat.cpp
+
+chmod_chown.o: ../Proyecto1Fase1/Fase2/chmod_chown.cpp ../Proyecto1Fase1/Fase2/chmod_chown.h \
+		../Proyecto1Fase1/functionsext.h \
+		../Proyecto1Fase1/functions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QDebug \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qdebug.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobal.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlogging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qflags.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmutex.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhash.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qchar.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiterator.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstring.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringliteral.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringview.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpair.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvector.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpoint.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qregexp.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlocale.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvariant.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qset.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/structsext.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o chmod_chown.o ../Proyecto1Fase1/Fase2/chmod_chown.cpp
+
+cp.o: ../Proyecto1Fase1/Fase2/cp.cpp ../Proyecto1Fase1/Fase2/cp.h \
+		../Proyecto1Fase1/structsext.h \
+		../Proyecto1Fase1/structs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QDebug \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qdebug.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobal.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlogging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qflags.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmutex.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhash.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qchar.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiterator.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstring.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringliteral.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringview.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpair.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvector.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpoint.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qregexp.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlocale.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvariant.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qset.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Proyecto1Fase1/functionsext.h \
+		../Proyecto1Fase1/functions.h \
+		../Proyecto1Fase1/Fase2/mkfile_mkdir.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cp.o ../Proyecto1Fase1/Fase2/cp.cpp
+
+edit.o: ../Proyecto1Fase1/Fase2/edit.cpp ../Proyecto1Fase1/Fase2/edit.h \
+		../Proyecto1Fase1/functionsext.h \
+		../Proyecto1Fase1/functions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QDebug \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qdebug.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobal.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlogging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qflags.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmutex.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhash.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qchar.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiterator.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstring.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringliteral.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringview.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpair.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvector.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpoint.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qregexp.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlocale.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvariant.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qset.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/structsext.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o edit.o ../Proyecto1Fase1/Fase2/edit.cpp
+
+find.o: ../Proyecto1Fase1/Fase2/find.cpp ../Proyecto1Fase1/Fase2/find.h \
+		../Proyecto1Fase1/structsext.h \
+		../Proyecto1Fase1/structs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QDebug \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qdebug.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobal.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlogging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qflags.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmutex.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhash.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qchar.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiterator.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstring.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringliteral.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringview.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpair.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvector.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpoint.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qregexp.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlocale.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvariant.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qset.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Proyecto1Fase1/functionsext.h \
+		../Proyecto1Fase1/functions.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o find.o ../Proyecto1Fase1/Fase2/find.cpp
+
+mkfile_mkdir.o: ../Proyecto1Fase1/Fase2/mkfile_mkdir.cpp ../Proyecto1Fase1/Fase2/mkfile_mkdir.h \
+		../Proyecto1Fase1/structsext.h \
+		../Proyecto1Fase1/structs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QDebug \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qdebug.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobal.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlogging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qflags.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmutex.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhash.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qchar.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiterator.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstring.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringliteral.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringview.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpair.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvector.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpoint.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qregexp.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlocale.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvariant.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qset.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Proyecto1Fase1/functionsext.h \
+		../Proyecto1Fase1/functions.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mkfile_mkdir.o ../Proyecto1Fase1/Fase2/mkfile_mkdir.cpp
+
+mkfs.o: ../Proyecto1Fase1/Fase2/mkfs.cpp ../Proyecto1Fase1/Fase2/mkfs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QDebug \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qdebug.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobal.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlogging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qflags.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmutex.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhash.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qchar.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiterator.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstring.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringliteral.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringview.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpair.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvector.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpoint.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qregexp.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlocale.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvariant.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qset.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Proyecto1Fase1/structsext.h \
+		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/functionsext.h \
+		../Proyecto1Fase1/functions.h \
+		../Proyecto1Fase1/Fase2/mkfile_mkdir.h \
+		../Proyecto1Fase1/recuperacion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mkfs.o ../Proyecto1Fase1/Fase2/mkfs.cpp
+
+mv.o: ../Proyecto1Fase1/Fase2/mv.cpp ../Proyecto1Fase1/Fase2/mv.h \
+		../Proyecto1Fase1/functionsext.h \
+		../Proyecto1Fase1/functions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QDebug \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qdebug.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobal.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlogging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qflags.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmutex.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhash.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qchar.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiterator.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstring.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringliteral.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringview.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpair.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvector.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpoint.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qregexp.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlocale.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvariant.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qset.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/structsext.h \
+		../Proyecto1Fase1/Fase2/mkfile_mkdir.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mv.o ../Proyecto1Fase1/Fase2/mv.cpp
+
+rem.o: ../Proyecto1Fase1/Fase2/rem.cpp ../Proyecto1Fase1/Fase2/rem.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QDebug \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qdebug.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobal.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlogging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qflags.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmutex.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhash.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qchar.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiterator.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstring.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringliteral.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringview.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpair.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvector.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpoint.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qregexp.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlocale.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvariant.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qset.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Proyecto1Fase1/structsext.h \
+		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/functionsext.h \
+		../Proyecto1Fase1/functions.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rem.o ../Proyecto1Fase1/Fase2/rem.cpp
+
+ren.o: ../Proyecto1Fase1/Fase2/ren.cpp ../Proyecto1Fase1/Fase2/ren.h \
+		../Proyecto1Fase1/functionsext.h \
+		../Proyecto1Fase1/functions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QDebug \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qdebug.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobal.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlogging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qflags.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmutex.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhash.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qchar.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiterator.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstring.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringliteral.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringview.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpair.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvector.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpoint.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qregexp.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlocale.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvariant.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qset.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/structsext.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ren.o ../Proyecto1Fase1/Fase2/ren.cpp
 
 disco.o: ../Proyecto1Fase1/disco.cpp ../Proyecto1Fase1/disco.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QList \
@@ -1143,7 +1891,18 @@ disco.o: ../Proyecto1Fase1/disco.cpp ../Proyecto1Fase1/disco.h \
 		../Proyecto1Fase1/functions.h \
 		../Proyecto1Fase1/reports.h \
 		../Proyecto1Fase1/ext.h \
-		../Proyecto1Fase1/recuperacion.h
+		../Proyecto1Fase1/recuperacion.h \
+		../Proyecto1Fase1/Fase2/cat.h \
+		../Proyecto1Fase1/functionsext.h \
+		../Proyecto1Fase1/Fase2/chmod_chown.h \
+		../Proyecto1Fase1/Fase2/cp.h \
+		../Proyecto1Fase1/Fase2/edit.h \
+		../Proyecto1Fase1/Fase2/find.h \
+		../Proyecto1Fase1/Fase2/mkfile_mkdir.h \
+		../Proyecto1Fase1/Fase2/mkfs.h \
+		../Proyecto1Fase1/Fase2/mv.h \
+		../Proyecto1Fase1/Fase2/rem.h \
+		../Proyecto1Fase1/Fase2/ren.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o disco.o ../Proyecto1Fase1/disco.cpp
 
 ext.o: ../Proyecto1Fase1/ext.cpp ../Proyecto1Fase1/ext.h \
@@ -1282,8 +2041,80 @@ functions.o: ../Proyecto1Fase1/functions.cpp ../Proyecto1Fase1/functions.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontiguouscache.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
-		../Proyecto1Fase1/structs.h
+		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/structsext.h \
+		../Proyecto1Fase1/functionsext.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o functions.o ../Proyecto1Fase1/functions.cpp
+
+functionsext.o: ../Proyecto1Fase1/functionsext.cpp ../Proyecto1Fase1/functionsext.h \
+		../Proyecto1Fase1/functions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QDebug \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qdebug.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobal.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qconfig.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlogging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qflags.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmutex.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhash.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qchar.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiterator.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstring.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringliteral.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringview.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpair.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvector.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qpoint.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qregexp.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmap.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qlocale.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qvariant.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qset.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/structsext.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o functionsext.o ../Proyecto1Fase1/functionsext.cpp
 
 main.o: ../Proyecto1Fase1/main.cpp /home/pc/Qt/5.13.1/gcc_64/include/QtCore/QCoreApplication \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1355,11 +2186,11 @@ main.o: ../Proyecto1Fase1/main.cpp /home/pc/Qt/5.13.1/gcc_64/include/QtCore/QCor
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
 		../Proyecto1Fase1/functions.h \
 		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/structsext.h \
 		../Proyecto1Fase1/reports.h \
 		../Proyecto1Fase1/operacionusuario.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QList \
 		../Proyecto1Fase1/disco.h \
-		../Proyecto1Fase1/structsext.h \
 		../Proyecto1Fase1/Fase1/mkdisk.h \
 		../Proyecto1Fase1/Fase1/fdiskadd.h \
 		../Proyecto1Fase1/Fase1/fdiskdelete.h \
@@ -1436,11 +2267,11 @@ menu.o: ../Proyecto1Fase1/menu.cpp ../Proyecto1Fase1/menu.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
 		../Proyecto1Fase1/functions.h \
 		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/structsext.h \
 		../Proyecto1Fase1/reports.h \
 		../Proyecto1Fase1/operacionusuario.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QList \
 		../Proyecto1Fase1/disco.h \
-		../Proyecto1Fase1/structsext.h \
 		../Proyecto1Fase1/Fase1/mkdisk.h \
 		../Proyecto1Fase1/Fase1/fdiskadd.h \
 		../Proyecto1Fase1/Fase1/fdiskdelete.h \
@@ -1516,6 +2347,7 @@ operacionusuario.o: ../Proyecto1Fase1/operacionusuario.cpp ../Proyecto1Fase1/ope
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
 		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/structsext.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QList
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o operacionusuario.o ../Proyecto1Fase1/operacionusuario.cpp
 
@@ -1589,11 +2421,11 @@ parser.o: ../Proyecto1Fase1/parser.cpp ../Proyecto1Fase1/scanner.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
 		../Proyecto1Fase1/functions.h \
 		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/structsext.h \
 		../Proyecto1Fase1/reports.h \
 		../Proyecto1Fase1/operacionusuario.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QList \
 		../Proyecto1Fase1/disco.h \
-		../Proyecto1Fase1/structsext.h \
 		../Proyecto1Fase1/Fase1/mkdisk.h \
 		../Proyecto1Fase1/Fase1/fdiskadd.h \
 		../Proyecto1Fase1/Fase1/fdiskdelete.h \
@@ -1844,11 +2676,11 @@ sistema.o: ../Proyecto1Fase1/sistema.cpp ../Proyecto1Fase1/sistema.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
 		../Proyecto1Fase1/functions.h \
 		../Proyecto1Fase1/structs.h \
+		../Proyecto1Fase1/structsext.h \
 		../Proyecto1Fase1/reports.h \
 		../Proyecto1Fase1/operacionusuario.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/QList \
 		../Proyecto1Fase1/disco.h \
-		../Proyecto1Fase1/structsext.h \
 		../Proyecto1Fase1/Fase1/mkdisk.h \
 		../Proyecto1Fase1/Fase1/fdiskadd.h \
 		../Proyecto1Fase1/Fase1/fdiskdelete.h \

@@ -172,6 +172,7 @@ void Reports::ReporteArbol(int Inicio, const char *Disco, const char *Path){
 
     std::string CMD="dot -Tpng Arbol.dot -o ";
     CMD = CMD+Path;
+    std::cout<<CMD<<std::endl;
     const char *command = CMD.data();
     system(command);
 }

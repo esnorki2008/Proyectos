@@ -5,10 +5,11 @@
 #include <iostream>
 #include <QString>
 int columna=0;
+
 int anterior=0;
 int salto=1;
 %}
-direccion \/({identificador}\/)*{identificador}\.(disk|png|pdf|sh|txt|jpg|jpeg)
+direccion \/({identificador}\/)*{identificador}(\.(disk|png|pdf|sh|txt|jpg|jpeg))?
 comentario  #[^\r\n]*[^\r\n]
 identificador ({letra}|"_")({letra}|{numero}|"_")*
 letra [a-zñA-ZÑ]
@@ -69,8 +70,8 @@ recovery recovery
 loss loss
 
 %%
-{salto} {columna=0;salto=salto+1;}
-{comentario}  {    }
+{salto} {yylineno=yylineno+1; columna=0;}
+{comentario}  {  }
 
 {fs}          {  columna=columna+ anterior;  anterior = strlen(yytext);strcpy(yylval.TEXT, yytext); return fs;}
 {usr}          {  columna=columna+ anterior;  anterior = strlen(yytext);strcpy(yylval.TEXT, yytext); return usr;}
@@ -131,6 +132,6 @@ loss loss
 {cadena}          {   columna=columna+ anterior;  anterior = strlen(yytext);strcpy(yylval.TEXT, yytext); return cadena;}
 {identificador}          {   columna=columna+ anterior;  anterior = strlen(yytext);strcpy(yylval.TEXT, yytext); return identificador;}
 
-[[:blank:]]     { /*Se ignoran*/ }
-.               {std::cout <<yytext<<"Error Lexico "<<salto <<"  "<<columna<<std::endl;}
+[[:blank:]]     { /*Se ignoran*/ columna++;}
+.               {/*std::cout <<yytext<<"Error Lexico ?"<<salto <<"?  "<<columna<<std::endl;*/}
 %%

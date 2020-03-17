@@ -21,11 +21,9 @@ std::string toString(const char *TEXT){
 int yyerror(const char* mens){
 //metodo que se llama al haber un error sintactico
 //SE IMPRIME EN CONSOLA EL ERROR
-std::string Confirmar;
-std::cout<<" Se Encontro Un Error En La Linea Superior Escriba Para Confirmar"<<std::endl;
-std::cin>>Confirmar;
 
-std::cout <<mens<<" "<<yytext<< std::endl;
+
+std::cout <<mens<<" antes de comenzar el token: "<<yytext<<std::endl<<"Linea "<<yylineno<<"    Columna "<<columna<<"    "<<  std::endl;
 return 0;
 }
 
@@ -75,7 +73,7 @@ struct STRREPORTE{
 	std::string Id;
 	bool BId=false;		
 };
-
+//FASE 2
 struct STRSEXT{
 	std::string Id;
 	std::string Type; 
@@ -112,7 +110,7 @@ struct STRSREN{
 };
 struct STRSDIR{
 	std::string Path;
-	std::string P;  
+	std::string P="0";  
 };
 struct STRSCOP{
 	std::string Path;
@@ -206,6 +204,7 @@ struct STRSCHG* SCHG;
 %type<TEXT> MATAR;
 %type<TEXT2> TERMIMUC;
 %type<TEXT2> MUCHO;
+%type<TEXT> PASSWORD
 //TERMINALES DE TIPO TEXT, SON STRINGS
 
 %token<TEXT> entero;
@@ -269,8 +268,11 @@ struct STRSCHG* SCHG;
 
 %start PROGRAMA
 %%
+PASSWORD: TERMIIDENTI{std::copy(std::begin($1), std::end($1), std::begin($$));}
+	|entero{std::string Tempo=toString($1); strcpy($$,Tempo.c_str());}
+;
 TERMIIDENTI:identificador{std::copy(std::begin($1), std::end($1), std::begin($$));}
-	|cadena{std::string Tempo=$1; Tempo=Tempo.substr(1,Tempo.length()-1); strcpy($$,Tempo.c_str());}
+	|cadena{std::string Tempo=$1; Tempo=Tempo.substr(1,Tempo.length()-2); strcpy($$,Tempo.c_str());}
 ;
 
 
@@ -315,7 +317,7 @@ COPIAR:COPIAR dest igual TERMIDIRECC{$1->Dest=$4; $$=$1;}
     |cp {$$=new STRSCOP();}
 ;
 
-NUEVACARPETA:NUEVACARPETA p igual TERMIIDENTI{$1->P=$4; $$=$1;}
+NUEVACARPETA:NUEVACARPETA p{$1->P="1"; $$=$1;}
     |NUEVACARPETA path igual TERMIDIRECC{$1->Path=$4; $$=$1;}
     |mkdirp{$$= new STRSDIR();}
 ;
@@ -366,7 +368,7 @@ SALIR: logout{}
 ;
 
 INGRE:INGRE usr igual TERMIIDENTI{$1->Usr=$4; $$=$1;}
-	|INGRE pwd igual TERMIIDENTI{$1->Pwd=$4; $$=$1;}
+	|INGRE pwd igual PASSWORD{$1->Pwd=$4; $$=$1;}
 	|INGRE id igual TERMIIDENTI{$1->Id=$4; $$=$1;}
 	|login{$$= new STRSINGRE();}
 ;
@@ -378,6 +380,7 @@ EXT3:EXT3 id igual TERMIIDENTI{$1->Id=$4; $$=$1;}
 
 PROGRAMA: PROGRAMA OPCION {}
 	|OPCION{}
+	
 ;
 OPCION:CREAR {  if($1->BSize && $1->BUnit && $1->BPath){Ope->Crear($1->Size,$1->Unit,$1->Fit,$1->Path);}else{std::cout << "MKDISK No Cumple Con Los Parametros Necesarios "<< std::endl;}}
 	|BORRAR {/*Se implementa Desde Produccion*/}
@@ -417,7 +420,7 @@ OPCION:CREAR {  if($1->BSize && $1->BUnit && $1->BPath){Ope->Crear($1->Size,$1->
 
 
 	|EXT3{Ope->Mkfs($1->Id,$1->Type,$1->Ext3);}
-    |INGRE{Ope->($1->usr,$1->pwd,$1->id);}
+    |INGRE{Ope->Login($1->Usr,$1->Pwd,$1->Id);}
     |SALIR{}
     |HACERGRUPO{}
     |BORRARGRUPO{}
@@ -429,7 +432,7 @@ OPCION:CREAR {  if($1->BSize && $1->BUnit && $1->BPath){Ope->Crear($1->Size,$1->
     |REMOVER{}
     |EDITARCHIVO{}
     |RENOMBRAR{}
-    |NUEVACARPETA{}
+    |NUEVACARPETA{Ope->Mkdir($1->Path,$1->P);}
     |COPIAR{}
     |MOVER{}
     |FIN{}
@@ -454,7 +457,7 @@ BORRAR: rmdisk path igual TERMIDIRECC{Ope->BorrarDisco(toString($4));}
 ;
 
 TERMIDIRECC:direccion{std::copy(std::begin($1), std::end($1), std::begin($$));}
-	|cadena{std::string Tempo=$1; Tempo=Tempo.substr(1,Tempo.length()-1); strcpy($$,Tempo.c_str());}
+	|cadena{std::string Tempo=$1; Tempo=Tempo.substr(1,Tempo.length()-2); strcpy($$,Tempo.c_str());}
 ;
 
 
