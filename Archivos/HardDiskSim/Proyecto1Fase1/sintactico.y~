@@ -140,7 +140,7 @@ struct STRDITA{
 
 %}
 //error-verbose si se especifica la opcion los errores sintacticos son especificados por BISON
-%define parse.error verbose
+%error-verbose
 
 %union{
 
@@ -282,7 +282,7 @@ MATAR: loss igual TERMIIDENTI{}
 RECUPERAR: recovery igual TERMIIDENTI{}
 ;
 
-PAUSA:pausep{std::string Entrada; std::cout<<"Modo Pausa, Escribar Cualquier Cosa Para Salir"<<std::endl;std::cin<<Entrada;}
+PAUSA:pausep{}
 ;
 
 CAMBIARGRUPO:CAMBIARGRUPO grp igual TERMIIDENTI{$1->Grp=$4; $$=$1;}
@@ -322,11 +322,11 @@ RENOMBRAR:RENOMBRAR name igual TERMIIDENTI{$1->Name=$4; $$=$1;}
 ;
 
 EDITARCHIVO:EDITARCHIVO path igual TERMIDIRECC{$1->Path=$4; $$=$1;}
-    |EDITARCHIVO cont igual TERMIDIRECC{$1->Cont=$4; $$=$1;}
+    |EDITARCHIVO cont igual TERMIDIRECC{$1->Cont=$4->Concatenar; $$=$1;}
     |edit{$$= new STRSEDIT();}
 ;
 
-REMOVER:rem path igual TERMIDIRECC{Ope->Rem($4);}
+REMOVER:rem path igual TERMIDIRECC{}
 ;
 
 VERCONTE: cat file igual TERMIDIRECC {Ope->Cat($4);}
@@ -424,8 +424,8 @@ OPCION:CREAR {  if($1->BSize && $1->BUnit && $1->BPath){Ope->Crear($1->Size,$1->
     |NUEVOARCHIVO{Ope->Mkfile($1->Path,$1->P,$1->Size,$1->Cont);}
     |VERCONTE{}
     |REMOVER{}
-    |EDITARCHIVO{Ope->Edit($1->Path,$1->Cont);}
-    |RENOMBRAR{Ope->Ren($1->Path,$1->Name);}
+    |EDITARCHIVO{}
+    |RENOMBRAR{}
     |NUEVACARPETA{Ope->Mkdir($1->Path,$1->P);}
     |COPIAR{}
     |MOVER{}

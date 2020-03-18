@@ -13,6 +13,7 @@ bool REM::EliminarArchivoCarpeta(SPB *Super, int Comienzo, const char *PathVirtu
         std::cout<<"No Se Encontro Una Carpeta O Archivo En "<<PathVirtual<<" No Se Pudo Borrar"<<std::endl;
         return false;
     }
+
     bool Permitido=PermisoInodo(Actual,PathReal,Permiso);
     if(Permitido==false){
         std::cout<<"No Tiene Permiso En Todos Los Archivos Y SubCarpetas, No Se Puede Borrar "<<std::endl;

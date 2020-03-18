@@ -59,8 +59,7 @@ std::string CAT::LeerArchivo(int Inicio, const char *Disco, const char *Path){
     std::string Contenido="";
 
 
-
-
+    //std::cout<<"---     "<<BuscarPadre(Inicio,Path,Disco)<<std::endl;
 
     if(Busqueda==-1){
         std::cout<<"No Se Encontro El Archivo"<<std::endl;

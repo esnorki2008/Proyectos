@@ -21,9 +21,29 @@
 extern int yyrestart( FILE* archivo);//METODO QUE PASA EL ARCHIVO A FLEX
 extern int yyparse();
 //FASE 2
+//10
 void Sistema::Cat(std::string Path){
     std::cout<<"--------------CAT---------------"<<std::endl;
     std::cout<<M->CAT(Path.data())<<std::endl;
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//11
+void Sistema::Rem(std::string Path){
+    std::cout<<"--------------REM------------------"<<std::endl;
+    M->REM(Path.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+
+}
+//12
+void Sistema::Edit(std::string Path, std::string Cont){
+    std::cout<<"--------------EDIT------------------"<<std::endl;
+    M->EDIT(Path.data(),Cont.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//13
+void Sistema::Ren(std::string Path, std::string Name){
+    std::cout<<"--------------EDIT------------------"<<std::endl;
+    M->REN(Path.data(),Name.data());
     std::cout<<"-----------------------------------"<<std::endl;
 }
 //

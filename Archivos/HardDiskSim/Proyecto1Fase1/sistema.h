@@ -9,6 +9,13 @@ public:
 
     //10
     void Cat(std::string Path);
+    //11 REM
+    void Rem(std::string Path);
+    //12 Edit
+    void Edit(std::string Path,std::string Cont);
+    //13 REN
+    void Ren(std::string Path,std::string Name);
+    //
     void Mkfile(std::string Path,std::string P,std::string Num,std::string Cont);
     void Login(std::string Usr,std::string Pwd,std::string Id);
     void Mkfs(std::string Ejecutar,std::string Type,bool Tipo);

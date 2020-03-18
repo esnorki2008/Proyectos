@@ -421,6 +421,8 @@ void FunctionsExt::LiberarBloque(SPB *Super, const char *PathReal,long Comienzo)
 }
 //Busqueda
 long FunctionsExt::BuscarPadre(long Comienzo, std::string PathVirtual, const char *PathReal){
+    if(IF(PathVirtual,"/"))
+        return Comienzo;
     long Num=BuscarInodos(Comienzo,PathVirtual,PathReal);
     if(Num==-2){
         std::cout<<"OPTI"<<std::endl;
@@ -874,15 +876,18 @@ long FunctionsExt::CantidadBarras(std::string Path){
 }
 //BuscarActual
 long FunctionsExt::BuscarActual(long Comienzo, std::string PathVirtual, const char *PathReal){
-    PathVirtual=PathVirtual.substr(1);
+
+    //PathVirtual=PathVirtual.substr(1);
     long Busq=BuscarPadre(Comienzo,(PathVirtual),PathReal);
-    if(Busq==-1)
+    if(Busq==-1){
+        std::cout<<"No Se Encontro La Carpeta Padre"<<std::endl;
         return Busq;
+    }
     std::string Nombre=NombreACrear(PathVirtual.data());
     FILE *f;
     f=fopen(PathReal,"r+");
     INO Carpeta;
-    fseek(f,Comienzo,SEEK_SET);
+    fseek(f,Busq,SEEK_SET);
     fread(&Carpeta,sizeof(Carpeta),1,f);
     fclose(f);
     long Punteros=-1;
