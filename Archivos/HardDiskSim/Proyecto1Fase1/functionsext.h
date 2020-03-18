@@ -12,7 +12,9 @@ public:
     long BloqueLibre(SPB *Super,const char* Path);
     long BloqueLibreConte(SPB *Super,const char* Path);
     long DarPrimeraPos(SPB *Super,const char* Path);
+    //
     //Auxiliares
+    long CrearIndirectosContenido(long Nivel, long NivelActual, SPB *Super, const char *PathReal,int Comienzo);
     bool EliminarArchivoCarpetaPadre(SPB *Super,long Comienzo,const char *PathVirtual,const char *PathReal,long Hijo);
     //Eliminar
     bool EliminarBloqueContenido(SPB *Super,long Comienzo,const char *PathReal);

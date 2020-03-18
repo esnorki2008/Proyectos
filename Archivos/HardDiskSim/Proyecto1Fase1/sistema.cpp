@@ -21,6 +21,12 @@
 extern int yyrestart( FILE* archivo);//METODO QUE PASA EL ARCHIVO A FLEX
 extern int yyparse();
 //FASE 2
+void Sistema::Cat(std::string Path){
+    std::cout<<"--------------CAT---------------"<<std::endl;
+    std::cout<<M->CAT(Path.data())<<std::endl;
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//
 void Sistema::Mkfile(std::string Path, std::string P, std::string Num, std::string Cont){
     std::cout<<"--------------MKFILE---------------"<<std::endl;
     std::string Contenido="";
