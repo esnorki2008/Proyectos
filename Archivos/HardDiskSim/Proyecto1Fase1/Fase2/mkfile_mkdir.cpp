@@ -139,7 +139,8 @@ bool MKFILE_MKDIR::CrearCarpetaSimple(SPB *Super,long Comienzo, const char *Path
     fseek(f,PosPadre,SEEK_SET);
     fread(&Inodo,sizeof(Inodo),1,f);
     fclose(f);
-    long Num=CarpetaArchivoSimpleDirectos(&Inodo,Super,PosPadre,PathReal,NombreCarpeta,"");
+    long Num=-1;
+    Num=CarpetaArchivoSimpleDirectos(&Inodo,Super,PosPadre,PathReal,NombreCarpeta,"");
     if(Num==1)
         return true;
     if(Num==-2)
@@ -255,7 +256,10 @@ long MKFILE_MKDIR::CarpetaArchivoSimpleInDirectos(INO *Ino, SPB *Super, long Pos
         long Pos=Inodo.i_block[12+i];      
         if(Pos==-1){
             //Se Crean Los Bloques Indirectos
-            Pos=CrearIndirectos(i+1,0,Super,PathReal);
+
+            Pos=CrearIndirectosContenido(i+1,0,Super,PathReal,0);
+
+
             std::cout<<"Creando Indirectos      "<<Pos<<std::endl;
             if(Pos==-1 || Pos==0){
                 //Si No Se Puede Crear Retornar

@@ -89,6 +89,16 @@ std::string Reports::GraficarDirectos(int Comienzo,const char *PathReal,int Tipo
         CON Conte=Carpeta.content[i];
         std::string Prueba=Conte.b_name;
         Prueba=Prueba.substr(0,12);
+
+        /*if(Comienzo==37120136)
+        {
+            std::cout<<Prueba<<std::endl;
+
+        }
+        for(int x=0;x<12;x++){
+            if(Prueba[x]>127)
+                Prueba[x]='*';
+        }*/
         Concatenar=Concatenar+NuevaFila("darkseagreen3","darkolivegreen1","b_name",Prueba)+"\n";
         Concatenar=Concatenar+"<TR>"+"<TD  BGCOLOR=\""+"darkseagreen3"+"\">"+"b_inodo"+std::to_string(i)+"</TD><TD PORT=\"P"+std::to_string(i)+"\" BGCOLOR=\""+"darkolivegreen1"+"\">"+std::to_string(Conte.b_inodo)+"</TD>  </TR> \n";
         if(Conte.b_inodo!=-1){

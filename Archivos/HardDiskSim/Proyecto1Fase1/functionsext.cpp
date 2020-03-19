@@ -351,7 +351,7 @@ std::string FunctionsExt::ContenidoArchivoInDirectos(INO *Ino, SPB *Super, long 
         long Pos=Inodo.i_block[12+i];
         if(Pos==-1){
             //Se Crean Los Bloques Indirectos
-            Pos=CrearIndirectos(i+1,0,Super,PathReal);
+            Pos=CrearIndirectosContenido(i+1,0,Super,PathReal,0);
             if(Pos==-1 || Pos==0){
                 //Si No Se Puede Crear Retornar
                 std::cout<<"Cancelando Colocacion POR NO PODER CREAR INDIRECTO      "<<Pos <<std::endl;
@@ -377,8 +377,7 @@ std::string FunctionsExt::ContenidoArchivoInDirectos(INO *Ino, SPB *Super, long 
 
         Busqueda=BuscarIndirectos(Super,i+1,0,Pos,PathVirtual,PathReal,4);
 
-        if(IF(Contenido,""))
-            return "";
+
         if(Busqueda!=-1){
             //Bloque Directo Existente
             std::string  Valor;
@@ -386,12 +385,19 @@ std::string FunctionsExt::ContenidoArchivoInDirectos(INO *Ino, SPB *Super, long 
 
 
             Parametro=ReducirTamanio(&Contenido,64*4);
+
+
+
+
             Valor=ColocarContenidoArchivo(Busqueda,Super,PathReal,Parametro);
             if(!IF(Valor,"")){
                 Contenido=Contenido+Parametro;
             }
         }
-        }
+       }
+
+        if(IF(Contenido,""))
+            return "";
 
     }
 
@@ -516,96 +522,52 @@ long BloqueContenidoArchivo(long Comienzo ,const char *PathReal){
 
 long FunctionsExt::CrearIndirectosContenido(long Nivel, long NivelActual, SPB *Super, const char *PathReal,int Comienzo){
     BAP Apuntador;
-    FILE *f;
-    f=fopen(PathReal,"r+");
-    //Actualizar Indirecto
-    fseek(f,Comienzo,SEEK_SET);
-    fwrite(&Apuntador,sizeof (Apuntador),1,f);
-    fclose(f);
-
-
-
-
-
-
     for(long i=0;i<16;i++){
-         int Ptr=Apuntador.b_pointers[i];
-
-         if(Nivel==NivelActual){
-
-             std::cout<<"Hola        "<<Comienzo<<std::endl;
-             if(Ptr==-1){
-
-
-                 long Actual=BloqueLibre(Super,PathReal);
-                 if(Actual==-1)
-                     return -1;
-                 BCA Carpeta;
-                 IniciarBloqueCarpeta(&Carpeta);
-                 f=fopen(PathReal,"r+");
-                 //Escribir Directo
-                 fseek(f,Actual,SEEK_SET);
-                 fwrite(&Carpeta,sizeof (Carpeta),1,f);
-
-
-                 //Actualizar Indirecto
-                 fseek(f,Ptr,SEEK_SET);
-                 fwrite(&Apuntador,sizeof (Apuntador),1,f);
-
-
-                 fclose(f);
-
-                 return Actual;
-            }else{
-
-                long Numero=BloqueContenidoArchivo(Ptr,PathReal);
-                if(Numero!=-1)
-                    return Numero;
-             }
-        }else{
-            if(Ptr==-1){
-
-
-                long Actual=BloqueLibre(Super,PathReal);
-                if(Actual==-1)
-                    return -1;
-
-
-
-                BAP NuevoPuntero;
-                for(int i=0;i<16;i++)
-                    NuevoPuntero.b_pointers[i]=-1;
-
-                Apuntador.b_pointers[i]=Actual;
-
-                f=fopen(PathReal,"r+");
-                //Nuevo Bloque
-                fseek(f,Actual,SEEK_SET);
-                fwrite(&NuevoPuntero,sizeof (NuevoPuntero),1,f);
-
-                //Actualizar Bloque
-                fseek(f,Comienzo,SEEK_SET);
-                fwrite(&Apuntador,sizeof (Apuntador),1,f);
-
-                fclose(f);
-
-                return CrearIndirectosContenido(Nivel,NivelActual+1,Super,PathReal,Actual);
-
-            }else{
-
-
-
-
-                long Numero= CrearIndirectosContenido(Nivel,NivelActual+1,Super,PathReal,Ptr);
-                if(Numero!=-1)
-                    return Numero;
-            }
-
-        }
+         Apuntador.b_pointers[i]=-1;
     }
 
+    if(Nivel==NivelActual){
+        //ARREGLAR  crear directos
+        long Actual=BloqueLibre(Super,PathReal);
 
+        //std::cout<<"Function BORRAR     "<<Actual<<std::endl;
+        FILE *f;
+        BCA Carpeta;
+        IniciarBloqueCarpeta(&Carpeta);
 
+        f=fopen(PathReal,"r+");
+        //Actualizar Indirecto
+        fseek(f,Actual,SEEK_SET);
+        fwrite(&Carpeta,sizeof (Carpeta),1,f);
+        //Actualizar Indirecto
+        fclose(f);
+        return Actual;
+    }
+    long PosicionPadre=BloqueLibre(Super,PathReal);
+    if(PosicionPadre==-1){
+        std::cout<<"No Se Puedo Encontrar Un Bloque Libre"<<std::endl;
+        return -1;
+    }
+
+    for(long i=0;i<16;i++){
+        long Hijo=CrearIndirectosContenido(Nivel,NivelActual+1,Super,PathReal,0);
+        if(Hijo==-1){
+            std::cout<<" Se Llego Al Limite De Apuntadores "<<std::endl;
+            break;
+        }else if(Hijo!=0){
+            //Posicion De Cada Hijo;
+            //std::cout<<" Hola "<<Hijo<<std::endl;
+            Apuntador.b_pointers[i]=Hijo;
+
+            FILE *f;
+            f=fopen(PathReal,"r+");
+            fseek(f,PosicionPadre,SEEK_SET);
+            fwrite(&Apuntador,sizeof (Apuntador),1,f);
+            fclose(f);
+
+            return PosicionPadre;
+        }
+    }
 
 
     return -1;
@@ -717,9 +679,20 @@ long FunctionsExt::BuscarIndirectos(SPB *Super,long Nivel, long NivelActual, lon
 
             }
         }else if(Tipo==2 || Tipo==4){
+            int NuevoIndirecto=CrearIndirectosContenido(Nivel,NivelActual,Super,PathReal,0);
+            if(NuevoIndirecto==-1)
+                return 1;
+
+            Apunta.b_pointers[i]=NuevoIndirecto;
+            f=fopen(PathReal,"r+");
+            fseek(f,Comienzo,SEEK_SET);
+            fwrite(&Apunta,sizeof(Apunta),1,f);
+            fclose(f);
+            return BuscarIndirectos(Super,Nivel,NivelActual,Comienzo,PathVirtual,PathReal,Tipo);
             //return CrearIndirectosContenido(Nivel,NivelActual+1,Super,PathReal,Comienzo);
 
              std::cout<<"IMP "<<std::endl;
+                return -1;
             long BloqueDirectoNuevo=BloqueLibre(Super,PathReal);
             if(BloqueDirectoNuevo==-1){
                 std::cout<<"No Se Pudo Crear Nuevos Bloques"<<std::endl;
@@ -1006,21 +979,34 @@ std::string FunctionsExt::ColocarContenidoArchivo(long PosDirecto, SPB *Super, c
         return Contenido;
     }
 
+
+
+
     FILE *f;
     f=fopen(PathReal,"r+");
     fseek(f,PosDirecto,SEEK_SET);
     BCA Directo;
     fread(&Directo,sizeof(Directo),1,f);
     for(long z=0;z<4;z++){
-        if(IF(Contenido,""))
-            break;
+
+
         long Pos=Directo.content[z].b_inodo;
+
+        if(IF(Contenido,"") && Pos==-1){
+            //Llenar Nombre
+            std::string Sub="......";
+            strcpy(Directo.content[z].b_name,Sub.c_str());
+
+            //Se Actualizo El Apuntador Directo
+            fseek(f,PosDirecto,SEEK_SET);
+            fwrite(&Directo,sizeof (Directo),1,f);
+
+        }else
 
         if(Pos==-1){
 
             //Llenar Nombre
             std::string Sub="......";
-
             strcpy(Directo.content[z].b_name,Sub.c_str());
             //Inodo Nuevo
             //long Libre = BloqueLibre(Super,PathReal);
