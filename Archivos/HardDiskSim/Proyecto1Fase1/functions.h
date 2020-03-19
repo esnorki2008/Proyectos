@@ -25,7 +25,7 @@ public:
     //Llenar Espacios
     void LlenarVacio(int Begin, int Size, char Character,const char *Path);
     //Calcular la cantidad de estructruas
-    int CalcularCantidad(int Tamanio);
+    int CalcularCantidad(int Tamanio,int Tipo);
     //CrearFormato
     SPB LlenarSuperBloque(int Tipo,int Comienzo,int Cantidad);
     //Inicio

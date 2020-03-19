@@ -8,17 +8,18 @@ MKFS::MKFS(int ComienzoParticion,int TamanioParticion,int TamanioStruct,std::str
 }
 void MKFS::EstructurarFormatoEXT3(int ComienzoParticion, int TamanioParticion, int TamanioStruct, std::string Direcc,int Tipo,int Ext){
     const char*Path =Direcc.data();
-    int Cantidad=CalcularCantidad(TamanioParticion);
+    int Cantidad=CalcularCantidad(TamanioParticion,Ext);
     int ComienzoEscritura=ComienzoParticion+TamanioStruct;
-    //Tipo 1 EXT2
-
-    SPB Super=LlenarSuperBloque(1,ComienzoEscritura,Cantidad);
+    //Ext 0 EXT2
+    // Tipo=0
+    Tipo=0;
+    SPB Super=LlenarSuperBloque(Ext+Tipo,ComienzoEscritura,Cantidad);
 
     FILE *f;
     f=fopen(Path,"r+");
     fseek(f,ComienzoEscritura,SEEK_SET);
     //Escribir El Super Bloque
-    fwrite(&Super,sizeof (SPB),1,f);
+    fwrite(&Super,sizeof (SPB),1,f);    
     fclose(f);
     //Llenar BitmapInodo
     LlenarVacio(Super.s_bm_inode_start,Cantidad,'0',Path);
@@ -50,6 +51,6 @@ void MKFS::EstructurarFormatoEXT3(int ComienzoParticion, int TamanioParticion, i
     new MKFILE_MKDIR(&Super,PrimerInodo,"/users.txt",Path,"1,G,root\n1,U,root,root,123\n",false,false,Permiso);
     Recuperacion *Recu= new Recuperacion();
     if(Ext==1)//ext3
-    Recu->IniciarJOUR(ComienzoEscritura,Path);
+        Recu->IniciarJOUR(ComienzoEscritura,Path);
 }
 
