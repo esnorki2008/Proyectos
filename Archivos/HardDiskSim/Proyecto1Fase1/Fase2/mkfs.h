@@ -9,14 +9,14 @@
 class MKFS :public FunctionsExt
 {
 public:
-    MKFS(int ComienzoParticion,int TamanioParticion,int TamanioStruct,std::string Direcc,int Tipo,IUG Permiso);
+    MKFS(int ComienzoParticion,int TamanioParticion,int TamanioStruct,std::string Direcc,int Tipo,int Ext,IUG Permiso);
 private:
 
     //
     IUG Permiso;
 
     //Hacer Formato
-    void EstructurarFormatoEXT3(int ComienzoParticion,int TamanioParticion,int TamanioStruct,std::string Direcc,int Tipo);
+    void EstructurarFormatoEXT3(int ComienzoParticion,int TamanioParticion,int TamanioStruct,std::string Direcc,int Tipo,int Ext);
 
 
 

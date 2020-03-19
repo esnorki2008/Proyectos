@@ -76,7 +76,7 @@ struct STRREPORTE{
 //FASE 2
 struct STRSEXT{
 	std::string Id="";
-	bool Id=false;
+	bool IdB=false;
 	std::string Type="fast"; 
 	std::string Ext="2fs";
 };
@@ -283,7 +283,7 @@ MATAR: loss igual TERMIIDENTI{}
 RECUPERAR: recovery igual TERMIIDENTI{}
 ;
 
-PAUSA:pausep{std::string Entrada; std::cout<<"Modo Pausa, Escribar Cualquier Cosa Para Salir"<<std::endl;std::cin<<Entrada;}
+PAUSA:pausep{std::string Entrada; std::cout<<"Modo Pausa, Escribar Cualquier Cosa Para Salir"<<std::endl;std::cin>>Entrada;}
 ;
 
 CAMBIARGRUPO:CAMBIARGRUPO grp igual TERMIIDENTI{$1->Grp=$4; $$=$1;}
@@ -367,12 +367,11 @@ INGRE:INGRE usr igual TERMIIDENTI{$1->Usr=$4; $$=$1;}
 	|INGRE id igual TERMIIDENTI{$1->Id=$4; $$=$1;}
 	|login{$$= new STRSINGRE();}
 ;
-EXT3:EXT3 id igual TERMIIDENTI{$1->Id=$4; $$=$1; $$->Id=true;}
+EXT3:EXT3 id igual TERMIIDENTI{$1->Id=$4; $$=$1; $$->IdB=true;}
 	|EXT3 typep igual TERMIIDENTI{$1->Type=$4; $$=$1;}
-	|EXT3 fs igual entero identificador{ $$=$1; $$->Ext=std::toString($4)+$5;}
+	|EXT3 fs igual entero identificador{ $$=$1; $$->Ext[0]=$4[0]; $$->Ext[1]=$5[0]; $$->Ext[2]=$5[1];}
 	|mkfs{$$= new STRSEXT();}
 ;	
-
 PROGRAMA: PROGRAMA OPCION {}
 	|OPCION{}
 	
@@ -415,10 +414,10 @@ OPCION:CREAR {  if($1->BSize && $1->BUnit && $1->BPath){Ope->Crear($1->Size,$1->
 
 
 	|EXT3{
-		if($1->Id){Ope->Mkfs($1->Id,$1->Type,$1->Ext);}
+		if($1->IdB){Ope->Mkfs($1->Id,$1->Type,$1->Ext);}
 		else{
 			std::cout << "MKFS le hace falta parametro 'Id', Enter Aceptar"<< std::endl;
-			std::cin<<Input;
+			std::cin>>Input;
 		}
 	}
 	

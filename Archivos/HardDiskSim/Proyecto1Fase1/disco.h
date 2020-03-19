@@ -36,8 +36,8 @@ public:
     void CrearArchivoParticion(const char *Nombre,const char *Path, char Padre,std::string Contenido,IUG Permiso);
     //MKDIR
     void CrearCarpetaParticion(const char *Nombre,const char *Path, char Padre,IUG Permiso);
-    //FDISK
-    void FormatearParticion(const char *Nombre,IUG Permiso,int Tipo);
+    //MKFS
+    void FormatearParticion(const char *Nombre,IUG Permiso,int Tipo,int Ext);
     //---------------------------------FASE1
 
 

@@ -261,6 +261,7 @@ DIST          = ../Proyecto1Fase1/Fase1/Dummy \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/qt_config.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/spec_post.prf \
+		../Proyecto1Fase1/.qmake.stash \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/toolchain.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -497,6 +498,7 @@ Makefile: ../Proyecto1Fase1/Proyecto1Fase1.pro /home/pc/Qt/5.13.1/gcc_64/mkspecs
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/qt_config.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/toolchain.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -670,6 +672,7 @@ Makefile: ../Proyecto1Fase1/Proyecto1Fase1.pro /home/pc/Qt/5.13.1/gcc_64/mkspecs
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/qt_config.prf:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/toolchain.prf:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/default_pre.prf:

@@ -30,7 +30,7 @@ void Menu::Recuperar(std::string IDMontado){
 void Menu::SubRecuperar(std::queue<JOR> Cola){
     JOR Actual;
     IUG Tempo=OpeU->Permiso;    
-    MKFS(OpeU->IDMontado.data(),"fast",3);
+    MKFS(OpeU->IDMontado.data(),0,0);
     //Falta Indicar A Quien Recuperar
     while(Cola.empty()==false){
         Actual=Cola.front();
@@ -555,7 +555,7 @@ void Menu::NewMenu(){
     Mkdisk(2,"ff",'M',"/home/pc/Documents/Archivos/Prueba/Disco.disk");
     FDisk(1,"ff",'M',"/home/pc/Documents/Archivos/Prueba/Disco.disk",'p',"a");
     MOUNT("/home/pc/Documents/Archivos/Prueba/Disco.disk","a");
-    MKFS("vda1","full",1);
+    MKFS("vda1",0,1);
     LOGIN("root","123","vda1");
     MKFILE("/Dita.txt",'0',"El vídeo proporciona una manera eficaz para ayudarle a demostrar el punto.Cuando haga clic en Vídeo en línea, puede pegar el código para insertar del vídeo que desea agregar. ");
     EDIT("/Dita.txt","ContenidoMASContenidoMAS");

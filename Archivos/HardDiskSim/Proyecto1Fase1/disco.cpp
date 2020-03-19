@@ -594,7 +594,7 @@ void Disco::CrearCarpetaParticion(const char *Nombre, const char *Path, char Pad
 
 }
 //MKFS
-void Disco::FormatearParticion(const char *Nombre,IUG Permiso,int Tipo){
+void Disco::FormatearParticion(const char *Nombre,IUG Permiso,int Tipo,int Ext){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
 
@@ -620,7 +620,7 @@ void Disco::FormatearParticion(const char *Nombre,IUG Permiso,int Tipo){
                 }
 
                 //Tipo De Formato
-                    new MKFS(Comienzo,TamanioParticion,TamanioStruct,Path,Tipo,Permiso);
+                    new MKFS(Comienzo,TamanioParticion,TamanioStruct,Path,Tipo,Ext,Permiso);
                     //E->EstructurarFormatoEXT3(Comienzo,TamanioParticion,TamanioStruct,Path,Tipo);
                     std::cout<<"Se Formateo La Particion "<<Nombre<<" Con El Formato EXT3 Del Disco Ubicado En "<<Tempo->Path<<std::endl;
 

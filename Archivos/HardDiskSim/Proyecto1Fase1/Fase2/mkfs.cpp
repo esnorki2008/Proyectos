@@ -1,12 +1,12 @@
 #include "mkfs.h"
 #include "mkfile_mkdir.h"
 #include "recuperacion.h"
-MKFS::MKFS(int ComienzoParticion,int TamanioParticion,int TamanioStruct,std::string Direcc,int Tipo,IUG Permiso)
+MKFS::MKFS(int ComienzoParticion,int TamanioParticion,int TamanioStruct,std::string Direcc,int Tipo,int Ext,IUG Permiso)
 {    
     this->Permiso=Permiso;
-    EstructurarFormatoEXT3(ComienzoParticion,TamanioParticion,TamanioStruct,Direcc,Tipo);
+    EstructurarFormatoEXT3(ComienzoParticion,TamanioParticion,TamanioStruct,Direcc,Tipo,Ext);
 }
-void MKFS::EstructurarFormatoEXT3(int ComienzoParticion, int TamanioParticion, int TamanioStruct, std::string Direcc,int Tipo){
+void MKFS::EstructurarFormatoEXT3(int ComienzoParticion, int TamanioParticion, int TamanioStruct, std::string Direcc,int Tipo,int Ext){
     const char*Path =Direcc.data();
     int Cantidad=CalcularCantidad(TamanioParticion);
     int ComienzoEscritura=ComienzoParticion+TamanioStruct;
@@ -49,7 +49,7 @@ void MKFS::EstructurarFormatoEXT3(int ComienzoParticion, int TamanioParticion, i
 
     new MKFILE_MKDIR(&Super,PrimerInodo,"/users.txt",Path,"1,G,root\n1,U,root,root,123\n",false,false,Permiso);
     Recuperacion *Recu= new Recuperacion();
-    if(Tipo==1)
+    if(Ext==1)//ext3
     Recu->IniciarJOUR(ComienzoEscritura,Path);
 }
 
