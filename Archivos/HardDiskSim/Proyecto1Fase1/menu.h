@@ -65,7 +65,7 @@ public:
     //MKDIR
     void MKDIR(const char *Path, char Padre);
     //MKFS
-    void MKFS(const char *Id,const char *Type,int Tipo);
+    void MKFS(const char *Id,int Type,int Tipo);
     //REP
     void REP(const char *Id,const char *Name,const char *Path);
     //AGREGAR

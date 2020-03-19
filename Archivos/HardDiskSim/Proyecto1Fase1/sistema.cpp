@@ -21,6 +21,21 @@
 extern int yyrestart( FILE* archivo);//METODO QUE PASA EL ARCHIVO A FLEX
 extern int yyparse();
 //FASE 2
+// 1
+void Sistema::Mkfs(std::string Ejecutar, std::string Type,std::string Ext){
+    std::cout<<"--------------MKFS---------------"<<std::endl;
+    int TExt=0;//2fs
+    int Tipo=0;//Fast
+    if(Func->IF(Type,"full"))
+        Tipo=1;
+
+    if(Func->IF(Ext,"3fs"))
+        Tipo=1;
+
+        M->MKFS(Ejecutar.data(),Tipo,TExt);
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+
 //10
 void Sistema::Cat(std::string Path){
     std::cout<<"--------------CAT---------------"<<std::endl;
@@ -91,14 +106,6 @@ void Sistema::Mkdir(std::string Path, std::string P){
 void Sistema::Login(std::string Usr, std::string Pwd, std::string Id){
     std::cout<<"--------------Login---------------"<<std::endl;
     M->LOGIN(Usr.data(),Pwd.data(),Id.data());
-    std::cout<<"-----------------------------------"<<std::endl;
-}
-void Sistema::Mkfs(std::string Ejecutar, std::string Type,bool Tipo){
-    std::cout<<"--------------MKFS---------------"<<std::endl;
-    if(Tipo)
-        M->MKFS(Ejecutar.data(),Type.data(),1);
-    else
-        M->MKFS(Ejecutar.data(),Type.data(),1);
     std::cout<<"-----------------------------------"<<std::endl;
 }
 //FASE 1

@@ -420,7 +420,7 @@ void Menu::MKDIR(const char *Path, char Padre){
     }
 }
 //MKFS
-void Menu::MKFS(const char *Id, const char *Type,int Tipo){
+void Menu::MKFS(const char *Id, int Type,int Tipo){
     std::cout<<"Falta Limpiar Particion Antes"<<std::endl;
 
     Disco *Ptr=this->PrimerDisco;
@@ -431,7 +431,7 @@ void Menu::MKFS(const char *Id, const char *Type,int Tipo){
         int B=OpeU->Permiso.Uid;
         OpeU->Permiso.Gid=1;
         OpeU->Permiso.Uid=1;
-        this->PrimerDisco->FormatearParticion(Id,OpeU->Permiso,Tipo);
+        this->PrimerDisco->FormatearParticion(Id,OpeU->Permiso,Type,Tipo);
         OpeU->Permiso.Gid=A;
         OpeU->Permiso.Uid=B;
     }

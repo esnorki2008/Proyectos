@@ -122,7 +122,7 @@ bool MKFILE_MKDIR::CrearCarpetaSimple(SPB *Super,long Comienzo, const char *Path
     }else{
         PosPadre=BuscarPadre(Comienzo,PathVirtual,PathReal);
         if(PosPadre==-1){
-            std::cout<<"No Se Pudo Crear La Carpeta En "<<PathVirtual<<" En El Disco Ubicado En"<<PathReal<<std::endl;
+            std::cout<<"No Se Pudo Crear La Carpeta En "<<PathVirtual<<", No Se Encontro Carpeta Padre En El Disco Ubicado En"<<PathReal<<std::endl;
             return false;
         }
     }
@@ -131,7 +131,7 @@ bool MKFILE_MKDIR::CrearCarpetaSimple(SPB *Super,long Comienzo, const char *Path
         std::cout<<"No Se Tiene Permisos Para ESCRIBIR En la Carpeta Padre En '"<<PathVirtual<<"' La Sesion Actual No Tiene Los Permisos Necesarios "<<std::endl;
         return false;
     }
-
+    std::cout<<"Path     "<<PathVirtual<<"  Padre "<<PosPadre<<std::endl;
     std::string NombreCarpeta=NombreACrear(PathVirtual);
     FILE *f;
     f=fopen(PathReal,"r+");
@@ -277,7 +277,7 @@ long MKFILE_MKDIR::CarpetaArchivoSimpleInDirectos(INO *Ino, SPB *Super, long Pos
         }
 
         //El Indirecto En La Posicion Pos Si Existe
-        long Busqueda=BuscarIndirectos(Super,i+1,0,Pos,PathVirtual,PathReal,2);
+        long Busqueda=BuscarIndirectos(Super,i+1,0,Pos,PathVirtual,PathReal,4);
         if(Busqueda!=-1){
             //Bloque Directo Existente
             long Valor=-1;
@@ -301,11 +301,13 @@ long MKFILE_MKDIR::ColocarCarpeta(std::string NombreCarpeta,long PosDirecto, SPB
     fseek(f,PosDirecto,SEEK_SET);
     BCA Directo;
     fread(&Directo,sizeof(Directo),1,f);
+    fclose(f);
+    int Termina=-1;
     for(long z=0;z<4;z++){
 
         long Pos=Directo.content[z].b_inodo;
 
-        if(Pos==-1){
+        if(Pos==-1 && Termina==-1){
 
             //Llenar Nombre
             std::string Sub;
@@ -316,6 +318,7 @@ long MKFILE_MKDIR::ColocarCarpeta(std::string NombreCarpeta,long PosDirecto, SPB
             Directo.content[z].b_inodo=Libre;
 
             //Se Coloca La Carpeta
+            f=fopen(PathReal,"r+");
             fseek(f,Libre,SEEK_SET);
             INO Carpeta;
             std::cout<<"SE CREO CARPETA  "<<NombreCarpeta <<" EN "<<Libre <<" PERO FALTA PONERLE PERMISOS Y ESO"<<std::endl;
@@ -325,14 +328,25 @@ long MKFILE_MKDIR::ColocarCarpeta(std::string NombreCarpeta,long PosDirecto, SPB
             fseek(f,PosDirecto,SEEK_SET);
             fwrite(&Directo,sizeof (Directo),1,f);
             fclose(f);
-            return 1;
+            Termina=1;
+        }else if(Pos==-1){
+
+                //Llenar Nombre
+                std::string Sub="......";
+                strcpy(Directo.content[z].b_name,Sub.c_str());
+                f=fopen(PathReal,"r+");
+                //Se Actualizo El Apuntador Directo
+                fseek(f,PosDirecto,SEEK_SET);
+                fwrite(&Directo,sizeof (Directo),1,f);
+                fclose(f);
+
         }
 
     }
     //fwrite(&Apuntador,sizeof (Apuntador),1,f);
 
 
-    return -1;
+    return Termina;
 }
 //ColocarArchivo
 long MKFILE_MKDIR::ColocarArchivo(std::string NombreCarpeta, long PosDirecto, SPB *Super, const char *PathReal, std::string Contenido){
@@ -362,7 +376,8 @@ long MKFILE_MKDIR::ColocarArchivo(std::string NombreCarpeta, long PosDirecto, SP
             fseek(f,Libre,SEEK_SET);
             INO Archivo;
             std::cout<<"Se creo Archivo  "<<NombreCarpeta <<" en "<<Libre <<" PERO FALTA PONERLE PERMISOS Y ESO"<<std::endl;
-            IniciarInodo(&Archivo,1,1,0,-1,'0',111111);
+            int TamanioArk=Contenido.length();
+            IniciarInodo(&Archivo,1,1,TamanioArk,-1,'0',111111);
             Archivo.i_type='1';
             fwrite(&Archivo,sizeof (Archivo),1,f);
             //Se Actualizo El Apuntador Directo

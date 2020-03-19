@@ -6,8 +6,9 @@ class Sistema
 {
 public:
     //FASE 2
-
-    //10
+    //1 MKFS
+    void Mkfs(std::string Ejecutar,std::string Type,std::string Ext);
+    //10 CAT
     void Cat(std::string Path);
     //11 REM
     void Rem(std::string Path);
@@ -18,7 +19,7 @@ public:
     //
     void Mkfile(std::string Path,std::string P,std::string Num,std::string Cont);
     void Login(std::string Usr,std::string Pwd,std::string Id);
-    void Mkfs(std::string Ejecutar,std::string Type,bool Tipo);
+
     void Mkdir(std::string Path,std::string P);
     //FASE 1
     void Ejecutar(std::string Ejecutar);

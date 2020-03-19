@@ -1,5 +1,5 @@
 #include "functionsext.h"
-
+#include <qstring.h>
 FunctionsExt::FunctionsExt()
 {
 
@@ -439,10 +439,9 @@ long FunctionsExt::BuscarPadre(long Comienzo, std::string PathVirtual, const cha
 }
 //BSUCA EN EL INODO
 long FunctionsExt::BuscarInodos(long Comienzo, std::string PathVirtual, const char *PathReal){
-    //std::cout<<"InodoPathVirtual"<<"  "<<PathVirtual<<"     "<<Comienzo<<std::endl;
+
 
     long Contador=CantidadBarras(PathVirtual);
-
 
     FILE *f;
     f=fopen(PathReal,"r+");
@@ -456,7 +455,7 @@ long FunctionsExt::BuscarInodos(long Comienzo, std::string PathVirtual, const ch
 
 
 
-    if(Contador==0){
+    if(Contador==1){
         return Comienzo;
     }
 
@@ -488,12 +487,17 @@ long FunctionsExt::BuscarInodos(long Comienzo, std::string PathVirtual, const ch
 
 
     for(long i=0;i<3;i++){
-        long Busq=BuscarIndirectos(nullptr,1+i,0,Inodo.i_block[12+i],PathVirtual,PathReal,1);
-        if(Busq==-2)
-            return -2;
+        if(Inodo.i_block[12+i]!=-1){
 
-        if(Busq!=-1)
-            return Comienzo;
+            long Busq=BuscarIndirectos(nullptr,1+i,0,Inodo.i_block[12+i],PathVirtual,PathReal,1);
+            //std::cout<<"Comprobar "<<Busq<<"        "<<"        "<<PathVirtual<<std::endl;
+
+            if(Busq==-2)
+                return -2;
+
+            if(Busq!=-1)
+                return Busq;
+        }
     }
 
     return -1;
@@ -598,14 +602,16 @@ long FunctionsExt::BuscarDirectos(long Comienzo, std::string PathVirtual, const 
 
         std::string Nombre=Contenido.b_name;
         Nombre=Nombre.substr(0,12);
-        // std::cout<<Nombre<<"----"<<PathVirtual<<"****"<<Comienzo<<"****"<<Contenido.b_inodo<<std::endl;
+
+
         if(Tipo==1){
-            if(CantidadBarras( PathVirtual)==1){
+            if(CantidadBarras(PathVirtual)==1){
                 return 1;
             }
 
-            if(IF(Nombre,NombreActual) && Contenido.b_inodo!=-1){
+            if(Contenido.b_inodo!=-1&&IF(Nombre,NombreActual) ){
                 long Busq=BuscarInodos(Contenido.b_inodo,NombreTotal,PathReal);
+                 //std::cout<<Nombre<<"----"<<NombreTotal<<"****"<<Comienzo<<"****"<<Contenido.b_inodo<<std::endl;
                 if(Busq==-1 || Busq==-2){
 
                     return -2;
@@ -644,6 +650,7 @@ long FunctionsExt::BuscarIndirectos(SPB *Super,long Nivel, long NivelActual, lon
 
 
     if(Nivel==NivelActual){
+
         return BuscarDirectos(Comienzo,PathVirtual,PathReal,Tipo);
     }
     FILE *f;
@@ -675,8 +682,6 @@ long FunctionsExt::BuscarIndirectos(SPB *Super,long Nivel, long NivelActual, lon
 
             if(Valor!=-1){
                 return Valor;
-
-
             }
         }else if(Tipo==2 || Tipo==4){
             int NuevoIndirecto=CrearIndirectosContenido(Nivel,NivelActual,Super,PathReal,0);

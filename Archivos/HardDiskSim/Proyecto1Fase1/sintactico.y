@@ -17,7 +17,7 @@ std::string toString(const char *TEXT){
 	Salida=TEXT;
 	return Salida;
 }
-
+std::string Input="";
 int yyerror(const char* mens){
 //metodo que se llama al haber un error sintactico
 //SE IMPRIME EN CONSOLA EL ERROR
@@ -75,9 +75,10 @@ struct STRREPORTE{
 };
 //FASE 2
 struct STRSEXT{
-	std::string Id;
-	std::string Type; 
-	bool Ext3=false;
+	std::string Id="";
+	bool Id=false;
+	std::string Type="fast"; 
+	std::string Ext="2fs";
 };
 struct STRSINGRE{ 
 	std::string Usr;
@@ -366,9 +367,9 @@ INGRE:INGRE usr igual TERMIIDENTI{$1->Usr=$4; $$=$1;}
 	|INGRE id igual TERMIIDENTI{$1->Id=$4; $$=$1;}
 	|login{$$= new STRSINGRE();}
 ;
-EXT3:EXT3 id igual TERMIIDENTI{$1->Id=$4; $$=$1;}
+EXT3:EXT3 id igual TERMIIDENTI{$1->Id=$4; $$=$1; $$->Id=true;}
 	|EXT3 typep igual TERMIIDENTI{$1->Type=$4; $$=$1;}
-	|EXT3 fs{ $$=$1; $$->Ext3=true;}
+	|EXT3 fs igual entero identificador{ $$=$1; $$->Ext=std::toString($4)+$5;}
 	|mkfs{$$= new STRSEXT();}
 ;	
 
@@ -413,7 +414,14 @@ OPCION:CREAR {  if($1->BSize && $1->BUnit && $1->BPath){Ope->Crear($1->Size,$1->
 	|EJECUTAR {/*Desde Produ*/}
 
 
-	|EXT3{Ope->Mkfs($1->Id,$1->Type,$1->Ext3);}
+	|EXT3{
+		if($1->Id){Ope->Mkfs($1->Id,$1->Type,$1->Ext);}
+		else{
+			std::cout << "MKFS le hace falta parametro 'Id', Enter Aceptar"<< std::endl;
+			std::cin<<Input;
+		}
+	}
+	
     |INGRE{Ope->Login($1->Usr,$1->Pwd,$1->Id);}
     |SALIR{}
     |HACERGRUPO{}
