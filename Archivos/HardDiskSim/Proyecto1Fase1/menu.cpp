@@ -287,6 +287,7 @@ void Menu::RMGRP(const char *Nombre){
             std::string Actualizar=OpeU->RemoverGrupo(Nombre);
             REM("/users.txt");
             MKFILE("/users.txt",'0',Actualizar.data());
+            std::cout<<"Se Ha Eliminado El Grupo "<<Nombre<<std::endl;
         }else{
             std::cout<<"Se Necesitan Permisos 'Root' Para Eliminar Grupos"<<std::endl;
         }
@@ -299,8 +300,11 @@ void Menu::MKGRP(const char *Nombre){
     if(OpeU->HayUsuarioEnElSistema()){
         bool Root=OpeU->UsuarioActualEsRoot();
         if(Root){
+
             std::string Adicion=OpeU->CrearGrupo(Nombre);
-            EDIT("/users.txt",Adicion.data());
+            if(!Fun->IF("",Adicion))
+                EDIT("/users.txt",Adicion.data());
+            std::cout<<"Se Ha Creado El Nuevo Grupo "<<Nombre<<std::endl;
         }else{
             std::cout<<"Se Necesitan Permisos 'Root' Para Crear Grupos"<<std::endl;
         }
@@ -324,13 +328,14 @@ void Menu::REM(const char *Path){
 }
 //LOGOUT
 void Menu::Logout(){
-    if(OpeU->UsuarioActual==nullptr){
+    if(OpeU->UsuarioActual.Uid==-1){
         std::cout<<"Error No Hay Usuario Logueado"<<std::endl;
-    }else{
-        std::cout<<"El Usuario '"<<OpeU->UsuarioActual->Usuario<<"' Ha Salido Del Sistema"<<std::endl;
+    }else{        
+        std::cout<<"El Usuario '"<<OpeU->UsuarioActual.Usuario<<"' Ha Salido Del Sistema"<<std::endl;
         OpeU->Limpiar();
     }
 }
+
 //LOGIN
 void Menu::LOGIN(const char *Usr, const char *Pwd, const char *Id){
     if(OpeU->HayUsuarioEnElSistema()){
@@ -354,6 +359,7 @@ void Menu::LOGIN(const char *Usr, const char *Pwd, const char *Id){
         }else {
 
                 OpeU->IDMontado=Id;
+
                 std::cout<<"Credenciales Validas, Ingresando Como El Usuario: "<<Usr<<std::endl;
                 std::cout<<"Usando La Particion Montada: "<<Id<<std::endl;
 

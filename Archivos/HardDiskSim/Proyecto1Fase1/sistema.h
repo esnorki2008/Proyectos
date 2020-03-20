@@ -8,6 +8,21 @@ public:
     //FASE 2
     //1 MKFS
     void Mkfs(std::string Ejecutar,std::string Type,std::string Ext);
+    //2 LOGIN
+    void Login(std::string Usr,std::string Pwd,std::string Id);
+    //3 LOGOUT
+    void Logout();
+    //4 Mkgrp
+    void Mkgrp(std::string Grp);
+    //5 Rmgrp
+    void Rmgrp(std::string Grp);
+    //6 Mkusr
+    void Mkusr(std::string Usr,std::string Pwd,std::string Grp);
+    //7 Rmusr
+    void Rmusr(std::string Usr);
+    //8 Chmod
+    void Chmod(std::string Path,std::string Ugo,std::string R);
+
     //10 CAT
     void Cat(std::string Path);
     //11 REM
@@ -18,7 +33,7 @@ public:
     void Ren(std::string Path,std::string Name);
     //
     void Mkfile(std::string Path,std::string P,std::string Num,std::string Cont);
-    void Login(std::string Usr,std::string Pwd,std::string Id);
+
 
     void Mkdir(std::string Path,std::string P);
     //FASE 1

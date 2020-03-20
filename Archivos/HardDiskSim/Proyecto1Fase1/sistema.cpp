@@ -35,7 +35,53 @@ void Sistema::Mkfs(std::string Ejecutar, std::string Type,std::string Ext){
         M->MKFS(Ejecutar.data(),Tipo,TExt);
     std::cout<<"-----------------------------------"<<std::endl;
 }
+//2
+void Sistema::Login(std::string Usr, std::string Pwd, std::string Id){
+    std::cout<<"--------------Login---------------"<<std::endl;
+    M->LOGIN(Usr.data(),Pwd.data(),Id.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//3
+void Sistema::Logout(){
+    std::cout<<"--------------LOGOUT---------------"<<std::endl;
+    M->Logout();
+    std::cout<<"-----------------------------------"<<std::endl;
 
+}
+//4
+void Sistema::Mkgrp(std::string Grp){
+    std::cout<<"--------------MKGRP---------------"<<std::endl;
+    M->MKGRP(Grp.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+
+}
+//5
+void Sistema::Rmgrp(std::string Grp){
+    std::cout<<"--------------RMGRP---------------"<<std::endl;
+    M->RMGRP(Grp.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//6
+void Sistema::Mkusr(std::string Usr, std::string Pwd, std::string Grp){
+    std::cout<<"--------------MKUSR---------------"<<std::endl;
+    M->MKUSR(Usr.data(),Pwd.data(),Grp.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//7
+void Sistema::Rmusr(std::string Usr){
+    std::cout<<"--------------RMUSR---------------"<<std::endl;
+    M->RMUSR(Usr.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//8
+void Sistema::Chmod(std::string Path, std::string Ugo, std::string R){
+    std::cout<<"--------------CHMOD---------------"<<std::endl;
+    int Tipo=0;
+    if(R[0]=='1')
+        Tipo=1;
+    M->CHMOD(Path.data(),std::atoi(Ugo.data()),Tipo);
+    std::cout<<"-----------------------------------"<<std::endl;
+}
 //10
 void Sistema::Cat(std::string Path){
     std::cout<<"--------------CAT---------------"<<std::endl;
@@ -101,11 +147,6 @@ void Sistema::Mkfile(std::string Path, std::string P, std::string Num, std::stri
 void Sistema::Mkdir(std::string Path, std::string P){
     std::cout<<"--------------MKDIR---------------"<<std::endl;
     M->MKDIR(Path.data(),P[0]);
-    std::cout<<"-----------------------------------"<<std::endl;
-}
-void Sistema::Login(std::string Usr, std::string Pwd, std::string Id){
-    std::cout<<"--------------Login---------------"<<std::endl;
-    M->LOGIN(Usr.data(),Pwd.data(),Id.data());
     std::cout<<"-----------------------------------"<<std::endl;
 }
 //FASE 1

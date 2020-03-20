@@ -86,14 +86,19 @@ struct STRSINGRE{
 	std::string Id;
 };
 struct STRSUSR{ 
-	std::string Usr;
-	std::string Pwd;
-	std::string Grp;
+	std::string Usr="";
+	bool UsrB=false;
+	std::string Pwd="";
+	bool PwdB=false;
+	std::string Grp="";
+	bool GrpB=false;
 };
 struct STRSPER{
-	std::string Path;
-	std::string Ugo;
-	std::string R; 
+	std::string Path="";
+	bool PathB=false;
+	std::string Ugo="";
+	bool UgoB=false;
+	std::string R="0"; 
 };
 struct STRSARCH{
 	std::string Path;
@@ -340,26 +345,26 @@ NUEVOARCHIVO:NUEVOARCHIVO path igual TERMIDIRECC {$1->Path=$4; $$=$1;}
     |mkfile{$$=new STRSARCH();}
 ;
 
-PERMISO:PERMISO path igual TERMIDIRECC{$1->Path=$4; $$=$1;}
-    |PERMISO ugo igual TERMIIDENTI{$1->Ugo=$4; $$=$1;}
-    |PERMISO r igual TERMIIDENTI{$1->R=$4; $$=$1;}
+PERMISO:PERMISO path igual TERMIDIRECC{$1->Path=$4; $$=$1; $$->PathB=true;}
+    |PERMISO ugo igual TERMIIDENTI{$1->Ugo=$4; $$=$1;  $$->UgoB=true;}
+    |PERMISO r {$1->R="1"; $$=$1;}
     |chmodp{$$ = new STRSPER();}
 ;
 
-BORRARUSUARIO: rmusr usr igual TERMIIDENTI{}
+BORRARUSUARIO: rmusr usr igual TERMIIDENTI{Ope->Rmusr($4);}
 ;
 
-HACERUSUARIO:HACERUSUARIO pwd igual TERMIIDENTI{$1->Pwd=$4; $$=$1;}
-    |HACERUSUARIO grp igual TERMIIDENTI{$1->Grp=$4; $$=$1;}
-    |HACERUSUARIO usr igual TERMIIDENTI{$1->Usr=$4; $$=$1;}
+HACERUSUARIO:HACERUSUARIO pwd igual TERMIIDENTI{$1->Pwd=$4; $$=$1; $$->PwdB=true;}
+    |HACERUSUARIO grp igual TERMIIDENTI{$1->Grp=$4; $$=$1; $$->GrpB=true;}
+    |HACERUSUARIO usr igual TERMIIDENTI{$1->Usr=$4; $$=$1; $$->UsrB=true;}
     |mkusr{$$ = new STRSUSR();}
 ;
-BORRARGRUPO: rmgrp name igual TERMIIDENTI{}
+BORRARGRUPO: rmgrp name igual TERMIIDENTI{Ope->Rmgrp($4);}
 ;
-HACERGRUPO: mkgrp name igual TERMIIDENTI{}
+HACERGRUPO: mkgrp name igual TERMIIDENTI{Ope->Mkgrp($4);}
 ;
 
-SALIR: logout{}
+SALIR: logout{Ope->Logout();}
 ;
 
 INGRE:INGRE usr igual TERMIIDENTI{$1->Usr=$4; $$=$1;}
@@ -425,9 +430,19 @@ OPCION:CREAR {  if($1->BSize && $1->BUnit && $1->BPath){Ope->Crear($1->Size,$1->
     |SALIR{}
     |HACERGRUPO{}
     |BORRARGRUPO{}
-    |HACERUSUARIO{}
+    |HACERUSUARIO{
+		if($1->UsrB && $1->PwdB && $1->GrpB)
+		Ope->Mkusr($1->Usr,$1->Pwd,$1->Grp);
+		else
+		std::cout<<"No Se Cumplen Parametros Obligatorios para MKUSR"<<std::endl;
+		}
     |BORRARUSUARIO{}
-    |PERMISO{}
+    |PERMISO{
+		if($1->UgoB && $1->PathB )
+		Ope->Chmod($1->Path,$1->Ugo,$1->R);
+		else
+		std::cout<<"No Se Cumplen Parametros Obligatorios para MKUSR"<<std::endl;		
+	}
     |NUEVOARCHIVO{Ope->Mkfile($1->Path,$1->P,$1->Size,$1->Cont);}
     |VERCONTE{}
     |REMOVER{}

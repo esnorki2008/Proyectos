@@ -40,7 +40,7 @@ void CHMOD_CHOWN::CambiarPropietarioNormalRecursivo(int Comienzo, const char *Pa
 
 
     //Cambiar De Manera Normal
-    if(OPE==1){
+    if(OPE==0){
         std::cout<<"Se Cambiaron El Propietario A Solo Una Carpeta O Archivo De '"<<PathVirtual<<"' Cod Nuevo Duenoi: "<<std::to_string(Permiso.Uid)<<std::endl;
         return ;
 
@@ -98,7 +98,7 @@ void CHMOD_CHOWN::CambiarPermisosNormalRecursivo(int Comienzo, const char *PathV
 
 
     //Cambiar De Manera Normal
-    if(Ope==1){
+    if(Ope==0){
         std::cout<<"Se Cambiaron Los Permisos A Solo Una Carpeta De '"<<PathVirtual<<"' Al Tipo De Permisos: "<<std::to_string(Perm).substr(1)<<std::endl;
         return ;
 
