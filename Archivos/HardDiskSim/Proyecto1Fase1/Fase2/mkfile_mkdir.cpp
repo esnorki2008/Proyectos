@@ -64,7 +64,11 @@ bool MKFILE_MKDIR::CrearArchivoCompleto(SPB *Super, long Comienzo, const char *P
 
     if(Num==1)
         return true;
-
+    if(BuscarActual(Comienzo,PathVirtual,PathReal)!=-1)
+    {
+        std::cout<<"Ya Existe Esa Carpeta"<<std::endl;
+        return  true;
+    }
     if(CarpetaArchivoSimpleInDirectos(&Inodo,Super,PosPadre,PathReal,PathVirtual,NombreCarpeta,Contenido)!=-1)
         return true;
 
@@ -104,7 +108,11 @@ bool MKFILE_MKDIR::CrearArchivoSimple(SPB *Super, long Comienzo, const char *Pat
         return true;
     if(Num==-2)
         return false;
-
+    if(BuscarActual(Comienzo,PathVirtual,PathReal)!=-1)
+    {
+        std::cout<<"Ya Existe Esa Carpeta"<<std::endl;
+        return  true;
+    }
     if(CarpetaArchivoSimpleInDirectos(&Inodo,Super,PosPadre,PathReal,PathVirtual,NombreCarpeta,Contenido)==1)
         return true;
 
@@ -131,7 +139,7 @@ bool MKFILE_MKDIR::CrearCarpetaSimple(SPB *Super,long Comienzo, const char *Path
         std::cout<<"No Se Tiene Permisos Para ESCRIBIR En la Carpeta Padre En '"<<PathVirtual<<"' La Sesion Actual No Tiene Los Permisos Necesarios "<<std::endl;
         return false;
     }
-    std::cout<<"Path     "<<PathVirtual<<"  Padre "<<PosPadre<<std::endl;
+    //std::cout<<"Path     "<<PathVirtual<<"  Padre "<<PosPadre<<std::endl;
     std::string NombreCarpeta=NombreACrear(PathVirtual);
     FILE *f;
     f=fopen(PathReal,"r+");
@@ -143,8 +151,17 @@ bool MKFILE_MKDIR::CrearCarpetaSimple(SPB *Super,long Comienzo, const char *Path
     Num=CarpetaArchivoSimpleDirectos(&Inodo,Super,PosPadre,PathReal,NombreCarpeta,"");
     if(Num==1)
         return true;
+
     if(Num==-2)
         return false;
+
+
+    if(BuscarActual(Comienzo,PathVirtual,PathReal)!=-1)
+    {
+        std::cout<<"Ya Existe Esa Carpeta"<<std::endl;
+        return  true;
+    }
+
 
     if(CarpetaArchivoSimpleInDirectos(&Inodo,Super,PosPadre,PathReal,PathVirtual,NombreCarpeta,"")==1)
         return true;
@@ -192,6 +209,7 @@ long MKFILE_MKDIR::CarpetaArchivoSimpleDirectos(INO *Ino,SPB *Super,long PosPadr
                 CON Con=BloqueDirecto.content[j];
                 if(IF(NombreCarpeta,Con.b_name)){
                     fclose(f);
+                    std::cout<<" Ya Existe Una Carpeta Con Ese Nombre "<<std::endl;
                     return -2;
                 }
             }

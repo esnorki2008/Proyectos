@@ -102,42 +102,58 @@ struct STRSPER{
 };
 struct STRSARCH{
 	std::string Path;
+	bool PathB=false;
 	std::string P="0";
 	std::string Size="0";
 	std::string Cont="";   
 };
 struct STRSEDIT{
-	std::string Path;
-	std::string Cont;   
+	std::string Path="";
+	bool PathB=false;
+	std::string Cont="";
+	bool ContB=false;   
 };
 struct STRSREN{
-	std::string Path;
-	std::string Name;  
+	std::string Path="";
+	bool PathB=false;
+	std::string Name="";  
+	bool NameB=false;
 };
 struct STRSDIR{
 	std::string Path;
+	bool PathB=true;
 	std::string P="0";  
 };
 struct STRSCOP{
 	std::string Path;
-	std::string Dest;   
+	bool PathB=false;
+	std::string Dest;
+	bool DestB=false;   
 };
 struct STRSMOV{
 	std::string Path;
-	std::string Dest; 
+	bool PathB=false;
+	std::string Dest;
+	bool DestB=false; 
 };
 struct STRSFIN{
-	std::string Path;
-	std::string Name; 
+	std::string Path="";
+	bool PathB=false;
+	std::string Name="";  
+	bool NameB=false;
 };
 struct STRSCHOW{
 	std::string Path;
-	std::string R;
+	bool PathB=false;
+	std::string R="0";
 	std::string Usr; 
+	bool UsrB=false;
 };
 struct STRSCHG{
 	std::string Usr;
-	std::string Grp; 
+	bool UsrB=false;
+	std::string Grp;
+	bool GrpB=false; 
 };
 
 struct STRDITA{
@@ -282,53 +298,53 @@ TERMIIDENTI:identificador{std::copy(std::begin($1), std::end($1), std::begin($$)
 
 
 
-MATAR: loss igual TERMIIDENTI{}
+MATAR: loss id igual TERMIIDENTI{Ope->Loss($4);}
 ;
 
-RECUPERAR: recovery igual TERMIIDENTI{}
+RECUPERAR: recovery id igual TERMIIDENTI{Ope->Recovery($4);}
 ;
 
 PAUSA:pausep{std::string Entrada; std::cout<<"Modo Pausa, Escribar Cualquier Cosa Para Salir"<<std::endl;std::cin>>Entrada;}
 ;
 
-CAMBIARGRUPO:CAMBIARGRUPO grp igual TERMIIDENTI{$1->Grp=$4; $$=$1;}
-    |CAMBIARGRUPO usr igual TERMIIDENTI{$1->Usr=$4; $$=$1;}
+CAMBIARGRUPO:CAMBIARGRUPO grp igual TERMIIDENTI{$1->Grp=$4; $$=$1; $$->GrpB=true;}
+    |CAMBIARGRUPO usr igual TERMIIDENTI{$1->Usr=$4; $$=$1; $$->UsrB=true;}
     |chgrp{$$= new STRSCHG();}
 ;
 
-CAMBIARPROP:CAMBIARPROP r igual TERMIIDENTI{$1->R=$4; $$=$1;}
-    |CAMBIARPROP usr igual TERMIIDENTI{$1->Usr=$4; $$=$1;}
-    |CAMBIARPROP path igual TERMIDIRECC{$1->Path=$4; $$=$1;}
+CAMBIARPROP:CAMBIARPROP r {$1->R="1"; $$=$1;}
+    |CAMBIARPROP usr igual TERMIIDENTI{$1->Usr=$4; $$=$1; $$->UsrB=true;}
+    |CAMBIARPROP path igual TERMIDIRECC{$1->Path=$4; $$=$1; $$->PathB=true;}
     |chownp{$$= new STRSCHOW();}
 ;
 
-FIN:FIN name igual TERMIIDENTI{$1->Name=$4; $$=$1;}
-    |FIN path igual TERMIDIRECC{$1->Path=$4; $$=$1;}
+FIN:FIN name igual TERMIIDENTI{$1->Name=$4; $$=$1; $$->NameB=true;}
+    |FIN path igual TERMIDIRECC{$1->Path=$4; $$=$1; $$->PathB=true;}
     |find{$$=new STRSFIN();}
 ;
 
-MOVER:MOVER dest igual TERMIDIRECC{$1->Dest=$4; $$=$1;}
-    |MOVER path igual TERMIDIRECC{$1->Path=$4; $$=$1;}
+MOVER:MOVER dest igual TERMIDIRECC{$1->Dest=$4; $$=$1;  $$->DestB=true;}
+    |MOVER path igual TERMIDIRECC{$1->Path=$4; $$=$1; $$->PathB=true;}
     |mv {$$=new STRSMOV();}
 ;
 
-COPIAR:COPIAR dest igual TERMIDIRECC{$1->Dest=$4; $$=$1;}
-    |COPIAR path igual TERMIDIRECC{$1->Path=$4; $$=$1;}
+COPIAR:COPIAR dest igual TERMIDIRECC{$1->Dest=$4; $$=$1; $$->DestB=true;}
+    |COPIAR path igual TERMIDIRECC{$1->Path=$4; $$=$1; $$->PathB=true;}
     |cp {$$=new STRSCOP();}
 ;
 
 NUEVACARPETA:NUEVACARPETA p{$1->P="1"; $$=$1;}
-    |NUEVACARPETA path igual TERMIDIRECC{$1->Path=$4; $$=$1;}
+    |NUEVACARPETA path igual TERMIDIRECC{$1->Path=$4; $$=$1; $$->PathB=true;}
     |mkdirp{$$= new STRSDIR();}
 ;
 
-RENOMBRAR:RENOMBRAR name igual TERMIIDENTI{$1->Name=$4; $$=$1;}
-    |RENOMBRAR path igual TERMIDIRECC{$1->Path=$4; $$=$1;}
+RENOMBRAR:RENOMBRAR name igual TERMIIDENTI{$1->Name=$4; $$=$1; $$->NameB=true;}
+    |RENOMBRAR path igual TERMIDIRECC{$1->Path=$4; $$=$1; $$->PathB=true;}
     |ren{$$= new STRSREN();}
 ;
 
-EDITARCHIVO:EDITARCHIVO path igual TERMIDIRECC{$1->Path=$4; $$=$1;}
-    |EDITARCHIVO cont igual TERMIDIRECC{$1->Cont=$4; $$=$1;}
+EDITARCHIVO:EDITARCHIVO path igual TERMIDIRECC{$1->Path=$4; $$=$1; $$->PathB=true;}
+    |EDITARCHIVO cont igual TERMIDIRECC{$1->Cont=$4; $$=$1; $$->ContB=true;}
     |edit{$$= new STRSEDIT();}
 ;
 
@@ -338,7 +354,7 @@ REMOVER:rem path igual TERMIDIRECC{Ope->Rem($4);}
 VERCONTE: cat file igual TERMIDIRECC {Ope->Cat($4);}
 ;
 
-NUEVOARCHIVO:NUEVOARCHIVO path igual TERMIDIRECC {$1->Path=$4; $$=$1;}
+NUEVOARCHIVO:NUEVOARCHIVO path igual TERMIDIRECC {$1->Path=$4; $$=$1; $$->PathB=true;}
     |NUEVOARCHIVO p  {$1->P="1"; $$=$1;}
     |NUEVOARCHIVO size igual entero {$1->Size=$4; $$=$1;}
     |NUEVOARCHIVO cont igual TERMIDIRECC {$1->Cont=$4; $$=$1;}
@@ -441,19 +457,64 @@ OPCION:CREAR {  if($1->BSize && $1->BUnit && $1->BPath){Ope->Crear($1->Size,$1->
 		if($1->UgoB && $1->PathB )
 		Ope->Chmod($1->Path,$1->Ugo,$1->R);
 		else
-		std::cout<<"No Se Cumplen Parametros Obligatorios para MKUSR"<<std::endl;		
+		std::cout<<"No Se Cumplen Parametros Obligatorios para CHMOD"<<std::endl;		
 	}
-    |NUEVOARCHIVO{Ope->Mkfile($1->Path,$1->P,$1->Size,$1->Cont);}
+    |NUEVOARCHIVO{
+		if($1->PathB)
+		Ope->Mkfile($1->Path,$1->P,$1->Size,$1->Cont);
+		else
+		std::cout<<"No Se Cumplen Parametros Obligatorios para MKFILE"<<std::endl;
+	}
     |VERCONTE{}
     |REMOVER{}
-    |EDITARCHIVO{Ope->Edit($1->Path,$1->Cont);}
-    |RENOMBRAR{Ope->Ren($1->Path,$1->Name);}
-    |NUEVACARPETA{Ope->Mkdir($1->Path,$1->P);}
-    |COPIAR{}
-    |MOVER{}
-    |FIN{}
-    |CAMBIARPROP{}
-    |CAMBIARGRUPO{}
+    |EDITARCHIVO{
+		if($1->PathB && $1->ContB )
+		Ope->Edit($1->Path,$1->Cont);
+		else
+		std::cout<<"No Se Cumplen Parametros Obligatorios para EDIT"<<std::endl;
+	}
+    |RENOMBRAR{
+		if($1->PathB && $1->NameB)
+		Ope->Ren($1->Path,$1->Name);
+		else
+		std::cout<<"No Se Cumplen Parametros Obligatorios para REN"<<std::endl;
+	}
+    |NUEVACARPETA{
+		if($1->PathB)
+		Ope->Mkdir($1->Path,$1->P);
+		else
+		std::cout<<"No Se Cumplen Parametros Obligatorios para REN"<<std::endl;
+	}
+    |COPIAR{
+		if($1->PathB && $1->DestB)
+		Ope->Cp($1->Path,$1->Dest);
+		else
+		std::cout<<"No Se Cumplen Parametros Obligatorios para CP"<<std::endl;		
+	}
+    |MOVER{
+		if($1->PathB && $1->DestB)
+		Ope->Mv($1->Path,$1->Dest);
+		else
+		std::cout<<"No Se Cumplen Parametros Obligatorios para MV"<<std::endl;					
+	}
+    |FIN{
+		if($1->PathB && $1->NameB)
+		Ope->Find($1->Path,$1->Name);
+		else
+		std::cout<<"No Se Cumplen Parametros Obligatorios para FIND"<<std::endl;
+	}
+    |CAMBIARPROP{
+		if($1->PathB && $1->UsrB)
+		Ope->Chown($1->Path,$1->R,$1->Usr);
+		else
+		std::cout<<"No Se Cumplen Parametros Obligatorios para CHOWN"<<std::endl;	
+	}
+    |CAMBIARGRUPO{
+		if($1->GrpB && $1->UsrB)
+		Ope->Chgrp($1->Usr,$1->Grp);
+		else
+		std::cout<<"No Se Cumplen Parametros Obligatorios para CHGRP"<<std::endl;
+	}
     |PAUSA{}
     |RECUPERAR{}
     |MATAR{}

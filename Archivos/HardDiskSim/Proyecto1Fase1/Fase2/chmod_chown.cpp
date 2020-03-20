@@ -68,7 +68,7 @@ void CHMOD_CHOWN::CambiarPropietarioNormalRecursivo(int Comienzo, const char *Pa
 
 
 }
-//Busqueda De Carpetas O Archivos
+//Busqueda De Carpetas O Archivos  CHMOD
 void CHMOD_CHOWN::CambiarPermisosNormalRecursivo(int Comienzo, const char *PathVirtual, const char *PathReal,int Ope,int Perm){
     int Actual=BuscarActual(Comienzo,PathVirtual,PathReal);
     if(Actual==-1){
@@ -90,7 +90,7 @@ void CHMOD_CHOWN::CambiarPermisosNormalRecursivo(int Comienzo, const char *PathV
         fwrite(&Carpeta,sizeof(Carpeta),1,f);
 
     }else{
-        std::cout<<"No Se Pueden Cambiar Los Permisos El Usuario Con Codigo "<<Permiso.Uid<<" No Es El Propietario"<<std::endl;
+        std::cout<<"No Se Pueden Cambiar Los Permisos El Usuario Con Codigo "<<Permiso.Uid<<" No Es El Propietario Ni root"<<std::endl;
         return ;
     }
 
@@ -104,7 +104,7 @@ void CHMOD_CHOWN::CambiarPermisosNormalRecursivo(int Comienzo, const char *PathV
 
     }
 
-    //Es Carpeta
+    //Es Archivo
     if(Carpeta.i_type=='1')
         return;
 

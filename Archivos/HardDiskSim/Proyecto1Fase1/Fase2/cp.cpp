@@ -37,7 +37,7 @@ void CP::CopiarCarpetaArchivo(SPB *Super,int Comienzo, std::string PathVirtualOr
     if(Tipo==0)
         new MKFILE_MKDIR(Super,Comienzo,PathVirtualDestino.data(),PathReal,"",true,false,Permiso);
     else
-        new MKFILE_MKDIR(Super,Comienzo,PathVirtualDestino.data(),PathReal,"Dummy",true,true,Permiso);
+        new MKFILE_MKDIR(Super,Comienzo,PathVirtualDestino.data(),PathReal,"0",false,false,Permiso);
     //Ver Si Se Pudo Crear
     int Colocado=BuscarActual(Comienzo,PathVirtualDestino,PathReal);
     if(Colocado==-1){

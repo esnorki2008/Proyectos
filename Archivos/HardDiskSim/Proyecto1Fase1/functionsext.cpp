@@ -147,6 +147,7 @@ bool FunctionsExt::EliminarDirectos(SPB *Super,long Comienzo, const char *PathRe
 
         if(Contenido.b_inodo!=-1){
             if(Contenido.b_inodo==Elim && Tipo ==4){
+            //if(Tipo ==4){
                 Carpeta.content[i].b_inodo=-1;
                 strcpy(Carpeta.content[i].b_name,"*********");
                 f=fopen(PathReal,"r+");

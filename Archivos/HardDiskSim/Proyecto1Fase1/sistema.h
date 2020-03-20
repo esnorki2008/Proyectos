@@ -22,7 +22,8 @@ public:
     void Rmusr(std::string Usr);
     //8 Chmod
     void Chmod(std::string Path,std::string Ugo,std::string R);
-
+    //9 MKFILE
+    void Mkfile(std::string Path,std::string P,std::string Num,std::string Cont);
     //10 CAT
     void Cat(std::string Path);
     //11 REM
@@ -31,11 +32,26 @@ public:
     void Edit(std::string Path,std::string Cont);
     //13 REN
     void Ren(std::string Path,std::string Name);
-    //
-    void Mkfile(std::string Path,std::string P,std::string Num,std::string Cont);
-
-
+    //14 MKDIR
     void Mkdir(std::string Path,std::string P);
+    //15
+    void Cp(std::string Path,std::string Dest);
+    //16
+    void Mv(std::string Path,std::string Dest);
+    //17
+    void Find(std::string Path,std::string Name);
+    //18
+    void Chown(std::string Path,std::string R,std::string Usr);
+    //19
+    void Chgrp(std::string Usr,std::string Grp);
+    //20
+    void Recovery(std::string Id);
+    //21
+    void Loss(std::string Id);
+    //
+
+
+
     //FASE 1
     void Ejecutar(std::string Ejecutar);
     void CrearDirectorio(std::string Conte);

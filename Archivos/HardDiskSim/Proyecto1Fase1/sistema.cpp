@@ -82,32 +82,7 @@ void Sistema::Chmod(std::string Path, std::string Ugo, std::string R){
     M->CHMOD(Path.data(),std::atoi(Ugo.data()),Tipo);
     std::cout<<"-----------------------------------"<<std::endl;
 }
-//10
-void Sistema::Cat(std::string Path){
-    std::cout<<"--------------CAT---------------"<<std::endl;
-    std::cout<<M->CAT(Path.data())<<std::endl;
-    std::cout<<"-----------------------------------"<<std::endl;
-}
-//11
-void Sistema::Rem(std::string Path){
-    std::cout<<"--------------REM------------------"<<std::endl;
-    M->REM(Path.data());
-    std::cout<<"-----------------------------------"<<std::endl;
-
-}
-//12
-void Sistema::Edit(std::string Path, std::string Cont){
-    std::cout<<"--------------EDIT------------------"<<std::endl;
-    M->EDIT(Path.data(),Cont.data());
-    std::cout<<"-----------------------------------"<<std::endl;
-}
-//13
-void Sistema::Ren(std::string Path, std::string Name){
-    std::cout<<"--------------EDIT------------------"<<std::endl;
-    M->REN(Path.data(),Name.data());
-    std::cout<<"-----------------------------------"<<std::endl;
-}
-//
+//9
 void Sistema::Mkfile(std::string Path, std::string P, std::string Num, std::string Cont){
     std::cout<<"--------------MKFILE---------------"<<std::endl;
     std::string Contenido="";
@@ -144,11 +119,83 @@ void Sistema::Mkfile(std::string Path, std::string P, std::string Num, std::stri
 
     std::cout<<"-----------------------------------"<<std::endl;
 }
+//10
+void Sistema::Cat(std::string Path){
+    std::cout<<"--------------CAT---------------"<<std::endl;
+    std::cout<<M->CAT(Path.data())<<std::endl;
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//11
+void Sistema::Rem(std::string Path){
+    std::cout<<"--------------REM------------------"<<std::endl;
+    M->REM(Path.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+
+}
+//12
+void Sistema::Edit(std::string Path, std::string Cont){
+    std::cout<<"--------------EDIT------------------"<<std::endl;
+    M->EDIT(Path.data(),Cont.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//13
+void Sistema::Ren(std::string Path, std::string Name){
+    std::cout<<"--------------EDIT------------------"<<std::endl;
+    M->REN(Path.data(),Name.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//14
 void Sistema::Mkdir(std::string Path, std::string P){
     std::cout<<"--------------MKDIR---------------"<<std::endl;
     M->MKDIR(Path.data(),P[0]);
     std::cout<<"-----------------------------------"<<std::endl;
 }
+//15
+void Sistema::Cp(std::string Path, std::string Dest){
+    std::cout<<"--------------CP---------------"<<std::endl;
+    M->CP(Path.data(),Dest.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//16
+void Sistema::Mv(std::string Path, std::string Dest){
+    std::cout<<"--------------MV---------------"<<std::endl;
+    M->MV(Path.data(),Dest.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//17
+void Sistema::Find(std::string Path, std::string Name){
+    std::cout<<"--------------FIND---------------"<<std::endl;
+    M->FIND(Path.data(),Name.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//18
+void Sistema::Chown(std::string Path, std::string R, std::string Usr){
+    std::cout<<"--------------CHOWN---------------"<<std::endl;
+    int Tipo=0;
+    if(Func->IF("1",R))
+        Tipo=1;
+    M->CHOWN(Path.data(),Usr.data(),Tipo);
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//19
+void Sistema::Chgrp(std::string Usr, std::string Grp){
+    std::cout<<"--------------CHGRP---------------"<<std::endl;
+    M->CHGRP(Usr.data(),Grp.data());
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//20
+void Sistema::Recovery(std::string Id){
+    std::cout<<"--------------RECOVERY---------------"<<std::endl;
+    M->Recuperar(Id);
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//21
+void Sistema::Loss(std::string Id){
+    std::cout<<"--------------RECOVERY---------------"<<std::endl;
+    M->Loss(Id);
+    std::cout<<"-----------------------------------"<<std::endl;
+}
+//
 //FASE 1
 void Sistema::CrearDirectorio(std::string Conte){
     std::string s = Conte;

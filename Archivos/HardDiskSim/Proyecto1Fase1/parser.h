@@ -111,7 +111,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 151 "sintactico.y"
+#line 167 "sintactico.y"
 
 
 //se especifican los tipo de valores para los no terminales y lo terminales
