@@ -1,8 +1,8 @@
 Print macro Texto
-   mov   ax, @data     ;hmm ¿seg?
+   mov   ax, data     ;hmm ¿seg?
    mov   ds,ax          ;ds = ax = saludo
    mov   ah,09          ;Function(print string)
-   lea   dx,Offset Texto         ;DX = String terminated by "$"
+   mov   dx,Offset Texto         ;DX = String terminated by "$"
    int   21h               ;Interruptions DOS Functions
 endm
 PrintN macro Num
