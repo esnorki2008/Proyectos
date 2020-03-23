@@ -12,7 +12,23 @@ PrintN macro Num
     int 21h
 endm
 
+PrintJ macro Num
+    cmp bh,1h    
+    jz Jug1
+    jc SinJug
+    Jnc Jug2
 
+    SinJug:
+        Print J0
+        jmp SalSelec
+    Jug1:
+        Print J1
+        jmp SalSelec
+    Jug2:
+        Print J2
+        jmp SalSelec
+    SalSelec:
+endm
 
 
 Exit macro
