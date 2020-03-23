@@ -44,47 +44,39 @@ Tablero db 81 dup(0h)
 
 
 
-
- 
-
 main  proc   
-
-;Cabecera De Juego  
-;Print Titulo1
-;Print Titulo2
-;Print Titulo3
-
+jmp hola
 
 
 mov ah,81;Iniciar Tablero
 mov si,offset Tablero
 Iniciar:
-mov [si],1h
+mov [si],0h
 inc si
 dec ah 
 jnz Iniciar
 
 
 
+hola:
 
-
-mov PosY,9h
 mov si,offset Tablero
 inc si
-mov bl,[si] 
-PrintJ bl 
- 
-       
+mov PosY,9h
+mov bl,PosY       
 Print NuevaLinea
-        
-;Imprimir Tablero
-
-   
+mov PosY,bl
 
 
-;Imprimir NuevaFila
+
+TabY:
+
 PrintN PosY
 Print Espacio
+           
+
+
+
 Print J1
 Print DibX
 inc si  
@@ -125,58 +117,11 @@ inc si
 
 
 dec PosY
-
-TabY:
+jz FinTablero
 Print NuevaLinea 
 Print Fila0           
 Print NuevaLinea
-
-;Imprimir NuevaFila
-PrintN PosY
-Print Espacio
-Print J1
-Print DibX
-inc si  
-
-
-Print J1
-Print DibX
-inc si
-
-Print J1
-Print DibX
-inc si
-
-Print J1
-Print DibX
-inc si
-
-Print J1
-Print DibX
-inc si
-
-Print J1
-Print DibX
-inc si
-
-Print J1
-Print DibX
-inc si
-
-Print J1
-Print DibX
-inc si
-
-Print J1
-inc si
-
-
-
-
-
-dec PosY
-
-     
+FinTablero:    
 jnz TabY
 
   
