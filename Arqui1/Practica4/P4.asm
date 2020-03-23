@@ -231,6 +231,10 @@ jmp CJF
 CJ2:
 mov Jugador,1h
 CJF:
+
+
+
+;COMER FICHAS
 jmp JuegoTablero
 
 NoColocar:
