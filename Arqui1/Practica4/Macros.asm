@@ -1,17 +1,22 @@
-Print macro Texto
-   xor ax,ax
-   mov   ax, data     ;hmm ¿seg?
-   mov   ds,ax          ;ds = ax = saludo
-   mov   ah,09          ;Function(print string)
-   mov   dx,Offset Texto         ;DX = String terminated by "$"
-   int   21h               ;Interruptions DOS Functions
-endm
 VerI macro Pos,Valor
-local PosVerif,Bloqueado,Tope,Mismo
+local PosVerif,Bloqueado,Tope,Mismo,Fini
+
+mov dl,Pos
+mov ah,2
+int 21h
+
+mov dl,Valor
+mov ah,2
+int 21h
+
+
 xor ax,ax
 xor si,si
-mov ax,Pos
+mov al,Pos
 mov Si,ax
+
+
+
 ;Esta En EL Borde
 cmp Si,0
 jz Tope
@@ -31,23 +36,34 @@ cmp Si,56
 jz Tope
 jmp PosVerif
 Bloqueado:
-mov dl,0h;Esta Bloqueado
-jmp Tope
+mov dl,66;Esta Bloqueado
+jmp FINI
 PosVerif:
 mov al,Valor
-dec Si;Disminuir Si Porque No Es Borde
+dec Si;Disminuir Si, Porque No Es Borde
 cmp al,Tablero[Si]
 JZ Mismo
-cmp al,00h
-JZ Mismo
-
+cmp Tablero[si],00h
+JZ Tope
 JNZ Bloqueado;Diferente Simbolo
 Mismo:
-mov dl,1h
+mov dl,65
+jmp FINI
 ;MismoSimbolo
 Tope:
+mov dl,64
+FINI:
 endm
 
+
+Print macro Texto
+   xor ax,ax
+   mov   ax, data     ;hmm ¿seg?
+   mov   ds,ax          ;ds = ax = saludo
+   mov   ah,09          ;Function(print string)
+   mov   dx,Offset Texto         ;DX = String terminated by "$"
+   int   21h               ;Interruptions DOS Functions
+endm
 Val0 macro Char
 ;65  72
     local salir

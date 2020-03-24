@@ -41,7 +41,7 @@ Modo db 0;Modo 0 Menu Principal
 Registro db 0  
 Estado db 0 
 b0 db 20 dup("$")
-
+Aux db 0
 Teclado db 20 dup("$")
 Longitud db 0
 
@@ -102,7 +102,7 @@ jz Cargar
 cmp Teclado[0h],51
 jz Fin 
 
-jmp Menu
+jmp Menu:
     
 
 
@@ -222,7 +222,41 @@ mov al,Jugador
 mov Tablero[si],al
 ;COMER FICHAS
 
-;VerI
+
+
+xor ax,ax
+mov ax,si
+mov ah,Tablero[si]
+
+VerI al,ah
+
+mov bl,dl
+NuevaLinea
+mov dl,bl
+mov ah,2
+int 21h
+Entrada
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -236,8 +270,6 @@ jmp CJF
 CJ2:
 mov Jugador,1h
 CJF:
-
-
 
 
 
