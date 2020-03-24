@@ -102,7 +102,7 @@ jz Cargar
 cmp Teclado[0h],51
 jz Fin 
 
-jmp Menu:
+jmp Menu
     
 
 
@@ -220,6 +220,11 @@ jnz NoColocar
 Colocar: 
 mov al,Jugador
 mov Tablero[si],al
+;COMER FICHAS
+
+;VerI
+
+
 
 ;CAMBIAR DE JUGADOR
 cmp Jugador,1h
@@ -234,7 +239,9 @@ CJF:
 
 
 
-;COMER FICHAS
+
+
+
 jmp JuegoTablero
 
 NoColocar:

@@ -6,6 +6,48 @@ Print macro Texto
    mov   dx,Offset Texto         ;DX = String terminated by "$"
    int   21h               ;Interruptions DOS Functions
 endm
+VerI macro Pos,Valor
+local PosVerif,Bloqueado,Tope,Mismo
+xor ax,ax
+xor si,si
+mov ax,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,0
+jz Tope
+cmp Si,8
+jz Tope
+cmp Si,16
+jz Tope
+cmp Si,24
+jz Tope
+cmp Si,32
+jz Tope
+cmp Si,40
+jz Tope
+cmp Si,48
+jz Tope
+cmp Si,56
+jz Tope
+jmp PosVerif
+Bloqueado:
+mov dl,0h;Esta Bloqueado
+jmp Tope
+PosVerif:
+mov al,Valor
+dec Si;Disminuir Si Porque No Es Borde
+cmp al,Tablero[Si]
+JZ Mismo
+cmp al,00h
+JZ Mismo
+
+JNZ Bloqueado;Diferente Simbolo
+Mismo:
+mov dl,1h
+;MismoSimbolo
+Tope:
+endm
+
 Val0 macro Char
 ;65  72
     local salir
