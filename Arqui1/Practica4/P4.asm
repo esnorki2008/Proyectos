@@ -34,7 +34,8 @@ Lectura db ?
 file db 'c:\arc.txt','00h' ;ojo con el 00h es importante
 handler dw ?
 buffer db 10 dup(' ')
-Tablero db 64 dup(5)   
+Tablero db 64 dup(5)
+Libertades db 64 dup(5)     
 PosX db 0
 PosY db 0
 Modo db 0;Modo 0 Menu Principal 
@@ -223,19 +224,20 @@ mov Tablero[si],al
 ;COMER FICHAS
 
 
+;Calcu
 
-xor ax,ax
-mov ax,si
-mov ah,Tablero[si]
 
-VerI al,ah
 
-mov bl,dl
-NuevaLinea
-mov dl,bl
-mov ah,2
-int 21h
-Entrada
+
+
+   
+   
+;mov bl,dl
+;NuevaLinea
+;mov dl,bl
+;mov ah,2
+;int 21h
+;Entrada
 
 
 

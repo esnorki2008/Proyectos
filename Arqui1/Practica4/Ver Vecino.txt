@@ -1,0 +1,52 @@
+;ComprobarIzquierda
+xor bx,bx
+mov bx,si
+mov bh,Tablero[si]
+VerIz bl,bh;Resultado En DL
+
+cmp dl,2h
+jnz SaltarIz      ;Son Iguales Fichas O Hay Pared
+;Hay Ficha Contraria
+
+
+
+SaltarIz:
+
+
+;ComprobarDerecha
+xor bx,bx
+mov bx,si
+mov bh,Tablero[si]
+VerDe bl,bh;Resultado En DL
+
+cmp dl,2h
+jnz SaltarDe      ;Son Iguales Fichas O Hay Pared
+
+
+SaltarDe:
+
+
+;ComprobarArriba
+xor bx,bx
+mov bx,si
+mov bh,Tablero[si]
+VerAr bl,bh;Resultado En DL
+
+cmp dl,2h
+jnz SaltarAr      ;Son Iguales Fichas O Hay Pared
+
+
+SaltarAr:   
+
+
+;ComprobarAbajo
+xor bx,bx
+mov bx,si
+mov bh,Tablero[si]
+VerAb bl,bh;Resultado En DL
+
+cmp dl,2h
+jnz SaltarAb      ;Son Iguales Fichas O Hay Pared
+
+
+SaltarAb: 

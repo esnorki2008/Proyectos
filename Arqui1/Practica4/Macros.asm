@@ -1,22 +1,141 @@
-VerI macro Pos,Valor
+
+
+VerAb macro Pos,Valor
 local PosVerif,Bloqueado,Tope,Mismo,Fini
-
-mov dl,Pos
-mov ah,2
-int 21h
-
-mov dl,Valor
-mov ah,2
-int 21h
-
-
 xor ax,ax
 xor si,si
 mov al,Pos
 mov Si,ax
+;Esta En EL Borde
+cmp Si,56
+jz Tope
+cmp Si,57
+jz Tope
+cmp Si,58
+jz Tope
+cmp Si,59
+jz Tope
+cmp Si,60
+jz Tope
+cmp Si,61
+jz Tope
+cmp Si,62
+jz Tope
+cmp Si,63
+jz Tope
+jmp PosVerif
+Bloqueado:
+mov dl,2;Esta Bloqueado
+jmp FINI
+PosVerif:
+mov al,Valor
+add Si,7;Aumentar Si, Porque No Es Borde
+cmp al,Tablero[Si]
+JZ Mismo
+cmp Tablero[si],00h
+JZ Tope
+JNZ Bloqueado;Diferente Simbolo
+Mismo:
+mov dl,1;MismoSimbolo
+jmp FINI
+Tope:
+mov dl,0
+FINI:
+endm
+
+VerAr macro Pos,Valor
+local PosVerif,Bloqueado,Tope,Mismo,Fini
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,0
+jz Tope
+cmp Si,1
+jz Tope
+cmp Si,2
+jz Tope
+cmp Si,3
+jz Tope
+cmp Si,4
+jz Tope
+cmp Si,5
+jz Tope
+cmp Si,6
+jz Tope
+cmp Si,7
+jz Tope
+jmp PosVerif
+Bloqueado:
+mov dl,2;Esta Bloqueado
+jmp FINI
+PosVerif:
+mov al,Valor
+sub Si,7;Disminuir Si, Porque No Es Borde
+cmp al,Tablero[Si]
+JZ Mismo
+cmp Tablero[si],00h
+JZ Tope
+JNZ Bloqueado;Diferente Simbolo
+Mismo:
+mov dl,1;MismoSimbolo
+jmp FINI
+Tope:
+mov dl,0
+FINI:
+endm
 
 
+VerDe macro Pos,Valor
+local PosVerif,Bloqueado,Tope,Mismo,Fini
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,7
+jz Tope
+cmp Si,15
+jz Tope
+cmp Si,23
+jz Tope
+cmp Si,31
+jz Tope
+cmp Si,37
+jz Tope
+cmp Si,45
+jz Tope
+cmp Si,53
+jz Tope
+cmp Si,61
+jz Tope
+jmp PosVerif
+Bloqueado:
+mov dl,2;Esta Bloqueado
+jmp FINI
+PosVerif:
+mov al,Valor
+inc Si;Aumentar Si, Porque No Es Borde
+cmp al,Tablero[Si]
+JZ Mismo
+cmp Tablero[si],00h
+JZ Tope
+JNZ Bloqueado;Diferente Simbolo
+Mismo:
+mov dl,1;MismoSimbolo
+jmp FINI
+Tope:
+mov dl,0
+FINI:
+endm
 
+VerIz macro Pos,Valor
+local PosVerif,Bloqueado,Tope,Mismo,Fini
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
 ;Esta En EL Borde
 cmp Si,0
 jz Tope
@@ -36,7 +155,7 @@ cmp Si,56
 jz Tope
 jmp PosVerif
 Bloqueado:
-mov dl,66;Esta Bloqueado
+mov dl,2;Esta Bloqueado
 jmp FINI
 PosVerif:
 mov al,Valor
@@ -47,11 +166,11 @@ cmp Tablero[si],00h
 JZ Tope
 JNZ Bloqueado;Diferente Simbolo
 Mismo:
-mov dl,65
+mov dl,1
 jmp FINI
 ;MismoSimbolo
 Tope:
-mov dl,64
+mov dl,0
 FINI:
 endm
 
