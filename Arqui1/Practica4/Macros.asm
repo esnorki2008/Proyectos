@@ -3,39 +3,229 @@ local Enciclo,Zero,NoZero,Sig
 mov Aux,64
 mov si,00h
 Enciclo:
-mov bl,Libertad[si];
+;mov bl,Libertad[si];
 
-cmp bl,0h
-jz Zero
+;cmp bl,0h
+;jz NoZero
+;jnz Sig
+
+NoZero:;Libertad es Cero Cuando Hay Algo
+
+mov bl,Tablero[si]
+cmp bl,00h
+jnz Zero;HAY ALGO
 jmp Sig
 Zero:
 ;Desplazar Valores
 push SI
-mov Aux2,00h
-xor Bx,Bx
-mov BX,SI;Guardar Si en Bl
-DesplaIzq 
-;Desplazar Izquierda
-;Desplazar Derecha
-;Desplazar Abajo
-;Desplazar Arriba
+xor bx,bx
+
+mov bx,si
+mov bh,Tablero[si]
+DesplaIzq bl,bh;Ya Tiene El Valor De SI
+DesplaDer bl,bh
+DesplaArr bl,bh
+DesplaAba bl,bh
 
 
-
-Sig:
 pop SI
+Sig:
+
 
 inc si
 dec Aux
 jnz Enciclo
 endm
 
-DesplaIzq
-local PosVerif,Bloqueado,Tope,Mismo,Fini,Blank
+DesplaAba macro Pos,Valor
+local PosVerif,Bloqueado,Tope,Mismo,Fini,Blank,Carrito,NoCarrito
 xor ax,ax
-xor Si,SI
-mov SI,BX 
-;Actualizar Si
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,56
+jz Tope
+cmp Si,57
+jz Tope
+cmp Si,58
+jz Tope
+cmp Si,59
+jz Tope
+cmp Si,60
+jz Tope
+cmp Si,61
+jz Tope
+cmp Si,62
+jz Tope
+cmp Si,63
+jz Tope
+jmp PosVerif
+Bloqueado:
+mov dl,2;Esta Bloqueado
+jmp FINI
+PosVerif:
+mov al,Valor
+add Si,8;Aumentar Si, Porque No Es Borde
+cmp al,Tablero[Si]
+JZ Mismo
+cmp Tablero[si],00h
+JZ Blank
+JNZ Bloqueado;Diferente Simbolo
+Mismo:
+
+
+mov al,Libertad[si];El Abajo
+sub si,8 ; El Normal
+mov ah,Libertad[si]
+cmp al,ah
+
+jc Carrito:
+mov Libertad[si],al;No Hay Carry
+jnc NoCarrito:
+Carrito:
+add si,8
+mov Libertad[si],ah
+NoCarrito:
+
+
+jmp FINI
+Blank:
+mov dl,0
+jmp FINI
+Tope:
+mov dl,4
+FINI:
+endm
+
+DesplaArr macro Pos,Valor
+local PosVerif,Bloqueado,Tope,Mismo,Fini,Blank,Carrito,NoCarrito
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,0
+jz Tope
+cmp Si,1
+jz Tope
+cmp Si,2
+jz Tope
+cmp Si,3
+jz Tope
+cmp Si,4
+jz Tope
+cmp Si,5
+jz Tope
+cmp Si,6
+jz Tope
+cmp Si,7
+jz Tope
+jmp PosVerif
+Bloqueado:
+mov dl,2;Esta Bloqueado
+jmp FINI
+PosVerif:
+mov al,Valor
+sub Si,8;Disminuir Si, Porque No Es Borde
+cmp al,Tablero[Si]
+JZ Mismo
+cmp Tablero[si],00h
+JZ Blank
+JNZ Bloqueado;Diferente Simbolo
+Mismo:
+
+mov al,Libertad[si];El Arriba
+add si,8 ; El Normal
+mov ah,Libertad[si]
+cmp al,ah
+
+jc Carrito:
+mov Libertad[si],al;No Hay Carry
+jnc NoCarrito:
+Carrito:
+sub si,8
+mov Libertad[si],ah
+NoCarrito:
+
+
+jmp FINI
+Blank:
+mov dl,0
+jmp FINI
+Tope:
+mov dl,4
+FINI:
+endm
+
+
+DesplaDer macro Pos,Valor
+local PosVerif,Bloqueado,Tope,Mismo,Fini,Blank,Carrito,NoCarrito
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,7
+jz Tope
+cmp Si,15
+jz Tope
+cmp Si,23
+jz Tope
+cmp Si,31
+jz Tope
+cmp Si,39
+jz Tope
+cmp Si,47
+jz Tope
+cmp Si,55
+jz Tope
+cmp Si,63
+jz Tope
+jmp PosVerif
+Bloqueado:
+mov dl,2;Esta Bloqueado
+jmp FINI
+PosVerif:
+mov al,Valor
+inc Si;Aumentar Si, Porque No Es Borde
+cmp al,Tablero[Si]
+JZ Mismo
+cmp Tablero[si],00h
+JZ Blank
+JNZ Bloqueado;Diferente Simbolo
+Mismo:
+
+mov al,Libertad[si];El Derecho
+dec si ; El Normal
+mov ah,Libertad[si]
+cmp al,ah
+
+jc Carrito:
+mov Libertad[si],al
+jnc NoCarrito:
+Carrito:
+inc si
+mov Libertad[si],ah
+NoCarrito:
+
+jmp FINI
+Blank:
+mov dl,0
+jmp FINI
+Tope:
+mov dl,4
+FINI:
+endm
+
+
+
+DesplaIzq macro Pos,Valor
+local PosVerif,Bloqueado,Tope,Mismo,Fini,Blank,Carrito,NoCarrito
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
 ;Esta En EL Borde
 cmp Si,0
 jz Tope
@@ -65,7 +255,20 @@ JZ Mismo
 cmp Tablero[si],00h
 JZ Blank
 JNZ Bloqueado;Diferente Simbolo
-Mismo:
+Mismo:;COMPARAR Mayor
+mov al,Libertad[si];El Izquierdo
+inc si
+mov ah,Libertad[si]
+cmp al,ah
+
+jc Carrito:
+mov Libertad[si],al
+jnc NoCarrito:
+Carrito:
+dec si
+mov Libertad[si],ah
+NoCarrito:
+
 mov dl,1
 jmp FINI
 ;MismoSimbolo
@@ -75,8 +278,15 @@ jmp FINI
 Tope:
 mov dl,4
 FINI:
-
 endm
+
+
+
+
+
+
+
+
 
 CalcLiber macro
 local Enciclo,minisu,Sig,ZIZ,ZDE,ZAR,ZAB,NZIZ,NZDE,NZAR,NZAB
@@ -273,13 +483,13 @@ cmp Si,23
 jz Tope
 cmp Si,31
 jz Tope
-cmp Si,37
+cmp Si,39
 jz Tope
-cmp Si,45
+cmp Si,47
 jz Tope
-cmp Si,53
+cmp Si,55
 jz Tope
-cmp Si,61
+cmp Si,63
 jz Tope
 jmp PosVerif
 Bloqueado:

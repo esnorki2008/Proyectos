@@ -44,7 +44,9 @@ Estado db 0
 b0 db 20 dup("$")
 Aux db 0
 Aux1 db 0
-Aux2 db 0
+Aux2 db 0 
+Aux3 db 0
+Aux4 db 0
 Teclado db 20 dup("$")
 Longitud db 0
 
@@ -228,10 +230,14 @@ mov Tablero[si],al
 
 ;Calcu
 CalcLiber
+
+mov Aux4,64
+Desp:
+desplazarLiber
+dec Aux4
+jnz Desp
+
 PrintLiber
-
-
-
    
    
 ;mov bl,dl
