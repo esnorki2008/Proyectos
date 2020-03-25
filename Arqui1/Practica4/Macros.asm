@@ -1,3 +1,149 @@
+Suicidio macro Simb 
+local Sig,Correcto,Incorrecto,Fin,A1,A2,A3,A4,B1,B2,B3,B4C1,C2,C3,C4,D1,D2,D3,D4,E1,E2,E3,E4
+xor bh,bh;BX ya tiene el valor
+xor si,si
+mov Aux,bl;CopiarValro
+mov si,bx
+mov bh,Tablero[si]
+xor dx,dx
+
+
+
+mov bl,Aux
+mov bh,Simb
+
+
+
+;mov dl,Valor
+
+
+
+VerIz bl,bh;Resultado En dl
+
+;mov ah,2
+;int 21h
+;NuevaLinea
+;Entrada
+
+cmp dl,0
+JZ Correcto;Hay Espacio En Blanco
+cmp dl,4 ;Es Pared
+Jz A1
+
+
+xor cx,cx
+mov cl,Aux
+mov si,cx
+dec si;Izquierdo
+cmp dl,1 ; Es Del Mismo Tipo
+jz C1
+jmp B1
+C1:
+cmp Libertad[si],1
+jnz Correcto
+B1:
+cmp dl,2;Diferente Tipo
+jz D1:
+jmp E1:
+D1:
+cmp Libertad[si],1
+jz Correcto
+E1:
+
+;Siguiente Derecha
+A1:
+mov bl,Aux
+VerDe bl,bh;Resultado En dl
+cmp dl,0
+JZ Correcto;Hay Espacio En Blanco
+cmp dl,4 ;Es Pared
+Jz A2
+
+
+xor cx,cx
+mov cl,Aux
+mov si,cx
+inc si;Izquierdo
+cmp dl,1 ; Es Del Mismo Tipo
+jz C2
+jmp B2
+C2:
+cmp Libertad[si],1
+jnz Correcto
+B2:
+cmp dl,2;Diferente Tipo
+jz D2:
+jmp E2:
+D2:
+cmp Libertad[si],1
+jz Correcto
+E2:
+
+A2:
+
+mov bl,Aux
+VerAr bl,bh;Resultado En dl
+cmp dl,0
+JZ Correcto;Hay Espacio En Blanco
+cmp dl,4 ;Es Pared
+Jz A3
+
+xor cx,cx
+mov cl,Aux
+mov si,cx
+sub si,8;Izquierdo
+cmp dl,1 ; Es Del Mismo Tipo
+jz C3
+jmp B3
+C3:
+cmp Libertad[si],1
+jnz Correcto
+B3:
+cmp dl,2;Diferente Tipo
+jz D3:
+jmp E3:
+D3:
+cmp Libertad[si],1
+jz Correcto
+E3:
+
+A3:
+mov bl,Aux
+VerAb bl,bh;Resultado En dl
+cmp dl,0
+JZ Correcto;Hay Espacio En Blanco
+cmp dl,4 ;Es Pared
+Jz A4
+
+xor cx,cx
+mov cl,Aux
+mov si,cx
+add si,8;Abajo
+cmp dl,1 ; Es Del Mismo Tipo
+jz C4
+jmp B4
+C4:
+cmp Libertad[si],1
+jnz Correcto
+B4:
+cmp dl,2;Diferente Tipo
+jz D4:
+jmp E4:
+D4:
+cmp Libertad[si],1
+jz Correcto
+E4:
+
+A4:
+jmp Incorrecto:
+Correcto:
+mov dl,00h
+jmp Fin
+Incorrecto:
+mov dl,01h
+Fin:
+endm
+
 
 
 RemoverAtrapadas macro
@@ -536,6 +682,10 @@ FINI:
 endm
 
 VerIz macro Pos,Valor
+
+
+
+
 local PosVerif,Bloqueado,Tope,Mismo,Fini,Blank
 xor ax,ax
 xor si,si
@@ -564,7 +714,7 @@ mov dl,2;Esta Bloqueado
 jmp FINI
 PosVerif:
 mov al,Valor
-dec Si;Disminuir Si, Porque No Es Borde
+dec si;Disminuir Si, Porque No Es Borde
 cmp al,Tablero[Si]
 JZ Mismo
 cmp Tablero[si],00h

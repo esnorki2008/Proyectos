@@ -14,6 +14,8 @@ Ocupado db "La Casilla Esta Ocupada","$"
 Turno1 db "Turno BLANCAS","$"
 Turno2 db "Turno NEGRAS","$"
 
+TituloSuicidio db "No Se Puede Colocar,Seria Suicidio","$"
+
 Fila1 db 32,32,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,"$"
 Fila0 db 32,32,179,32,32,32,32,179,32,32,32,32,179,32,32,32,32,179,32,32,32,32,179,32,32,32,32,179,32,32,32,32,179,32,32,32,32,179,"$"
 FilaF0 db 32,32,"A",32,32,32,32,"B",32,32,32,32,"C",32,32,32,32,"D",32,32,32,32,"E",32,32,32,32,"F",32,32,32,32,"G",32,32,32,32,"H","$"
@@ -48,6 +50,7 @@ Aux2 db 0
 Aux3 db 0
 Aux4 db 0
 Aux5 db 0
+Aux6 db 0
 Teclado db 20 dup("$")
 Longitud db 0
 
@@ -207,7 +210,11 @@ mov Registro,al
 ;Val1 Teclado[1]
 Val0 Teclado[0]
 add dl,Registro
-xor dh,dh
+
+mov Aux6,dl
+
+xor dh,dh 
+
 
 ;mov ah,2
 ;int 21h
@@ -221,8 +228,29 @@ xor dh,dh
 mov si,dx
 mov al,Tablero[si]
 mov Registro,al
-cmp Registro,0h
+
+cmp Registro,0h ;Ver Si ESta Libre
 jnz NoColocar
+
+
+push si
+
+xor bx,bx 
+mov bl,Aux6
+
+mov bh,jugador
+mov Tablero[si],bh
+Suicidio Jugador;Respuesta En DL
+
+pop si
+
+cmp dl,1
+jz Suic
+
+
+
+
+
 Colocar: 
 mov al,Jugador
 xor bx,bx
@@ -230,6 +258,8 @@ mov bx,si
 mov Aux5,bl;Almcaenando Si
 mov Tablero[si],al
 ;COMER FICHAS
+
+
 
 
 ;Calcu
@@ -300,6 +330,13 @@ NoColocar:
 Print Ocupado 
 Entrada
 jmp JuegoTablero
+
+Suic:
+mov Tablero[si],0
+Print TituloSuicidio
+Entrada
+jmp JuegoTablero
+
 
 Cargar:
 Fin:
