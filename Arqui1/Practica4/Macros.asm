@@ -1,7 +1,172 @@
+DesplazarLiber macro
+local Enciclo,Zero,NoZero,Sig
+mov Aux,64
+mov si,00h
+Enciclo:
+mov bl,Libertad[si];
+
+cmp bl,0h
+jz Zero
+jmp Sig
+Zero:
+;Desplazar Valores
+push SI
+mov Aux2,00h
+xor Bx,Bx
+mov BX,SI;Guardar Si en Bl
+DesplaIzq 
+;Desplazar Izquierda
+;Desplazar Derecha
+;Desplazar Abajo
+;Desplazar Arriba
+
+
+
+Sig:
+pop SI
+
+inc si
+dec Aux
+jnz Enciclo
+endm
+
+DesplaIzq
+local PosVerif,Bloqueado,Tope,Mismo,Fini,Blank
+xor ax,ax
+xor Si,SI
+mov SI,BX 
+;Actualizar Si
+;Esta En EL Borde
+cmp Si,0
+jz Tope
+cmp Si,8
+jz Tope
+cmp Si,16
+jz Tope
+cmp Si,24
+jz Tope
+cmp Si,32
+jz Tope
+cmp Si,40
+jz Tope
+cmp Si,48
+jz Tope
+cmp Si,56
+jz Tope
+jmp PosVerif
+Bloqueado:
+mov dl,2;Esta Bloqueado
+jmp FINI
+PosVerif:
+mov al,Valor
+dec Si;Disminuir Si, Porque No Es Borde
+cmp al,Tablero[Si]
+JZ Mismo
+cmp Tablero[si],00h
+JZ Blank
+JNZ Bloqueado;Diferente Simbolo
+Mismo:
+mov dl,1
+jmp FINI
+;MismoSimbolo
+Blank:
+mov dl,0
+jmp FINI
+Tope:
+mov dl,4
+FINI:
+
+endm
+
+CalcLiber macro
+local Enciclo,minisu,Sig,ZIZ,ZDE,ZAR,ZAB,NZIZ,NZDE,NZAR,NZAB
+mov Aux,64
+mov si,00h
+mov bh,00h;Limpiar Libertad
+minisu:
+mov Libertad[si],bh
+inc si
+dec Aux
+jnz minisu
+
+
+mov Aux,64
+mov si,00h
+Enciclo:
+
+xor bx,bx
+mov bx,si
+mov bh,Tablero[si]
+cmp bh,00h
+jz Sig
+push si;Guardar Valor Si
+mov Aux1,00h;Limpiar Libertad
+
+VerIz bl,bh;Resultado En dl
+cmp dl,0
+JZ ZIZ
+Jmp NZIZ
+ZIZ:
+inc Aux1
+NZIZ:
+
+VerDe bl,bh
+cmp dl,0
+JZ ZDE
+jmp NZDE
+ZDE:
+inc Aux1
+NZDE:
+
+VerAr bl,bh
+cmp dl,0
+JZ Zar
+Jmp NZAR
+ZAR:
+inc Aux1
+NZAR:
+
+
+
+VerAb bl,bh
+cmp dl,0
+JZ ZAB
+Jmp NZAB
+ZAB:
+inc Aux1
+NZAB:
+
+
+
+
+pop si;Retomar Valor Si
+mov ch,Aux1
+mov Libertad[si],ch
+sig:
+inc si
+dec Aux
+jnz Enciclo
+endm
+
+PrintLiber macro
+local Enciclo,Sig,ZIZ,ZDE,ZAR,ZAB,NZIZ,NZDE,NZAR,NZAB
+mov Aux,64
+mov si,00h
+Enciclo:
+
+mov dl,Libertad[si]
+add dl,48
+mov ah,2
+int 21h
+
+inc si
+dec Aux
+jnz Enciclo
+endm
 
 
 VerAb macro Pos,Valor
-local PosVerif,Bloqueado,Tope,Mismo,Fini
+local PosVerif,Bloqueado,Tope,Mismo,Fini,Blank
 xor ax,ax
 xor si,si
 mov al,Pos
@@ -29,22 +194,25 @@ mov dl,2;Esta Bloqueado
 jmp FINI
 PosVerif:
 mov al,Valor
-add Si,7;Aumentar Si, Porque No Es Borde
+add Si,8;Aumentar Si, Porque No Es Borde
 cmp al,Tablero[Si]
 JZ Mismo
 cmp Tablero[si],00h
-JZ Tope
+JZ Blank
 JNZ Bloqueado;Diferente Simbolo
 Mismo:
 mov dl,1;MismoSimbolo
 jmp FINI
-Tope:
+Blank:
 mov dl,0
+jmp FINI
+Tope:
+mov dl,4
 FINI:
 endm
 
 VerAr macro Pos,Valor
-local PosVerif,Bloqueado,Tope,Mismo,Fini
+local PosVerif,Bloqueado,Tope,Mismo,Fini,Blank
 xor ax,ax
 xor si,si
 mov al,Pos
@@ -72,23 +240,26 @@ mov dl,2;Esta Bloqueado
 jmp FINI
 PosVerif:
 mov al,Valor
-sub Si,7;Disminuir Si, Porque No Es Borde
+sub Si,8;Disminuir Si, Porque No Es Borde
 cmp al,Tablero[Si]
 JZ Mismo
 cmp Tablero[si],00h
-JZ Tope
+JZ Blank
 JNZ Bloqueado;Diferente Simbolo
 Mismo:
 mov dl,1;MismoSimbolo
 jmp FINI
-Tope:
+Blank:
 mov dl,0
+jmp FINI
+Tope:
+mov dl,4
 FINI:
 endm
 
 
 VerDe macro Pos,Valor
-local PosVerif,Bloqueado,Tope,Mismo,Fini
+local PosVerif,Bloqueado,Tope,Mismo,Fini,Blank
 xor ax,ax
 xor si,si
 mov al,Pos
@@ -120,18 +291,21 @@ inc Si;Aumentar Si, Porque No Es Borde
 cmp al,Tablero[Si]
 JZ Mismo
 cmp Tablero[si],00h
-JZ Tope
+JZ Blank
 JNZ Bloqueado;Diferente Simbolo
 Mismo:
 mov dl,1;MismoSimbolo
 jmp FINI
-Tope:
+Blank:
 mov dl,0
+jmp FINI
+Tope:
+mov dl,4
 FINI:
 endm
 
 VerIz macro Pos,Valor
-local PosVerif,Bloqueado,Tope,Mismo,Fini
+local PosVerif,Bloqueado,Tope,Mismo,Fini,Blank
 xor ax,ax
 xor si,si
 mov al,Pos
@@ -163,14 +337,17 @@ dec Si;Disminuir Si, Porque No Es Borde
 cmp al,Tablero[Si]
 JZ Mismo
 cmp Tablero[si],00h
-JZ Tope
+JZ Blank
 JNZ Bloqueado;Diferente Simbolo
 Mismo:
 mov dl,1
 jmp FINI
 ;MismoSimbolo
-Tope:
+Blank:
 mov dl,0
+jmp FINI
+Tope:
+mov dl,4
 FINI:
 endm
 

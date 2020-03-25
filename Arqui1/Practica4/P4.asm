@@ -35,7 +35,7 @@ file db 'c:\arc.txt','00h' ;ojo con el 00h es importante
 handler dw ?
 buffer db 10 dup(' ')
 Tablero db 64 dup(5)
-Libertades db 64 dup(5)     
+Libertad db 64 dup(5)     
 PosX db 0
 PosY db 0
 Modo db 0;Modo 0 Menu Principal 
@@ -43,6 +43,8 @@ Registro db 0
 Estado db 0 
 b0 db 20 dup("$")
 Aux db 0
+Aux1 db 0
+Aux2 db 0
 Teclado db 20 dup("$")
 Longitud db 0
 
@@ -225,8 +227,8 @@ mov Tablero[si],al
 
 
 ;Calcu
-
-
+CalcLiber
+PrintLiber
 
 
 
