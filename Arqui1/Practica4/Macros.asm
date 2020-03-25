@@ -1,3 +1,24 @@
+
+
+RemoverAtrapadas macro
+local Enciclo,Zero,NoZero
+mov Aux,64
+xor Ax,Ax
+xor Bx,Bx
+mov Bx,0
+Enciclo:
+mov al,Libertad[Bx]
+cmp al,00h
+jz Zero
+jmp NoZero
+Zero:
+mov Tablero[Bx],0h
+Nozero:
+inc Bx
+dec Aux
+jnz Enciclo
+endm
+
 DesplazarLiber macro
 local Enciclo,Zero,NoZero,Sig
 mov Aux,64

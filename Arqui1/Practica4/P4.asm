@@ -47,6 +47,7 @@ Aux1 db 0
 Aux2 db 0 
 Aux3 db 0
 Aux4 db 0
+Aux5 db 0
 Teclado db 20 dup("$")
 Longitud db 0
 
@@ -224,6 +225,9 @@ cmp Registro,0h
 jnz NoColocar
 Colocar: 
 mov al,Jugador
+xor bx,bx
+mov bx,si
+mov Aux5,bl;Almcaenando Si
 mov Tablero[si],al
 ;COMER FICHAS
 
@@ -232,11 +236,17 @@ mov Tablero[si],al
 CalcLiber
 
 mov Aux4,64
-Desp:
-desplazarLiber
+Desp:             
+
+desplazarLiber;Mover Las Libertades Grupales
 dec Aux4
 jnz Desp
 
+xor bx,bx  ;Hacer InMortal A La Nueva
+mov bl,Aux5
+mov Libertad[bx],4
+           
+RemoverAtrapadas           
 PrintLiber
    
    
