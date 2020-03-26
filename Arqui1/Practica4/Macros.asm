@@ -1,3 +1,97 @@
+Save macro
+local Malo,Bueno,Fin
+cmp Teclado[0],83
+jnz Malo
+
+cmp Teclado[1],65
+jnz Malo
+
+cmp Teclado[2],86
+jnz Malo
+
+cmp Teclado[3],69
+jnz Malo
+
+jmp Bueno
+Malo:
+mov bl,35
+jmp Fin
+Bueno:
+mov bl,64
+Fin:
+endm
+
+Exi macro
+local Malo,Bueno,Fin
+cmp Teclado[0],69
+jnz Malo
+
+cmp Teclado[1],88
+jnz Malo
+
+cmp Teclado[2],73
+jnz Malo
+
+cmp Teclado[3],84
+jnz Malo
+
+jmp Bueno
+Malo:
+mov bl,35
+jmp Fin
+Bueno:
+mov bl,64
+Fin:
+endm
+
+Show macro
+local Malo,Bueno,Fin
+cmp Teclado[0],83
+jnz Malo
+
+cmp Teclado[1],72
+jnz Malo
+
+cmp Teclado[2],79
+jnz Malo
+
+cmp Teclado[3],87
+jnz Malo
+
+
+jmp Bueno
+Malo:
+mov bl,35
+jmp Fin
+Bueno:
+mov bl,64
+Fin:
+endm
+
+Pass macro
+local Malo,Bueno,Fin
+cmp Teclado[0],80
+jnz Malo
+
+cmp Teclado[1],65
+jnz Malo
+
+cmp Teclado[2],83
+jnz Malo
+
+cmp Teclado[3],83
+jnz Malo
+
+jmp Bueno
+Malo:
+mov bl,35
+jmp Fin
+Bueno:
+mov bl,64
+Fin:
+endm
+
+
 Suicidio macro Simb 
 local Sig,Correcto,Incorrecto,Fin,A1,A2,A3,A4,B1,B2,B3,B4C1,C2,C3,C4,D1,D2,D3,D4,E1,E2,E3,E4
 xor bh,bh;BX ya tiene el valor
@@ -7,23 +101,10 @@ mov si,bx
 mov bh,Tablero[si]
 xor dx,dx
 
-
-
 mov bl,Aux
 mov bh,Simb
 
-
-
-;mov dl,Valor
-
-
-
 VerIz bl,bh;Resultado En dl
-
-;mov ah,2
-;int 21h
-;NuevaLinea
-;Entrada
 
 cmp dl,0
 JZ Correcto;Hay Espacio En Blanco
@@ -818,7 +899,7 @@ PrintArr macro Arreglo
 endm
 
 Comparar macro Texto1,Texto2
-local iniciocompa,correcto,incorrecto,fincompa
+local iniciocompa,correcto,incorrecto,fincompa,case,sig
 mov si,0h
 mov al,5h
 iniciocompa:
@@ -829,7 +910,15 @@ mov BH,Texto2[si]
 
 
 cmp BL,BH
+jnz case;No Es Igual
+jz sig
+
+case:
+add bl,32
+cmp BL,BH
 jnz incorrecto;No Es Igual
+
+sig:
 
 inc si
 dec al
@@ -846,13 +935,12 @@ xor bx,bx
 mov bl,64
 jmp fincompa
 fincompa:
-push bx
 endm
 
 Entrada macro
 local Input,FININPUT,reinicio
 mov si,00h
-mov bl,5h
+mov bl,15h
 reinicio:
 mov Teclado[si],0h
 inc si
@@ -860,7 +948,7 @@ dec bl
 jnz reinicio
 mov Teclado[si],0h
 
-mov bl,5h
+mov bl,8h
 mov si,00h
 mov ah,1;Entrada en al
 Input:

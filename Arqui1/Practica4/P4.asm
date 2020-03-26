@@ -14,6 +14,18 @@ Ocupado db "La Casilla Esta Ocupada","$"
 Turno1 db "Turno BLANCAS","$"
 Turno2 db "Turno NEGRAS","$"
 
+
+
+
+TituCargar db "Opcion Cargar, Ingrese Ruta","$"
+TituSalir db "Saliendo Del Programa","$"
+
+TituSave db "Opcion Guardar, Ingrese Ruta","$"
+TituPass db "Pasando Turno ","$"
+TituExi db "Regresando Al Menu","$"
+TituShow db "Reporte Generado","$"
+
+
 TituloSuicidio db "No Se Puede Colocar,Seria Suicidio","$"
 
 Fila1 db 32,32,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,"$"
@@ -54,14 +66,13 @@ Aux6 db 0
 Teclado db 20 dup("$")
 Longitud db 0
 
-Array1 db 5 dup("$")
-Array2 db 5 dup("$")
+Array1 db 20 dup("$")
+Array2 db 20 dup("$")
 
 b1 db 20 dup("$")
 ;Palabras Reservadas
 
 Jugador db 0
-Pass db 6 dup(0h)
 
 
 Tiro db 100 dup(0h)
@@ -75,11 +86,7 @@ main  proc
 ;Iniciar Palabras Reservadas
 
 ;pass
-mov Pass[0h],112
-mov Pass[1h],97
-mov Pass[2h],115
-mov Pass[3h],115
-mov Pass[4h],0
+
 Print Titulo1
 Print Titulo2
 Print Titulo3
@@ -97,11 +104,15 @@ NuevaLinea
 
 Entrada
 
-;NuevaLinea
-;PrintArr Teclado
+
+
+
+NuevaLinea
+
 ;NuevaLinea
 ;PrintArr Uno
 ;NuevaLinea
+
 
  
 cmp Teclado[0h],49
@@ -199,7 +210,24 @@ jnz TablaY
 Entrada
 
 
+Pass
+cmp bl,64
+jz CPass
 
+
+Save
+cmp bl,64
+jz CSave
+
+
+Show
+cmp bl,64
+jz CShow
+
+
+Exi
+cmp bl,64
+jz CExi
 
 ;Val0 Teclado[0]
 Val1 Teclado[1]
@@ -337,11 +365,47 @@ Print TituloSuicidio
 Entrada
 jmp JuegoTablero
 
+CSave:
+Print TituSave
+NuevaLinea 
+jmp JuegoTablero 
 
+
+
+
+
+
+
+
+
+
+CExi:
+print TituExi
+NuevaLinea 
+jmp Menu
+CShow:
+Print TituShow
+NuevaLinea 
+jmp JuegoTablero
+CPass:
+Print TituPass
+NuevaLinea 
+jmp JuegoTablero
+       
+       
+       
+       
+       
+       
+       
+       
 Cargar:
+Print TituCargar
+NuevaLinea  
+jmp Menu
 Fin:
-
-
+Print TituSalir
+NuevaLinea 
 
 .exit
 main  endp              ;Termina proceso
