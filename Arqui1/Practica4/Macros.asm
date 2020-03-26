@@ -124,8 +124,8 @@ cmp Libertad[si],1
 jnz Correcto
 B1:
 cmp dl,2;Diferente Tipo
-jz D1:
-jmp E1:
+jz D1
+jmp E1
 D1:
 cmp Libertad[si],1
 jz Correcto
@@ -153,8 +153,8 @@ cmp Libertad[si],1
 jnz Correcto
 B2:
 cmp dl,2;Diferente Tipo
-jz D2:
-jmp E2:
+jz D2
+jmp E2
 D2:
 cmp Libertad[si],1
 jz Correcto
@@ -181,8 +181,8 @@ cmp Libertad[si],1
 jnz Correcto
 B3:
 cmp dl,2;Diferente Tipo
-jz D3:
-jmp E3:
+jz D3
+jmp E3
 D3:
 cmp Libertad[si],1
 jz Correcto
@@ -208,15 +208,15 @@ cmp Libertad[si],1
 jnz Correcto
 B4:
 cmp dl,2;Diferente Tipo
-jz D4:
-jmp E4:
+jz D4
+jmp E4
 D4:
 cmp Libertad[si],1
 jz Correcto
 E4:
 
 A4:
-jmp Incorrecto:
+jmp Incorrecto
 Correcto:
 mov dl,00h
 jmp Fin
@@ -328,9 +328,9 @@ sub si,8 ; El Normal
 mov ah,Libertad[si]
 cmp al,ah
 
-jc Carrito:
+jc Carrito
 mov Libertad[si],al;No Hay Carry
-jnc NoCarrito:
+jnc NoCarrito
 Carrito:
 add si,8
 mov Libertad[si],ah
@@ -388,9 +388,9 @@ add si,8 ; El Normal
 mov ah,Libertad[si]
 cmp al,ah
 
-jc Carrito:
+jc Carrito
 mov Libertad[si],al;No Hay Carry
-jnc NoCarrito:
+jnc NoCarrito
 Carrito:
 sub si,8
 mov Libertad[si],ah
@@ -449,9 +449,9 @@ dec si ; El Normal
 mov ah,Libertad[si]
 cmp al,ah
 
-jc Carrito:
+jc Carrito
 mov Libertad[si],al
-jnc NoCarrito:
+jnc NoCarrito
 Carrito:
 inc si
 mov Libertad[si],ah
@@ -509,9 +509,9 @@ inc si
 mov ah,Libertad[si]
 cmp al,ah
 
-jc Carrito:
+jc Carrito
 mov Libertad[si],al
-jnc NoCarrito:
+jnc NoCarrito
 Carrito:
 dec si
 mov Libertad[si],ah
@@ -816,7 +816,7 @@ endm
 
 Print macro Texto
    xor ax,ax
-   mov   ax, data     ;hmm ¿seg?
+   mov   ax, @data     ;hmm ¿seg?
    mov   ds,ax          ;ds = ax = saludo
    mov   ah,09          ;Function(print string)
    mov   dx,Offset Texto         ;DX = String terminated by "$"
@@ -1043,21 +1043,21 @@ mov ax,-1
 .endif
 endm
 
-fwrite macro numbytes,databuffer,handle
+fwrite macro numbytes,@databuffer,handle
 
 mov ah,40h
 mov bx,handle
 mov cx,numbytes
-lea dx,databuffer
+lea dx,@databuffer
 int 21h
 endm
 
-fread macro numbytes,databuffer,handle
+fread macro numbytes,@databuffer,handle
 
 mov ah,3fh
 mov bx,handle
 mov cx,numbytes
-lea dx,databuffer
+lea dx,@databuffer
 int 21h
 endm
 

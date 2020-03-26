@@ -1,5 +1,5 @@
 include Macros.asm ; archivo con los macros
-
+include Archivo.asm
 .model small
 .stack 500h
 .data
@@ -46,7 +46,49 @@ Menu3 db "3) Salir", "$"
               
 Lectura db ?
 file db 'c:\arc.txt','00h' ;ojo con el 00h es importante
-handler dw ?
+
+
+ReporteX db 0
+ReporteY db 0
+
+TerrenoNegro db 64 dup(0)
+TerrenoBlanco db 64 dup(0)
+
+Fecha db 20 dup(0)
+handle dw ?
+Guardado db 'SAVE.ARQ',00h
+ReporteNormal db 'Show.html',00h
+HtmlIni db "<HTML><HEAD><title> Reporte Simple </title></HEAD> <BODY>","$"
+HtmlTabla db "<table cellspacing='0' cellpadding='0'>","$"
+HtmlFinTabla db "</table>","$"
+HtmlFin db "</BODY> </HTML>","$"
+
+HtmlTr db "<tr>","$" 
+HtmlFTr db "</tr>","$" 
+
+
+HtmlNegra db "<td><img src='Negras.png'></td>","$" 
+HtmlBlanca db "<td><img src='Blancas.png'></td>","$" 
+HtmlVacio db "<td><img src='Vacio.png'></td>","$" 
+
+HtmlH1 db "<h1>","$"
+HtmlFH1 db "</h1>","$"
+
+Salida db 65 dup(0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 buffer db 10 dup(' ')
 Tablero db 64 dup(5)
 Libertad db 64 dup(5)     
@@ -87,6 +129,13 @@ main  proc
 
 ;pass
 
+
+
+
+
+
+
+
 Print Titulo1
 Print Titulo2
 Print Titulo3
@@ -122,7 +171,7 @@ jz Cargar
 cmp Teclado[0h],51
 jz Fin 
 
-jmp Menu:
+jmp Menu
     
 
 
@@ -367,6 +416,30 @@ jmp JuegoTablero
 
 CSave:
 Print TituSave
+
+mov si,00h
+mov bl,64
+CopyP:
+mov bh,Tablero[si]
+mov Salida[si],bh
+inc si
+dec bl
+jnz CopyP
+mov bh,Jugador
+mov Salida[64],bh
+
+CreateFile Guardado,handle
+
+
+OpenFile Guardado,handle
+WriteFile handle,Salida,65
+CloseFile handle
+
+
+
+
+
+
 NuevaLinea 
 jmp JuegoTablero 
 
@@ -386,7 +459,12 @@ jmp Menu
 CShow:
 Print TituShow
 NuevaLinea 
+
+ReporteIntermedio
+Entrada
 jmp JuegoTablero
+
+
 CPass:
 Print TituPass
 NuevaLinea 
@@ -400,9 +478,28 @@ jmp JuegoTablero
        
        
 Cargar:
+OpenFile Guardado,handle
+ReadFile handle,Salida,65
+CloseFile handle
+
+
+mov si,00h
+mov bl,64
+CopyP1:
+mov bh,Salida[si]
+mov Tablero[si],bh
+inc si
+dec bl
+jnz CopyP1
+mov bh,Salida[64]
+mov Jugador,bh
+
+
 Print TituCargar
 NuevaLinea  
-jmp Menu
+jmp JuegoTablero
+
+
 Fin:
 Print TituSalir
 NuevaLinea 
