@@ -47,12 +47,13 @@ Menu3 db "3) Salir", "$"
 Lectura db ?
 file db 'c:\arc.txt','00h' ;ojo con el 00h es importante
 
+FBlanca db 0
+FNegra db 0
 
 ReporteX db 0
 ReporteY db 0
 
-TerrenoNegro db 64 dup(0)
-TerrenoBlanco db 64 dup(0)
+Terreno db 64 dup(0)
 
 Fecha db 20 dup(0)
 handle dw ?
@@ -131,7 +132,7 @@ main  proc
 
 
 
-
+CalcularTerreno
 
 
 

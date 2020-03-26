@@ -1,5 +1,317 @@
+CalcularTerreno macro
+local Enciclo,minisu,sig,A1,A2,A3,A4,B1,B2,B3,B4
+mov Aux,64
+mov si,00h
+mov bh,00h;Limpiar Terreno
+minisu:
+mov Terreno[si],bh
+inc si
+dec Aux
+jnz minisu
+
+;HASTA AQUI
+
+mov Aux,64
+mov si,00h
+Enciclo:
+
+xor bx,bx
+;Usar Bx
+push si;Guardar Valor Si
+mov bx,si
+
+mov FBlanca,0 
+mov FNegra,0
+
+TerIz bl;dl salida
+cmp dl,0;Es Vacia
+jz A1
+cmp dl,4;Es Pared
+jz A1
+cmp dl,2;Es Negra
+jz B1
+inc FBlanca
+jmp A1
+B1:
+inc FNegra
 
 
+
+A1:
+TerDe bl
+cmp dl,0;Es Vacia
+jz A2
+cmp dl,4;Es Pared
+jz A2
+cmp dl,2;Es Negra
+jz B2
+inc FBlanca
+jmp A2
+B2:
+inc FNegra
+
+
+A2:
+TerAr bl
+cmp dl,0;Es Vacia
+jz A3
+cmp dl,4;Es Pared
+jz A3
+cmp dl,2;Es Negra
+jz B3
+inc FBlanca
+jmp A3
+B3:
+inc FNegra
+
+A3:
+
+TerAb bl
+cmp dl,0;Es Vacia
+jz A4
+cmp dl,4;Es Pared
+jz A4
+cmp dl,2;Es Negra
+jz B4
+inc FBlanca
+jmp A4
+B4:
+inc FNegra
+
+A4:
+
+;Hay Mas Terreno
+
+pop si;Retomar Valor Si
+
+
+sig:
+inc si
+dec Aux
+jnz Enciclo
+
+
+endm
+
+
+
+TerAb macro Pos
+
+
+local PosVerif,Tope,Blan,Negr,Blank,Fini
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,56
+jz Tope
+cmp Si,57
+jz Tope
+cmp Si,58
+jz Tope
+cmp Si,59
+jz Tope
+cmp Si,60
+jz Tope
+cmp Si,61
+jz Tope
+cmp Si,62
+jz Tope
+cmp Si,63
+jz Tope
+jmp PosVerif
+
+PosVerif:
+add si,8
+cmp Tablero[si],00h
+JZ Blank
+cmp Tablero[si],01h
+JZ Blan
+cmp Tablero[si],02h
+JZ Negr
+
+
+Blan:
+mov dl,1
+jmp FINI
+
+Negr:
+mov dl,2
+jmp FINI
+
+Blank:
+mov dl,0
+jmp FINI
+Tope:
+mov dl,4
+Fini:
+
+endm
+
+
+
+TerAr macro Pos
+
+
+local PosVerif,Tope,Blan,Negr,Blank,Fini
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,0
+jz Tope
+cmp Si,1
+jz Tope
+cmp Si,2
+jz Tope
+cmp Si,3
+jz Tope
+cmp Si,4
+jz Tope
+cmp Si,5
+jz Tope
+cmp Si,6
+jz Tope
+cmp Si,7
+jz Tope
+jmp PosVerif
+
+PosVerif:
+sub si,8
+cmp Tablero[si],00h
+JZ Blank
+cmp Tablero[si],01h
+JZ Blan
+cmp Tablero[si],02h
+JZ Negr
+
+
+Blan:
+mov dl,1
+jmp FINI
+
+Negr:
+mov dl,2
+jmp FINI
+
+Blank:
+mov dl,0
+jmp FINI
+Tope:
+mov dl,4
+Fini:
+
+endm
+
+TerDe macro Pos
+
+
+local PosVerif,Tope,Blan,Negr,Blank,Fini
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,7
+jz Tope
+cmp Si,15
+jz Tope
+cmp Si,23
+jz Tope
+cmp Si,31
+jz Tope
+cmp Si,39
+jz Tope
+cmp Si,47
+jz Tope
+cmp Si,55
+jz Tope
+cmp Si,63
+jz Tope
+jmp PosVerif
+
+PosVerif:
+inc si
+cmp Tablero[si],00h
+JZ Blank
+cmp Tablero[si],01h
+JZ Blan
+cmp Tablero[si],02h
+JZ Negr
+
+
+Blan:
+mov dl,1
+jmp FINI
+
+Negr:
+mov dl,2
+jmp FINI
+
+Blank:
+mov dl,0
+jmp FINI
+Tope:
+mov dl,4
+Fini:
+
+endm
+
+TerIz macro Pos
+
+
+local PosVerif,Tope,Blan,Negr,Blank,Fini
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,0
+jz Tope
+cmp Si,8
+jz Tope
+cmp Si,16
+jz Tope
+cmp Si,24
+jz Tope
+cmp Si,32
+jz Tope
+cmp Si,40
+jz Tope
+cmp Si,48
+jz Tope
+cmp Si,56
+jz Tope
+jmp PosVerif
+
+PosVerif:
+dec si
+cmp Tablero[si],00h
+JZ Blank
+cmp Tablero[si],01h
+JZ Blan
+cmp Tablero[si],02h
+JZ Negr
+
+
+Blan:
+mov dl,1
+jmp FINI
+
+Negr:
+mov dl,2
+jmp FINI
+
+Blank:
+mov dl,0
+jmp FINI
+Tope:
+mov dl,4
+FINI:
+
+endm
 
 
 ReporteIntermedio macro
