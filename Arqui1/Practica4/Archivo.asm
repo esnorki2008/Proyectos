@@ -1,5 +1,5 @@
 CalcularTerreno macro
-local Enciclo,minisu,sig,A1,A2,A3,A4,B1,B2,B3,B4
+local Enciclo,minisu,sig,A1,A2,A3,A4,B1,B2,B3,B4,C1,C2,C3,C4,Limp,NoLimp
 mov Aux,64
 mov si,00h
 mov bh,00h;Limpiar Terreno
@@ -20,6 +20,14 @@ xor bx,bx
 push si;Guardar Valor Si
 mov bx,si
 
+
+cmp Tablero[si],00h
+jnz Limp;No Es Libre
+jz NoLimp
+Limp:
+mov dl,0
+jmp Sig
+NoLimp:
 mov FBlanca,0 
 mov FNegra,0
 
@@ -80,12 +88,46 @@ inc FNegra
 
 A4:
 
-;Hay Mas Terreno
 
-pop si;Retomar Valor Si
+
+
+;Hay Mas Terreno
+cmp FBlanca,0
+jz C1
+jnz C2
+
+C1:                     ;Blanca 0
+cmp FNegra,0
+jnz C3
+
+mov dl,0;Ninguna
+jmp sig
+
+C2:                     ;Blanca 1
+cmp FNegra,0
+jnz C4
+
+mov dl,1;Solo Blanca
+jmp sig
+
+C3:;Solo Negro
+
+mov dl,2
+jmp sig
+
+
+C4:;Negro Blanco
+
+mov dl,0
 
 
 sig:
+
+pop si;Retomar Valor Si
+;xor bh,bh
+;mov si,bx
+mov Terreno[si],dl
+
 inc si
 dec Aux
 jnz Enciclo
@@ -94,6 +136,21 @@ jnz Enciclo
 endm
 
 
+PrintTerreno macro
+local Enciclo,Sig,ZIZ,ZDE,ZAR,ZAB,NZIZ,NZDE,NZAR,NZAB
+mov Aux,64
+mov si,00h
+Enciclo:
+
+mov dl,Terreno[si]
+add dl,48
+mov ah,2
+int 21h
+
+inc si
+dec Aux
+jnz Enciclo
+endm
 
 TerAb macro Pos
 

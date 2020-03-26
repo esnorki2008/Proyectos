@@ -28,6 +28,9 @@ TituShow db "Reporte Generado","$"
 
 TituloSuicidio db "No Se Puede Colocar,Seria Suicidio","$"
 
+
+
+
 Fila1 db 32,32,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,45,45,45,32,32,"$"
 Fila0 db 32,32,179,32,32,32,32,179,32,32,32,32,179,32,32,32,32,179,32,32,32,32,179,32,32,32,32,179,32,32,32,32,179,32,32,32,32,179,"$"
 FilaF0 db 32,32,"A",32,32,32,32,"B",32,32,32,32,"C",32,32,32,32,"D",32,32,32,32,"E",32,32,32,32,"F",32,32,32,32,"G",32,32,32,32,"H","$"
@@ -47,8 +50,6 @@ Menu3 db "3) Salir", "$"
 Lectura db ?
 file db 'c:\arc.txt','00h' ;ojo con el 00h es importante
 
-FBlanca db 0
-FNegra db 0
 
 ReporteX db 0
 ReporteY db 0
@@ -109,6 +110,9 @@ Aux6 db 0
 Teclado db 20 dup("$")
 Longitud db 0
 
+FBlanca db 0
+FNegra db 0
+
 Array1 db 20 dup("$")
 Array2 db 20 dup("$")
 
@@ -132,7 +136,7 @@ main  proc
 
 
 
-CalcularTerreno
+
 
 
 
@@ -343,6 +347,8 @@ mov Tablero[si],al
 ;Calcu
 CalcLiber
 
+CalcularTerreno
+
 mov Aux4,64
 Desp:             
 
@@ -355,8 +361,10 @@ mov bl,Aux5
 mov Libertad[bx],4
            
 RemoverAtrapadas           
+
 PrintLiber
-   
+NuevaLinea
+PrintTerreno   
    
 ;mov bl,dl
 ;NuevaLinea
