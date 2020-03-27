@@ -226,6 +226,26 @@ Fin:
 endm
 
 
+RemoverMuerta macro
+local Enciclo,Zero,NoZero
+mov Aux,64
+xor Ax,Ax
+xor Bx,Bx
+mov Bx,0
+Enciclo:
+mov al,Libertad[Bx]
+cmp al,00h
+jz Zero
+cmp al,01h
+jz Zero
+jmp NoZero
+Zero:
+mov Tablero[Bx],0h
+Nozero:
+inc Bx
+dec Aux
+jnz Enciclo
+endm
 
 RemoverAtrapadas macro
 local Enciclo,Zero,NoZero

@@ -53,13 +53,40 @@ file db 'c:\arc.txt','00h' ;ojo con el 00h es importante
 
 ReporteX db 0
 ReporteY db 0
+Conti db 0
+
+PassBlanca db 0
+PassNegra db 0
+ContadorSupremo db 0
 
 Terreno db 64 dup(0)
+
+nl db 0
+nh db 0
+
+zl db 0
+xl db 0
+xh db 0
 
 Fecha db 20 dup(0)
 handle dw ?
 Guardado db 'SAVE.ARQ',00h
 ReporteNormal db 'Show.html',00h
+ReporteFinal db 'Final.html',00h
+
+TeBla db "Terreno Fichas Blancas: ","$"
+TeNeg db "Terreno FIchas Negras: ","$"
+
+MsgBla db "Gano Fichas Blancas","$"
+MsgNeg db "Gano FIchas Negras","$"
+MsgEmp db "Empate, Como Fichas Blancas Empiezan Ganan Las Negras","$"
+
+HtmlFNeg db "<H1>Ganaron Las Fichas Negras</H1>"
+HtmlFBla db "<H1>Ganaron Las Fichas Blancas</H1>"
+HtmlFEmp db "<H1>Empate, Fichas Blancas Empiezan Ganan Las Negras</H1>"
+
+
+
 HtmlIni db "<HTML><HEAD><title> Reporte Simple </title></HEAD> <BODY>","$"
 HtmlTabla db "<table cellspacing='0' cellpadding='0'>","$"
 HtmlFinTabla db "</table>","$"
@@ -70,7 +97,13 @@ HtmlFTr db "</tr>","$"
 
 
 HtmlNegra db "<td><img src='Negras.png'></td>","$" 
-HtmlBlanca db "<td><img src='Blancas.png'></td>","$" 
+HtmlBlanca db "<td><img src='Blancas.png'></td>","$"
+
+
+TerrenoNegro db "<td><img src='NegrasT.png'></td>","$" 
+TerrenoBlanco db "<td><img src='BlancasT.png'></td>","$" 
+TerrenoVacio db "<td><img src='VacioT.png'></td>","$" 
+
 HtmlVacio db "<td><img src='Vacio.png'></td>","$" 
 
 HtmlH1 db "<h1>","$"
@@ -193,6 +226,10 @@ jmp Menu
 InicioTablero:  ;INICIO DE DIBUJAR TABLERO
 mov bh,64;Iniciar Tablero
 mov si,00h
+
+mov PassNegra,0
+mov PassBlanca,0
+
 Iniciar:
 mov al,0h
 mov Tablero[si],al
@@ -201,6 +238,9 @@ dec bh
 jnz Iniciar
 mov Jugador,1h ;Empezando Con Jugador1 
 JuegoTablero:
+
+
+
 NuevaLinea
 cmp Jugador,1h
 jz TJ1
@@ -347,56 +387,39 @@ mov Tablero[si],al
 ;Calcu
 CalcLiber
 
-CalcularTerreno
+
 
 mov Aux4,64
 Desp:             
-
 desplazarLiber;Mover Las Libertades Grupales
 dec Aux4
 jnz Desp
 
+
+
+
+
 xor bx,bx  ;Hacer InMortal A La Nueva
 mov bl,Aux5
 mov Libertad[bx],4
-           
+
+mov Conti,0
+
+change:           
+
 RemoverAtrapadas           
 
-PrintLiber
+;PrintLiber
 NuevaLinea
-PrintTerreno   
-   
-;mov bl,dl
-;NuevaLinea
-;mov dl,bl
-;mov ah,2
-;int 21h
-;Entrada
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+;PrintTerreno   
 
 
 
 
 
 ;CAMBIAR DE JUGADOR
+
+
 cmp Jugador,1h
 jz CJ1
 Jnz Cj2
@@ -470,14 +493,70 @@ Print TituShow
 NuevaLinea 
 
 ReporteIntermedio
+
 Entrada
 jmp JuegoTablero
 
 
 CPass:
+cmp Conti,0
+jnz cls ;Tenia Antes Un Jugador
+;No Tenia PASS ANTERIOR
+
+mov PassBlanca,0
+mov PassBlanca,0
+
+cls:
+
+
+mov Conti,1
+
+cmp Jugador,1
+jz PB
+jmp PN
+PB:
+mov PassBlanca,1
+jmp FP
+PN:
+mov PassNegra,1
+FP:
+
+
+cmp PassBlanca,1
+jz SAB
+jmp SAPA
+
+SAB:
+cmp PassNegra,1
+jz TERMIP
+
+
+SAPA:
 Print TituPass
-NuevaLinea 
-jmp JuegoTablero
+NuevaLinea
+
+
+jmp Change 
+
+
+
+
+TERMIP:
+
+RemoverMuerta  
+CalcularTerreno
+mov Aux4,64
+DespTerreno:             
+desplazarTerreno;Mover Las Libertades Grupales
+dec Aux4
+jnz DespTerreno
+GenerarReporteFinal
+jmp Menu
+
+
+
+
+
        
        
        

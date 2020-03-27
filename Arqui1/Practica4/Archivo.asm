@@ -1,3 +1,685 @@
+Recuento macro
+local arm,incB,incN,Zegro,Uno,dos,Finito,Pas
+
+
+mov si,00h
+mov ReporteY,64
+mov ReporteX,0
+mov ContadorSupremo,0
+
+arm:
+
+cmp Terreno[si],1
+jnz incB
+inc ContadorSupremo
+
+incB:
+
+cmp Terreno[si],2
+jnz incN
+inc ReporteX
+
+incN:
+
+
+
+inc si
+
+dec ReporteY
+jnz arm
+
+
+mov al,ContadorSupremo
+cmp al,ReporteX
+
+NuevaLinea
+
+jz Zegro
+jc Dos
+jmp Uno
+
+Zegro:
+mov zl,0
+mov dl,0
+Print MsgEmp
+jmp Finito
+Uno:
+mov zl,1
+mov dl,1
+Print MsgBla
+jmp Finito
+Dos:
+mov zl,2
+mov dl,2
+Print MsgNeg
+jmp Finito
+Finito:
+
+NuevaLinea
+Print TeBla
+
+
+
+
+
+
+
+xor ax,ax
+mov al,ContadorSupremo
+mov xl,al
+mov al,ReporteX
+mov xh,al
+
+mov al,ContadorSupremo
+mov dl,10
+div dl
+
+
+
+mov nl,al
+mov nh,ah
+
+mov dl,nl
+add dl,48
+mov ah,02h
+int 21h
+
+
+mov dl,nh
+add dl,48
+mov ah,02h
+int 21h
+
+
+NuevaLinea
+Print TeNeg
+
+xor ax,ax
+
+
+mov al,ReporteX
+mov dl,10
+div dl
+
+
+
+mov nl,al
+mov nh,ah
+
+mov dl,nl
+add dl,48
+mov ah,02h
+int 21h
+
+
+mov dl,nh
+add dl,48
+mov ah,02h
+int 21h
+
+NuevaLinea
+NuevaLinea
+NuevaLinea
+
+
+endm
+
+
+GenerarReporteFinal macro
+local Report,B,N,V,S,M1,M1,M3,ReporteMaster,Zegro,Uno,dos,Finito
+CreateFile ReporteFinal,handle
+
+
+OpenFile ReporteFinal,handle
+;Inicio
+WriteFile handle,HtmlIni,57
+;Tabla
+WriteFile handle,HtmlTabla,39
+;Cuerpo
+
+
+
+mov Si,00h
+mov ReporteY,8
+
+
+ReporteMaster:
+WriteFile handle,HtmlTr,4
+mov ReporteX,8
+Report:
+
+cmp Tablero[si],00h
+jz V
+cmp Tablero[si],01h
+jz B
+cmp Tablero[si],02h
+jz N
+B:
+WriteFile handle,HtmlBlanca,32
+jmp S
+N:
+WriteFile handle,HtmlNegra,31
+jmp S
+V:;Vacio
+
+
+cmp Terreno[si],00h
+jz M1
+
+cmp Terreno[si],01h
+jz M2
+
+jmp M3
+
+M1:
+WriteFile handle,TerrenoVacio,31
+jmp S
+M2:
+WriteFile handle,TerrenoBlanco,33
+jmp S
+M3:
+WriteFile handle,TerrenoNegro,32
+
+
+S:
+inc si
+dec ReporteX
+jnz Report
+
+WriteFile handle,HtmlFTr,5
+dec ReporteY
+jnz ReporteMaster
+
+
+;Fin Cuerpo
+WriteFile handle,HtmlFinTabla,8
+
+
+
+;TIEMPO
+MOV AH,2AH
+INT 21H
+
+
+
+xor ax,ax
+
+;La Fecha
+mov al,dl
+mov dl,10
+div dl
+
+add al,48
+add ah,48
+mov Fecha[0],al
+mov Fecha[1],ah
+mov Fecha[2],47
+
+
+
+
+
+xor ax,ax
+mov al,dh
+mov dl,10
+div dl
+add al,48
+add ah,48
+
+mov Fecha[3],al
+mov Fecha[4],ah
+
+mov Fecha[5],47
+
+mov Fecha[6],50 
+mov Fecha[7],48
+mov Fecha[8],50
+mov Fecha[9],48
+;Hora
+mov Fecha[10],45
+MOV AH,2CH
+INT 21H
+
+
+
+
+mov Fecha[11],CH
+mov Fecha[14],CL
+mov Fecha[17],DH
+
+xor ax,ax
+mov al,Fecha[11]
+mov dl,10
+div dl
+add ah,48
+add al,48
+mov Fecha[11],al
+mov Fecha[12],ah
+mov Fecha[13],58
+
+xor ax,ax
+mov al,Fecha[14]
+mov dl,10
+div dl
+add ah,48
+add al,48
+mov Fecha[14],al
+mov Fecha[15],ah
+mov Fecha[16],58
+
+
+xor ax,ax
+mov al,Fecha[17]
+mov dl,10
+div dl
+add ah,48
+add al,48
+mov Fecha[17],al
+mov Fecha[18],ah
+mov Fecha[19],32
+
+
+WriteFile handle,HtmlH1,4
+
+WriteFile handle,Fecha,20
+
+WriteFile handle,HtmlFH1,5
+
+
+;Recuento
+;zl Ganador
+Recuento
+mov al,xl
+cmp al,xh
+
+NuevaLinea
+
+jz Zegro
+jc Dos
+jmp Uno
+
+Zegro:
+
+WriteFile handle,HtmlFEmp,57
+
+
+jmp Finito
+Uno:
+
+WriteFile handle,HtmlFBla,35
+
+
+jmp Finito
+Dos:
+
+WriteFile handle,HtmlFNeg,34
+
+jmp Finito
+Finito:
+
+
+;xl Puntos Blanca
+;xh Puntos Negra
+;Cerrar
+WriteFile handle,HtmlFin,15
+
+
+
+
+CloseFile handle
+
+endm
+
+DesplazarTerreno macro
+local Enciclo,minisu,sig,A1,A2,A3,A4,B1,B2,B3,B4,C1,C2,C3,C4,Limp,NoLimp
+
+
+;HASTA AQUI
+
+mov Aux,64
+mov si,00h
+Enciclo:
+
+xor bx,bx
+;Usar Bx
+push si;Guardar Valor Si
+mov bx,si
+
+
+cmp Terreno[si],00h
+jnz Limp;No Es Libre
+jz NoLimp
+Limp:
+mov dl,Terreno[si]
+jmp Sig
+NoLimp:
+mov FBlanca,0 
+mov FNegra,0
+
+TerDesIz bl;dl salida
+cmp dl,0;Es Vacia
+jz A1
+cmp dl,4;Es Pared
+jz A1
+cmp dl,2;Es Negra
+jz B1
+inc FBlanca
+jmp A1
+B1:
+inc FNegra
+
+
+
+A1:
+TerDesDe bl
+cmp dl,0;Es Vacia
+jz A2
+cmp dl,4;Es Pared
+jz A2
+cmp dl,2;Es Negra
+jz B2
+inc FBlanca
+jmp A2
+B2:
+inc FNegra
+
+
+A2:
+TerDesAr bl
+cmp dl,0;Es Vacia
+jz A3
+cmp dl,4;Es Pared
+jz A3
+cmp dl,2;Es Negra
+jz B3
+inc FBlanca
+jmp A3
+B3:
+inc FNegra
+
+A3:
+
+TerDesAb bl
+cmp dl,0;Es Vacia
+jz A4
+cmp dl,4;Es Pared
+jz A4
+cmp dl,2;Es Negra
+jz B4
+inc FBlanca
+jmp A4
+B4:
+inc FNegra
+
+A4:
+
+
+
+
+;Hay Mas Terreno
+cmp FBlanca,0
+jz C1
+jnz C2
+
+C1:                     ;Blanca 0
+cmp FNegra,0
+jnz C3
+
+mov dl,0;Ninguna
+jmp sig
+
+C2:                     ;Blanca 1
+cmp FNegra,0
+jnz C4
+
+mov dl,1;Solo Blanca
+jmp sig
+
+C3:;Solo Negro
+
+mov dl,2
+jmp sig
+
+
+C4:;Negro Blanco
+
+mov dl,0
+
+
+sig:
+
+pop si;Retomar Valor Si
+;xor bh,bh
+;mov si,bx
+mov Terreno[si],dl
+
+inc si
+dec Aux
+jnz Enciclo
+
+
+endm
+
+
+
+TerDesAb macro Pos
+
+
+local PosVerif,Tope,Blan,Negr,Blank,Fini
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,56
+jz Tope
+cmp Si,57
+jz Tope
+cmp Si,58
+jz Tope
+cmp Si,59
+jz Tope
+cmp Si,60
+jz Tope
+cmp Si,61
+jz Tope
+cmp Si,62
+jz Tope
+cmp Si,63
+jz Tope
+jmp PosVerif
+
+PosVerif:
+add si,8
+cmp Terreno[si],00h
+JZ Blank
+cmp Terreno[si],01h
+JZ Blan
+cmp Terreno[si],02h
+JZ Negr
+
+
+Blan:
+mov dl,1
+jmp FINI
+
+Negr:
+mov dl,2
+jmp FINI
+
+Blank:
+mov dl,0
+jmp FINI
+Tope:
+mov dl,4
+Fini:
+
+endm
+
+
+
+TerDesAr macro Pos
+
+
+local PosVerif,Tope,Blan,Negr,Blank,Fini
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,0
+jz Tope
+cmp Si,1
+jz Tope
+cmp Si,2
+jz Tope
+cmp Si,3
+jz Tope
+cmp Si,4
+jz Tope
+cmp Si,5
+jz Tope
+cmp Si,6
+jz Tope
+cmp Si,7
+jz Tope
+jmp PosVerif
+
+PosVerif:
+sub si,8
+cmp Terreno[si],00h
+JZ Blank
+cmp Terreno[si],01h
+JZ Blan
+cmp Terreno[si],02h
+JZ Negr
+
+
+Blan:
+mov dl,1
+jmp FINI
+
+Negr:
+mov dl,2
+jmp FINI
+
+Blank:
+mov dl,0
+jmp FINI
+Tope:
+mov dl,4
+Fini:
+
+endm
+
+TerDesDe macro Pos
+
+
+local PosVerif,Tope,Blan,Negr,Blank,Fini
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,7
+jz Tope
+cmp Si,15
+jz Tope
+cmp Si,23
+jz Tope
+cmp Si,31
+jz Tope
+cmp Si,39
+jz Tope
+cmp Si,47
+jz Tope
+cmp Si,55
+jz Tope
+cmp Si,63
+jz Tope
+jmp PosVerif
+
+PosVerif:
+inc si
+cmp Terreno[si],00h
+JZ Blank
+cmp Terreno[si],01h
+JZ Blan
+cmp Terreno[si],02h
+JZ Negr
+
+
+Blan:
+mov dl,1
+jmp FINI
+
+Negr:
+mov dl,2
+jmp FINI
+
+Blank:
+mov dl,0
+jmp FINI
+Tope:
+mov dl,4
+Fini:
+
+endm
+
+TerDesIz macro Pos
+
+
+local PosVerif,Tope,Blan,Negr,Blank,Fini
+xor ax,ax
+xor si,si
+mov al,Pos
+mov Si,ax
+;Esta En EL Borde
+cmp Si,0
+jz Tope
+cmp Si,8
+jz Tope
+cmp Si,16
+jz Tope
+cmp Si,24
+jz Tope
+cmp Si,32
+jz Tope
+cmp Si,40
+jz Tope
+cmp Si,48
+jz Tope
+cmp Si,56
+jz Tope
+jmp PosVerif
+
+PosVerif:
+dec si
+cmp Terreno[si],00h
+JZ Blank
+cmp Terreno[si],01h
+JZ Blan
+cmp Terreno[si],02h
+JZ Negr
+
+
+Blan:
+mov dl,1
+jmp FINI
+
+Negr:
+mov dl,2
+jmp FINI
+
+Blank:
+mov dl,0
+jmp FINI
+Tope:
+mov dl,4
+FINI:
+
+endm
+
 CalcularTerreno macro
 local Enciclo,minisu,sig,A1,A2,A3,A4,B1,B2,B3,B4,C1,C2,C3,C4,Limp,NoLimp
 mov Aux,64
@@ -518,17 +1200,7 @@ CloseFile handle
 
 endm
 
-ConvertirDia macro 
 
-
-mov ah,0
-mov dl,10
-div dl
-or ax,3030h
-
-
-
-endm
 
 OpenFile macro buffer,handler
 mov AX,@data
