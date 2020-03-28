@@ -103,7 +103,8 @@ extern int yydebug;
     chgrp = 309,
     pausep = 310,
     recovery = 311,
-    loss = 312
+    loss = 312,
+    ruta = 313
   };
 #endif
 
@@ -111,7 +112,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 167 "sintactico.y"
+#line 168 "sintactico.y"
 
 
 //se especifican los tipo de valores para los no terminales y lo terminales
@@ -136,7 +137,7 @@ struct STRSFIN* SFIN;
 struct STRSCHOW* SCHOW;
 struct STRSCHG* SCHG;
 
-#line 140 "parser.h"
+#line 141 "parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

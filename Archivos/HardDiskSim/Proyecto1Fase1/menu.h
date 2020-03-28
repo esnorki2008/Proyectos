@@ -67,7 +67,8 @@ public:
     //MKFS
     void MKFS(const char *Id,int Type,int Tipo);
     //REP
-    void REP(const char *Id,const char *Name,const char *Path);
+    void REP(const char *Id, const char *Name, const char *Path,const char *Ruta);
+
     //AGREGAR
     void FDISKAdd(int Size,const char *Path,const char *Name);
     //MONTAR

@@ -1,7 +1,196 @@
 #include "reports.h"
 #include "structsext.h"
 
+//LS
+std::string Reports::LsInodos(int Comienzo, const char *PathReal,const char *Nombre){
 
+
+    FILE *f;
+    f=fopen(PathReal,"r+");
+    INO Inodo;
+    fseek(f,Comienzo,SEEK_SET);
+    fread(&Inodo,sizeof(Inodo),1,f);
+    fclose(f);
+    std::string Concatenar="";
+
+
+    int Tipo;
+    std::string TipoIno="Carpeta";
+    if(Inodo.i_type=='1'){
+        Tipo=1;
+        TipoIno="Archivo";
+    }
+    else
+        Tipo=0;
+
+
+
+    std::string Permisos="";
+    std::string MiniPer=std::to_string(Inodo.i_perm);
+
+    for(int j=0;j<3;j++){
+        for(int i=0;i<3;i++){
+            int Index=i+1+j*3;
+            if(MiniPer[Index]=='0'){
+                Permisos=Permisos+"-";
+                if(Index==3||Index==6||Index==9){
+                    Permisos=Permisos+"   ";
+                }
+            }
+            else{
+                if(Index==1 || Index==4 || Index==7){
+                    Permisos=Permisos+"r";
+                }else if(Index==2 || Index==5 || Index==8){
+                    Permisos=Permisos+"w";
+                }else{
+                    Permisos=Permisos+"x   ";
+                }
+
+            }
+        }
+    }
+
+    std::string Owner=std::to_string(Inodo.i_uid);
+    std::string Grupo=std::to_string(Inodo.i_gid);
+    std::string Size=std::to_string(Inodo.i_size);
+    std::string FechaM=Fun->FechaString(&Inodo.i_mtime);
+    std::string FechaC=Fun->FechaString(&Inodo.i_ctime);
+    std::string Name=Nombre;
+
+    Concatenar=Concatenar+NuevaFilaLS("cadetblue2",Permisos,Owner,Grupo,Size,FechaM,FechaC,TipoIno,Name);
+
+
+    for(int i=0;i<12;i++){
+        int Comprobar=Inodo.i_block[i];
+
+        if(Comprobar!=-1){
+            Concatenar =Concatenar+LsIndirectos(0,0,Comprobar,PathReal,Tipo);
+        }
+
+    }
+    for(int i=0;i<3;i++){
+        int Comprobar=Inodo.i_block[12+i];
+        if(Comprobar!=-1){
+            Concatenar=Concatenar+LsIndirectos(1+i,0,Comprobar,PathReal,Tipo);
+        }
+    }
+
+
+    return Concatenar;
+}
+std::string Reports::LsDirectos(int Comienzo,const char *PathReal,int Tipo){
+    FILE *f;
+    f=fopen(PathReal,"r+");
+    BCA Carpeta;
+    fseek(f,Comienzo,SEEK_SET);
+    fread(&Carpeta,sizeof(Carpeta),1,f);
+    fclose(f);
+
+    std::string Concatenar="";
+    for(int i=0;i<4;i++){
+        CON Contenido=Carpeta.content[i];
+        if(Contenido.b_inodo!=-1){
+            if(Tipo==0){
+                Concatenar=Concatenar+LsInodos(Contenido.b_inodo,PathReal,Contenido.b_name);
+            }
+        }
+    }
+
+    return Concatenar;
+}
+
+std::string Reports::LsIndirectos(int Nivel, int NivelActual, int Comienzo,  const char *PathReal,int Tipo){
+    if(Nivel==NivelActual){
+
+        return LsDirectos(Comienzo,PathReal,Tipo);
+    }
+    FILE *f;
+    f=fopen(PathReal,"r+");
+    BAP Apunta;
+    fseek(f,Comienzo,SEEK_SET);
+    fread(&Apunta,sizeof(Apunta),1,f);
+    fclose(f);
+    std::string Concatenar="";
+    for(int i=0;i<16;i++){
+        int Valor=Apunta.b_pointers[i];
+          if(Valor!=-1){
+            Concatenar=Concatenar+LsIndirectos(Nivel,NivelActual+1,Valor,PathReal,Tipo);
+        }
+    }
+
+    return Concatenar;
+}
+
+void Reports::ReporteLS(int Inicio, const char *PathReal, const char *Salida,const char *Nombre){
+
+    if(Inicio==-1)
+        return;
+
+    std::string Concatenar="digraph G { \n rankdir=LR node \n [shape=plaintext] \n";
+    Concatenar=Concatenar+"I"+std::to_string(0)+" [ label=< <TABLE BGCOLOR=\"white\">";
+    Concatenar=Concatenar+NuevaFilaLS("cadetblue","Permisos","Owner","Grupo","Size","Fecha Modificacion","Fecha Creacion","Tipo","Name");
+    Concatenar=Concatenar+LsInodos(Inicio,PathReal,Nombre);
+    Concatenar=Concatenar+"</TABLE>>] \n";
+    Concatenar=Concatenar+"\n } \n";
+
+
+
+
+    std::string Pth=Salida;
+    Pth=Pth+".dot";
+    FILE *f;
+    f=fopen(Pth.data(),"w");
+    if (!f){
+        return ;
+    }else{
+
+        fwrite(Concatenar.data(),Concatenar.length(),1,f);
+        fclose(f);
+
+        std::string CMD="dot -Tpng "+Pth+" -o ";
+        CMD = CMD+Salida;
+        std::cout<<CMD<<std::endl;
+        const char *command = CMD.data();
+        system(command);
+    }
+}
+
+std::string Reports::NuevaFilaLS(std::string Color,std::string Permiso, std::string Owner, std::string Grupo, std::string Size, std::string Fecha, std::string Hora, std::string Tipo, std::string Name){
+    std::string Salida="";
+
+    Salida=Salida+"<TR>\n";
+    Salida=Salida+"<TD BGCOLOR=\""+Color+"\">"+Permiso+"</TD><TD BGCOLOR=\""+Color+"\">"+Owner+"</TD>";
+    Salida=Salida+"<TD BGCOLOR=\""+Color+"\">"+Grupo+"</TD><TD BGCOLOR=\""+Color+"\">"+Size+"</TD>";
+    Salida=Salida+"<TD BGCOLOR=\""+Color+"\">"+Fecha+"</TD><TD BGCOLOR=\""+Color+"\">"+Hora+"</TD>";
+    Salida=Salida+"<TD BGCOLOR=\""+Color+"\">"+Tipo+"</TD><TD BGCOLOR=\""+Color+"\">"+Name+"</TD>";
+    Salida=Salida+"</TR>\n";
+
+    return Salida;
+}
+//File
+void Reports::ReporteFile(const char *Path, const char *Contenido){
+
+    std::string Salida=Contenido;
+    if(Fun->IF(Salida,""))
+    {
+        std::cout<<"Error No Se Encontro Contenido O El Archivo Que Se BUscaba Reporte LS"<<std::endl;
+        return;
+    }
+
+    FILE *f;
+    char Cop[1+Salida.length()];
+    strcpy(Cop,Salida.c_str());
+    f=fopen(Path,"w");
+    if (!f){
+        return ;
+    }else{
+        fwrite(&Cop,sizeof(Cop),1,f);
+        fclose(f);
+    }
+
+
+}
+//
 std::string Reports::RecorrerInodos(int Comienzo, const char *PathReal){
     ColaI.push(Comienzo);
 

@@ -8,6 +8,9 @@
 class Reports
 {
 public:
+
+    void ReporteLS(int Inicio,const char *PathReal,const char *Salida,const char *Nombre);
+    void ReporteFile(const char *Path,const char *Contenido);
     void ReporteSB(int Inicio,const char *Disco,const char *Path);
     void ReporteBlock(int Inicio,const char *Disco,const char *Path);
     void ReporteInode(int Inicio,const char *Disco,const char *Path);
@@ -19,9 +22,16 @@ public:
     void ReporteArbol(int Inicio,const char *Disco,const char *Path);
     Reports();
 private:
+    std::string NuevaFilaLS(std::string Color,std::string Permiso,std::string Owner,std::string Grupo,std::string Size,std::string Fecha,std::string Hora,std::string Tipo,std::string Name);
+
+    //
     int Contador;
     std::queue <int> Cola;
     std::queue <int> ColaI;
+    //Generadores Del LS
+    std::string LsInodos(int Comienzo,const char *PathReal,const char *Nombre);
+    std::string LsDirectos(int Comienzo,const char *PathReal,int Tipo);
+    std::string LsIndirectos(int Nivel, int NivelActual,int Comienzo,const char *PathReal,int Tipo);
     //Generadores
 
     std::string RecorrerBloqueContenido(int Comienzo,const char *PathReal);

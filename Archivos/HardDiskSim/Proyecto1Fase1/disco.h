@@ -55,7 +55,8 @@ public:
     void BorrarParticion(const char *Nombre);
     bool ExisteParticionMontada(const char *Nombre);
     void BuscarDisco(const char *Nombre);
-    void Reporte(const char *ID,const char *Path,const char *Tipo);
+
+    void Reporte(const char *ID,const char *Path,const char *Tipo,const char *Ruta);
 private:
     Functions *Fun=  new Functions();
     std::string GenerarApodo();

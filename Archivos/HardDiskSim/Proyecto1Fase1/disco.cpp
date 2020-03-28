@@ -378,8 +378,6 @@ void Disco::PermisoArchivoParticion(const char *Nombre,const char *Path,int Tipo
     std::cout<<"No Se Encontro La Particion "<<Nombre<<" Para Poder Modificar Permisos"<<std::endl;
     return ;
 }
-
-
 //REM
 void Disco::BorrarArchivoParticion(const char *Nombre, const char *Path,IUG Permiso){
     Disco *Tempo=this;
@@ -835,7 +833,7 @@ bool Disco::ParticionLibreParaBorrar(const char *Nombre){
     }
     return true;
 }
-void Disco::Reporte(const char *ID, const char *Path, const char *Tipo){
+void Disco::Reporte(const char *ID, const char *Path, const char *Tipo,const char*Ruta){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
         for (int i=0;i<Tempo->Lista.count();i++) {
@@ -869,7 +867,42 @@ void Disco::Reporte(const char *ID, const char *Path, const char *Tipo){
                     R->ReporteBlock(InicioParti,Tempo->Path.data(),Path);
                 }else if(Fun->IF(Tipo,"sb")){
                     R->ReporteSB(InicioParti,Tempo->Path.data(),Path);
-                }
+                }else if(Fun->IF(Tipo,"file")){
+                    if(Fun->IF(Ruta,""))
+                    {
+                        std::cout<<"Para Un Reporte FILE se necesita poner la Ruta"<<std::endl;
+                        return ;
+                    }
+
+                    std::string Contenido;
+                    IUG PermisoFalso;
+                    PermisoFalso.Gid=1;
+                    PermisoFalso.Uid=1;
+                    Contenido=LeerArchivoParticion(ID,Path,PermisoFalso);
+
+
+                    R->ReporteFile(Ruta,Contenido.data());
+
+                 }else if(Fun->IF(Tipo,"ls")){
+                    if(Fun->IF(Ruta,""))
+                    {
+                        std::cout<<"Para Un Reporte LS se necesita poner la Ruta"<<std::endl;
+                        return ;
+                    }
+
+                    FunctionsExt *Ex=new FunctionsExt();
+
+                    FILE *f;
+                    f=fopen(Tempo->Path.data(),"r+");
+                    SPB Leer;
+                    //Leer Super Bloque De La Particion
+                    fseek(f,InicioParti,SEEK_SET);
+                    fread(&Leer,sizeof(Leer),1,f);
+                    fclose(f);
+
+                    int Busqueda=Ex->BuscarActual(Leer.s_first_ino,Path,Tempo->Path.data());
+                    R->ReporteLS(Busqueda,Tempo->Path.data(),Ruta,Ex->NombreACrear(Path).data());
+                 }
 
                 else{
                     std::cout<<"No Existe Un Reporte Con El Nombre:  "<<Tipo<<std::endl;

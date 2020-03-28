@@ -691,7 +691,7 @@ long FunctionsExt::BuscarIndirectos(SPB *Super,long Nivel, long NivelActual, lon
         }else if(Tipo==2 || Tipo==4){
             int NuevoIndirecto=CrearIndirectosContenido(Nivel,NivelActual,Super,PathReal,0);
             if(NuevoIndirecto==-1)
-                return 1;
+                return -1;
 
             Apunta.b_pointers[i]=NuevoIndirecto;
             f=fopen(PathReal,"r+");
@@ -859,7 +859,8 @@ long FunctionsExt::CantidadBarras(std::string Path){
 }
 //BuscarActual
 long FunctionsExt::BuscarActual(long Comienzo, std::string PathVirtual, const char *PathReal){
-
+    if(IF(PathVirtual,"/"))
+        return Comienzo;
     //PathVirtual=PathVirtual.substr(1);
     long Busq=BuscarPadre(Comienzo,(PathVirtual),PathReal);
     if(Busq==-1){

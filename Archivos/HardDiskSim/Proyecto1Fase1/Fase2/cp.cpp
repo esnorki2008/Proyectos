@@ -1,5 +1,6 @@
 #include "cp.h"
 #include "mkfile_mkdir.h"
+#include "cat.h"
 CP::CP(SPB *Super,int Comienzo,std::string PathVirtualOrigen,const char *PathReal,std::string PathVirtualDestino,IUG Permiso)
 {
     this->Permiso=Permiso;
@@ -8,47 +9,146 @@ CP::CP(SPB *Super,int Comienzo,std::string PathVirtualOrigen,const char *PathRea
 
 //Copiar
 void CP::CopiarCarpetaArchivo(SPB *Super,int Comienzo, std::string PathVirtualOrigen, const char *PathReal, std::string PathVirtualDestino){
+
     int Actual=BuscarActual(Comienzo,PathVirtualOrigen,PathReal);
     if(Actual==-1){
-        std::cout<<"No Se Puede Copiar, Porque No Se Encontro La Carpeta/Archivo De Origen  "<<PathVirtualOrigen<<std::endl;
+        std::cout<<"No Se Puede Copiar, Porque No Se Encontro La Carpeta/Archivo De ORIGEN  "<<PathVirtualOrigen<<std::endl;
         return;
     }
+    int NuevoPadre=BuscarActual(Comienzo,PathVirtualDestino,PathReal);
+    if(NuevoPadre==-1){
+        std::cout<<"No Se Puede Copiar, Porque No Se Encontro La Carpeta/Archivo De DESTINO  "<<PathVirtualOrigen<<std::endl;
+        return;
+    }
+
+
+
     //Copiando Archivo O Carpeta
     Actual=CopiarInodo(Super,Actual,PathReal);
     if(Actual==-1){
         std::cout<<"No Se Puede Copiar, Porque No Se Tienen Los Permisos Para Copiar  "<<PathVirtualOrigen<<std::endl;
         return;
     }
+
     FILE *f;
+    f=fopen(PathReal,"r+");
+    INO CarpetaPadre;//Leyendo Nuevo Padre
+    fseek(f,NuevoPadre,SEEK_SET);
+    fread(&CarpetaPadre,sizeof(CarpetaPadre),1,f);
+    fclose(f);
+
+    /*FILE *f;
     f=fopen(PathReal,"r+");
     INO Carpeta;//Leyendo Donde Se Coloco La Carpeta o Archivo Copia
     fseek(f,Actual,SEEK_SET);
     fread(&Carpeta,sizeof(Carpeta),1,f);
     fclose(f);
-    //Libera Donde Estaba La Copia
-    LiberarInodo(Super,PathReal,Actual);
-    //Para Colocar En La Ubicacion Destino
-    PathVirtualDestino=PathVirtualDestino+"/"+NombreACrear(PathVirtualOrigen.data());
-    //Ver El Tipo
-    int Tipo=0;
-    if(Carpeta.i_type=='1')
-        Tipo=1;
-    //Crear Ubicacion Dependiendo El Tipo
-    if(Tipo==0)
-        new MKFILE_MKDIR(Super,Comienzo,PathVirtualDestino.data(),PathReal,"",true,false,Permiso);
-    else
-        new MKFILE_MKDIR(Super,Comienzo,PathVirtualDestino.data(),PathReal,"0",false,false,Permiso);
-    //Ver Si Se Pudo Crear
-    int Colocado=BuscarActual(Comienzo,PathVirtualDestino,PathReal);
-    if(Colocado==-1){
-        std::cout<<"No Se Pudo Colocar La Carpeta O Archivo En Su Destino "<<PathVirtualDestino<<std::endl;
-        return;
+    */
+
+
+
+
+
+    for(long i=0;i<12;i++){
+        long Pos=CarpetaPadre.i_block[i];
+
+          if(Pos==-1){
+            //Crea Bloque Directo Y Se Manda A Crear Carpeta
+
+            long EspacioBloque=BloqueLibre(Super,PathReal);
+
+            if(EspacioBloque==-1){
+                std::cout<<"No Se Pudo Crear El Bloque, Insuficiente Tamanio"<<std::endl;
+                return ;
+            }
+
+            f=fopen(PathReal,"r+");
+            BCA BloqueDirecto;
+            IniciarBloqueCarpeta(&BloqueDirecto);
+            //BloqueDirecto.content[0].b_inodo=Actual;
+            //strcpy(BloqueDirecto.content[0].b_name,NombreACrear(PathVirtualOrigen.data()).c_str());
+
+
+
+
+
+            fseek(f,EspacioBloque,SEEK_SET);
+            fwrite(&BloqueDirecto,sizeof (BloqueDirecto),1,f);
+            CarpetaPadre.i_block[i]=EspacioBloque;
+            fseek(f,NuevoPadre,SEEK_SET);
+            fwrite(&CarpetaPadre,sizeof (INO),1,f);
+
+
+
+            fclose(f);
+
+
+
+
+            std::cout<<"Copia Colocada Exitosamente En: "<<Actual<<PathVirtualDestino<<std::endl;
+            return;
+        }else{
+
+
+              f=fopen(PathReal,"r+");
+              BCA BloqueDirecto;
+              fseek(f,Pos,SEEK_SET);
+              fread(&BloqueDirecto,sizeof (BloqueDirecto),1,f);
+              fclose(f);
+
+
+              for(int z=0;z<4;z++){
+                  Contennt Nido=BloqueDirecto.content[z];
+                  std::string Name="";
+
+                  for(int l=0;l<12;l++){
+                      if(Nido.b_name[l]=='*'){
+
+                          break;
+                      }
+                      Name=Name+Nido.b_name[l];
+                  }
+                  std::cout<<Name<<"|        "<<Name.length()<<std::endl;
+                  std::cout<<NombreACrear(PathVirtualOrigen.data())<<"|        "<<NombreACrear(PathVirtualOrigen.data()).length()<<std::endl;
+
+
+                  if(IF(Name,NombreACrear(PathVirtualOrigen.data()))){
+                      std::cout<<"La Ruta Destino Contiene Un Archivo Con El Mismo Nombre, Cancelando"<<std::endl;
+                      return;
+                  }
+
+                  std::cout<<"Nido"<<Nido.b_inodo<<std::endl;
+
+                  if(Nido.b_inodo==-1){
+
+                      BloqueDirecto.content[z].b_inodo=Actual;
+                      strcpy(BloqueDirecto.content[z].b_name,NombreACrear(PathVirtualOrigen.data()).c_str());
+
+
+                      f=fopen(PathReal,"r+");
+                      fseek(f,Pos,SEEK_SET);
+                      fwrite(&BloqueDirecto,sizeof (BloqueDirecto),1,f);
+                      fclose(f);
+
+
+
+
+                      std::cout<<"Copia Colocada Exitosamente En: "<<PathVirtualDestino<<std::endl;
+                      return;
+                  }
+
+
+              }
+
+        }
     }
-    //Actualizar La Informacion De Lo Creado Con Lo SIMPLE
-    f=fopen(PathReal,"r+");
-    fseek(f,Colocado,SEEK_SET);
-    fwrite(&Carpeta,sizeof(Carpeta),1,f);
-    fclose(f);
+
+
+
+std::cout<<"No Se Pudo Copiar El Archivo:  "<<PathVirtualOrigen<<std::endl;
+
+
+
 }
 int CP::CopiarContenido(SPB *Super,int Comienzo, const char *PathReal){
     FILE *f;

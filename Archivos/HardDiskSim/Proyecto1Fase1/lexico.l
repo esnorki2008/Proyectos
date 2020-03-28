@@ -17,7 +17,7 @@ numero (-)?[0-9]+
 salto [\n]
 cadena \"[^"\""]*\"
 
-igual =
+igual =|(\~\:\~)
 mkdisk mkdisk
 rmdisk rmdisk
 fdisk fdisk
@@ -33,6 +33,7 @@ path -path
 typep -type
 deletep -delete
 name -name
+ruta -ruta
 add -add
 id -id
 
@@ -73,6 +74,8 @@ loss loss
 {salto} {yylineno=yylineno+1; columna=0;}
 {comentario}  {  }
 
+
+{dest}          {  columna=columna+ anterior;  anterior = strlen(yytext);strcpy(yylval.TEXT, yytext); return dest;}
 {fs}          {  columna=columna+ anterior;  anterior = strlen(yytext);strcpy(yylval.TEXT, yytext); return fs;}
 {usr}          {  columna=columna+ anterior;  anterior = strlen(yytext);strcpy(yylval.TEXT, yytext); return usr;}
 {pwd}          {  columna=columna+ anterior;  anterior = strlen(yytext);strcpy(yylval.TEXT, yytext); return pwd;}
@@ -108,7 +111,7 @@ loss loss
 
 
 
-
+{ruta}          {  columna=columna+ anterior;  anterior = strlen(yytext);strcpy(yylval.TEXT, yytext); return ruta;}
 {direccion}          {  columna=columna+ anterior;  anterior = strlen(yytext);strcpy(yylval.TEXT, yytext); return direccion;}
 {exec}          {  columna=columna+ anterior;  anterior = strlen(yytext);strcpy(yylval.TEXT, yytext); return exec;}
 {igual}          {  columna=columna+ anterior;  anterior = strlen(yytext);strcpy(yylval.TEXT, yytext); return igual;}

@@ -456,15 +456,16 @@ void Menu::MKFS(const char *Id, int Type,int Tipo){
 //FASE1
 
 //REPORTES
-void Menu::REP(const char *Id, const char *Name, const char *Path){
+void Menu::REP(const char *Id, const char *Name, const char *Path,const char *Ruta){
     Disco *Ptr=this->PrimerDisco;
     if(Ptr==nullptr){
         std::cout<<"No Hay Ninguna Particion Montada En El Sistema";
     }else {
-        this->PrimerDisco->Reporte(Id,Path,Name);
+        this->PrimerDisco->Reporte(Id,Path,Name,Ruta);
     }
 
 }
+
 
 //Metodos Auxiliares
 void Menu::LimpiarDiscosVacios(){
@@ -598,9 +599,9 @@ void Menu::NewMenu(){
 
 
 
-    REP("vda1","bm_inode","/home/pc/Documents/Archivos/Prueba/bm_inodo.txt");
-    REP("vda1","bm_block","/home/pc/Documents/Archivos/Prueba/bm_bloque.txt");
-    REP("vda1","tree","/home/pc/Documents/Archivos/Prueba/Arbol.png");
+    REP("vda1","bm_inode","/home/pc/Documents/Archivos/Prueba/bm_inodo.txt","");
+    REP("vda1","bm_block","/home/pc/Documents/Archivos/Prueba/bm_bloque.txt","");
+    REP("vda1","tree","/home/pc/Documents/Archivos/Prueba/Arbol.png","");
     std::cout<<"FIN DE EJECUCION"<<std::endl;
     //UNMOUNT("vda1");
     //RMDISK("Disco.disk");
