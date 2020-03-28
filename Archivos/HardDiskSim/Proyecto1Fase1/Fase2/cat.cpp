@@ -53,6 +53,7 @@ std::string CAT::LeerIndirectos(int Nivel, int NivelActual, int Comienzo,  const
     }
     return Concatenar;
 }
+
 std::string CAT::LeerArchivo(int Inicio, const char *Disco, const char *Path){
 
     int Busqueda=BuscarActual(Inicio,Path,Disco);

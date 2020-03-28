@@ -330,7 +330,9 @@ void Menu::REM(const char *Path){
 void Menu::Logout(){
     if(OpeU->UsuarioActual.Uid==-1){
         std::cout<<"Error No Hay Usuario Logueado"<<std::endl;
-    }else{        
+    }else{
+        this->PrimerDisco->Contar(OpeU->IDMontado.data(),false);
+
         std::cout<<"El Usuario '"<<OpeU->UsuarioActual.Usuario<<"' Ha Salido Del Sistema"<<std::endl;
         OpeU->Limpiar();
     }
@@ -347,6 +349,9 @@ void Menu::LOGIN(const char *Usr, const char *Pwd, const char *Id){
         OpeU->Limpiar();
         return;
     }
+
+    this->PrimerDisco->Contar(Id,true);
+
     IUG PermisoFalso;
     PermisoFalso.Gid=1;
     PermisoFalso.Uid=1;
@@ -490,23 +495,33 @@ void Menu::UNMOUNT(const char *Name){
     }else{
         this->PrimerDisco->BorrarParticion(Name);
         this->LimpiarDiscosVacios();
+
+
     }
 
 }
 //MOUNT
 void Menu::MOUNT(const char *Path,const char *Name){
 
+
     if(this->PrimerDisco==nullptr){        
         this->PrimerDisco=new Disco(Path,nullptr);       
         this->PrimerDisco->AgregarParticion(Name);
         this->LimpiarDiscosVacios();
+
+
     }else{
+
+
         Disco *Temporal=this->PrimerDisco;
         while(Temporal!=nullptr){
 
             if(Fun->IF(Temporal->Path,Path)){
                 Temporal->AgregarParticion(Name);
                 this->LimpiarDiscosVacios();
+
+
+
                 return;
             }
             Temporal=Temporal->Siguiente;
@@ -517,7 +532,12 @@ void Menu::MOUNT(const char *Path,const char *Name){
         this->PrimerDisco=new Disco(Path,this->PrimerDisco);
         this->PrimerDisco->AgregarParticion(Name);
         this->LimpiarDiscosVacios();
+
+
+
     }
+
+
 
 }
 

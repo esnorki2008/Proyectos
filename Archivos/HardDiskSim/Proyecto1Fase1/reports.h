@@ -8,6 +8,9 @@
 class Reports
 {
 public:
+    void ReporteSB(int Inicio,const char *Disco,const char *Path);
+    void ReporteBlock(int Inicio,const char *Disco,const char *Path);
+    void ReporteInode(int Inicio,const char *Disco,const char *Path);
     void ReporteTablaMBR(const char *Path,const char *Guardar,int Num);
     void ReporteTablaEBR(EBR Extendida,const char *Guardar,int Num);
     void Reportebm_Inodo(int Inicio,const char *Disco,const char *Path);
@@ -16,6 +19,17 @@ public:
     void ReporteArbol(int Inicio,const char *Disco,const char *Path);
     Reports();
 private:
+    int Contador;
+    std::queue <int> Cola;
+    std::queue <int> ColaI;
+    //Generadores
+
+    std::string RecorrerBloqueContenido(int Comienzo,const char *PathReal);
+    std::string RecorrerInodos(int Comienzo,const char *PathReal);
+    std::string RecorrerDirectos(int Comienzo,const char *PathReal,int Tipo);
+    std::string RecorrerIndirectos(int Nivel, int NivelActual,int Comienzo,const char *PathReal,int Tipo);
+
+    std::string InodoAString(INO Inodo,int Comienzo,int Nombre);
     //TABLA
     std::string TablaPAR(PAR Parti,int Num);
     std::string TablaEBR(EBR Extendida,int Num);

@@ -38,6 +38,8 @@ public:
     void CrearCarpetaParticion(const char *Nombre,const char *Path, char Padre,IUG Permiso);
     //MKFS
     void FormatearParticion(const char *Nombre,IUG Permiso,int Tipo,int Ext);
+    //Espacial
+    void Contar(const char *Nombre,bool Montar);
     //---------------------------------FASE1
 
 

@@ -184,7 +184,7 @@ void Disco::MoverArchivoParticion(const char *Nombre, const char *PathOrigen, co
         for (int i=0;i<Tempo->Lista.count();i++) {
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
-            if(Fun->IF(NombreParti,Nombre)){                
+            if(Fun->IF(NombreParti,Nombre)){
                 const char* Real=Tempo->Path.data();
                 int Comienzo;
                 //Es Logica
@@ -536,7 +536,7 @@ void Disco::CrearArchivoParticion(const char *Nombre, const char *Path, char Pad
                     //E->CrearArchivoSimple(&Super,Super.s_first_ino,Path,Real,Contenido);
                 }else{
                     new MKFILE_MKDIR(&Super,Super.s_first_ino,Path,Real,Contenido,false,true,Permiso);
-                   //E->CrearArchivoCompleto(&Super,Super.s_first_ino,Path,Real,Contenido);
+                    //E->CrearArchivoCompleto(&Super,Super.s_first_ino,Path,Real,Contenido);
                 }
 
                 return;
@@ -620,9 +620,9 @@ void Disco::FormatearParticion(const char *Nombre,IUG Permiso,int Tipo,int Ext){
                 }
 
                 //Tipo De Formato
-                    new MKFS(Comienzo,TamanioParticion,TamanioStruct,Path,Tipo,Ext,Permiso);
-                    //E->EstructurarFormatoEXT3(Comienzo,TamanioParticion,TamanioStruct,Path,Tipo);
-                    std::cout<<"Se Formateo La Particion "<<Nombre<<" Con El Formato EXT3 Del Disco Ubicado En "<<Tempo->Path<<std::endl;
+                new MKFS(Comienzo,TamanioParticion,TamanioStruct,Path,Tipo,Ext,Permiso);
+                //E->EstructurarFormatoEXT3(Comienzo,TamanioParticion,TamanioStruct,Path,Tipo);
+                std::cout<<"Se Formateo La Particion "<<Nombre<<" Con El Formato EXT3 Del Disco Ubicado En "<<Tempo->Path<<std::endl;
 
 
                 return;
@@ -633,6 +633,62 @@ void Disco::FormatearParticion(const char *Nombre,IUG Permiso,int Tipo,int Ext){
 
     std::cout<<"No Se Encontro La Particion Para Formatear "<<Nombre<<std::endl;
 }
+
+//Contar
+void Disco::Contar(const char *Nombre,bool Montar){
+    Disco *Tempo=this;
+
+
+    while (Tempo!=nullptr) {
+
+        for (int i=0;i<Tempo->Lista.count();i++) {
+            MOU Te= Lista.at(i);
+            std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
+            if(Fun->IF(NombreParti,Nombre)){
+                //EXT *E = new EXT(Permiso);
+                const char* Real=Tempo->Path.data();
+                int Comienzo;
+                //Es Logica
+                if(Te.EsLogica){
+                    Comienzo=Te.Logica.part_start+int(sizeof(EBR));
+                }else{
+                    //TamanioStruct=int(sizeof(EBR));
+                    Comienzo=Te.Particion.part_start;
+                }
+
+
+
+                FILE *f;
+                f=fopen(Real,"r+");
+                SPB Super;
+                fseek(f,Comienzo,SEEK_SET);
+                fread(&Super,sizeof(Super),1,f);
+
+                if(Montar){
+                    Fun->Fecha(&Super.s_mtime);
+
+                    Super.s_mnt_count++;
+                }
+                else{
+                    Fun->Fecha(&Super.s_umtime);
+
+
+                }
+                fseek(f,Comienzo,SEEK_SET);
+                fwrite(&Super,sizeof(Super),1,f);
+
+                fclose(f);
+
+
+                return;
+            }
+        }
+        Tempo=Tempo->Siguiente;
+    }
+
+
+}
+//Fase1
 Disco::Disco(std::string Path,Disco *Nuevo)
 {
     this->Path=Path;
@@ -666,7 +722,7 @@ void Disco::AgregarParticion(const char *Nombre){
         int ParIndex=Fun->SearchPAR(Nombre,Path.data());
 
         if(ParIndex==-1){
-           EBR Logic=Fun->SearchEBR(Nombre,Path.data());
+            EBR Logic=Fun->SearchEBR(Nombre,Path.data());
             if(Logic.part_status=='\0'){
                 std::cout<<"No Se Encontro La Particion '"<<Nombre<<"' Para Montar En El Disco De  "<<this->Path<<std::endl;
                 return;
@@ -699,7 +755,7 @@ void Disco::AgregarParticion(const char *Nombre){
 
 }
 std::string Disco::NumeroAString(int Num){
-    std::string Salida(1, char(97+Num));    
+    std::string Salida(1, char(97+Num));
     return Salida;
 }
 void Disco::BorrarParticion(const char *Nombre){
@@ -730,7 +786,6 @@ bool Disco::ExisteParticionMontada(const char *Nombre){
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
                 return true;
-
             }
         }
         Tempo=Tempo->Siguiente;
@@ -758,9 +813,9 @@ void Disco::BuscarDisco(const char *Nombre){
 bool Disco::DiscoLibreParaBorrar(const char *Nombre){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
-            if(Fun->IF(Tempo->Path,Nombre)){
-                    return false;
-            }
+        if(Fun->IF(Tempo->Path,Nombre)){
+            return false;
+        }
         Tempo=Tempo->Siguiente;
     }
     return true;
@@ -773,7 +828,7 @@ bool Disco::ParticionLibreParaBorrar(const char *Nombre){
             MOU Te= Lista.at(i);
             std::string NombreParti=Tempo->Apodo+std::to_string(Te.Numero);
             if(Fun->IF(NombreParti,Nombre)){
-                    return false;
+                return false;
             }
         }
         Tempo=Tempo->Siguiente;
@@ -800,23 +855,26 @@ void Disco::Reporte(const char *ID, const char *Path, const char *Tipo){
                 if(Fun->IF(Tipo,"disk")){
                     R->Graphviz(Tempo->Path.data(),Path);
                 }else if(Fun->IF(Tipo,"mbr")){
-                    //Tipo De Reporet eEBR o MBR
-                    //if(!Te.EsLogica){
-                        R->ReporteTablaMBR(Tempo->Path.data(),Path,Te.Numero);
-                    //}else{
-                    //    R->ReporteTablaEBR(Te.Logica,Path,Te.Numero);
-                    //}
-
+                    R->ReporteTablaMBR(Tempo->Path.data(),Path,Te.Numero);
+                //FASE2
                 }else if(Fun->IF(Tipo,"bm_inode")){
                     R->Reportebm_Inodo(InicioParti,Tempo->Path.data(),Path);
                 }else if(Fun->IF(Tipo,"bm_block")){
                     R->Reportebm_Bloque(InicioParti,Tempo->Path.data(),Path);
                 }else if(Fun->IF(Tipo,"tree")){
                     R->ReporteArbol(InicioParti,Tempo->Path.data(),Path);
+                }else if(Fun->IF(Tipo,"inode")){
+                    R->ReporteInode(InicioParti,Tempo->Path.data(),Path);
+                }else if(Fun->IF(Tipo,"block")){
+                    R->ReporteBlock(InicioParti,Tempo->Path.data(),Path);
+                }else if(Fun->IF(Tipo,"sb")){
+                    R->ReporteSB(InicioParti,Tempo->Path.data(),Path);
                 }
 
                 else{
-                    Fun->Out("Error En Reporte Del Disco");
+                    std::cout<<"No Existe Un Reporte Con El Nombre:  "<<Tipo<<std::endl;
+                    std::string Fail;
+                    std::cin>>Fail;
                 }
                 delete(R);
                 return;

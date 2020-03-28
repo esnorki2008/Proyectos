@@ -56,6 +56,10 @@ long FunctionsExt::BloqueLibre(SPB *Super, const char *Path){
             Super->s_block_start= Super->s_inode_start+Super->s_inodes_count*(long(sizeof (INO)));
             //
             Out= Super->s_block_start+(i*Super->s_block_size);
+
+
+
+
             fseek(f,Ubi+i,SEEK_SET);
             char Actualizar='1';
             fwrite(&Actualizar,sizeof (Actualizar),1,f);
