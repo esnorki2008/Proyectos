@@ -48,13 +48,13 @@ void Recuperacion::RecuREN(int Comienzo, const char *Path, const char *PathVirtu
     strcpy(Nuevo.Contenido,NuevoNombre);
     NuevoRegistro(Comienzo,Path,Nuevo);
 }
-void Recuperacion::RecuEDIT(int Comienzo, const char *Path, const char *PathVirtual, bool Recursivo, int Tamanio, int PosiArchivo,IUG Inf){
+void Recuperacion::RecuEDIT(int Comienzo, const char *Path, const char *PathVirtual,const char *Cont, bool Recursivo, int Tamanio, int PosiArchivo,IUG Inf){
     JOR Nuevo;
     Nuevo.Tipo=12;
     Nuevo.Info=Inf;
     strcpy(Nuevo.Direccion,PathVirtual);
     Nuevo.TamanioArchivo=Tamanio;
-
+    strcpy(Nuevo.Contenido,Cont);
     Nuevo.Recursivo=Recursivo;
     NuevoRegistro(Comienzo,Path,Nuevo);
 }
@@ -65,11 +65,14 @@ void Recuperacion::RecuREM(int Comienzo, const char *Path, const char *PathVirtu
     NuevoRegistro(Comienzo,Path,Nuevo);
     Nuevo.Info=Inf;
 }
-void Recuperacion::RecuMKFILE(int Comienzo, const char *Path, const char *PathVirtual, bool Recursivo, int Tamanio, int PosiArchivo,IUG Inf){
+void Recuperacion::RecuMKFILE(int Comienzo, const char *Path, const char *PathVirtual, const char *Cont, bool Recursivo, int Tamanio, int PosiArchivo,IUG Inf){
     JOR Nuevo;
     Nuevo.Tipo=9;
     strcpy(Nuevo.Direccion,PathVirtual);
     Nuevo.TamanioArchivo=Tamanio;
+
+    strcpy(Nuevo.Contenido,Cont);
+
 
     Nuevo.Recursivo=Recursivo;
     Nuevo.Info=Inf;

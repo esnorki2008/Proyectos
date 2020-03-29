@@ -23,17 +23,24 @@ void Menu::Recuperar(std::string IDMontado){
     }else {
 
         std::queue<JOR> Cola=this->PrimerDisco->RecuperarInformacion(OpeU->IDMontado.data());
+        std::string Backup=OpeU->IDMontado;
         OpeU->IDMontado=IDMontado;
         SubRecuperar(Cola);
+        OpeU->IDMontado=Backup;
     }
 }
 void Menu::SubRecuperar(std::queue<JOR> Cola){
+
     JOR Actual;
     IUG Tempo=OpeU->Permiso;    
-    MKFS(OpeU->IDMontado.data(),0,0);
-    //Falta Indicar A Quien Recuperar
+    MKFS(OpeU->IDMontado.data(),1,1);
+
+
     while(Cola.empty()==false){
         Actual=Cola.front();
+
+
+
         OpeU->Permiso=Actual.Info;
         bool Recursivo=Actual.Recursivo;
         std::string Contenido=Actual.Contenido;
@@ -88,7 +95,7 @@ void Menu::SubRecuperar(std::queue<JOR> Cola){
             break;
         }
         case 9:{
-            //MKFILE(Direccion.data())
+            MKFILE(Direccion.data(),'1',Contenido.data());
             break;
         }
         case 11:{
@@ -96,7 +103,7 @@ void Menu::SubRecuperar(std::queue<JOR> Cola){
             break;
         }
         case 12:{
-            //EDIT();
+            EDIT(Direccion.data(),Contenido.data());
             break;
         }
         case 13:{
@@ -104,6 +111,7 @@ void Menu::SubRecuperar(std::queue<JOR> Cola){
             break;
         }
         case 14:{
+
             char Tipo='0';
             if(Recursivo)
                 Tipo='1';

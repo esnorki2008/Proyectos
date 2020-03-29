@@ -41,6 +41,14 @@ void Disco::PropietarioArchivoParticion(const char *Nombre, const char *Path, in
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
                 new CHMOD_CHOWN(Super.s_first_ino,Path,Tempo->Path.data(),Perm,Tipo,Permiso,true);
+
+                FunctionsExt *Fe= new FunctionsExt();
+                if(Fe->BuscarActual(Super.s_first_ino,Path,Real)!=-1){
+                    Recuperacion *Jo = new Recuperacion();
+                    Jo->RecuCHOWN(Comienzo,Tempo->Path.data(),Path,)
+                    Jo->RecuMKDIR(Comienzo,Real,Path,R,Permiso);
+                }
+
                 //E->CambiarPropietarioNormalRecursivo(Super.s_first_ino,Path,Tempo->Path.data(),Perm,Tipo);
                 return ;
             }
@@ -59,8 +67,8 @@ std::queue<JOR>  Disco::Recuperar(int Comienzo,const char *Path){
     int Longitud=Cola.size();
     std::cout<<"Se Han Detectado "<<Longitud<<" Operaciones"<<std::endl;
 
-    return Cola;
 
+    return Cola;
 }
 std::queue<JOR> Disco::RecuperarInformacion(const char *Nombre){
     Disco *Tempo=this;
@@ -92,7 +100,7 @@ std::queue<JOR> Disco::RecuperarInformacion(const char *Nombre){
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
-                Recuperar(Comienzo,Tempo->Path.data());
+                return Recuperar(Comienzo,Tempo->Path.data());
 
             }
         }
@@ -587,12 +595,15 @@ void Disco::CrearCarpetaParticion(const char *Nombre, const char *Path, char Pad
                     new MKFILE_MKDIR(&Super,Super.s_first_ino,Path,Real,"",true,true,Permiso);
                 }
 
-                FunctionsExt *Fe= new FunctionsExt();
 
+
+                FunctionsExt *Fe= new FunctionsExt();
                 if(Fe->BuscarActual(Super.s_first_ino,Path,Real)!=-1){
                     Recuperacion *Jo = new Recuperacion();
                     Jo->RecuMKDIR(Comienzo,Real,Path,R,Permiso);
                 }
+
+
 
                 return;
             }
