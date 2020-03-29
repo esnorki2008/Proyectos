@@ -44,7 +44,8 @@ int main()
         }else{
             std::ofstream Archivo("salida.txt");
             //Archivo <<Exec;
-            Archivo<<"exec -path=/home/pc/Desktop/Fase.sh";
+            //Archivo<<"exec -path=/home/pc/Desktop/Fase.sh";
+            Archivo<<"exec -path=/home/archivos/Fase.sh";
             Archivo.close();
             const char* x = "salida.txt";
             FILE* input = fopen(x, "r" );

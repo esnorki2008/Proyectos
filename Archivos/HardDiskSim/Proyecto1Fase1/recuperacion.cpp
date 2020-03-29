@@ -143,15 +143,7 @@ void Recuperacion::NuevoRegistro(int Comienzo, const char *Path, JOR Recu){
     //Escribir Ultimo Numero
     fseek(f,Comienzo+int(sizeof (SPB)),SEEK_SET);
     fwrite(&Numero,sizeof (Numero),1,f);
-    /*JOR Recu;
-    //Leer Recu
-    fseek(f,Antes,SEEK_SET);
-    fread(&Recu,sizeof (Recu),1,f);
-    //Llenar Recu
-    Recu.Tipo=TipoOperacion;
-    strcpy(Recu.Direccion,PathVirtual);
-    strcpy(Recu.Contenido,Contenido);
-    Recu.Recursivo=Recursivo;*/
+
     Recu.Siguiente=Numero;
     //Escribir Recu
     fseek(f,Antes,SEEK_SET);

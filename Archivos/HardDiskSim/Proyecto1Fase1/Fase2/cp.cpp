@@ -37,54 +37,26 @@ void CP::CopiarCarpetaArchivo(SPB *Super,int Comienzo, std::string PathVirtualOr
     fread(&CarpetaPadre,sizeof(CarpetaPadre),1,f);
     fclose(f);
 
-    /*FILE *f;
-    f=fopen(PathReal,"r+");
-    INO Carpeta;//Leyendo Donde Se Coloco La Carpeta o Archivo Copia
-    fseek(f,Actual,SEEK_SET);
-    fread(&Carpeta,sizeof(Carpeta),1,f);
-    fclose(f);
-    */
-
-
-
-
-
     for(long i=0;i<12;i++){
         long Pos=CarpetaPadre.i_block[i];
-
           if(Pos==-1){
             //Crea Bloque Directo Y Se Manda A Crear Carpeta
-
             long EspacioBloque=BloqueLibre(Super,PathReal);
-
             if(EspacioBloque==-1){
                 std::cout<<"No Se Pudo Crear El Bloque, Insuficiente Tamanio"<<std::endl;
                 return ;
             }
-
             f=fopen(PathReal,"r+");
             BCA BloqueDirecto;
             IniciarBloqueCarpeta(&BloqueDirecto);
-            //BloqueDirecto.content[0].b_inodo=Actual;
-            //strcpy(BloqueDirecto.content[0].b_name,NombreACrear(PathVirtualOrigen.data()).c_str());
-
-
-
-
-
+            BloqueDirecto.content[0].b_inodo=Actual;
+            strcpy(BloqueDirecto.content[0].b_name,NombreACrear(PathVirtualOrigen.data()).c_str());
             fseek(f,EspacioBloque,SEEK_SET);
             fwrite(&BloqueDirecto,sizeof (BloqueDirecto),1,f);
             CarpetaPadre.i_block[i]=EspacioBloque;
             fseek(f,NuevoPadre,SEEK_SET);
             fwrite(&CarpetaPadre,sizeof (INO),1,f);
-
-
-
             fclose(f);
-
-
-
-
             std::cout<<"Copia Colocada Exitosamente En: "<<Actual<<PathVirtualDestino<<std::endl;
             return;
         }else{
@@ -108,8 +80,6 @@ void CP::CopiarCarpetaArchivo(SPB *Super,int Comienzo, std::string PathVirtualOr
                       }
                       Name=Name+Nido.b_name[l];
                   }
-                  std::cout<<Name<<"|        "<<Name.length()<<std::endl;
-                  std::cout<<NombreACrear(PathVirtualOrigen.data())<<"|        "<<NombreACrear(PathVirtualOrigen.data()).length()<<std::endl;
 
 
                   if(IF(Name,NombreACrear(PathVirtualOrigen.data()))){
@@ -117,22 +87,14 @@ void CP::CopiarCarpetaArchivo(SPB *Super,int Comienzo, std::string PathVirtualOr
                       return;
                   }
 
-                  std::cout<<"Nido"<<Nido.b_inodo<<std::endl;
-
                   if(Nido.b_inodo==-1){
 
                       BloqueDirecto.content[z].b_inodo=Actual;
                       strcpy(BloqueDirecto.content[z].b_name,NombreACrear(PathVirtualOrigen.data()).c_str());
-
-
                       f=fopen(PathReal,"r+");
                       fseek(f,Pos,SEEK_SET);
                       fwrite(&BloqueDirecto,sizeof (BloqueDirecto),1,f);
                       fclose(f);
-
-
-
-
                       std::cout<<"Copia Colocada Exitosamente En: "<<PathVirtualDestino<<std::endl;
                       return;
                   }
@@ -143,6 +105,78 @@ void CP::CopiarCarpetaArchivo(SPB *Super,int Comienzo, std::string PathVirtualOr
         }
     }
 
+//Indirectos
+
+
+    for(long i=0;i<3;i++){
+        long PosInd=CarpetaPadre.i_block[12+i];
+        if(PosInd==-1){
+            //Se Crean Los Bloques Indirectos
+
+            PosInd=CrearIndirectosContenido(i+1,0,Super,PathReal,0);
+
+
+            std::cout<<"Creando Indirectos      "<<PosInd<<std::endl;
+            if(PosInd==-1 || PosInd==0){
+                //Si No Se Puede Crear Retornar
+                std::cout<<"Cancelando POR NO PODER CREAR INDIRECTO "<<PosInd<<std::endl;
+                return ;
+            }else{
+                CarpetaPadre.i_block[12+i]=PosInd;
+                //Escribir Inodo Modificado
+                FILE *f;
+                f=fopen(PathReal,"r+");
+                fseek(f,NuevoPadre,SEEK_SET);
+                fwrite(&CarpetaPadre,sizeof (CarpetaPadre),1,f);
+                fclose(f);
+            }
+        }
+
+        //El Indirecto En La Posicion Pos Si Existe
+        long Busqueda=BuscarIndirectos(Super,i+1,0,PosInd,PathVirtualDestino,PathReal,4);
+        if(Busqueda!=-1){
+            f=fopen(PathReal,"r+");
+            BCA BloqueDirecto;
+            fseek(f,Busqueda,SEEK_SET);
+            fread(&BloqueDirecto,sizeof (BloqueDirecto),1,f);
+            fclose(f);
+
+
+            for(int z=0;z<4;z++){
+                Contennt Nido=BloqueDirecto.content[z];
+                std::string Name="";
+
+                for(int l=0;l<12;l++){
+                    if(Nido.b_name[l]=='*'){
+
+                        break;
+                    }
+                    Name=Name+Nido.b_name[l];
+                }
+
+
+                if(IF(Name,NombreACrear(PathVirtualOrigen.data()))){
+                    std::cout<<"La Ruta Destino Contiene Un Archivo Con El Mismo Nombre, Cancelando"<<std::endl;
+                    return;
+                }
+
+                if(Nido.b_inodo==-1){
+
+                    BloqueDirecto.content[z].b_inodo=Actual;
+                    strcpy(BloqueDirecto.content[z].b_name,NombreACrear(PathVirtualOrigen.data()).c_str());
+                    f=fopen(PathReal,"r+");
+                    fseek(f,Busqueda,SEEK_SET);
+                    fwrite(&BloqueDirecto,sizeof (BloqueDirecto),1,f);
+                    fclose(f);
+                    std::cout<<"Copia Colocada Exitosamente En: "<<PathVirtualDestino<<std::endl;
+                    return;
+                }
+
+
+            }
+        }
+
+    }
 
 
 std::cout<<"No Se Pudo Copiar El Archivo:  "<<PathVirtualOrigen<<std::endl;
@@ -177,6 +211,8 @@ int CP::CopiarDirectos(SPB *Super,int Comienzo, const char *PathReal,int Tipo){
     fclose(f);
 
     BCA CopiaDir;
+    IniciarBloqueCarpeta(&CopiaDir);
+
     for(int i=0;i<4;i++){
         CON Contenido=Carpeta.content[i];
         if(Contenido.b_inodo!=-1){
@@ -215,6 +251,10 @@ int CP::CopiarIndirectos(SPB *Super,int Nivel, int NivelActual, int Comienzo,  c
     fclose(f);
 
     BAP CopiaPtr;
+    for(int i=0;i<16;i++){
+        CopiaPtr.b_pointers[i]=-1;
+    }
+
 
     for(int i=0;i<16;i++){
         int Valor=Apunta.b_pointers[i];
@@ -266,9 +306,9 @@ int CP::CopiarInodo(SPB *Super,int Comienzo, const char *PathReal){
     for(int i=0;i<3;i++){
         int Apuntador=Carpeta.i_block[i+12];
         if(Apuntador!=-1){
-            CopiaCarpeta.i_block[i]=CopiarIndirectos(Super,1+i,0,Apuntador,PathReal,Tipo);
+            CopiaCarpeta.i_block[i+12]=CopiarIndirectos(Super,1+i,0,Apuntador,PathReal,Tipo);
         }else{
-            CopiaCarpeta.i_block[i]=-1;
+            CopiaCarpeta.i_block[i+12]=-1;
         }
     }
     int NuevaCopia=InodoLibre(Super,PathReal);

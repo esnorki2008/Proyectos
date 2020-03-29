@@ -6,6 +6,8 @@
 class Recuperacion
 {
 public:
+
+
     void RecuCHGRP(int Comienzo, const char *Path,const char*Grp,const char*Usr,IUG Inf);
     void RecuCHOWN(int Comienzo, const char *Path,const char*PathVirtual,const char*Usr,bool Recursivo,IUG Inf);
     void RecuMV(int Comienzo, const char *Path,const char*PathOrigen,const char*PathDestino,IUG Inf);

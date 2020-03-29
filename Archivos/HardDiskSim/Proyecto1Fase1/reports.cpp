@@ -1,6 +1,19 @@
 #include "reports.h"
 #include "structsext.h"
+#include "recuperacion.h"
+//Journaling
+void Reports::ReporteJournaling(int Inicio, const char *Disco, const char *Path){
+    Recuperacion *Recu=new Recuperacion();
+    std::queue<JOR> Cola =Recu->ListaDeOperaciones(Inicio,Disco);
+    JOR Actual;
+    while (Cola.empty()==false) {
+        Actual=Cola.front();
 
+        Cola.pop();
+    }
+
+
+}
 //LS
 std::string Reports::LsInodos(int Comienzo, const char *PathReal,const char *Nombre){
 
@@ -148,7 +161,7 @@ void Reports::ReporteLS(int Inicio, const char *PathReal, const char *Salida,con
         fclose(f);
 
         std::string CMD="dot -Tpng "+Pth+" -o ";
-        CMD = CMD+Salida;
+        CMD = CMD+Salida+".png";
         std::cout<<CMD<<std::endl;
         const char *command = CMD.data();
         system(command);
@@ -180,7 +193,10 @@ void Reports::ReporteFile(const char *Path, const char *Contenido){
     FILE *f;
     char Cop[1+Salida.length()];
     strcpy(Cop,Salida.c_str());
-    f=fopen(Path,"w");
+    std::string Pth=Path;
+    Pth=Pth+".txt";
+
+    f=fopen(Pth.data(),"w");
     if (!f){
         return ;
     }else{
@@ -440,7 +456,7 @@ void Reports::ReporteSB(int Inicio, const char *Disco, const char *Path){
         fclose(f);
 
         std::string CMD="dot -Tpng "+Pth+" -o ";
-        CMD = CMD+Path;
+        CMD = CMD+Path+".png";
         std::cout<<CMD<<std::endl;
         const char *command = CMD.data();
         system(command);
@@ -496,7 +512,7 @@ void Reports::ReporteInode(int Inicio, const char *Disco, const char *Path){
         fclose(f);
 
         std::string CMD="dot -Tpng "+Pth+" -o ";
-        CMD = CMD+Path;
+        CMD = CMD+Path+".png";
         std::cout<<CMD<<std::endl;
         const char *command = CMD.data();
         system(command);
@@ -552,7 +568,7 @@ void Reports::ReporteBlock(int Inicio, const char *Disco, const char *Path){
         fclose(f);
 
         std::string CMD="dot -Tpng "+Pth+" -o ";
-        CMD = CMD+Path;
+        CMD = CMD+Path+".png";
         std::cout<<CMD<<std::endl;
         const char *command = CMD.data();
         system(command);
@@ -736,7 +752,7 @@ void Reports::ReporteArbol(int Inicio, const char *Disco, const char *Path){
     fclose(f);
 
     std::string CMD="dot -Tpng "+Pth+" -o ";
-    CMD = CMD+Path;
+    CMD = CMD+Path+".png";
     std::cout<<CMD<<std::endl;
     const char *command = CMD.data();
     system(command);
@@ -772,10 +788,12 @@ void Reports::Reportebm_Inodo(int Inicio, const char *Disco, const char *Path){
             Contador=1;
         }
     }
+    std::string Pth=Path;
+    Pth=".txt";
     fclose(f);
     char Cop[1+Salida.length()];
     strcpy(Cop,Salida.c_str());
-    f=fopen(Path,"w");
+    f=fopen(Pth.data(),"w");
     if (!f){
         return ;
     }else{
@@ -812,7 +830,9 @@ void Reports::Reportebm_Bloque(int Inicio, const char *Disco, const char *Path){
     fclose(f);
     char Cop[1+Salida.length()];
     strcpy(Cop,Salida.c_str());
-    f=fopen(Path,"w");
+    std::string Pth=Path;
+    Pth=".txt";
+    f=fopen(Pth.data(),"w");
     if (!f){
         return ;
     }else{

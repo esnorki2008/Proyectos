@@ -271,6 +271,9 @@ void FunctionsExt::DuplicarInodo(INO *Original, INO *Copia){
     Copia->i_atime=Original->i_atime;
     Copia->i_ctime=Original->i_ctime;
     Copia->i_mtime=Original->i_mtime;
+    for(int i=0;i<16;i++){
+        Copia->i_block[i]=-1;
+    }
 }
 void FunctionsExt::CantidadVeces(std::string Contenido){
     long Div = long(Contenido.length())/64;

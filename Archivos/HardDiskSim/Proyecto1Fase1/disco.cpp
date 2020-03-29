@@ -574,12 +574,21 @@ void Disco::CrearCarpetaParticion(const char *Nombre, const char *Path, char Pad
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
                 //std::cout<<Super.s_block_start<<std::endl;
+                bool R=false;
                 if(Padre=='0'){
                     //E->CrearCarpetaSimple(&Super,Super.s_first_ino,Path,Real);
                     new MKFILE_MKDIR(&Super,Super.s_first_ino,Path,Real,"",true,false,Permiso);
                 }else{
+                    R=true;
                     //E->CrearCarpetaCompleto(&Super,Super.s_first_ino,Path,Real);
                     new MKFILE_MKDIR(&Super,Super.s_first_ino,Path,Real,"",true,true,Permiso);
+                }
+
+                FunctionsExt *Fe= new FunctionsExt();
+
+                if(Fe->BuscarActual(Super.s_first_ino,Path,Real)!=-1){
+                    Recuperacion *Jo = new Recuperacion();
+                    Jo->RecuMKDIR(Comienzo,Real,Path,R,Permiso);
                 }
 
                 return;
@@ -883,7 +892,7 @@ void Disco::Reporte(const char *ID, const char *Path, const char *Tipo,const cha
 
                     R->ReporteFile(Ruta,Contenido.data());
 
-                 }else if(Fun->IF(Tipo,"ls")){
+                }else if(Fun->IF(Tipo,"ls")){
                     if(Fun->IF(Ruta,""))
                     {
                         std::cout<<"Para Un Reporte LS se necesita poner la Ruta"<<std::endl;
@@ -902,7 +911,9 @@ void Disco::Reporte(const char *ID, const char *Path, const char *Tipo,const cha
 
                     int Busqueda=Ex->BuscarActual(Leer.s_first_ino,Path,Tempo->Path.data());
                     R->ReporteLS(Busqueda,Tempo->Path.data(),Ruta,Ex->NombreACrear(Path).data());
-                 }
+                }else if(Fun->IF(Tipo,"journaling")){
+                    R->ReporteJournaling(InicioParti,Tempo->Path.data(),Path);
+                }
 
                 else{
                     std::cout<<"No Existe Un Reporte Con El Nombre:  "<<Tipo<<std::endl;

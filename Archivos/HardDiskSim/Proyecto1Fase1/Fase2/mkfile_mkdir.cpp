@@ -414,7 +414,8 @@ long MKFILE_MKDIR::ColocarArchivo(std::string NombreCarpeta, long PosDirecto, SP
             INO Inodo1;
             f=fopen(PathReal,"r+");
             fseek(f,Libre,SEEK_SET);
-            fread(&Inodo1,sizeof (Inodo),1,f);
+            //Si FALL ANTES TENIA SOLO Inodo
+            fread(&Inodo1,sizeof (Inodo1),1,f);
             fclose(f);
 
 

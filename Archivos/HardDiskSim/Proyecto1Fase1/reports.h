@@ -8,7 +8,7 @@
 class Reports
 {
 public:
-
+    void ReporteJournaling(int Inicio,const char *Disco,const char *Path);
     void ReporteLS(int Inicio,const char *PathReal,const char *Salida,const char *Nombre);
     void ReporteFile(const char *Path,const char *Contenido);
     void ReporteSB(int Inicio,const char *Disco,const char *Path);

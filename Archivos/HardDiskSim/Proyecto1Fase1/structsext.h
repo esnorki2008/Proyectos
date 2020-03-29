@@ -2,9 +2,7 @@
 #define STRUCTSEXT_H
 #include <time.h>
 #include "structs.h"
-struct  Inodo{
 
-};
 typedef struct  SuperBloque{
     int s_filesystem_type;
     int s_inodes_count;
