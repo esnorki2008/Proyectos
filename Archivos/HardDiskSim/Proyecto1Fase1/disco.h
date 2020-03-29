@@ -9,7 +9,7 @@ class Disco
 {
 public:
     //CHOWN
-    void  PropietarioArchivoParticion(const char *Nombre,const char *Path,int Tipo,int Perm,IUG Permiso);
+    void  PropietarioArchivoParticion(const char *Nombre,const char *Path,int Tipo,int Perm,IUG Permiso,const char *NameUsr);
     //Recovery
     std::queue<JOR> RecuperarInformacion(const char *Nombre);
     std::queue<JOR> Recuperar(int Comienzo,const char*Path);
@@ -25,7 +25,7 @@ public:
     //REN
     void  RenombrarArchivoParticion(const char *Nombre,const char *NuevoNombre,const char *Path,IUG Permiso);
     //CHMOD
-    void  PermisoArchivoParticion(const char *Nombre,const char *Path,int Tipo,int Perm,IUG Permiso);
+    void  PermisoArchivoParticion(const char *Nombre,const char *Path,int Tipo,int Perm,IUG Permiso,const char *NameUsr);
     //REM
     void  BorrarArchivoParticion(const char *Nombre,const char *Path,IUG Permiso);
     //CAT

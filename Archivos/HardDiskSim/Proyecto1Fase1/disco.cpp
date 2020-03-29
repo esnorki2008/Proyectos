@@ -14,7 +14,7 @@
 #include "Fase2/rem.h"
 #include "Fase2/ren.h"
 //CHOWN
-void Disco::PropietarioArchivoParticion(const char *Nombre, const char *Path, int Tipo, int Perm, IUG Permiso){
+void Disco::PropietarioArchivoParticion(const char *Nombre, const char *Path, int Tipo, int Perm, IUG Permiso,const char *NameUsr){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
 
@@ -40,13 +40,20 @@ void Disco::PropietarioArchivoParticion(const char *Nombre, const char *Path, in
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
+
+                if(Super.s_magic==-1){
+                    std::cout<<"Anomalias En La Particion, Cancelando Operacion"<<std::endl;
+                    return;
+                }
                 new CHMOD_CHOWN(Super.s_first_ino,Path,Tempo->Path.data(),Perm,Tipo,Permiso,true);
 
                 FunctionsExt *Fe= new FunctionsExt();
                 if(Fe->BuscarActual(Super.s_first_ino,Path,Real)!=-1){
                     Recuperacion *Jo = new Recuperacion();
-                    Jo->RecuCHOWN(Comienzo,Tempo->Path.data(),Path,)
-                    Jo->RecuMKDIR(Comienzo,Real,Path,R,Permiso);
+                    bool Recur=false;
+                    if(Tipo==1)
+                        Recur=true;
+                    Jo->RecuCHOWN(Comienzo,Tempo->Path.data(),Path,NameUsr,Recur,Permiso);
                 }
 
                 //E->CambiarPropietarioNormalRecursivo(Super.s_first_ino,Path,Tempo->Path.data(),Perm,Tipo);
@@ -186,7 +193,7 @@ void Disco::FillDisk(int Begin, int Size, char Character,const char *Path){
     }
     fclose(f);
 }
-
+//-
 //MOV
 void Disco::MoverArchivoParticion(const char *Nombre, const char *PathOrigen, const char *PathDestino, IUG Permiso){
     Disco *Tempo=this;
@@ -214,10 +221,17 @@ void Disco::MoverArchivoParticion(const char *Nombre, const char *PathOrigen, co
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
-
+                if(Super.s_magic==-1){
+                    std::cout<<"Anomalias En La Particion, Cancelando Operacion"<<std::endl;
+                    return;
+                }
                 new MV(Permiso,&Super,Super.s_first_ino,PathOrigen,Tempo->Path.data(),PathDestino);
-                //E->MoverCarpetaArchivo(&Super,Super.s_first_ino,PathOrigen,Tempo->Path.data(),PathDestino);
 
+                FunctionsExt *Fe= new FunctionsExt();
+                if(Fe->BuscarActual(Super.s_first_ino,PathDestino,Real)!=-1){
+                    Recuperacion *Jo = new Recuperacion();
+                    Jo->RecuMV(Comienzo,Real,PathOrigen,PathDestino,Permiso);
+                }
 
                 return ;
             }
@@ -256,10 +270,17 @@ void Disco::CopiarArchivoParticion(const char *Nombre, const char *PathOrigen, c
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
-
+                if(Super.s_magic==-1){
+                    std::cout<<"Anomalias En La Particion, Cancelando Operacion"<<std::endl;
+                    return;
+                }
                 new CP(&Super,Super.s_first_ino,PathOrigen,Tempo->Path.data(),PathDestino,Permiso);
                 //E->CopiarCarpetaArchivo(&Super,Super.s_first_ino,PathOrigen,Tempo->Path.data(),PathDestino);
-
+                FunctionsExt *Fe= new FunctionsExt();
+                if(Fe->BuscarActual(Super.s_first_ino,PathDestino,Real)!=-1){
+                    Recuperacion *Jo = new Recuperacion();
+                    Jo->RecuCP(Comienzo,Real,PathOrigen,PathDestino,Permiso);
+                }
 
                 return ;
             }
@@ -298,6 +319,11 @@ void Disco::BuscarArchivoParticion(const char *Nombre, const char *PathBase, con
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
+
+                if(Super.s_magic==-1){
+                    std::cout<<"Anomalias En La Particion, Cancelando Operacion"<<std::endl;
+                    return;
+                }
                 //E->FIND(Super.s_first_ino,PathBase,Tempo->Path.data());
                 new FIND(Super.s_first_ino,PathBase,Tempo->Path.data(),Permiso);
 
@@ -338,8 +364,19 @@ void Disco::RenombrarArchivoParticion(const char *Nombre, const char *NuevoNombr
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
+
+                if(Super.s_magic==-1){
+                    std::cout<<"Anomalias En La Particion, Cancelando Operacion"<<std::endl;
+                    return;
+                }
                 //E->CambiarNombre(Super.s_first_ino,Path,Tempo->Path.data(),NuevoNombre);
                 new REN(Super.s_first_ino,Path,Tempo->Path.data(),NuevoNombre,Permiso);
+
+
+                    Recuperacion *Jo = new Recuperacion();
+                    Jo->RecuREN(Comienzo,Real,Path,NuevoNombre,Permiso);
+
+
                 return ;
             }
         }
@@ -349,8 +386,8 @@ void Disco::RenombrarArchivoParticion(const char *Nombre, const char *NuevoNombr
     std::cout<<"No Se Encontro La Particion "<<Nombre<<" Para Poder CAMBIAR Nombre"<<std::endl;
     return ;
 }
-
-void Disco::PermisoArchivoParticion(const char *Nombre,const char *Path,int Tipo,int Perm,IUG Permiso){
+//CHMOD
+void Disco::PermisoArchivoParticion(const char *Nombre,const char *Path,int Tipo,int Perm,IUG Permiso,const char *NameUsr){
     Disco *Tempo=this;
     while (Tempo!=nullptr) {
 
@@ -378,8 +415,24 @@ void Disco::PermisoArchivoParticion(const char *Nombre,const char *Path,int Tipo
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
 
+
+
+                if(Super.s_magic==-1){
+                    std::cout<<"Anomalias En La Particion, Cancelando Operacion"<<std::endl;
+                    return;
+                }
                 //E->CambiarPermisosNormalRecursivo(Super.s_first_ino,Path,Tempo->Path.data(),Tipo,Perm);
                 new CHMOD_CHOWN(Super.s_first_ino,Path,Tempo->Path.data(),Tipo,Perm,Permiso,false);
+                FunctionsExt *Fe= new FunctionsExt();
+
+                if(Fe->BuscarActual(Super.s_first_ino,Path,Real)!=-1){
+                    Recuperacion *Jo = new Recuperacion();
+                    bool Recur=false;
+                    if(Tipo==1)
+                        Recur=true;
+                    Jo->RecuCHMOD(Comienzo,Tempo->Path.data(),Path,std::to_string(Perm).data(),Recur,Permiso);
+                }
+
                 return ;
             }
         }
@@ -419,8 +472,17 @@ void Disco::BorrarArchivoParticion(const char *Nombre, const char *Path,IUG Perm
                 fclose(f);
                 //std::cout<<Super.s_block_start<<std::endl;
 
+
+                if(Super.s_magic==-1){
+                    std::cout<<"Anomalias En La Particion, Cancelando Operacion"<<std::endl;
+                    return;
+                }
                 //E->EliminarArchivoCarpeta(&Super,Super.s_first_ino,Path,Tempo->Path.data());
                 new REM(&Super,Super.s_first_ino,Path,Tempo->Path.data(),Permiso);
+
+                Recuperacion *Jo = new Recuperacion();
+                Jo->RecuREM(Comienzo,Real,Path,Permiso);
+
                 return ;
             }
         }
@@ -458,6 +520,11 @@ std::string Disco::LeerArchivoParticion(const char *Nombre, const char *Path,IUG
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
+
+                if(Super.s_magic==-1){
+                    std::cout<<"Anomalias En La Particion, Cancelando Operacion"<<std::endl;
+                    return "";
+                }
                 //std::cout<<Super.s_block_start<<std::endl;
                 //std::string Lectura=E->LeerArchivo(Super.s_first_ino,Tempo->Path.data(),Path);
                 CAT *Archivo=new CAT(Permiso);;
@@ -499,9 +566,24 @@ void Disco::ExpandirArchivoParticion(const char *Nombre, const char *Path,  std:
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
+
+                if(Super.s_magic==-1){
+                    std::cout<<"Anomalias En La Particion, Cancelando Operacion"<<std::endl;
+                    return;
+                }
                 //std::cout<<Super.s_block_start<<std::endl;
                 new EDIT(&Super,Super.s_first_ino,Path,Real,Contenido,Permiso);
                 //E->ExpandirArchivo(&Super,Super.s_first_ino,Path,Real,Contenido);
+
+                if(Contenido.length()>128)
+                Contenido=Contenido.substr(0,128);
+
+                FunctionsExt *Fe= new FunctionsExt();
+                if(Fe->BuscarActual(Super.s_first_ino,Path,Real)!=-1){
+                    Recuperacion *Jo = new Recuperacion();
+                    Jo->RecuEDIT(Comienzo,Real,Path,Contenido.data(),false,0,0,Permiso);
+                }
+
                 return;
             }
         }
@@ -539,6 +621,11 @@ void Disco::CrearArchivoParticion(const char *Nombre, const char *Path, char Pad
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
+
+                if(Super.s_magic==-1){
+                    std::cout<<"Anomalias En La Particion, Cancelando Operacion"<<std::endl;
+                    return;
+                }
                 //std::cout<<Super.s_block_start<<std::endl;
                 if(Padre=='0'){
                     new MKFILE_MKDIR(&Super,Super.s_first_ino,Path,Real,Contenido,false,false,Permiso);
@@ -546,6 +633,14 @@ void Disco::CrearArchivoParticion(const char *Nombre, const char *Path, char Pad
                 }else{
                     new MKFILE_MKDIR(&Super,Super.s_first_ino,Path,Real,Contenido,false,true,Permiso);
                     //E->CrearArchivoCompleto(&Super,Super.s_first_ino,Path,Real,Contenido);
+                }
+
+                FunctionsExt *Fe= new FunctionsExt();
+                if(Fe->BuscarActual(Super.s_first_ino,Path,Real)!=-1){
+                    Recuperacion *Jo = new Recuperacion();
+                    if(Contenido.length()>128)
+                    Contenido=Contenido.substr(0,128);
+                    Jo->RecuMKFILE(Comienzo,Real,Path,Contenido.data(),false,0,0,Permiso);
                 }
 
                 return;
@@ -584,6 +679,11 @@ void Disco::CrearCarpetaParticion(const char *Nombre, const char *Path, char Pad
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
+
+                if(Super.s_magic==-1){
+                    std::cout<<"Anomalias En La Particion, Cancelando Operacion"<<std::endl;
+                    return;
+                }
                 //std::cout<<Super.s_block_start<<std::endl;
                 bool R=false;
                 if(Padre=='0'){
@@ -600,7 +700,7 @@ void Disco::CrearCarpetaParticion(const char *Nombre, const char *Path, char Pad
                 FunctionsExt *Fe= new FunctionsExt();
                 if(Fe->BuscarActual(Super.s_first_ino,Path,Real)!=-1){
                     Recuperacion *Jo = new Recuperacion();
-                    Jo->RecuMKDIR(Comienzo,Real,Path,R,Permiso);
+                    Jo->RecuMKDIR(Comienzo,Real,Path,R,Permiso);                                        
                 }
 
 
@@ -881,7 +981,25 @@ void Disco::Reporte(const char *ID, const char *Path, const char *Tipo,const cha
                 }else if(Fun->IF(Tipo,"mbr")){
                     R->ReporteTablaMBR(Tempo->Path.data(),Path,Te.Numero);
                 //FASE2
-                }else if(Fun->IF(Tipo,"bm_inode")){
+                }
+
+
+
+
+                FILE *f;
+                f=fopen(Tempo->Path.data(),"r+");
+                SPB Super;
+                fseek(f,InicioParti,SEEK_SET);
+                fread(&Super,sizeof(Super),1,f);
+                fclose(f);
+
+
+                if(Super.s_magic==-1){
+                    std::cout<<"Anomalias En La Particion, Cancelando Operacion"<<std::endl;
+                    return;
+                }
+
+                if(Fun->IF(Tipo,"bm_inode")){
                     R->Reportebm_Inodo(InicioParti,Tempo->Path.data(),Path);
                 }else if(Fun->IF(Tipo,"bm_block")){
                     R->Reportebm_Bloque(InicioParti,Tempo->Path.data(),Path);

@@ -107,7 +107,7 @@ void CP::CopiarCarpetaArchivo(SPB *Super,int Comienzo, std::string PathVirtualOr
 
 //Indirectos
 
-
+return;
     for(long i=0;i<3;i++){
         long PosInd=CarpetaPadre.i_block[12+i];
         if(PosInd==-1){

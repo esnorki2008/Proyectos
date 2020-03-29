@@ -25,6 +25,7 @@ void Menu::Recuperar(std::string IDMontado){
         std::queue<JOR> Cola=this->PrimerDisco->RecuperarInformacion(OpeU->IDMontado.data());
         std::string Backup=OpeU->IDMontado;
         OpeU->IDMontado=IDMontado;
+        if(Cola.size()>0)
         SubRecuperar(Cola);
         OpeU->IDMontado=Backup;
     }
@@ -234,7 +235,7 @@ void Menu::CHOWN(const char *PathVirtual, std::string NuevoDuenio, int Tipo){
                 std::cout<<"No Se Encontro El Usuario "<<NuevoDuenio<<std::endl;
                 return;
             }
-            this->PrimerDisco->PermisoArchivoParticion(OpeU->IDMontado.data(),PathVirtual,Tipo,USR,OpeU->Permiso);
+            this->PrimerDisco->PropietarioArchivoParticion(OpeU->IDMontado.data(),PathVirtual,Tipo,USR,OpeU->Permiso,NuevoDuenio.data());
         }else{
             std::cout<<"No Hay Usuarios En El Sistema"<<std::endl;
         }
@@ -252,7 +253,7 @@ void Menu::CHMOD(const char *PathVirtual, int Ugo, int Tipo){
             Entrada=Entrada+Fun->DecimalBinario(Num.data()[1]);
             Entrada=Entrada+Fun->DecimalBinario(Num.data()[2]);
             Ugo=std::atoi(Entrada.c_str());
-            this->PrimerDisco->PermisoArchivoParticion(OpeU->IDMontado.data(),PathVirtual,Tipo,Ugo,OpeU->Permiso);
+            this->PrimerDisco->PermisoArchivoParticion(OpeU->IDMontado.data(),PathVirtual,Tipo,Ugo,OpeU->Permiso,"");
         }else{
             std::cout<<"No Hay Usuarios En El Sistema"<<std::endl;
         }

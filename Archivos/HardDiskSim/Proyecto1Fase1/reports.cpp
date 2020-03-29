@@ -7,15 +7,57 @@ void Reports::ReporteJournaling(int Inicio, const char *Disco, const char *Path)
     std::queue<JOR> Cola =Recu->ListaDeOperaciones(Inicio,Disco);
 
     std::cout<<"Journaling Cola     "<<Cola.size()<<std::endl;
-    return ;
+
+
+    std::string Salida="digraph G { \n rankdir=LR node \n [shape=plaintext] \n";
+    Salida=Salida+"I"+std::to_string(0)+" [ label=< <TABLE BGCOLOR=\"white\">";
+
+    std::string Color="cadetblue";
+    Salida=Salida+"<TR>\n";
+    Salida=Salida+"<TD BGCOLOR=\""+Color+"\">"+"Tipo"+"</TD><TD BGCOLOR=\""+Color+"\">"+"Parametro A"+"</TD>";
+    Salida=Salida+"<TD BGCOLOR=\""+Color+"\">"+"Parametro B"+"</TD></TR>";
+
+
+
+
+
+
+
+    Color="cadetblue2";
     JOR Actual;
     while (Cola.empty()==false) {
         Actual=Cola.front();
+        Salida=Salida+"<TR>\n";
+        Salida=Salida+"<TD BGCOLOR=\""+Color+"\">"+std::to_string(Actual.Tipo)+"</TD><TD BGCOLOR=\""+Color+"\">"+Actual.Contenido+"</TD>";
+        Salida=Salida+"<TD BGCOLOR=\""+Color+"\">"+Actual.Direccion+"</TD></TR>";
+
 
         Cola.pop();
     }
 
+    Salida=Salida+"</TABLE>>] \n\n"+"\n } \n";
 
+
+
+
+
+
+    std::string Pth=Path;
+    Pth=Pth+".dot";
+    FILE *f;
+    f=fopen(Pth.data(),"w");
+    if (!f){
+        return ;
+    }else{
+
+        fwrite(Salida.data(),Salida.length(),1,f);
+        fclose(f);
+
+        std::string CMD="dot -Tpng "+Pth+" -o ";
+        CMD = CMD+Path+".png";
+        const char *command = CMD.data();
+        system(command);
+    }
 }
 //LS
 std::string Reports::LsInodos(int Comienzo, const char *PathReal,const char *Nombre){
@@ -35,6 +77,8 @@ std::string Reports::LsInodos(int Comienzo, const char *PathReal,const char *Nom
     if(Inodo.i_type=='1'){
         Tipo=1;
         TipoIno="Archivo";
+
+
     }
     else
         Tipo=0;

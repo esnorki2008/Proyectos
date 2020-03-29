@@ -205,8 +205,8 @@ std::queue<JOR> Recuperacion::ListaDeOperaciones(int Comienzo, const char *Path)
     fclose(f);
 
     std::queue<JOR> Cola;
-    if(Puntero==-1){
-        std::cout<<"Sin Opcion A Recuperacion"<<std::endl;
+    if(Puntero==-1 || Super.s_filesystem_type==0){
+        std::cout<<"Sin Opcion A Recuperacion, Es Ext2 "<<std::endl;
         return Cola;
     }
     JOR Actual;
