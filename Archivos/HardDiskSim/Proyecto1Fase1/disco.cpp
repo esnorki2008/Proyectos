@@ -51,13 +51,16 @@ void Disco::PropietarioArchivoParticion(const char *Nombre, const char *Path, in
     std::cout<<"No Se Encontro La Particion "<<Nombre<<" Para Poder Modificar Permisos"<<std::endl;
     return ;
 }
-//
-std::queue<JOR> Disco::Recuperar(int Comienzo,const char *Path){
+//Recovery
+std::queue<JOR>  Disco::Recuperar(int Comienzo,const char *Path){
+    std::cout<<"Se Esta Iniciando La Recuperacion De La Unidad"<<std::endl;
     Recuperacion *Recuva  = new Recuperacion();
     std::queue<JOR>  Cola=Recuva->ListaDeOperaciones(Comienzo,Path);
-    JOR Actual;
-    //Retornar Cola
+    int Longitud=Cola.size();
+    std::cout<<"Se Han Detectado "<<Longitud<<" Operaciones"<<std::endl;
+
     return Cola;
+
 }
 std::queue<JOR> Disco::RecuperarInformacion(const char *Nombre){
     Disco *Tempo=this;
@@ -89,7 +92,7 @@ std::queue<JOR> Disco::RecuperarInformacion(const char *Nombre){
                 fseek(f,Comienzo,SEEK_SET);
                 fread(&Super,sizeof(Super),1,f);
                 fclose(f);
-                return Recuperar(Comienzo,Tempo->Path.data());
+                Recuperar(Comienzo,Tempo->Path.data());
 
             }
         }
@@ -137,7 +140,7 @@ void Disco::PerderInformacion(const char *Nombre){
 
                 fclose(f);
 
-                FillDisk(Super.s_bm_inode_start,Super.s_inode_start,'\0',Tempo->Path.data());
+                FillDisk(Super.s_bm_inode_start,Super.s_block_start,'\0',Tempo->Path.data());
                 std::cout<<" Se Ha Provocado Una Perdida De La Informacion, Se Necesita Recuperar "<<std::endl;
                 return ;
             }
@@ -629,7 +632,10 @@ void Disco::FormatearParticion(const char *Nombre,IUG Permiso,int Tipo,int Ext){
                 //Tipo De Formato
                 new MKFS(Comienzo,TamanioParticion,TamanioStruct,Path,Tipo,Ext,Permiso);
                 //E->EstructurarFormatoEXT3(Comienzo,TamanioParticion,TamanioStruct,Path,Tipo);
-                std::cout<<"Se Formateo La Particion "<<Nombre<<" Con El Formato EXT3 Del Disco Ubicado En "<<Tempo->Path<<std::endl;
+                std::string Form="Ext2";
+                if(Ext==1)
+                    Form="Ext3";
+                std::cout<<"Se Formateo La Particion "<<Nombre<<" Con El Formato "<<Form<<" Del Disco Ubicado En "<<Tempo->Path<<std::endl;
 
 
                 return;

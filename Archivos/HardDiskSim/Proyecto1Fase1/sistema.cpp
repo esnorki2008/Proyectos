@@ -30,7 +30,7 @@ void Sistema::Mkfs(std::string Ejecutar, std::string Type,std::string Ext){
         Tipo=1;
 
     if(Func->IF(Ext,"3fs"))
-        Tipo=1;
+        TExt=1;
 
         M->MKFS(Ejecutar.data(),Tipo,TExt);
     std::cout<<"-----------------------------------"<<std::endl;
@@ -355,7 +355,7 @@ void Sistema::Reportes(std::string Id, std::string Name, std::string Path,std::s
     CrearDirectorio(Path);
     M->REP(Id.data(),Name.data(),Path.data(),Ruta.data());
     if(Func->IF(Ruta,"")){
-        if (Func->ExisteArchivo(Path.data())) {
+        if (Func->ExisteArchivo((Path+".png").data()) ||Func->ExisteArchivo((Path+".txt").data())) {
             std::cout<<"Reporte De:"<<Id<<" De Tipo: "<<Name<<" Existe En:"<<Path<<std::endl;
         }else{
             std::cout<<"No Se Pudo Crear El Reporte En "<<Path<<std::endl;

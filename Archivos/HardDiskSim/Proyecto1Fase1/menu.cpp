@@ -9,7 +9,7 @@ void Menu::Loss(std::string IDMontado){
     }else {
         if(OpeU->HayUsuarioEnElSistema()){
             //Iniciar Perdida
-            this->PrimerDisco->PerderInformacion(OpeU->IDMontado.data());
+            this->PrimerDisco->PerderInformacion(IDMontado.data());
         }else{
             std::cout<<"No Hay Usuarios En El Sistema"<<std::endl;
         }
@@ -88,7 +88,7 @@ void Menu::SubRecuperar(std::queue<JOR> Cola){
             break;
         }
         case 9:{
-            //MKFILE();
+            //MKFILE(Direccion.data())
             break;
         }
         case 11:{

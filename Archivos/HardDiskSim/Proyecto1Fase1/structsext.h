@@ -47,10 +47,8 @@ typedef struct  BloqueArchivos{
 }BAR;
 
 typedef struct  Journaling{
-    int Siguiente;
     char Direccion[128];
-    char Contenido[128];
-    int UbicacionArchivo;
+    char Contenido[128];    
     int TamanioArchivo;
     IUG Info;
     int Tipo;

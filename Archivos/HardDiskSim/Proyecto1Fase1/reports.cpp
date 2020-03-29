@@ -5,6 +5,9 @@
 void Reports::ReporteJournaling(int Inicio, const char *Disco, const char *Path){
     Recuperacion *Recu=new Recuperacion();
     std::queue<JOR> Cola =Recu->ListaDeOperaciones(Inicio,Disco);
+
+    std::cout<<"Journaling Cola     "<<Cola.size()<<std::endl;
+    return ;
     JOR Actual;
     while (Cola.empty()==false) {
         Actual=Cola.front();
