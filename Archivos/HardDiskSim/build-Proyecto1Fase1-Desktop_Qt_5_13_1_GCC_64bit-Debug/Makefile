@@ -261,7 +261,6 @@ DIST          = ../Proyecto1Fase1/Fase1/Dummy \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/qt_config.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/spec_post.prf \
-		../Proyecto1Fase1/.qmake.stash \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/toolchain.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -498,7 +497,6 @@ Makefile: ../Proyecto1Fase1/Proyecto1Fase1.pro /home/pc/Qt/5.13.1/gcc_64/mkspecs
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/qt_config.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/toolchain.prf \
 		/home/pc/Qt/5.13.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -672,7 +670,6 @@ Makefile: ../Proyecto1Fase1/Proyecto1Fase1.pro /home/pc/Qt/5.13.1/gcc_64/mkspecs
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/qt_config.prf:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/toolchain.prf:
 /home/pc/Qt/5.13.1/gcc_64/mkspecs/features/default_pre.prf:
@@ -1320,7 +1317,8 @@ cp.o: ../Proyecto1Fase1/Fase2/cp.cpp ../Proyecto1Fase1/Fase2/cp.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
 		../Proyecto1Fase1/functionsext.h \
 		../Proyecto1Fase1/functions.h \
-		../Proyecto1Fase1/Fase2/mkfile_mkdir.h
+		../Proyecto1Fase1/Fase2/mkfile_mkdir.h \
+		../Proyecto1Fase1/Fase2/cat.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cp.o ../Proyecto1Fase1/Fase2/cp.cpp
 
 edit.o: ../Proyecto1Fase1/Fase2/edit.cpp ../Proyecto1Fase1/Fase2/edit.h \
@@ -2573,7 +2571,8 @@ reports.o: ../Proyecto1Fase1/reports.cpp ../Proyecto1Fase1/reports.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer.h \
 		/home/pc/Qt/5.13.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
 		../Proyecto1Fase1/functions.h \
-		../Proyecto1Fase1/structsext.h
+		../Proyecto1Fase1/structsext.h \
+		../Proyecto1Fase1/recuperacion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reports.o ../Proyecto1Fase1/reports.cpp
 
 scanner.o: ../Proyecto1Fase1/scanner.cpp ../Proyecto1Fase1/parser.h \
