@@ -65,13 +65,25 @@ PrintRegistro macro Num
 endm
 
 PrintN macro Num
+    mov dl,Num
+    xor ax,ax    
+    add dl,48 
+    mov ah,02h
+    int 21h
+endm
+PrintNZ macro Num
+    local zero
+    xor ax,ax
+    mov al,Num
+    cmp al,0
+    jz zero
     xor ax,ax
     mov dl,Num
     add dl,48 
     mov ah,02h
     int 21h
+    zero:
 endm
-
 Print macro Texto
    xor ax,ax
    mov   ax, @data     ;hmm ¿seg?
