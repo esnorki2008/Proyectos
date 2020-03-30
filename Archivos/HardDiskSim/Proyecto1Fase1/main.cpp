@@ -45,8 +45,10 @@ int main()
             std::ofstream Archivo("salida.txt");
             //Archivo <<Exec;
             Archivo<<"exec -path=/home/pc/Desktop/Fase.sh";
+            //Archivo<<"exec -path=/home/archivos/Fase.sh";
             Archivo.close();
             const char* x = "salida.txt";
+
             FILE* input = fopen(x, "r" );
             yyrestart(input);
             yyparse();
@@ -57,34 +59,7 @@ int main()
 
 
 
-    /*Functions *Fun = new Functions();
-    ALE Num;
-    Num.Num=20;
-    Num.Siguiente=false;
-    FILE *f;
-    if(Fun->ExisteArchivo("Info.inf"))
-        f=fopen("Info.inf","r+");
-    else
-        f=fopen("Info.inf","w");
 
-
-    fseek(f,0,SEEK_SET);
-    fread(&Num,sizeof(ALE),1,f);
-
-*/
-
-    //
-
-    /*
-    const char* x = "/home/linuxlite/Documents/Archivos/temp.txt";
-    FILE* input = fopen(x, "r" );
-    yyrestart(input);//SE PASA LA CADENA DE ENTRADA A FLEX
-    yyparse();//SE INICIA LA COMPILACION*/
-
-
-    //std::string age;
-    //std::cin >> age;
-    //M();
 }
 
 

@@ -58,7 +58,7 @@ void Functions::LlenarVacio(int Begin, int Size, char Character,const char *Path
 int Functions::CalcularCantidad(int Tamanio,int Tipo){
 
     int PesoEstructuras=0;
-    //Tipo  1 EXT2  Tipo 2 EXT3
+    //Tipo  0 EXT2  Tipo 1 EXT3
     PesoEstructuras=4+3*int(sizeof (BCA))+int(sizeof (INO))+(int(sizeof (JOR))*Tipo);
     Tamanio = Tamanio-int(sizeof (SPB));
     int Sal=Tamanio/PesoEstructuras;
@@ -92,7 +92,7 @@ SPB Functions::LlenarSuperBloque(int Tipo,int Comienzo,int Cantidad){
     //Primer Inodo Libre
     //Primer Bloque Libre
     //Inicio BMInodo
-    Nuevo.s_bm_inode_start=Comienzo+int(sizeof (SPB))+Cantidad*int(sizeof (JOR));
+    Nuevo.s_bm_inode_start=Comienzo+int(sizeof (SPB))+Cantidad*int(sizeof (JOR))*Tipo;
     //Inicio BMBloque
     Nuevo.s_bm_block_start=Nuevo.s_bm_inode_start+Cantidad;
     //Inicio Inodo

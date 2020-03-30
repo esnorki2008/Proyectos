@@ -53,6 +53,7 @@ std::string CAT::LeerIndirectos(int Nivel, int NivelActual, int Comienzo,  const
     }
     return Concatenar;
 }
+
 std::string CAT::LeerArchivo(int Inicio, const char *Disco, const char *Path){
 
     int Busqueda=BuscarActual(Inicio,Path,Disco);
@@ -78,6 +79,13 @@ std::string CAT::LeerArchivo(int Inicio, const char *Disco, const char *Path){
         fseek(f,Busqueda,SEEK_SET);
         fread(&Carpeta,sizeof(Carpeta),1,f);
         fclose(f);
+
+
+        if(Carpeta.i_type=='0'){
+            std::cout<<"Solo Se Puede Obtener Contenido De Carpetas"<<std::endl;
+            return "";
+        }
+
         for(int i=0;i<12;i++){
             int Apuntador=Carpeta.i_block[i];
             if(Apuntador!=-1){

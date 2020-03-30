@@ -71,7 +71,8 @@ struct STRREPORTE{
 	std::string NameRep;
 	bool BNameRep=false;
 	std::string Id;
-	bool BId=false;		
+	bool BId=false;	
+	std::string Ruta="";	
 };
 //FASE 2
 struct STRSEXT{
@@ -284,7 +285,7 @@ struct STRSCHG* SCHG;
 %token<TEXT> pausep;
 %token<TEXT> recovery;
 %token<TEXT> loss;
-
+%token<TEXT> ruta;
 
 %start PROGRAMA
 %%
@@ -425,7 +426,7 @@ OPCION:CREAR {  if($1->BSize && $1->BUnit && $1->BPath){Ope->Crear($1->Size,$1->
 	|DESMONTAR {/*Se implementa Desde Produccion*/}
 	|REPORTES {
 		if($1->BNameRep && $1->BPath && $1->BId){
-			Ope->Reportes($1->Id,$1->NameRep,$1->Path);
+			Ope->Reportes($1->Id,$1->NameRep,$1->Path,$1->Ruta);
 		}else{
 			std::cout << "REP No Cumple Con Los Parametros Necesarios "<< std::endl;
 		}
@@ -561,6 +562,7 @@ DESMONTAR: unmount id igual identificador{Ope->Desmontar(toString($4));}
 REPORTES:REPORTES id igual TERMIIDENTI{$$=$1; $$->BId=true; $$->Id=toString($4);}
 	|REPORTES path igual TERMIDIRECC{$$=$1;  $$->Path=toString($4);  $$->BPath=true; }
 	|REPORTES name igual TERMIIDENTI{$$=$1;  $$->BNameRep=true; $$->NameRep=toString($4);;}
+	|REPORTES ruta igual TERMIDIRECC{$$=$1;   $$->Ruta=toString($4);;}
 	|rep { $$ = new STRREPORTE();}
 ;
 EJECUTAR: exec path igual TERMIDIRECC{Ope->Ejecutar(toString($4));}

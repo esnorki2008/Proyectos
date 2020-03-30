@@ -63,7 +63,7 @@ public:
     void Aumentar(int Size, std::string Path, std::string Name, char Unit);
     void Borrar(std::string Delete,std::string Path,std::string Name);
     //Borrar Particion
-    void Reportes(std::string Id, std::string  Name,std::string Path);
+    void Reportes(std::string Id, std::string  Name,std::string Path,std::string Ruta);
     void Montar(std::string Path, std::string  Name);
     void Desmontar(std::string  Name);
     Sistema();

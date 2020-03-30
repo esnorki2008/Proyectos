@@ -203,6 +203,7 @@ long MKFILE_MKDIR::CarpetaArchivoSimpleDirectos(INO *Ino,SPB *Super,long PosPadr
 
     for(long i=0;i<12;i++){
         long Pos=Inodo.i_block[i];
+        if(Pos!=-1){
         fseek(f,Pos,SEEK_SET);
         fread(&BloqueDirecto,sizeof (BloqueDirecto),1,f);
             for(long j=0;j<4;j++){
@@ -214,7 +215,7 @@ long MKFILE_MKDIR::CarpetaArchivoSimpleDirectos(INO *Ino,SPB *Super,long PosPadr
                 }
             }
 
-
+        }
     }
     fclose(f);
     for(long i=0;i<12;i++){
@@ -413,7 +414,8 @@ long MKFILE_MKDIR::ColocarArchivo(std::string NombreCarpeta, long PosDirecto, SP
             INO Inodo1;
             f=fopen(PathReal,"r+");
             fseek(f,Libre,SEEK_SET);
-            fread(&Inodo1,sizeof (Inodo),1,f);
+            //Si FALL ANTES TENIA SOLO Inodo
+            fread(&Inodo1,sizeof (Inodo1),1,f);
             fclose(f);
 
 

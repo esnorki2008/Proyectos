@@ -30,7 +30,7 @@ void Sistema::Mkfs(std::string Ejecutar, std::string Type,std::string Ext){
         Tipo=1;
 
     if(Func->IF(Ext,"3fs"))
-        Tipo=1;
+        TExt=1;
 
         M->MKFS(Ejecutar.data(),Tipo,TExt);
     std::cout<<"-----------------------------------"<<std::endl;
@@ -341,6 +341,7 @@ void Sistema::Montar(std::string  Path, std::string  Name){
         return;
     }else{
     M->MOUNT(Path.data(),Name.data());
+
     }
     std::cout<<"-----------------------------------"<<std::endl;
 }
@@ -349,16 +350,26 @@ void Sistema::Desmontar(std::string Name){
     M->UNMOUNT(Name.data());
     std::cout<<"-----------------------------------"<<std::endl;
 }
-void Sistema::Reportes(std::string Id, std::string Name, std::string Path){
+void Sistema::Reportes(std::string Id, std::string Name, std::string Path,std::string Ruta){
     std::cout<<"-------------REPORTES--------------"<<std::endl;
     CrearDirectorio(Path);
-    M->REP(Id.data(),Name.data(),Path.data());    
-    if (Func->ExisteArchivo(Path.data())) {
-        std::cout<<"Reporte De:"<<Id<<" De Tipo: "<<Name<<" Existe En:"<<Path<<std::endl;
-    }else{
-        std::cout<<"No Se Pudo Crear El Reporte En "<<Path<<std::endl;
+    M->REP(Id.data(),Name.data(),Path.data(),Ruta.data());
+    if(Func->IF(Ruta,"")){
+        if (Func->ExisteArchivo((Path+".png").data()) ||Func->ExisteArchivo((Path+".txt").data())) {
+            std::cout<<"Reporte De:"<<Id<<" De Tipo: "<<Name<<" Existe En:"<<Path<<std::endl;
+        }else{
+            std::cout<<"No Se Pudo Crear El Reporte En "<<Path<<std::endl;
 
+        }
+    }else{
+        if (Func->ExisteArchivo(Ruta.data())) {
+            std::cout<<"Reporte De:"<<Id<<" De Tipo: "<<Name<<" Existe En:"<<Ruta<<std::endl;
+        }else{
+            std::cout<<"No Se Pudo Crear El Reporte En "<<Ruta<<std::endl;
+
+        }
     }
+
     std::cout<<"-----------------------------------"<<std::endl;
 }
 Sistema::Sistema(){

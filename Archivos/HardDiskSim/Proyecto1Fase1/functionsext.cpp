@@ -56,6 +56,10 @@ long FunctionsExt::BloqueLibre(SPB *Super, const char *Path){
             Super->s_block_start= Super->s_inode_start+Super->s_inodes_count*(long(sizeof (INO)));
             //
             Out= Super->s_block_start+(i*Super->s_block_size);
+
+
+
+
             fseek(f,Ubi+i,SEEK_SET);
             char Actualizar='1';
             fwrite(&Actualizar,sizeof (Actualizar),1,f);
@@ -267,6 +271,9 @@ void FunctionsExt::DuplicarInodo(INO *Original, INO *Copia){
     Copia->i_atime=Original->i_atime;
     Copia->i_ctime=Original->i_ctime;
     Copia->i_mtime=Original->i_mtime;
+    for(int i=0;i<16;i++){
+        Copia->i_block[i]=-1;
+    }
 }
 void FunctionsExt::CantidadVeces(std::string Contenido){
     long Div = long(Contenido.length())/64;
@@ -687,7 +694,7 @@ long FunctionsExt::BuscarIndirectos(SPB *Super,long Nivel, long NivelActual, lon
         }else if(Tipo==2 || Tipo==4){
             int NuevoIndirecto=CrearIndirectosContenido(Nivel,NivelActual,Super,PathReal,0);
             if(NuevoIndirecto==-1)
-                return 1;
+                return -1;
 
             Apunta.b_pointers[i]=NuevoIndirecto;
             f=fopen(PathReal,"r+");
@@ -855,7 +862,8 @@ long FunctionsExt::CantidadBarras(std::string Path){
 }
 //BuscarActual
 long FunctionsExt::BuscarActual(long Comienzo, std::string PathVirtual, const char *PathReal){
-
+    if(IF(PathVirtual,"/"))
+        return Comienzo;
     //PathVirtual=PathVirtual.substr(1);
     long Busq=BuscarPadre(Comienzo,(PathVirtual),PathReal);
     if(Busq==-1){

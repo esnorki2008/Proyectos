@@ -9,7 +9,7 @@ void Menu::Loss(std::string IDMontado){
     }else {
         if(OpeU->HayUsuarioEnElSistema()){
             //Iniciar Perdida
-            this->PrimerDisco->PerderInformacion(OpeU->IDMontado.data());
+            this->PrimerDisco->PerderInformacion(IDMontado.data());
         }else{
             std::cout<<"No Hay Usuarios En El Sistema"<<std::endl;
         }
@@ -23,17 +23,25 @@ void Menu::Recuperar(std::string IDMontado){
     }else {
 
         std::queue<JOR> Cola=this->PrimerDisco->RecuperarInformacion(OpeU->IDMontado.data());
+        std::string Backup=OpeU->IDMontado;
         OpeU->IDMontado=IDMontado;
+        if(Cola.size()>0)
         SubRecuperar(Cola);
+        OpeU->IDMontado=Backup;
     }
 }
 void Menu::SubRecuperar(std::queue<JOR> Cola){
+
     JOR Actual;
     IUG Tempo=OpeU->Permiso;    
-    MKFS(OpeU->IDMontado.data(),0,0);
-    //Falta Indicar A Quien Recuperar
+    MKFS(OpeU->IDMontado.data(),1,1);
+
+
     while(Cola.empty()==false){
         Actual=Cola.front();
+
+
+
         OpeU->Permiso=Actual.Info;
         bool Recursivo=Actual.Recursivo;
         std::string Contenido=Actual.Contenido;
@@ -88,7 +96,7 @@ void Menu::SubRecuperar(std::queue<JOR> Cola){
             break;
         }
         case 9:{
-            //MKFILE();
+            MKFILE(Direccion.data(),'1',Contenido.data());
             break;
         }
         case 11:{
@@ -96,7 +104,7 @@ void Menu::SubRecuperar(std::queue<JOR> Cola){
             break;
         }
         case 12:{
-            //EDIT();
+            EDIT(Direccion.data(),Contenido.data());
             break;
         }
         case 13:{
@@ -104,6 +112,7 @@ void Menu::SubRecuperar(std::queue<JOR> Cola){
             break;
         }
         case 14:{
+
             char Tipo='0';
             if(Recursivo)
                 Tipo='1';
@@ -226,7 +235,7 @@ void Menu::CHOWN(const char *PathVirtual, std::string NuevoDuenio, int Tipo){
                 std::cout<<"No Se Encontro El Usuario "<<NuevoDuenio<<std::endl;
                 return;
             }
-            this->PrimerDisco->PermisoArchivoParticion(OpeU->IDMontado.data(),PathVirtual,Tipo,USR,OpeU->Permiso);
+            this->PrimerDisco->PropietarioArchivoParticion(OpeU->IDMontado.data(),PathVirtual,Tipo,USR,OpeU->Permiso,NuevoDuenio.data());
         }else{
             std::cout<<"No Hay Usuarios En El Sistema"<<std::endl;
         }
@@ -244,7 +253,7 @@ void Menu::CHMOD(const char *PathVirtual, int Ugo, int Tipo){
             Entrada=Entrada+Fun->DecimalBinario(Num.data()[1]);
             Entrada=Entrada+Fun->DecimalBinario(Num.data()[2]);
             Ugo=std::atoi(Entrada.c_str());
-            this->PrimerDisco->PermisoArchivoParticion(OpeU->IDMontado.data(),PathVirtual,Tipo,Ugo,OpeU->Permiso);
+            this->PrimerDisco->PermisoArchivoParticion(OpeU->IDMontado.data(),PathVirtual,Tipo,Ugo,OpeU->Permiso,"");
         }else{
             std::cout<<"No Hay Usuarios En El Sistema"<<std::endl;
         }
@@ -330,7 +339,9 @@ void Menu::REM(const char *Path){
 void Menu::Logout(){
     if(OpeU->UsuarioActual.Uid==-1){
         std::cout<<"Error No Hay Usuario Logueado"<<std::endl;
-    }else{        
+    }else{
+        this->PrimerDisco->Contar(OpeU->IDMontado.data(),false);
+
         std::cout<<"El Usuario '"<<OpeU->UsuarioActual.Usuario<<"' Ha Salido Del Sistema"<<std::endl;
         OpeU->Limpiar();
     }
@@ -347,6 +358,9 @@ void Menu::LOGIN(const char *Usr, const char *Pwd, const char *Id){
         OpeU->Limpiar();
         return;
     }
+
+    this->PrimerDisco->Contar(Id,true);
+
     IUG PermisoFalso;
     PermisoFalso.Gid=1;
     PermisoFalso.Uid=1;
@@ -451,15 +465,16 @@ void Menu::MKFS(const char *Id, int Type,int Tipo){
 //FASE1
 
 //REPORTES
-void Menu::REP(const char *Id, const char *Name, const char *Path){
+void Menu::REP(const char *Id, const char *Name, const char *Path,const char *Ruta){
     Disco *Ptr=this->PrimerDisco;
     if(Ptr==nullptr){
         std::cout<<"No Hay Ninguna Particion Montada En El Sistema";
     }else {
-        this->PrimerDisco->Reporte(Id,Path,Name);
+        this->PrimerDisco->Reporte(Id,Path,Name,Ruta);
     }
 
 }
+
 
 //Metodos Auxiliares
 void Menu::LimpiarDiscosVacios(){
@@ -490,23 +505,33 @@ void Menu::UNMOUNT(const char *Name){
     }else{
         this->PrimerDisco->BorrarParticion(Name);
         this->LimpiarDiscosVacios();
+
+
     }
 
 }
 //MOUNT
 void Menu::MOUNT(const char *Path,const char *Name){
 
+
     if(this->PrimerDisco==nullptr){        
         this->PrimerDisco=new Disco(Path,nullptr);       
         this->PrimerDisco->AgregarParticion(Name);
         this->LimpiarDiscosVacios();
+
+
     }else{
+
+
         Disco *Temporal=this->PrimerDisco;
         while(Temporal!=nullptr){
 
             if(Fun->IF(Temporal->Path,Path)){
                 Temporal->AgregarParticion(Name);
                 this->LimpiarDiscosVacios();
+
+
+
                 return;
             }
             Temporal=Temporal->Siguiente;
@@ -517,7 +542,12 @@ void Menu::MOUNT(const char *Path,const char *Name){
         this->PrimerDisco=new Disco(Path,this->PrimerDisco);
         this->PrimerDisco->AgregarParticion(Name);
         this->LimpiarDiscosVacios();
+
+
+
     }
+
+
 
 }
 
@@ -578,9 +608,9 @@ void Menu::NewMenu(){
 
 
 
-    REP("vda1","bm_inode","/home/pc/Documents/Archivos/Prueba/bm_inodo.txt");
-    REP("vda1","bm_block","/home/pc/Documents/Archivos/Prueba/bm_bloque.txt");
-    REP("vda1","tree","/home/pc/Documents/Archivos/Prueba/Arbol.png");
+    REP("vda1","bm_inode","/home/pc/Documents/Archivos/Prueba/bm_inodo.txt","");
+    REP("vda1","bm_block","/home/pc/Documents/Archivos/Prueba/bm_bloque.txt","");
+    REP("vda1","tree","/home/pc/Documents/Archivos/Prueba/Arbol.png","");
     std::cout<<"FIN DE EJECUCION"<<std::endl;
     //UNMOUNT("vda1");
     //RMDISK("Disco.disk");

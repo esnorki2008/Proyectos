@@ -50,6 +50,7 @@ void MKFS::EstructurarFormatoEXT3(int ComienzoParticion, int TamanioParticion, i
 
     new MKFILE_MKDIR(&Super,PrimerInodo,"/users.txt",Path,"1,G,root\n1,U,root,root,123\n",false,false,Permiso);
     Recuperacion *Recu= new Recuperacion();
+
     if(Ext==1)//ext3
         Recu->IniciarJOUR(ComienzoEscritura,Path);
 }
