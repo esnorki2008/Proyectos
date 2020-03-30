@@ -49,7 +49,7 @@ ImprimirFuncion
 DerivarFuncion
 ImprimirDerivada
 IntegrarFuncion
-
+ImprimirIntegral
 
 
 

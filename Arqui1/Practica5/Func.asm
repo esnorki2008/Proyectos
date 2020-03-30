@@ -15,7 +15,6 @@ inc si
 dec al
 jnz limpiar
 
-
 mov al,00h
 cmp ExisteFuncion,al
 jz Error;No Hay Funcion
@@ -31,17 +30,13 @@ lup:
 xor ax,ax
 mov al,Funcion[si]
 mov ch,cl
-mov Registro,al
-
 
 
 div ch;Division
-mov Registro,al
-
-
-
 mov Integral[si],al ;Guardar Derivada
-PrintN Registro
+
+
+
 
 mov al,FuncionBandera[si]
 mov IntegralBandera[si],al;Copiar Signo
@@ -55,6 +50,80 @@ error:
 Print TituloSinFuncion
 fin:
 endm
+
+
+
+
+ImprimirIntegral macro
+local salto,Signo,Zero,fin,Error
+
+mov al,00h
+cmp ExisteFuncion,al
+jz Error
+
+
+NuevaLinea
+print TituloIntegral
+xor ax,ax
+xor si,si
+mov si,0
+mov cl,5
+mov Registro,5
+salto:
+
+
+
+Espacio
+cmp Derivada[si],0
+jz zero
+mov ch,43
+cmp DerivadaBandera[si],0;La Bandera Indica Cero
+jz Signo
+mov ch,45;Es Menos
+jmp Signo
+Signo:
+PrintRegistro ch;Imprmir Signo
+Espacio
+
+mov ch,Funcion[si]
+PrintN ch;Imprimiendo 1
+mov ch,47
+PrintRegistro ch;Imprimiendo Barra/
+mov ch,Registro
+dec ch
+PrintN ch;Imprimir Potencia
+
+
+
+
+
+cmp Registro,00h
+;jz Zero
+mov ch,42
+PrintRegistro ch
+mov ch,120
+PrintRegistro ch
+
+
+mov ch,Registro
+dec ch
+PrintN ch;Imprimiendo Potenci
+
+Zero:
+
+dec Registro
+inc si
+dec cl
+jnz salto
+jz fin
+Error:
+Print TituloSinFuncion
+fin:
+NuevaLinea
+
+
+endm
+
 
 
 
