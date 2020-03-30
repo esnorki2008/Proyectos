@@ -1,1 +1,1 @@
-exec -path=/home/pc/Desktop/Fase.sh
+EXEC hola
