@@ -74,10 +74,10 @@ salto:
 
 
 Espacio
-cmp Derivada[si],0
+cmp Funcion[si],0
 jz zero
 mov ch,43
-cmp DerivadaBandera[si],0;La Bandera Indica Cero
+cmp IntegralBandera[si],0;La Bandera Indica Cero
 jz Signo
 mov ch,45;Es Menos
 jmp Signo
@@ -90,7 +90,7 @@ PrintN ch;Imprimiendo 1
 mov ch,47
 PrintRegistro ch;Imprimiendo Barra/
 mov ch,Registro
-dec ch
+
 PrintN ch;Imprimir Potencia
 
 
@@ -106,7 +106,7 @@ PrintRegistro ch
 
 
 mov ch,Registro
-dec ch
+
 PrintN ch;Imprimiendo Potenci
 
 Zero:
@@ -119,8 +119,15 @@ jz fin
 Error:
 Print TituloSinFuncion
 fin:
-NuevaLinea
 
+Espacio
+mov ch,43
+PrintRegistro ch
+Espacio
+mov ch,99
+PrintRegistro ch
+
+NuevaLinea
 
 endm
 
