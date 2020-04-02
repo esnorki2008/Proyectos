@@ -136,7 +136,7 @@ mul dx;Multiplicar Filas
 add ax,bx;Sumar Desplazamiento
 jmp fin
 saltare:
-mov ax,40
+mov ax,10
 fin:
 endm
 
@@ -176,12 +176,19 @@ Enciclo:
 mov jump,cx
 mov ValorX,cx;Valor De X
 mov ValorXBandera,0;Signo De X
+xor cx,cx
+mov cx,ValorX
+
+
 
 EvaluarFuncion
 
 
 
 mov ax,Evaluar
+
+PrintN al
+
 cmp Max,ax
 jnc Pasar
 mov Max,ax;El Max Actual Es Menor
@@ -206,12 +213,13 @@ pop ax;Sacar El Valor Almacenado
 
 
 
-coordenada ;Resultado En Evaluar
+;coordenada ;Resultado En Evaluar
 
+printRegistro al
 
 mov di,ax
 mov cx,1;320 en X        200 en Y
-Pintar 
+;Pintar 
 
 
 mov bx,Jump
@@ -220,7 +228,7 @@ jnz MiniSi
 ;mov cx,PantallaPixeles;Cantidad De Pixeles
 ;===============================================================================
 
-PintarPlano
+;PintarPlano
 
 
 

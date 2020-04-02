@@ -30,6 +30,9 @@ xor ax,ax
 
 
 mov bx,ValorX;El Valor A Elevar
+
+
+
 mov ax,bx
 
 mov dl,Registro;Cuantas Veces Elevar
@@ -57,13 +60,15 @@ neg bx;Pasar A Negativo
 Resultado:
 
 
+
 cmp ciclo,1;Si Se Eleva a 0
 jnz Esqui
-mov ax,1;elevado a la 0
+mov ax,0001;elevado a la 0
 Esqui:
 ;ax Potencia
 ;bx coeficiente
 mul bx;Resultado
+
 
 
 
@@ -90,6 +95,8 @@ Neg ax
 jmp Fin
 
 Fin:
+
+
 
 mov Evaluar,ax
 ;Valor Numerico En Evaular
