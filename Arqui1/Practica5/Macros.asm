@@ -118,3 +118,24 @@ Print macro Texto
    mov   dx,Offset Texto         ;DX = String terminated by "$"
    int   21h               ;Interruptions DOS Functions
 endm
+
+
+
+;====================================Calcular Valor Maximo===========================
+;mov cx,Veces;l;Iteraciones
+;Maximus:
+;mov jump,cx
+;mov ValorX,cx;Valor De X
+;mov ValorXBandera,0;Signo De X
+;xor cx,cx
+;mov cx,ValorX
+;EvaluarFuncion;Evaluar Para Encontrar El Maximo
+;xor ax,ax
+;mov ax,Evaluar
+;cmp Max,ax
+;jnc PasarMax
+;mov Max,ax;El Max Actual Es Menor
+;PasarMax:
+;mov cx,jump
+;dec cx
+;jnz Maximus

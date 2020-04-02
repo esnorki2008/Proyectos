@@ -15,6 +15,9 @@ TituloFuncion db "f(x) =","$"
 TituloSinFuncion db "No Existe Funcion En El Sistema","$"
 TituloDerivada db "f'(x) =","$"
 TituloIntegral db "F(x) =","$"
+TituloIngresoIzquierdo db "Ingrese El Rango Izquierdo: ","$"
+TituloIngresoDerecho db "Ingrese El Rango Derecho: ","$"
+TituloAdvertencia db "Advertencia El Rango Izquierdo Es Mayor Que El Derecho ","$"
 ;=============================================Almcenar Funciones==================================================
 Funcion db 5 dup(0)
 FuncionBandera db 5 dup(0)
@@ -31,17 +34,18 @@ ValorX dw 0
 ValorXBandera db 0
 Jump dw 0
 
-RangoMenor dw 0
+RangoMenor db 0
 RangoMenorBandera db 0
-RangoMayor dw 0
+RangoMayor db 0
 RangoMayorBandera db 0
 ;
 RangoEntrada db 0
 RangoEntradaBandera db 0
+Simbolo db 0
 ;=============================================Variables==================================================
 Max dw 0
 Ancho dw 0
-
+Veces dw 0
 
 
 Ciclo db 0
@@ -54,6 +58,9 @@ almacenar dw 0
 
 Teclado db 4 dup(0)
 longitud db 0
+cambio db 0
+limite db 0
+pushi dw 0
 ;===============================================Variables Graficas======================================
 PantallaInicio dw 0
 PantallaPixeles dw 0
@@ -201,12 +208,8 @@ mov   ax, @data     ;hmm ¿seg?
 mov   ds,ax          ;ds = ax = saludo
 
 
-IngresarRango
-xor bx,bx
-mov bl,RangoEntrada
-mov Almacenar,bx
-Print16 Almacenar
-jmp Salitre
+
+;==================================================================================================
 
 ;========================================INICIO PROGRAMA================================================
 ;=============================================Iniciar Variables==================================================
@@ -224,33 +227,133 @@ IngresarFuncion
 ;=========================================Graficar Funcion==================================
 mov Max,0000h;Para Saber El Valor Max
 mov Ancho,50;Ancho Maximo De La Funcion
-mov RangoMayor,100
-;====================================Calcular Valor Maximo===========================
-mov cx,RangoMayor;l;Iteraciones
-Maximus:
-mov jump,cx
-mov ValorX,cx;Valor De X
-mov ValorXBandera,0;Signo De X
-xor cx,cx
-mov cx,ValorX
-EvaluarFuncion;Evaluar Para Encontrar El Maximo
+mov RangoMayor,100;Evaluacion Del Ciclo
+
+
+
+;=======================================Ingresar Rangos De Evaluacion;=============================
+Rang:
+Print TituloIngresoIzquierdo
+NuevaLinea
+IngresarRango
 xor ax,ax
-mov ax,Evaluar
-cmp Max,ax
-jnc PasarMax
-mov Max,ax;El Max Actual Es Menor
-PasarMax:
-mov cx,jump
-dec cx
-jnz Maximus
+mov al,RangoEntrada
+mov ah,RangoEntradaBandera
+mov RangoMenor,al
+mov RangoMenorBandera,ah
+
+Print TituloIngresoDerecho
+NuevaLinea
+IngresarRango
+xor ax,ax
+mov al,RangoEntrada
+mov ah,RangoEntradaBandera
+mov RangoMayor,al
+mov RangoMayorBandera,ah
+;=======Comparaciones============
+xor ax,ax
+mov al,RangoMayor
+mov Almacenar,ax
+Print16 Almacenar
+NuevaLinea
+xor ax,ax
+mov al,RangoMenor
+mov Almacenar,ax
+Print16 Almacenar
+
+mov al,RangoMayorBandera
+cmp al,0;Es Positivo
+jz D1
+jnz D2
+
+D1:;Mayor Positivo
+mov al,RangoMenorBandera
+cmp al,0
+jz T1
+jnz T2
+D2:;Mayor Negativo
+mov al,RangoMenorBandera
+cmp al,0
+jz T3
+jnz T4
+
+
+
+T1:;Mayor Positivo Menor Positivo
+mov al,RangoMayor
+cmp al,RangoMenor
+jnc E1
+jc E2 
+T2:;Mayor Positivo Menor Negativo
+mov al,RangoMayor
+cmp al,RangoMenor
+jnc E3
+jc E4
+T3:;Mayor Negativo Menor Positivo
+mov al,RangoMayor
+cmp al,RangoMenor
+jnc E5
+jc E6
+T4:;Mayor Negativo Menor Negativo
+mov al,RangoMayor
+cmp al,RangoMenor
+jnc E7
+jc E8
+;Cambio Limite
+
+E1:;MAYOR       Mayor Positivo Menor Positivo
+mov al,RangoMayor
+sub al,RangoMenor
+xor ah,ah
+mov pushi,ax;Veces A Ejecutar
+xor ax,ax
+mov ax,200;No Hay Cambios De Signo
+mov cambio,al
+mov al,RangoMenor
+mov limite,al;Inicio De X
+
+jmp saltito
+E2:;MENOR       Mayor Positivo Menor Positivo
+jmp adver
+E3:;MAYOR       Mayor Positivo Menor Negativo
+jmp saltito
+E4:;MENOR       Mayor Positivo Menor Negativo
+jmp saltito
+
+
+E5:;MAYOR       Mayor Negativo Menor Positivo
+jmp adver
+E6:;MENOR       Mayor Negativo Menor Positivo
+jmp adver
+E7:;MAYOR       Mayor Negativo Menor Negativo
+jmp adver
+E8:;MENOR       Mayor Negativo Menor Negativo
+jmp saltito
+
+
+
+
+
+jmp saltito
+adver:
+print TituloAdvertencia
+NuevaLinea
+jmp Rang
+saltito:
+jmp salitre
 ;===========================Funcion De Verdad=================
 ;Almacenar Valores
 mov cx,400
 mov Max,cx
-mov cx,RangoMayor;l;Iteraciones
+
+
+
+mov cx,pushi;l;Iteraciones
 Enciclo:
 mov jump,cx
-mov ValorX,cx;Valor De X
+xor ax,ax
+mov al,limite
+mov ValorX,ax;Valor De X
 mov ValorXBandera,0;Signo De X
 xor cx,cx
 mov cx,ValorX
@@ -260,6 +363,8 @@ mov ax,Evaluar
 mov cx,jump
 coordenada
 push ax;Guardar Valor
+
+inc limite;Incrementar
 
 mov cx,jump
 dec cx
@@ -274,7 +379,7 @@ int 21h
 
 ;=============================================Inicio Modo Grafico=========================================
 xor bx,bx
-mov bx,RangoMayor;l;Iteraciones
+mov bx,Pushi;l;Iteraciones
 
 mov ax,0013h
 int 10h

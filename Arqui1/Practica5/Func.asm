@@ -477,6 +477,7 @@ cmp al,0
 jz inicio;No Hay Texto
 
 
+
 cmp al,1
 jz uno;uno
 cmp al,2
@@ -508,23 +509,26 @@ xor si,si;Poner en 0
 mov ah,0
 mov RangoEntradaBandera,ah;Iniciar Positivo
 mov al,Teclado[si]
-PrintRegistro AL
 
-cmp al,43
+
+
+cmp Teclado[si],43
 jz SN2;Es Positivo
-cmp al,45;Es Negativo
+cmp Teclado[si],45;Es Negativo
 jnz NN2;Es Numero
 mov ah,1
 mov RangoEntradaBandera,ah;Negar ENtrada
 SN2:
 inc si;Incrementar Si
 NN2:;Si Es Numero SI es 0
+
 mov al,Teclado[si]
 mov Registro,al
 EsNumero Registro
 jnz inicio;No Es Un Numero
 mov al,Registro
 mov RangoEntrada,al;Es Un Numero 
+inc si;Aumentar Si
 cmp si,2
 jz fin;Ya Se Alcanzo el limite
 xor ah,ah;
@@ -532,7 +536,7 @@ mov bl,10
 mul bl;Multiplicar Decena
 xor bx,bx
 mov RangoEntrada,al;Actualizar A Decena
-inc si;Aumentar Si
+
 
 mov al,Teclado[si]
 mov Registro,al
@@ -547,9 +551,76 @@ mov RangoEntrada,ah;Actualizar
 jmp fin
 ;=======================Tres Caracter================
 tres:
+mov Simbolo,0
+xor si,si;Poner en 0
+mov ah,0
+mov RangoEntradaBandera,ah;Iniciar Positivo
+mov al,Teclado[si]
+
+
+
+cmp Teclado[si],43
+jz SN3;Es Positivo
+cmp Teclado[si],45;Es Negativo
+jnz NN3;Es Numero
+mov ah,1
+mov RangoEntradaBandera,ah;Negar ENtrada
+SN3:
+mov Simbolo,1
+inc si;Incrementar Si
+NN3:;Si Es Numero SI es 0
+
+mov al,Teclado[si]
+mov Registro,al
+EsNumero Registro
+jnz inicio;No Es Un Numero
+mov al,Registro
+mov RangoEntrada,al;Es Un Numero 
+inc si;Aumentar Si
+xor ah,ah;
+mov bl,10
+mul bl;Multiplicar Decena
+xor bx,bx
+mov RangoEntrada,al;Actualizar A Decena
+
+
+mov al,Teclado[si]
+mov Registro,al
+EsNumero Registro
+jnz inicio;No Es Un Numero
+mov al,Registro
+mov ah,RangoEntrada
+add ah,al
+mov RangoEntrada,ah;Actualizar 
+
+inc si
+cmp si,3
+jz fin;Ya Se Alcanzo el limite
+cmp Simbolo,0
+jz fin;Ya Se Alcanzo el limite
+;===============Falta El Ultimo Digito============
+
+xor ah,ah;
+mov al,RangoEntrada
+mov bl,10
+mul bl;Multiplicar Decena
+xor bx,bx
+mov RangoEntrada,al;Actualizar 
+
+
+mov al,Teclado[si]
+mov Registro,al
+EsNumero Registro
+jnz inicio;No Es Un Numero
+mov al,Registro
+mov ah,RangoEntrada
+add ah,al
+mov RangoEntrada,ah;Actualizar 
+
 jmp fin
 
 fin:
+NuevaLinea
 ENDM
 
 
