@@ -20,7 +20,7 @@ xor si,si
 mov ciclo,5
 mov Registro,3;veces A Elevar
 
-mov Evaluar,0;Restaurar Evaluar
+mov Evaluar,ax;Restaurar Evaluar
 lup:;Ciclco
 
 

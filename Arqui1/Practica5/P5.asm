@@ -52,10 +52,6 @@ PantallaPixeles dw 0
 
 Pintar macro 
 local ciclo_1
-mov ax,0013h
-int 10h
-mov ax, 0A000h
-mov ds, ax  ; DS = A000h (memoria de graficos).
 
 
 
@@ -72,9 +68,9 @@ inc bx
 loop ciclo_1
 
 
-xor ax,ax
-mov   ax, @data     ;hmm ¿seg?
-mov   ds,ax          ;ds = ax = saludo
+;xor ax,ax
+;mov   ax, @data     ;hmm ¿seg?
+;mov   ds,ax          ;ds = ax = saludo
 endm
 
 
@@ -111,8 +107,11 @@ Pintar
 endm
 
 coordenada macro 
-local saltare,fin
+local saltare,fin,NegaY,SalNe
 
+
+
+push cx
 xor cx,cx
 xor dx,dx
 mov cx,ax;Guardar
@@ -126,19 +125,39 @@ cmp Max,0
 jz saltare
 div bx;Dividir Valor Maximo AX resultado
 
-
+cmp EvaluarBandera,1
+jz SalNe
+;===================Y Es Positiva==========
 mov dx,100;Los Pixeles Son Al Reves
 sub dx,ax
 mov ax,dx
-
+jmp SalNe
+;========================Y Ajustado================
+SalNe:
 mov dx,320
 mul dx;Multiplicar Filas
-add ax,bx;Sumar Desplazamiento
+;========================Y Es Negativa============
+cmp EvaluarBandera,0
+jz NegaY
+add ax,7D00h;Se Suma La Mitad
+NegaY:
+
+
+
+;============================Desplazamiento En X===========================
+add ax,160;Posicionar A La Mitad
+pop cx
+add ax,cx;Sumar Desplazamiento
+inc ax
 jmp fin
 saltare:
 mov ax,10
 fin:
+
 endm
+
+
+
 
 main  proc
 
@@ -163,72 +182,83 @@ IngresarFuncion
 ;ImprimirIntegralR
 
 ;=========================================Graficar Funcion==================================
-
-
-
-
-
-mov cx,0005h;Limpiar Contador
-
 mov Max,0000h;Para Saber El Valor Max
-Enciclo:
+;====================================Calcular Valor Maximo===========================
+mov cx,0010;Iteraciones
+Maximus:
+mov jump,cx
+mov ValorX,cx;Valor De X
+mov ValorXBandera,0;Signo De X
+xor cx,cx
+mov cx,ValorX
+EvaluarFuncion;Evaluar Para Encontrar El Maximo
+xor ax,ax
+mov ax,Evaluar
+cmp Max,ax
+jnc PasarMax
+mov Max,ax;El Max Actual Es Menor
+PasarMax:
+mov cx,jump
+dec cx
+jnz Maximus
+;===========================Funcion De Verdad=================
+;Almacenar Valores
 
+mov cx,0010;Iteraciones
+Enciclo:
 mov jump,cx
 mov ValorX,cx;Valor De X
 mov ValorXBandera,0;Signo De X
 xor cx,cx
 mov cx,ValorX
 
-
-
 EvaluarFuncion
 
-
-
+xor ax,ax
 mov ax,Evaluar
-
-PrintN al
-
-cmp Max,ax
-jnc Pasar
-mov Max,ax;El Max Actual Es Menor
-Pasar:
-;100*ValorY/MaxValor
+mov cx,jump
+coordenada
 push ax;Guardar Valor
 
 mov cx,jump
 dec cx
 jnz Enciclo
 
+
+
+
+  ; esperar por tecla
+mov ah,1h
+int 21h
+
 ;=============================================Inicio Modo Grafico=========================================
-
-
-
 xor bx,bx
-mov bx,5
+mov bx,0010;Iteraciones
+
+mov ax,0013h
+int 10h
+mov ax, 0A000h
+mov ds, ax  ; DS = A000h (memoria de graficos).
+
 MiniSi:
 mov Jump,bx
 xor ax,ax
 pop ax;Sacar El Valor Almacenado
 
 
-
-;coordenada ;Resultado En Evaluar
-
-printRegistro al
-
 mov di,ax
 mov cx,1;320 en X        200 en Y
-;Pintar 
+Pintar 
 
 
 mov bx,Jump
 dec bx
 jnz MiniSi
-;mov cx,PantallaPixeles;Cantidad De Pixeles
+
+PintarPlano
 ;===============================================================================
 
-;PintarPlano
+
 
 
 
