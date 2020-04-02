@@ -458,8 +458,98 @@ ENDM
 
 
 IngresarRango  MACRO 
+local fin,inicio,uno,dos,tres,N2,N3,SN2,SN3,NN2,NN3
+inicio:
+Print TituloRango
+xor ax,ax
+xor cx,cx
+xor si,si
+mov RangoEntrada,0;GUardar Valores
+mov RangoEntradaBandera,0
 
 
+mov al,3
+mov Registro,al;Cantidad De Caracteres Maximos
+Entrada Registro;Devuelve La Longitud De La Cadena
+mov al,Longitud
+
+cmp al,0
+jz inicio;No Hay Texto
+
+
+cmp al,1
+jz uno;uno
+cmp al,2
+jz dos;dos
+cmp al,3
+jz tres;tres
+
+;=======================Un Caracter================
+uno:
+mov al,Teclado[0]
+
+
+
+
+mov Registro,al
+EsNumero Registro
+jnz inicio;No Es Un Numero
+mov al,Registro
+
+
+
+mov RangoEntrada,al;Es Solo Un Numero 
+mov ah,0
+mov RangoEntradaBandera,ah
+jmp fin
+;=======================Dos Caracter================
+dos:
+xor si,si;Poner en 0
+mov ah,0
+mov RangoEntradaBandera,ah;Iniciar Positivo
+mov al,Teclado[si]
+PrintRegistro AL
+
+cmp al,43
+jz SN2;Es Positivo
+cmp al,45;Es Negativo
+jnz NN2;Es Numero
+mov ah,1
+mov RangoEntradaBandera,ah;Negar ENtrada
+SN2:
+inc si;Incrementar Si
+NN2:;Si Es Numero SI es 0
+mov al,Teclado[si]
+mov Registro,al
+EsNumero Registro
+jnz inicio;No Es Un Numero
+mov al,Registro
+mov RangoEntrada,al;Es Un Numero 
+cmp si,2
+jz fin;Ya Se Alcanzo el limite
+xor ah,ah;
+mov bl,10
+mul bl;Multiplicar Decena
+xor bx,bx
+mov RangoEntrada,al;Actualizar A Decena
+inc si;Aumentar Si
+
+mov al,Teclado[si]
+mov Registro,al
+EsNumero Registro
+jnz inicio;No Es Un Numero
+mov al,Registro
+mov ah,RangoEntrada
+add ah,al
+mov RangoEntrada,ah;Actualizar 
+
+
+jmp fin
+;=======================Tres Caracter================
+tres:
+jmp fin
+
+fin:
 ENDM
 
 

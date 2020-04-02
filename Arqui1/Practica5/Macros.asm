@@ -1,4 +1,26 @@
+Print16 macro Regis
+local zero,noz
 
+mov bx,4
+xor ax,ax
+mov ax,Regis
+mov cx,10
+zero:
+xor dx,dx
+div cx
+push dx
+dec bx
+jnz zero
+
+
+xor bx,4
+noz:
+pop dx
+PrintN dl
+dec bx
+jnz noz
+
+endm
 
 
 NuevaLinea macro

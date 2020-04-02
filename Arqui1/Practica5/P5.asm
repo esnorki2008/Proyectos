@@ -35,6 +35,9 @@ RangoMenor dw 0
 RangoMenorBandera db 0
 RangoMayor dw 0
 RangoMayorBandera db 0
+;
+RangoEntrada db 0
+RangoEntradaBandera db 0
 ;=============================================Variables==================================================
 Max dw 0
 Ancho dw 0
@@ -157,15 +160,15 @@ NegaY:
 ;============================Desplazamiento En X===========================
 add ax,160;Posicionar A La Mitad
 pop cx
-mov bx,ax;Conservar Ax
-xor ax,ax;100*ValorY/MaxValor
-mov ax,cx;ValorY
-mov cx,100
-mul cx;100*ValorY
-mov cx,Ancho;MaxValor
-div cx;100*ValorY/MaxValor
-mov cx,ax
-mov ax,bx;Recuperar Valor
+;mov bx,ax;Conservar Ax
+;xor ax,ax;100*ValorY/MaxValor
+;mov ax,cx;ValorY
+;mov cx,100
+;mul cx;100*ValorY
+;mov cx,Ancho;MaxValor
+;div cx;100*ValorY/MaxValor
+;mov cx,ax
+;mov ax,bx;Recuperar Valor
 
 cmp ValorXBandera,1
 jz NegaX;X Negativo
@@ -198,6 +201,12 @@ mov   ax, @data     ;hmm ¿seg?
 mov   ds,ax          ;ds = ax = saludo
 
 
+IngresarRango
+xor bx,bx
+mov bl,RangoEntrada
+mov Almacenar,bx
+Print16 Almacenar
+jmp Salitre
 
 ;========================================INICIO PROGRAMA================================================
 ;=============================================Iniciar Variables==================================================
@@ -215,7 +224,7 @@ IngresarFuncion
 ;=========================================Graficar Funcion==================================
 mov Max,0000h;Para Saber El Valor Max
 mov Ancho,50;Ancho Maximo De La Funcion
-mov RangoMayor,50
+mov RangoMayor,100
 ;====================================Calcular Valor Maximo===========================
 mov cx,RangoMayor;l;Iteraciones
 Maximus:
@@ -307,7 +316,7 @@ PintarPlano
 
 
 
-Salitre:
+
 
   ; esperar por tecla
 mov ah,1h
@@ -320,7 +329,7 @@ mov ax,4c00h
 int 21h
 
 
-
+Salitre:
 
 
 
