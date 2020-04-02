@@ -457,6 +457,10 @@ mov ExisteFuncion,1;Indicar Que Existe Funcion
 ENDM
 
 
+IngresarRango  MACRO 
+
+
+ENDM
 
 
 

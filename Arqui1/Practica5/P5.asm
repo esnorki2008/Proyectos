@@ -9,6 +9,7 @@ include Func.asm
 Titulo1  db "UNIVERSIDAD DE SAN CARLOS DE GUATEMALA",10,13,"$"   
 Titulo2 db "ARQUITECTURA DE COMPUTADORES Y ENSAMBLADORES 1",10,13,"NOMBRE: ANDHY LIZANDRO SOLIS OSORIO",10,13,"$"
 Titulo3 db "CARNET: 201700886",10,13,"SECCION: B",10,13,"$" 
+TituloRango db "Ingrese Rango","$"
 Cof db "Coeficiente de X","$"
 TituloFuncion db "f(x) =","$"
 TituloSinFuncion db "No Existe Funcion En El Sistema","$"
@@ -29,6 +30,11 @@ EvaluarBandera db 0
 ValorX dw 0
 ValorXBandera db 0
 Jump dw 0
+
+RangoMenor dw 0
+RangoMenorBandera db 0
+RangoMayor dw 0
+RangoMayorBandera db 0
 ;=============================================Variables==================================================
 Max dw 0
 Ancho dw 0
@@ -57,8 +63,8 @@ local ciclo_1
 
 
 
-xor dx,dx ; color para cada franja
-mov dx,9;Color 
+
+
 ;xor di,di;Posicion De Inicio
 ;mov di,PantallaInicio
 ciclo_1:
@@ -110,7 +116,8 @@ endm
 coordenada macro 
 local saltare,fin,NegaY,SalNe,PasarX,NegaX
 
-
+cmp Max,ax;
+jc saltare
 
 push cx
 xor cx,cx
@@ -125,6 +132,8 @@ mov bx,Max
 cmp Max,0
 jz saltare
 div bx;Dividir Valor Maximo AX resultado
+
+inc ax
 
 cmp EvaluarBandera,1
 jz SalNe
@@ -173,7 +182,7 @@ inc ax
 
 jmp fin
 saltare:
-mov ax,10
+mov ax,0
 fin:
 
 endm
@@ -205,9 +214,10 @@ IngresarFuncion
 
 ;=========================================Graficar Funcion==================================
 mov Max,0000h;Para Saber El Valor Max
-mov Ancho,0009h;Ancho Maximo De La Funcion
+mov Ancho,50;Ancho Maximo De La Funcion
+mov RangoMayor,50
 ;====================================Calcular Valor Maximo===========================
-mov cx,0009h;l;Iteraciones
+mov cx,RangoMayor;l;Iteraciones
 Maximus:
 mov jump,cx
 mov ValorX,cx;Valor De X
@@ -226,8 +236,9 @@ dec cx
 jnz Maximus
 ;===========================Funcion De Verdad=================
 ;Almacenar Valores
-
-mov cx,0009h;l;Iteraciones
+mov cx,400
+mov Max,cx
+mov cx,RangoMayor;l;Iteraciones
 Enciclo:
 mov jump,cx
 mov ValorX,cx;Valor De X
@@ -254,13 +265,14 @@ int 21h
 
 ;=============================================Inicio Modo Grafico=========================================
 xor bx,bx
-mov bx,0009h;l;Iteraciones
+mov bx,RangoMayor;l;Iteraciones
 
 mov ax,0013h
 int 10h
 mov ax, 0A000h
 mov ds, ax  ; DS = A000h (memoria de graficos).
 
+mov dx,6;Color 
 MiniSi:
 mov Jump,bx
 xor ax,ax
@@ -275,8 +287,8 @@ Pintar
 mov bx,Jump
 dec bx
 jnz MiniSi
-
-;PintarPlano
+mov dx,9;Color 
+PintarPlano
 ;===============================================================================
 
 

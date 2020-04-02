@@ -14,6 +14,8 @@ MOV dl, 32
 MOV ah, 02h
 INT 21h
 endm
+
+
 Entrada macro tama
 local Input,FININPUT,reinicio
 mov si,00h
