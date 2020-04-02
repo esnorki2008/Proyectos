@@ -31,6 +31,7 @@ ValorXBandera db 0
 Jump dw 0
 ;=============================================Variables==================================================
 Max dw 0
+Ancho dw 0
 
 
 
@@ -107,7 +108,7 @@ Pintar
 endm
 
 coordenada macro 
-local saltare,fin,NegaY,SalNe
+local saltare,fin,NegaY,SalNe,PasarX,NegaX
 
 
 
@@ -116,7 +117,7 @@ xor cx,cx
 xor dx,dx
 mov cx,ax;Guardar
 ;100*ValorY/MaxValor
-mov dx,100
+mov dx,90
 mul dx;Multiplicar por 100
 
 xor dx,dx
@@ -128,7 +129,7 @@ div bx;Dividir Valor Maximo AX resultado
 cmp EvaluarBandera,1
 jz SalNe
 ;===================Y Es Positiva==========
-mov dx,100;Los Pixeles Son Al Reves
+mov dx,100; Los Pixeles Son Al Reves
 sub dx,ax
 mov ax,dx
 jmp SalNe
@@ -147,8 +148,29 @@ NegaY:
 ;============================Desplazamiento En X===========================
 add ax,160;Posicionar A La Mitad
 pop cx
+mov bx,ax;Conservar Ax
+xor ax,ax;100*ValorY/MaxValor
+mov ax,cx;ValorY
+mov cx,100
+mul cx;100*ValorY
+mov cx,Ancho;MaxValor
+div cx;100*ValorY/MaxValor
+mov cx,ax
+mov ax,bx;Recuperar Valor
+
+cmp ValorXBandera,1
+jz NegaX;X Negativo
+;============================X Positivo===========
+
+
 add ax,cx;Sumar Desplazamiento
+jmp PasarX
+;============================X Negativo================
+NegaX:
+sub ax,cx
+PasarX:
 inc ax
+
 jmp fin
 saltare:
 mov ax,10
@@ -183,8 +205,9 @@ IngresarFuncion
 
 ;=========================================Graficar Funcion==================================
 mov Max,0000h;Para Saber El Valor Max
+mov Ancho,0009h;Ancho Maximo De La Funcion
 ;====================================Calcular Valor Maximo===========================
-mov cx,0010;Iteraciones
+mov cx,0009h;l;Iteraciones
 Maximus:
 mov jump,cx
 mov ValorX,cx;Valor De X
@@ -204,16 +227,14 @@ jnz Maximus
 ;===========================Funcion De Verdad=================
 ;Almacenar Valores
 
-mov cx,0010;Iteraciones
+mov cx,0009h;l;Iteraciones
 Enciclo:
 mov jump,cx
 mov ValorX,cx;Valor De X
 mov ValorXBandera,0;Signo De X
 xor cx,cx
 mov cx,ValorX
-
 EvaluarFuncion
-
 xor ax,ax
 mov ax,Evaluar
 mov cx,jump
@@ -233,7 +254,7 @@ int 21h
 
 ;=============================================Inicio Modo Grafico=========================================
 xor bx,bx
-mov bx,0010;Iteraciones
+mov bx,0009h;l;Iteraciones
 
 mov ax,0013h
 int 10h
@@ -255,7 +276,7 @@ mov bx,Jump
 dec bx
 jnz MiniSi
 
-PintarPlano
+;PintarPlano
 ;===============================================================================
 
 
