@@ -1,5 +1,7 @@
 include Macros.asm ; archivo con los macros
 include Func.asm
+include Eva.asm
+include Archivo.asm
 .model small
 .stack 500h
 .data
@@ -18,6 +20,10 @@ TituloIntegral db "F(x) =","$"
 TituloIngresoIzquierdo db "Ingrese El Rango Izquierdo: ","$"
 TituloIngresoDerecho db "Ingrese El Rango Derecho: ","$"
 TituloAdvertencia db "Advertencia El Rango Izquierdo Es Mayor Que El Derecho ","$"
+TItuloErrorArchivo db "El Archivo Que Se Solicito No Fue Encontrado","$"
+TituloIngreseRuta db "Ingrese Una Ruta Para Cargar","$"
+TituloArroba db "Error Con La Colocacion De: #  " ,"$"
+TituloExtension db "No Se Detecto La Extension .ARQ  " ,"$"
 ;=============================================Almcenar Funciones==================================================
 Funcion db 5 dup(0)
 FuncionBandera db 5 dup(0)
@@ -64,6 +70,12 @@ pushi dw 0
 ;===============================================Variables Graficas======================================
 PantallaInicio dw 0
 PantallaPixeles dw 0
+;=============================================Para Archivos
+handle dw ?
+Buffy db 120 dup(0)
+tamanio db 119
+inputi db 50 dup(0)
+random db 0
 .code
 
 
@@ -165,7 +177,7 @@ NegaY:
 
 
 ;============================Desplazamiento En X===========================
-add ax,160;Posicionar A La Mitad
+add ax,159;Posicionar A La Mitad
 pop cx
 ;mov bx,ax;Conservar Ax
 ;xor ax,ax;100*ValorY/MaxValor
@@ -201,11 +213,15 @@ endm
 
 
 main  proc
-
-
 xor ax,ax
 mov   ax, @data     ;hmm ¿seg?
 mov   ds,ax          ;ds = ax = saludo
+
+
+
+CargarArchivo
+
+jmp Salitre
 
 
 
@@ -218,9 +234,9 @@ mov ExisteFuncion,0
 ;=============================================Menu==================================================
 IngresarFuncion
 ;ImprimirFuncion
-;DerivarFuncion
+DerivarFuncion
 ;ImprimirDerivada
-;IntegrarFuncion
+IntegrarFuncion
 ;ImprimirIntegral
 ;ImprimirIntegralR
 
@@ -252,14 +268,7 @@ mov RangoMayor,al
 mov RangoMayorBandera,ah
 ;=======Comparaciones============
 xor ax,ax
-mov al,RangoMayor
-mov Almacenar,ax
-Print16 Almacenar
-NuevaLinea
-xor ax,ax
-mov al,RangoMenor
-mov Almacenar,ax
-Print16 Almacenar
+
 
 mov al,RangoMayorBandera
 cmp al,0;Es Positivo
@@ -302,6 +311,7 @@ jc E8
 ;Cambio Limite
 
 E1:;MAYOR       Mayor Positivo Menor Positivo
+
 mov al,RangoMayor
 sub al,RangoMenor
 xor ah,ah
@@ -309,15 +319,44 @@ mov pushi,ax;Veces A Ejecutar
 xor ax,ax
 mov ax,200;No Hay Cambios De Signo
 mov cambio,al
-mov al,RangoMenor
+mov al,RangoMayor
 mov limite,al;Inicio De X
+mov ValorXBandera,0;Signo De X
+
 
 jmp saltito
 E2:;MENOR       Mayor Positivo Menor Positivo
 jmp adver
 E3:;MAYOR       Mayor Positivo Menor Negativo
+
+mov al,RangoMayor
+add al,RangoMenor;Expande El Rango
+xor ah,ah
+mov pushi,ax;Veces A Ejecutar
+inc pushi
+xor ax,ax
+mov al,RangoMayor;No Hay Cambios De Signo
+mov cambio,al
+mov al,RangoMayor
+mov limite,al;Inicio De X
+mov ValorXBandera,0;Bandera Inicial
+
+
 jmp saltito
 E4:;MENOR       Mayor Positivo Menor Negativo
+
+mov al,RangoMayor
+add al,RangoMenor;Expande El Rango
+xor ah,ah
+mov pushi,ax;Veces A Ejecutar
+inc pushi
+xor ax,ax
+mov al,RangoMayor;No Hay Cambios De Signo
+mov cambio,al
+mov al,RangoMayor
+mov limite,al;Inicio De X
+mov ValorXBandera,0;Bandera Inicial
+
 jmp saltito
 
 
@@ -328,6 +367,18 @@ jmp adver
 E7:;MAYOR       Mayor Negativo Menor Negativo
 jmp adver
 E8:;MENOR       Mayor Negativo Menor Negativo
+
+mov al,RangoMenor
+sub al,RangoMayor
+xor ah,ah
+mov pushi,ax;Veces A Ejecutar
+xor ax,ax
+mov ax,200;No Hay Cambios De Signo
+mov cambio,al
+mov al,RangoMenor
+mov limite,al;Inicio De X
+mov ValorXBandera,1;Signo De X
+
 jmp saltito
 
 
@@ -340,7 +391,7 @@ print TituloAdvertencia
 NuevaLinea
 jmp Rang
 saltito:
-jmp salitre
+
 ;===========================Funcion De Verdad=================
 ;Almacenar Valores
 mov cx,400
@@ -354,17 +405,49 @@ mov jump,cx
 xor ax,ax
 mov al,limite
 mov ValorX,ax;Valor De X
-mov ValorXBandera,0;Signo De X
+;mov Almacenar,ax
+;print16 Almacenar
+;mov ValorXBandera,0;Signo De X
+
 xor cx,cx
 mov cx,ValorX
-EvaluarFuncion
+
+
+;EvaluarFuncion
+;EvaluarIntegral
+;EvaluarDerivada
+
 xor ax,ax
 mov ax,Evaluar
-mov cx,jump
+xor cx,cx
+mov cl,limite
 coordenada
 push ax;Guardar Valor
 
-inc limite;Incrementar
+;=====Cambio Signo===========
+;dec cambio;SI Es Cero Cambiar Signo
+;jnz NoCmb
+;cmp ValorXBandera,0
+;jz kambio
+;mov ValorXBandera,0
+;jnz NoCmb
+;kambio:
+;mov ValorXBandera,1
+NoCmb:
+;========Disminucion========
+dec limite;Incrementar
+
+cmp limite,0
+jnz kmb
+mov cl,RangoMenor
+mov limite,cl
+mov ValorXBandera,1
+kmb:
+
+
+
+
+
 
 mov cx,jump
 dec cx
