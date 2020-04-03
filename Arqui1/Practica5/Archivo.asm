@@ -1,5 +1,6 @@
 CargarArchivo macro
-local Cancelar,limp,salir,ingre,arroba,nada,malo,bueno,outp
+local Cancelar,limp,salir,ingre,arroba,nada,malo,bueno,outp,limp,recor
+NuevaLinea
 Print TituloIngreseRuta
 NuevaLinea
 
@@ -27,7 +28,7 @@ xor ax,ax
 mov al,119
 limp:
 
-mov inputi[si],0
+mov buffy[si],0
 
 inc si
 dec al
@@ -36,10 +37,76 @@ jnz limp
 ReadFile handle,buffy,119
 CloseFile handle
 
-mov cl,buffy[0]
-PrintRegistro cl
+
+ComprobarArchivo
+cmp ax,1
+jz Cancelar
+
+
+xor si,si
+xor ax,ax
+mov cl,119
+recor:
+
+PrintRegistro buffy[si]
+
+inc si
+dec cl
+jnz recor
+
+
+
+
 
 Cancelar:
+NuevaLinea
+mov ah,1;Entrada en al
+int 21h
+endm
+
+ComprobarArchivo macro
+local recor,malo,bueno,fin,Simbo,Sig
+xor si,si
+xor ax,ax
+mov cl,119
+recor:
+
+mov al,buffy[si]
+cmp al,59
+jz bueno
+
+mov al,buffy[si]
+mov latch,al
+EsNumero latch
+jz Sig
+
+mov al,buffy[si]
+mov latch,al
+EsSimbolo latch
+jz Sig
+
+
+jmp malo
+
+
+Sig:
+inc si
+dec cl
+jnz recor
+
+jmp malo
+
+malo:
+Print TituloMalo
+NuevaLinea
+mov ax,1
+jmp fin
+
+bueno:
+mov ax,0
+jmp fin
+
+fin:
 endm
 
 Ruta macro
@@ -168,7 +235,7 @@ lea dx,buffer
 int 21h
 jc Erro ; db con mensaje que debe existir en doc maestro
 mov handler,ax
-mov ax,1
+mov ax,0
 jmp fini
 erro:
 Print TItuloErrorArchivo

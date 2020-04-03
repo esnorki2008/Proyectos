@@ -617,3 +617,33 @@ cmp al,0
 jmp fin
 fin:
 endm
+
+
+EsSimbolo macro Num; Bandera de Zero Encendida si es correcto el numero
+local bueno,malo,fin
+
+
+xor ax,ax
+
+cmp Num,42
+jz Bueno
+cmp Num,43
+jz Bueno
+cmp Num,45
+jz Bueno
+cmp Num,47
+jz Bueno
+
+
+jmp Malo
+Bueno:
+mov al,0
+sub Num,48
+cmp al,0
+jmp fin
+Malo:
+mov al,1
+cmp al,0
+jmp fin
+fin:
+endm
