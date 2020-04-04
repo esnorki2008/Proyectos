@@ -58,6 +58,32 @@ select
 ,(select GeoId from Geoname where geoname_id=T.geoname_id limit 1)
 ,cast(T.transactions_start_year as unsigned)
 ,cast(T.transactions_end_year as unsigned)
-,cast(T.even_split_commitments as float)
-,cast(T.even_split_disbursements as float)
-from TemporalLevel_1A T;
+,(T.even_split_commitments)
+,(T.even_split_disbursements)
+from TemporalLevel_1A T ;
+
+create temporary table DGeo(geoname_id int primary key,codigo int,valor int);
+
+insert into DGeo(geoname_id,codigo) select geoname_id,GeoId from Geoname 
+on duplicate key update valor = 1;
+
+insert into Level_1A(
+project_id,project_location_id,geoname_id,transaction_start_year,transaction_end_year,even_split_commitments,even_split_disbursement
+)
+select 
+(select Pro_Id  from Project where project_id=T.project_id limit 1)
+,T.project_location_id
+,(select codigo from DGeo where geoname_id=T.geoname_id limit 1)
+,cast(T.transactions_start_year as unsigned)
+,cast(T.transactions_end_year as unsigned)
+,(T.even_split_commitments)
+,(T.even_split_disbursements)
+from TemporalLevel_1A T ;
+
+
+select count(*) from Level_1A;
+
+drop temporary table DGeo;
+
+
+

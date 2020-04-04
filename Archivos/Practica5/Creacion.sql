@@ -47,8 +47,8 @@ alter table Project add foreign key (status) references Type_Status(Id_Status);
 /*Level_1A*/
 create table Level_1A(levelid int primary key auto_increment,project_id int ,
 project_location_id varchar(200),geoname_id int,transaction_start_year int,
-transaction_end_year int,even_split_commitments float,
-even_split_disbursement float);
+transaction_end_year int,even_split_commitments varchar(100),
+even_split_disbursement varchar(100));
 alter table Level_1A add foreign key (project_id) references Project(Pro_Id);
 alter table Level_1A add foreign key (Geoname_Id) references Geoname(GeoId);
 
