@@ -21,3 +21,11 @@ recipients varchar(200),recipients_iso3 varchar(200),ad_sector_codes varchar(200
 status varchar(200),transactions_start_year varchar(200),transactions_end_year varchar(200),total_commitments varchar(200),
 total_disbursements varchar(200));
 #drop temporary table TemporalProject;
+#===============================Level_1A
+create temporary table TemporalLevel_1A(
+project_id varchar(200),project_location_id varchar(200),geoname_id varchar(200),
+transactions_start_year varchar(200),transactions_end_year varchar(200),
+even_split_commitments varchar(200),even_split_disbursements varchar(200)
+);
+#drop TemporalLevel1_A;
+

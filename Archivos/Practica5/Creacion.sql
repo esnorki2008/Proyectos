@@ -9,9 +9,7 @@ use Practica;
 /*--==========================Creacion De Tablas==========*/
 /*Transaction*/
 create table Transaction(Transaction_Id int primary key auto_increment,Transaction_Code varchar(100),Transaction_Isodate date,Transaction_Year int,Transaction_Value_Code varchar(100),Transaction_Currency_Id int,Transaction_Value int,Project_Id1 int);
-/*Level_1A*/
-create table Level_1A(Project_Id int primary key auto_increment,Project_Geoname_Id varchar(100),Geoname_Id int,Transaction_Start_Year int,Transaction_End_Year int,
-Even_Split_Commitments float,Even_Split_disbursement float);
+
 
 
 
@@ -46,12 +44,19 @@ transactions_start_year int,transactions_end_year int,total_commitments float,to
 alter table Project add foreign key (recipients) references Country_Code(Country_Code);
 alter table Project add foreign key (status) references Type_Status(Id_Status);
 #Drop table Project;
+/*Level_1A*/
+create table Level_1A(levelid int primary key auto_increment,project_id int ,
+project_location_id int,geoname_id int,transaction_start_year int,
+transaction_end_year int,even_split_commitments float,
+even_split_disbursement float);
+alter table Level_1A add foreign key (project_id) references Project(Pro_Id);
+alter table Level_1A add foreign key (Geoname_Id) references Geoname(GeoId);
+
+#drop table Level_1A;
 
 /*--==========================Constraint=====================*/
 /*==============LLaves Foraneas========*/
 /*Transaction*/
 alter table Transaction add foreign key (Transaction_Currency_Id) references Currency(Currency_Id);
 alter table Transaction add foreign key (Project_Id1) references Project(Project_Id);
-/*Level_1A*/
-alter table Level_1A add foreign key (Project_Id) references Project(Project_Id);
-alter table Level_1A add foreign key (Geoname_Id) references Geoname(Geoname_Id);
+

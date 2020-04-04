@@ -36,42 +36,27 @@ where
 (T.location_type_code  =L.location_type_code) ;
 #Select * from Geoname;
  #================================================Project
- INSERT INTO Project 
- (project_id ,is_geocoded,project_title,start_actual_isodate,end_actual_isodate,donors,donors_iso3,recipients,recipients_iso3,
- ad_sector_codes,ad_sector_names,status,transactions_start_year,transactions_end_year,total_commitments,total_disbursements)
+INSERT INTO Project 
+(project_id ,is_geocoded,project_title,start_actual_isodate,end_actual_isodate,donors,donors_iso3,recipients,recipients_iso3,
+ad_sector_codes,ad_sector_names,status,transactions_start_year,transactions_end_year,total_commitments,total_disbursements)
 SELECT 
 TemporalProject.project_id ,cast(is_geocoded as unsigned ),project_title,if(start_actual_isodate ="",'01/01/2030/',str_to_date(start_actual_isodate ,'%d/%m/%Y')),
-if(end_actual_isodate ="",'2050-01-01',str_to_date(start_actual_isodate ,'%d/%m/%Y')),TemporalProject.donors,donors_Iso3 ,Country_Code.Country_Code,
-recipients_iso3 ,ad_sector_codes ,ad_sector_names ,Type_Status.Id_Status,
+if(end_actual_isodate ="",'2050-01-01',str_to_date(start_actual_isodate ,'%d/%m/%Y')),TemporalProject.donors,donors_Iso3 ,
+(select country_code from Country_Code c where c.name_iso3=donors_iso3 limit 1)
+,recipients_iso3 ,ad_sector_codes ,ad_sector_names ,
+(select id_status from Type_Status t where t.description=status limit 1),
 cast(transactions_start_year as unsigned),cast(transactions_end_year as unsigned),
 cast(total_commitments as float),cast(total_disbursements as float)
-from TemporalProject,Country_Code, Type_Status
-where (lower(TemporalProject.status) = lower(Type_Status.Description)) AND
-        (TemporalProject.recipients_iso3 = Country_Code.name_iso3);
-
-select  distinct count(C.name_iso3) 
-from 
-TemporalProject as T cross join
-Country_Code as C
-where  
-lower(T.recipients_iso3) =lower(C.name_iso3) ;
-
-select count(*) from Geoname;
-
-select count(geoname_id ),geoname_id  from Geoname group by geoname_id ;
-	
-SELECT distinct name_iso3
-FROM Country_Code
-WHERE name_iso3
-IN(
-SELECT (name_iso3)
-FROM
-Country_Code
-GROUP BY name_iso3 
-ORDER BY 1 Desc)
-;
+from TemporalProject;
+#==================================================Level_1A
 
 
-
-select distinct count(project_id) from TemporalProject inner join Country_Code on   
-lower(TemporalProject.recipients_iso3) =lower(Country_Code.name_iso3) ;
+select 
+(select Pro_Id  from Project where project_id=T.project_id limit 1)
+,T.project_location_id
+,(select GeoId from Geoname where geoname_id=T.geoname_id limit 1)
+,cast(T.transactions_start_year as unsigned)
+,cast(T.transactions_end_year as unsigned)
+,cast(T.even_split_commitments as unsigned)
+,cast(T.even_split_disbursements as unsigned)
+from TemporalLevel_1A T;
