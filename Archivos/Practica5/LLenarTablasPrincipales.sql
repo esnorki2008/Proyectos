@@ -1,3 +1,4 @@
+use Practica;
 #===================================Country_Code====================
 INSERT INTO Country_Code (
 name,iso2,name_name,name_aiddata_code,name_aiddata_name,name_cow_alpha,name_cow_numeric,
@@ -33,6 +34,7 @@ TemporalGeoName as T cross join
 Location as L
 where  
 (T.location_type_code  =L.location_type_code) ;
+#Select * from Geoname;
  #================================================Project
  INSERT INTO Project 
  (project_id ,is_geocoded,project_title,start_actual_isodate,end_actual_isodate,donors,donors_iso3,recipients,recipients_iso3,
@@ -47,7 +49,29 @@ from TemporalProject,Country_Code, Type_Status
 where (lower(TemporalProject.status) = lower(Type_Status.Description)) AND
         (TemporalProject.recipients_iso3 = Country_Code.name_iso3);
 
+select  distinct count(C.name_iso3) 
+from 
+TemporalProject as T cross join
+Country_Code as C
+where  
+lower(T.recipients_iso3) =lower(C.name_iso3) ;
 
 select count(*) from Geoname;
 
 select count(geoname_id ),geoname_id  from Geoname group by geoname_id ;
+	
+SELECT distinct name_iso3
+FROM Country_Code
+WHERE name_iso3
+IN(
+SELECT (name_iso3)
+FROM
+Country_Code
+GROUP BY name_iso3 
+ORDER BY 1 Desc)
+;
+
+
+
+select distinct count(project_id) from TemporalProject inner join Country_Code on   
+lower(TemporalProject.recipients_iso3) =lower(Country_Code.name_iso3) ;
