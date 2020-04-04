@@ -5,3 +5,7 @@
 /Compiladores2/Proyecto1/dist/
 /Compiladores2/Prueba/nbproject/private/
 /Compiladores2/Prueba/build/
+*.o
+*.stash
+Archivos/HardDiskSim/build-Proyecto1Fase1-Desktop_Qt_5_14_0_GCC_64bit-Debug/Proyecto1Fase1
+Archivos/HardDiskSim/build-Proyecto1Fase1-Desktop_Qt_5_14_0_GCC_64bit-Debug/Makefile
