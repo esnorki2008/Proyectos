@@ -9,6 +9,8 @@ IGNORE 1 LINES
 #Campo11,Campo12,Campo13,Campo14,Campo15,Campo16,Campo17,Campo18) 
 ;
 
+#select * from TemporalCountry;
+
 
 
 

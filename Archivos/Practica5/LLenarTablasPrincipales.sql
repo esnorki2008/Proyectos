@@ -15,7 +15,7 @@ INSERT INTO Location (Location_Type_Code,Location_Type_Name)
 SELECT * FROM   TemporalLocation ;
  
  #drop table Location;
- #select * from Location;
+ #select count(*) from Location;
  #====================================Geonames==========================
 
 INSERT INTO Geoname 
@@ -38,8 +38,8 @@ where
  (project_id ,is_geocoded,project_title,start_actual_isodate,end_actual_isodate,donors,donors_iso3,recipients,recipients_iso3,
  ad_sector_codes,ad_sector_names,status,transactions_start_year,transactions_end_year,total_commitments,total_disbursements)
 SELECT 
-TemporalProject.project_id ,cast(is_geocoded as unsigned ),project_title,str_to_date(start_actual_isodate ,'%d/%m/%Y'),
-str_to_date(end_actual_isodate,'%d/%m/%Y'),TemporalProject.donors,donors_Iso3 ,Country_Code.Country_Code,
+TemporalProject.project_id ,cast(is_geocoded as unsigned ),project_title,if(start_actual_isodate ="",'01/01/2030/',str_to_date(start_actual_isodate ,'%d/%m/%Y')),
+if(end_actual_isodate ="",'2050-01-01',str_to_date(start_actual_isodate ,'%d/%m/%Y')),TemporalProject.donors,donors_Iso3 ,Country_Code.Country_Code,
 recipients_iso3 ,ad_sector_codes ,ad_sector_names ,Type_Status.Id_Status,
 cast(transactions_start_year as unsigned),cast(transactions_end_year as unsigned),
 cast(total_commitments as float),cast(total_disbursements as float)
@@ -48,5 +48,6 @@ where (lower(TemporalProject.status) = lower(Type_Status.Description)) AND
         (TemporalProject.recipients_iso3 = Country_Code.name_iso3);
 
 
-select count(*) from TemporalProject,Country_Code where         strcmp(TemporalProject.recipients_iso3 ,Country_Code.name_iso3)=0
-;
+select count(*) from Geoname;
+
+select count(geoname_id ),geoname_id  from Geoname group by geoname_id ;

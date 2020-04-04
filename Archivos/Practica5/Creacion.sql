@@ -24,9 +24,11 @@ name_un_code varchar(100),name_wb_code varchar(100));
 #Drop table Country_Code;
 /*Location*/
 create table Location(Location_Id int primary key auto_increment,Location_Type_Code varchar(100),Location_Type_Name varchar(100));
+#drop table Location;
 /*Geoname*/
 create table Geoname(GeoId int primary key auto_increment,geoname_id int ,place_name varchar(100),latitude float,longitude float,location_type_code int,location_type_name varchar(100),gazetteer_adm_code varchar(100),gazetteer_adm_name varchar(200),location_class varchar(100),geografic_exactness varchar(100));
 alter table Geoname add foreign key (location_type_code) references Location(Location_id);
+#drop table Geoname;
 /*Currency*/
 create table Currency (Currency_Id int primary key auto_increment,Currency_Description varchar(20));
 insert into Currency values(default,'USD');
