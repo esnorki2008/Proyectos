@@ -1,5 +1,5 @@
 #drop database Practica;
-create database Practica;
+#create database Practica;
 
 
 use Practica;
@@ -28,11 +28,12 @@ alter table Geoname add foreign key (location_type_code) references Location(Loc
 /*Currency*/
 create table Currency (Currency_Id int primary key auto_increment,Currency_Description varchar(20));
 insert into Currency values(default,'USD');
+#drop table Currency;
 /*TypeStatus*/ 
 create table Type_Status(Id_Status int primary key auto_increment,Description varchar(100));
 insert into Type_Status values(default,'completion');
 insert into Type_Status values(default,'implementation');
-
+#drop table TypeStatus;
 
 /*Project*/
 create table Project(Pro_Id int primary key auto_increment,project_id varchar(200),is_geocoded int,project_title varchar(200),start_actual_isodate date null,end_actual_isodate date null,

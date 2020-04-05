@@ -66,8 +66,7 @@ SELECT P.project_id as IdProyecto, P.project_title as NombreProyecto,
 T.transaction_isodate as Fecha,T.transaction_id as CorrelativoTransaccion,
 T.transaction_value as ValorTransaccion
 FROM Project P
-INNER JOIN  Transaction T on T.project_id =P.Pro_Id ,
-Inner join Currency.hola on t.d
+INNER JOIN  Transaction T on T.project_id =P.Pro_Id 
 where P.project_id='P111556'
 order by 5 desc limit 3 ;
 

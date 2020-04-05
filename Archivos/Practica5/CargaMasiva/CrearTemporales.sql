@@ -7,7 +7,7 @@ Campo14 varchar(100),Campo15 varchar(100),Campo16 varchar(100),Campo17 varchar(1
 #drop temporary table TemporalCountry;
 #==============================Temporal Location
 create temporary table TemporalLocation(Campo1 varchar(100),Campo2 varchar(100));
-#drop  temporary table TemporalLocations;
+#drop  temporary table TemporalLocation;
 #=============================Temporal GeoName
 create temporary table TemporalGeoName(geoname_id varchar (200),place_name varchar (200),latitude varchar (200)
 ,longitude varchar (200),location_type_code varchar (200),location_type_name varchar (200)
