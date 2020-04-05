@@ -28,4 +28,10 @@ transactions_start_year varchar(200),transactions_end_year varchar(200),
 even_split_commitments varchar(200),even_split_disbursements varchar(200)
 );
 #drop temporary table TemporalLevel_1A;
-
+#===============================Transaction
+create  temporary table TemporalTransaction(
+transaction_id varchar(200),project_id varchar(200),transaction_isodate varchar(200),transaction_year varchar(200),
+transaction_value_code varchar(200),transaction_currency varchar(200),transaction_value varchar(200)
+);
+select * from TemporalTransaction;
+#drop temporary table TemporalTransaction;

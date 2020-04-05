@@ -7,8 +7,6 @@ use Practica;
 
 
 /*--==========================Creacion De Tablas==========*/
-/*Transaction*/
-create table Transaction(Transaction_Id int primary key auto_increment,Transaction_Code varchar(100),Transaction_Isodate date,Transaction_Year int,Transaction_Value_Code varchar(100),Transaction_Currency_Id int,Transaction_Value int,Project_Id1 int);
 
 
 
@@ -40,7 +38,6 @@ insert into Type_Status values(default,'implementation');
 create table Project(Pro_Id int primary key auto_increment,project_id varchar(200),is_geocoded int,project_title varchar(200),start_actual_isodate date null,end_actual_isodate date null,
 donors varchar(200),donors_Iso3 varchar(200),recipients int,recipients_iso3 varchar(200),ad_sector_codes varchar(200),ad_sector_names varchar(200),status int,
 transactions_start_year int,transactions_end_year int,total_commitments float,total_disbursements float);
-
 alter table Project add foreign key (recipients) references Country_Code(Country_Code);
 alter table Project add foreign key (status) references Type_Status(Id_Status);
 #Drop table Project;
@@ -54,9 +51,11 @@ alter table Level_1A add foreign key (Geoname_Id) references Geoname(GeoId);
 
 #drop table Level_1A;
 
-/*--==========================Constraint=====================*/
-/*==============LLaves Foraneas========*/
 /*Transaction*/
-alter table Transaction add foreign key (Transaction_Currency_Id) references Currency(Currency_Id);
-alter table Transaction add foreign key (Project_Id1) references Project(Project_Id);
+create table Transaction(TraId int primary key auto_increment,transaction_id varchar(200),project_id int,
+transaction_isodate date,transaction_year int,transaction_value_code varchar(100),transaction_currency int,transaction_value float);
+alter table Transaction add foreign key (transaction_currency) references Currency(Currency_Id);
+alter table Transaction add foreign key (project_id) references Project(Pro_Id);
+#drop table Transaction;
+
 
