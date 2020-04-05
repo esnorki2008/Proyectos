@@ -48,7 +48,6 @@ transaction_end_year int,even_split_commitments varchar(100),
 even_split_disbursement varchar(100));
 alter table Level_1A add foreign key (project_id) references Project(Pro_Id);
 alter table Level_1A add foreign key (Geoname_Id) references Geoname(GeoId);
-
 #drop table Level_1A;
 
 /*Transaction*/
