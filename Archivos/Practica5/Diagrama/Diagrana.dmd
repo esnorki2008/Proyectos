@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="Diagrana" id="4A18AE0F-8FBE-B10A-FF69-8CF7616AAD85" version="3.5">
+<createdBy>Norki</createdBy>
+<createdTime>2020-04-05 02:58:20 UTC</createdTime>
+<ownerDesignName>Diagrana</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>4A18AE0F-8FBE-B10A-FF69-8CF7616AAD85</designId>
+</OSDM_Design>
