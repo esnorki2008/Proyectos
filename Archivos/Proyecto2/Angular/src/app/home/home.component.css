@@ -1,0 +1,40 @@
+.btnSignIn{
+    position: absolute;
+    right: 0px;
+}
+
+span{
+    padding-right: 6rem;
+}
+
+.Cuerpo{
+    color: white;
+}
+video{
+    margin-left: 30%;
+    margin-right: 30%;
+    align-self: center;
+}
+.video{
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.Pie{
+    border-radius: 10px;
+    background-color: #4527A0;
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    column-count: 3;
+}
+
+
+.PieContenido{   
+    border-radius: 10px;
+    color: white;
+    background-color: #673AB7;
+    background-clip: border-box; 
+    opacity: 0.8;
+}

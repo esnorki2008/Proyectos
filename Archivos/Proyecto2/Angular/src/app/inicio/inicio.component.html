@@ -1,0 +1,6 @@
+
+<div [ngSwitch]="estado">
+    <p *ngSwitchCase="0"><app-home (emitEvent)="Mandar($event)"></app-home></p>
+    <p *ngSwitchCase="1"><app-login (emitEvent)="Mandar($event)"></app-login></p>
+    <p *ngSwitchCase="2"><app-admin (emitEvent)="Mandar($event)"></app-admin></p>
+</div>
