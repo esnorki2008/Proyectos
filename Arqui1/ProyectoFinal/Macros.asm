@@ -106,6 +106,20 @@ PrintTeclado macro veces
     loop salto
 endm
 
+PrintTecladoTemporal macro veces
+    local salto
+    xor cx,cx
+    mov cl,veces
+    mov si,0
+    salto:
+    xor ax,ax
+    mov dl,TecladoTemporal[si] 
+    mov ah,02h
+    int 21h
+    inc si
+    loop salto
+endm
+
 PrintRegistro macro Num
     xor ax,ax
     mov dl,Num 
@@ -141,7 +155,39 @@ Print macro Texto
    mov   dx,Offset Texto         ;DX = String terminated by "$"
    int   21h               ;Interruptions DOS Functions
 endm
-
+EsNumero macro Registro
+local malo,bueno,fin
+cmp Registro,48
+jz bueno
+cmp Registro,49
+jz bueno
+cmp Registro,50
+jz bueno
+cmp Registro,51
+jz bueno
+cmp Registro,52
+jz bueno
+cmp Registro,53
+jz bueno
+cmp Registro,54
+jz bueno
+cmp Registro,55
+jz bueno
+cmp Registro,56
+jz bueno
+cmp Registro,57
+jz bueno
+jmp malo
+malo:
+mov bl,0
+cmp bl,1
+jmp fin
+bueno:
+mov bl,0
+cmp bl,0
+jmp fin
+fin:
+endm
 
 
 ;====================================Calcular Valor Maximo===========================

@@ -1,14 +1,35 @@
-CargarUsuarios macro
-endm
+
 CargarPuntajes macro
 endm
 CargarNivel macro
 endm
 
-CrearUsuario macro
+ArchivoGuardarUsuario macro
+local ArchivoAbierto
+OpenFileS ArchivoUsuario,handle
+cmp ax,1
+jnz ArchivoAbierto
+CreateFile ArchivoUsuario
+OpenFileS ArchivoUsuario,handle
+ArchivoAbierto:
+WriteFile handle,InformacionUsuario,1000
+CloseFile handle
 endm
-CrearPuntaje macro
+
+
+ArchivoCargarUsuario macro
+local ArchivoAbierto
+OpenFileS ArchivoUsuario,handle
+cmp ax,1
+jnz ArchivoAbierto
+CreateFile ArchivoUsuario
+OpenFileS ArchivoUsuario,handle
+ArchivoAbierto:
+ReadFile handle,InformacionUsuario,891
+CloseFile handle
 endm
+
+
 
 
 
@@ -238,7 +259,23 @@ finito:
 endm
 
 
-
+OpenFileS macro buffer,handler
+local erro,fini
+mov AX,@data
+mov DS,AX
+mov ah,3dh
+mov al,02h
+lea dx,buffer
+int 21h
+jc Erro ; db con mensaje que debe existir en doc maestro
+mov handler,ax
+mov ax,0
+jmp fini
+erro:
+;Print TItuloErrorArchivo
+mov ax,1
+fini:
+endm
 OpenFile macro buffer,handler
 local erro,fini
 mov AX,@data
