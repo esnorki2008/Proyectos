@@ -22,6 +22,29 @@ jnz noz
 
 endm
 
+Print8 macro Regis
+local zero,noz
+
+mov bx,2
+xor ax,ax
+mov al,Regis
+mov cx,10
+zero:
+xor dx,dx
+div cx
+push dx
+dec bx
+jnz zero
+
+
+xor bx,2
+noz:
+pop dx
+PrintN dl
+dec bx
+jnz noz
+
+endm
 
 NuevaLinea macro
 MOV dl, 10
