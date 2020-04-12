@@ -11,6 +11,8 @@ include GJuego.asm
 Titulo1  db "UNIVERSIDAD DE SAN CARLOS DE GUATEMALA",10,13,"$"   
 Titulo2 db "ARQUITECTURA DE COMPUTADORES Y ENSAMBLADORES 1A",10,13,"NOMBRE: ANDHY LIZANDRO SOLIS OSORIO",10,13,"$"
 Titulo3 db "CARNET: 201700886",10,13,"SECCION: A",10,13,"$" 
+
+Pausa db "Juego En Pausa Presione, Espacio Para Salir O Presione ESC para Regresar" 
 ;=============Variables Del Juego=============
 JugadorActual db 12 dup(0)
 PosX db 0
@@ -68,22 +70,20 @@ Juego
 
 ;CargarPantallaJuego
 
-mov ah,1
-int 21h
-jmp Exec
+
 
 ;xor ax,ax
 ;mov Regis16,ax
 
-mov ah, 00h 
-int 16h 
+;mov ah, 00h 
+;int 16h 
 
-push ax
-mov Regis8,ah
-Print8 Regis8
-pop ax
-mov Regis8,al
-Print8 Regis8
+;push ax
+;mov Regis8,ah
+;Print8 Regis8
+;pop ax
+;mov Regis8,al
+;Print8 Regis8
 
 
 

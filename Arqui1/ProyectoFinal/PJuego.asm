@@ -1,6 +1,6 @@
 
 Juego macro
-local bucle,aum,dis,sali,erro
+local bucle,aum,dis,sali,erro,finito,pausa
 ;====================================Limpiar Juego
 LimpiarJuego
 ;====================================Actualizar Tiempo
@@ -19,6 +19,9 @@ mov BanderaObstaculo,0
 mov BanderaBonusSub,0
 mov BanderaObstaculoSub,0
 
+
+mov Punteo,3
+
 mov PosX,34
 
 ;====================================Juego Actual
@@ -32,7 +35,8 @@ cmp ah,77
 jz aum
 cmp ah,75
 jz dis
-
+cmp ah,01
+jz pausa
 ;=============================Limpiar Atascado
 mov ah,10h
 int 16h 
@@ -70,13 +74,53 @@ jnz D2
 jmp D3
 D1:
 
+cmp Punteo,0
+jz finito
+
 jmp bucle
+pausa:
+mov ah,6
+mov al,0;Lineas 0 
+mov bh,00001111b;Atributos
+mov ch,0;Comienzo De Linea
+mov cl,0;Comienzo COlumna
+mov dh,24;Fin Del TExto
+mov dl,79;Columna Fin
+int 10h
+EscribirPausa
+
+mov ah,00
+int 16h
+
+mov ah,00
+int 16h
+
+cmp ah,01
+jz bucle
+
+cmp al,32
+jz finito
+
+jmp pausa
+
+finito:
+mov ah,6
+mov al,0;Lineas 0 
+mov bh,00001111b;Atributos
+mov ch,0;Comienzo De Linea
+mov cl,0;Comienzo COlumna
+mov dh,24;Fin Del TExto
+mov dl,79;Columna Fin
+int 10h
+mov ah,2h;Posicionar Cursor
+mov bh,0
+mov dh,0;Fila
+mov dl,0;Columna
+int 10h
+
 endm
 
 CargarPantallaJuego macro
-
-
-
 
 mov ah,6
 mov al,0;Lineas 0 
@@ -99,18 +143,72 @@ int 10h
 
 
 
-
-
 EscribirEncabezado
 DibujarCarro 
-;DibujarObstaculo 15,15
 Generarobstaculo
 Mostrarobstaculo
 GenerarBonus
 MostrarBonus
+HitboxBonus
+HitboxObstaculo
 endm
 
 
+HitboxBonus macro
+local next,lup
+xor si,si
+mov al,20
+lup:
+cmp Bonus[si],0
+jz next
+cmp BonusY[si],18
+jc next;Si Es Menor Que 18 Siguiente
+
+mov bl,PosX
+cmp BonusX[si],bl
+jc next
+
+add bl,6
+cmp BonusX[si],bl
+jnc next
+
+
+inc Punteo
+mov Bonus[si],0
+
+next:
+inc si
+dec al
+jnz lup
+endm
+
+HitboxObstaculo macro
+local next,lup
+xor si,si
+mov al,20
+lup:
+cmp Obstaculo[si],0
+jz next
+cmp ObstaculoY[si],18
+jc next;Si Es Menor Que 18 Siguiente
+
+mov bl,PosX
+cmp ObstaculoX[si],bl
+jc next
+
+add bl,6
+cmp ObstaculoX[si],bl
+jnc next
+
+
+dec Punteo
+mov Obstaculo[si],0
+
+next:
+inc si
+dec al
+jnz lup
+endm
 
 LimpiarJuego macro
 local lup
@@ -119,6 +217,7 @@ mov al,20
 mov ActualBonus,0
 mov ActualObstaculo,0
 mov ActualTiempo,0
+
 
 lup:
 mov Obstaculo[si],0

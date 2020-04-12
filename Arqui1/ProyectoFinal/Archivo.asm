@@ -1,3 +1,17 @@
+CargarUsuarios macro
+endm
+CargarPuntajes macro
+endm
+CargarNivel macro
+endm
+
+CrearUsuario macro
+endm
+CrearPuntaje macro
+endm
+
+
+
 CargarArchivo macro
 local Cancelar,limp,salir,ingre,arroba,nada,malo,bueno,outp,limp,recor
 NuevaLinea

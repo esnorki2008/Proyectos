@@ -10,7 +10,6 @@ mov PantallaUsuarioActual[11],'a'
 
 mov PantallaNivelActual,'1'
 
-mov Punteo,3
 lup1:
 
 mov dx,si
@@ -43,6 +42,28 @@ EscribirCaracter 0,46,PantallaTiempoActual[6]
 EscribirCaracter 0,47,PantallaTiempoActual[7]
 
 endm
+
+
+
+EscribirPausa macro
+local lup1
+mov Registro,72
+xor si,si
+lup1:
+
+mov dx,si
+add dl,2;Columna
+mov Rex,dl
+EscribirCaracterP 10,Rex,Pausa[si]
+
+inc si
+dec Registro
+jnz lup1
+
+endm
+
+
+
 
 MeterTiempo macro
 local zero,noz
@@ -138,6 +159,23 @@ int 10h
 mov ah,9;Letras Especiales
 mov al,Carac;Caracter
 mov bl,00000111b;Atributos
+mov bh,0;Numero Pagina
+mov cx,1;Cantidad Veces
+int 10h
+
+endm
+
+EscribirCaracterP macro Px,Py,Carac
+
+mov ah,2h;Posicionar Cursor
+mov bh,0
+mov dh,Px;Fila
+mov dl,Py;Columna
+int 10h
+
+mov ah,9;Letras Especiales
+mov al,Carac;Caracter
+mov bl,10000111b;Atributos
 mov bh,0;Numero Pagina
 mov cx,1;Cantidad Veces
 int 10h
