@@ -13,7 +13,10 @@ mov Segundo,DH
 
 mov ActualTiempo,0
 mov Punteo,3
+mov MaximoTiempo,0
+mov MaximoPunteo,0
 Nivelar:
+Maximos
 ;====================================Limpiar Juego
 LimpiarJuego
 ;====================================Actualizar Tiempo
@@ -25,6 +28,8 @@ xor bx,bx
 
 mov bx,IndexNivel;
 cmp InformacionRealNiveles[bx],0
+jz finito
+cmp InformacionRealNiveles[bx+1],0
 jz finito
 
 mov al,InformacionRealNiveles[bx+0]
@@ -150,6 +155,8 @@ jz finito
 jmp pausa
 
 finito:
+;=======================Fin Del Juego
+
 mov ah,6
 mov al,0;Lineas 0 
 mov bh,00001111b;Atributos
@@ -163,7 +170,44 @@ mov bh,0
 mov dh,0;Fila
 mov dl,0;Columna
 int 10h
+Maximos
+CargarPunteo
+NuevoPunteo
+OrdenarPunteo
+GuardarPunteo
 
+
+CargarTiempo
+NuevoTiempo
+OrdenarTiempo
+GuardarTiempo
+endm
+
+Maximos macro
+local Tiempo,Pun
+
+
+mov ax,ActualTiempo
+cmp ax,MaximoTiempo
+jc Tiempo
+
+
+mov ax,ActualTiempo
+mov MaximoTiempo,ax
+mov al,PantallaNivelActual
+mov MaximoNivelTiempo,al
+
+Tiempo:
+mov ax,Punteo
+cmp ax,MaximoPunteo
+jc Pun
+
+
+mov ax,Punteo
+mov MaximoPunteo,ax
+mov al,PantallaNivelActual
+mov MaximoNivelPunteo,al
+Pun:
 endm
 
 CargarPantallaJuego macro

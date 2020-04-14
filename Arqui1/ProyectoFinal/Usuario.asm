@@ -51,6 +51,28 @@ Fin:
 Print TituloBienvenido
 mov Rex,7
 PrintTecladoTemporal Rex
+
+mov al,TecladoTemporal[0] 
+mov PantallaUsuarioActual[0],al
+
+mov al,TecladoTemporal[1] 
+mov PantallaUsuarioActual[1],al
+
+mov al,TecladoTemporal[2] 
+mov PantallaUsuarioActual[2],al
+
+mov al,TecladoTemporal[3] 
+mov PantallaUsuarioActual[3],al
+
+mov al,TecladoTemporal[4] 
+mov PantallaUsuarioActual[4],al
+
+mov al,TecladoTemporal[5] 
+mov PantallaUsuarioActual[5],al
+
+mov al,TecladoTemporal[6] 
+mov PantallaUsuarioActual[6],al
+
 mov ah,1
 int 21h
 NuevaLinea

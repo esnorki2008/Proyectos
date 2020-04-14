@@ -10,7 +10,7 @@ xor si,si
 lup1:
 
 mov dx,si
-add dl,2;Columna
+add dl,1;Columna
 mov Rex,dl
 EscribirCaracter 0,Rex,PantallaUsuarioActual[si]
 

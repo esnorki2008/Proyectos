@@ -1,8 +1,3 @@
-
-CargarPuntajes macro
-endm
-
-
 ArchivoGuardarUsuario macro
 local ArchivoAbierto
 OpenFileS ArchivoUsuario,handle
@@ -104,14 +99,14 @@ xor ax,ax
 mov cx,500
 recor:
 
-PrintRegistro InformacionNiveles[si]
+;PrintRegistro InformacionNiveles[si]
 
 inc si
 dec cx
 jnz recor
 
 NivelesParser;=========================Cargar Niveles A Memoria
-
+Mov BanderaCargado,1
 NuevaLinea
 
 
@@ -131,7 +126,7 @@ lup1:
 
 ParserNivel
 cmp si,400
-jz fin
+jnc fin
 
 ParserTiempoNivel
 ParserTiempoObstaculos
@@ -399,7 +394,7 @@ mov bx,si
 endm
 
 extension macro
-local limp,finito,malo,comprobar,H1,H2,H3,H4
+local limp,finito,malo,comprobar,H1,H2,H4
 
 xor si,si
 xor ax,ax
@@ -429,20 +424,14 @@ inc si;Primera Letra
 
 
 cmp inputi[si],76
-jz H2
+jz H3
 cmp inputi[si],108
-jz H2
+jz H3
 
 jmp malo
 
 
-H2:
-inc si;Primera Letra
-cmp inputi[si],65
-jz H3
-cmp inputi[si],97
-jz H3
-jmp malo
+
 H3:
 inc si;Primera Letra
 cmp inputi[si],89
