@@ -32,7 +32,19 @@ Cuadro
 endm
 
 DibujarCarro macro
+local azul,rojo,verde,blanco,ter
 ;==============Dibujar Carro==========
+mov ah,6
+mov al,0;Lineas 0 
+mov bh,00111011b;Atributos
+mov ch,17;Comienzo De Linea
+mov cl,4;Comienzo COlumna
+mov dh,ch;Fin Del TExto
+add dh,5
+mov dl,cl;Columna Fin
+add dl,71
+int 10h
+
 mov ah,6
 mov al,0;Lineas 0 
 mov bh,00001011b;Atributos
@@ -57,7 +69,29 @@ int 10h
 
 mov ah,6
 mov al,0;Lineas 0 
-mov bh,10101011b;Atributos
+
+cmp Colorcito,0
+jz azul
+cmp Colorcito,1
+jz rojo
+cmp Colorcito,2
+jz verde
+jmp blanco
+azul:
+mov bh,10011011b;Azul
+jmp ter
+verde:
+mov bh,10101011b;Verde
+jmp ter
+blanco:
+mov bh,11111011b;blanco
+jmp ter
+rojo:
+mov bh,11001011b;rojo
+jmp ter
+ter:
+
+
 mov ch,18;Comienzo De Linea
 mov cl,PosX;Comienzo COlumna
 inc cl

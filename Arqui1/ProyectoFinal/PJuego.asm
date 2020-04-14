@@ -1,18 +1,49 @@
 
 Juego macro
-local bucle,aum,dis,sali,erro,finito,pausa
-;====================================Limpiar Juego
-LimpiarJuego
-;====================================Actualizar Tiempo
+local bucle,aum,dis,sali,erro,finito,pausa,nivelar,NuevoNivel
+xor bx,bx
+mov IndexNivel,0
+
+;==============Tiempo Global
 MOV AH,2CH
 INT 21H
-
 mov Hora,CH
 mov Minuto,CL
 mov Segundo,DH
 
-mov ActualBonus,1
-mov ActualObstaculo,2
+mov ActualTiempo,0
+mov Punteo,3
+Nivelar:
+;====================================Limpiar Juego
+LimpiarJuego
+;====================================Actualizar Tiempo
+
+
+xor ax,ax
+xor dx,dx
+xor bx,bx
+
+mov bx,IndexNivel;
+cmp InformacionRealNiveles[bx],0
+jz finito
+
+mov al,InformacionRealNiveles[bx+0]
+mov PantallaNivelActual,al
+mov al,InformacionRealNiveles[bx+1]
+xor ah,ah
+mov TiempoNivel,ax
+mov al,InformacionRealNiveles[bx+2]
+mov ActualBonus,al
+mov al,InformacionRealNiveles[bx+3]
+mov ActualObstaculo,al
+mov al,InformacionRealNiveles[bx+4]
+mov ChoqueObstaculo,al
+mov al,InformacionRealNiveles[bx+5]
+mov ChoqueBonus,al
+mov al,InformacionRealNiveles[bx+6]
+mov Colorcito,al
+
+
 mov BanderaBonus,0
 mov BanderaObstaculo,0
 
@@ -20,12 +51,20 @@ mov BanderaBonusSub,0
 mov BanderaObstaculoSub,0
 
 
-mov Punteo,3
+
 
 mov PosX,34
 
+
 ;====================================Juego Actual
 bucle:
+cmp TiempoNivel,0
+jz NuevoNivel
+cmp Punteo,0
+jz finito
+
+
+
 mov ah, 11h
 int 16h 
 
@@ -74,10 +113,17 @@ jnz D2
 jmp D3
 D1:
 
-cmp Punteo,0
-jz finito
+
 
 jmp bucle
+;=====================================Bucle Del Juego
+NuevoNivel:
+mov bx,IndexNivel
+add bx,7
+mov IndexNivel,bx
+cmp InformacionRealNiveles[bx],0
+jnz Nivelar
+jz finito
 pausa:
 mov ah,6
 mov al,0;Lineas 0 
@@ -172,8 +218,9 @@ add bl,6
 cmp BonusX[si],bl
 jnc next
 
-
-inc Punteo
+xor cx,cx
+mov cl,ChoqueBonus
+add Punteo,cx
 mov Bonus[si],0
 
 next:
@@ -183,7 +230,7 @@ jnz lup
 endm
 
 HitboxObstaculo macro
-local next,lup
+local next,lup,Nozero
 xor si,si
 mov al,20
 lup:
@@ -200,8 +247,12 @@ add bl,6
 cmp ObstaculoX[si],bl
 jnc next
 
-
-dec Punteo
+xor cx,cx
+mov cl,ChoqueObstaculo
+sub Punteo,cx
+jnc NoZero
+mov Punteo,0
+NoZero:
 mov Obstaculo[si],0
 
 next:
@@ -216,7 +267,6 @@ xor si,si
 mov al,20
 mov ActualBonus,0
 mov ActualObstaculo,0
-mov ActualTiempo,0
 
 
 lup:

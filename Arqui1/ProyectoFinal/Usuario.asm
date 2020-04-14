@@ -1,6 +1,62 @@
 LoginUsuario macro
-
+local Pedir,Fin,UsuarioNoExiste,MalaContra,lup
+pedir:
+NuevaLinea
+Print TituloLogin
+NuevaLinea
+Print User
+NuevaLinea
+mov Rex,7
+Entrada Rex
+NuevaLinea
+ExisteUsuario Rex;0 No Existe
+cmp Rex,0
+jz UsuarioNoExiste
+xor ax,ax
+dec Rex
+mov al,Rex
+mov si,ax;Posicion Correcta
+push si
+ClonarUsuario
+Print Contra
+NuevaLinea
+mov Rex,4
+Entrada Rex
+NuevaLinea
+pop si
+mov al,Teclado[0]
+cmp al,InformacionUsuario[si+7]
+jnz MalaContra
+mov al,Teclado[1]
+cmp al,InformacionUsuario[si+8]
+jnz MalaContra
+mov al,Teclado[2]
+cmp al,InformacionUsuario[si+9]
+jnz MalaContra
+mov al,Teclado[3]
+cmp al,InformacionUsuario[si+10]
+jnz MalaContra
+jmp Fin
+MalaContra:
+Print TituloLoginMalo
+mov ah,1
+int 21h
+jmp Pedir
+UsuarioNoExiste:
+Print TituloLoginMalo
+mov ah,1
+int 21h
+jmp Pedir
+Fin:
+Print TituloBienvenido
+mov Rex,7
+PrintTecladoTemporal Rex
+mov ah,1
+int 21h
+NuevaLinea
+ArchivoGuardarUsuario
 endm
+
 CrearUsuario MACRO 
 local Pedir,Fin,UsuarioExiste,MalaContra,lup,mali
 pedir:

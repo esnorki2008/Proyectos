@@ -3,12 +3,9 @@ local lup1,lup2
 mov Registro,12
 xor si,si
 
-mov PantallaUsuarioActual[0],'s'
-mov PantallaUsuarioActual[4],'q'
-mov PantallaUsuarioActual[11],'a'
 
 
-mov PantallaNivelActual,'1'
+
 
 lup1:
 
@@ -109,6 +106,7 @@ jz salir
 jnz aum
 aum:
 inc ActualTiempo
+dec TiempoNivel
 jmp salir
 salir:
 
