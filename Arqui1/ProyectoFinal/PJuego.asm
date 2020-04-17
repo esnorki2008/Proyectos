@@ -14,7 +14,7 @@ mov Segundo,DH
 mov ActualTiempo,0
 mov Punteo,3
 mov MaximoTiempo,0
-mov MaximoPunteo,0
+mov MaximoPunteo,3
 Nivelar:
 Maximos
 ;====================================Limpiar Juego

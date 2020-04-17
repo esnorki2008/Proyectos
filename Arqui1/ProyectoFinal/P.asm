@@ -6,6 +6,8 @@ include GJuego.asm
 include Usuario.asm
 include Archivo.asm
 include Estadi.asm
+include Top.asm
+include Barras.asm
 
 .model small
 .stack 500h
@@ -15,7 +17,8 @@ Titulo1  db "UNIVERSIDAD DE SAN CARLOS DE GUATEMALA",10,13,"$"
 Titulo2 db "ARQUITECTURA DE COMPUTADORES Y ENSAMBLADORES 1A",10,13,"NOMBRE: ANDHY LIZANDRO SOLIS OSORIO",10,13,"$"
 Titulo3 db "CARNET: 201700886",10,13,"SECCION: A",10,13,"$" 
 SinCarga db "No Hay Niveles Cargados","$" 
-
+Top10Puntos db "    Top 10 Puntos","$"
+Top10Tiempo db "    Top 10 Tiempos","$"
 BanderaCargado db 0
 
 MenuPrincipal1 db "1)Ingresar","$"
@@ -93,13 +96,23 @@ Rex db 0
 Longitud db 0 
 Teclado db 25 dup (0)
 
+ValX db 0
+TopeX db 0
+TopeY db 0
+BarraAncho db 0
+BarraLargo db 0
+MaxBarraLargo db 0
+MaxBarraAncho db 0
+
 TecladoTemporal db 10 dup (0)
 ;=============Almacenamiento Temporal===================
 InformacionUsuario db 1100 dup (0)
-InformacionTiempo db 90 dup (0)
-InformacionPuntos db 90 dup (0)
+InformacionTiempo db 200 dup (0)
+InformacionPuntos db 200 dup (0)
 InformacionNiveles db 500 dup (0);6 Niveles de 17
 InformacionRealNiveles db 50 dup (0);6 Niveles de 17
+ValoresBarras db 20 dup(0)
+CantidadBarras db 0
 ;=============Variables De La PantallaJuego==============
 PantallaUsuarioActual db 12 dup (0)
 PantallaNivelActual db 0 
@@ -121,6 +134,18 @@ main  proc
 xor ax,ax
 mov   ax, @data     ;hmm ¿seg?
 mov   ds,ax          ;ds = ax = saludo
+
+
+
+
+ArchivoCargarUsuario
+CargarPunteo
+CargarTiempo
+GraficarBarras
+
+
+jmp Exec
+
 
 mov BanderaCargado,0
 
@@ -250,11 +275,13 @@ jmp LabelMenuAdmin
 
 LabelTopTiempos:
 NuevaLinea
+TopTiempo
 jmp LabelMenuAdmin
 
 
 LabelTopPuntos:
 NuevaLinea
+TopPunteo
 jmp LabelMenuAdmin
 
 
