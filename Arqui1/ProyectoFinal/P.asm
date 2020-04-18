@@ -131,12 +131,15 @@ mm dw 0
 rr dw 0
 .code
 
+
+
+
 main  proc
 xor ax,ax
 mov   ax, @data     ;hmm ¿seg?
 mov   ds,ax          ;ds = ax = saludo
 
-
+call M
 
 ArchivoCargarUsuario
 CargarPunteo
@@ -292,5 +295,21 @@ Exec:
 NuevaLinea
 .exit
 main  endp              ;Termina proceso
+
+
+
+
+
+
+
+M proc
+local 
+
+call M
+
+ret
+M endp
+
+
 end main
 

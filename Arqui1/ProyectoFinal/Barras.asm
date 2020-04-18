@@ -32,7 +32,8 @@ mov ValoresBarras[9],24
 
 ;DibujarBarras
 
-Burbuja
+;Burbuja
+QuickSort
 
 fin:
 endm
