@@ -8,6 +8,7 @@ include Archivo.asm
 include Estadi.asm
 include Top.asm
 include Barras.asm
+include Orden.asm
 
 .model small
 .stack 500h

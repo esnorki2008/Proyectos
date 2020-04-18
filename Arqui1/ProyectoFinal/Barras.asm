@@ -1,88 +1,6 @@
-CargarBarrasTiempo macro
-local SigUsuario,SigTiempo,SigPunteo,LupUsuario,LupTiempo,pasar,cambiar
-xor si,si
-xor bx,bx
-xor ax,ax
-xor cx,cx
-xor dx,dx
-
-Mov Regis16,0
-
-mov dl,20
-LupUsuario:
-
-cmp InformacionUsuario[si],0
-jz SigUsuario
-
-
-xor bx,bx
-mov dh,20
-LupTiempo:
-
-cmp InformacionTiempo[bx],0
-jz SigTiempo
-
-mov bl,InformacionTiempo[bx+2]
-cmp InformacionUsuario[si+0],bl
-jnz SigTiempo
-
-mov bl,InformacionTiempo[bx+3]
-cmp InformacionUsuario[si+1],bl
-jnz SigTiempo
-
-mov bl,InformacionTiempo[bx+4]
-cmp InformacionUsuario[si+2],bl
-jnz SigTiempo
-
-mov bl,InformacionTiempo[bx+5]
-cmp InformacionUsuario[si+3],bl
-jnz SigTiempo
 
 
 
-
-mov bl,InformacionTiempo[bx+6]
-cmp InformacionUsuario[si+4],bl
-jnz SigTiempo
-
-
-mov bl,InformacionTiempo[bx+7]
-cmp InformacionUsuario[si+5],bl
-jnz SigTiempo
-
-mov bl,InformacionTiempo[bx+8]
-cmp InformacionUsuario[si+6],bl
-jnz SigTiempo
-
-;======================Son Iguales
-push si
-mov si,Regis16
-mov al,InformacionTiempo[bx+0]
-cmp ValoresBarras[si],al
-jc cambiar
-jmp pasar
-cambiar:
-mov ValoresBarras,al
-jmp pasar
-pasar:
-pop si
-
-
-SigTiempo:
-add bx,9
-dec dh
-jnz LupTiempo
-
-
-
-SigUsuario:
-
-inc Regis16
-add si,11
-dec dl
-jnz LupUsuario
-
-endm 
 
 GraficarBarras macro
 local fin,lup
@@ -96,24 +14,25 @@ jnz lup
 
 
 
-CargarBarrasTiempo
+
 
 mov CantidadBarras,11
-
-mov ValoresBarras[0],1
+mov ValoresBarras[0],18
 mov ValoresBarras[1],25
-mov ValoresBarras[2],43
-mov ValoresBarras[3],58
+mov ValoresBarras[2],91
+mov ValoresBarras[3],43
 mov ValoresBarras[4],77
-mov ValoresBarras[5],80
-mov ValoresBarras[6],80
-mov ValoresBarras[7],86
-mov ValoresBarras[8],88
-mov ValoresBarras[9],91
+mov ValoresBarras[5],27
+mov ValoresBarras[6],32
+mov ValoresBarras[7],69
+mov ValoresBarras[8],75
+mov ValoresBarras[9],24
 
+;CargarBarrasPunteo
 
-DibujarBarras
+;DibujarBarras
 
+Burbuja
 
 fin:
 endm
@@ -142,6 +61,14 @@ local lup,siguiente
 ;70 De Ancho
 ;20 De Alto
 
+mov ah,6
+mov al,0;Lineas 0 
+mov bh,00001111b;Atributos
+mov ch,0;Comienzo De Linea
+mov cl,0;Comienzo COlumna
+mov dh,24;Fin Del TExto
+mov dl,79;Columna Fin
+int 10h
 
 
 xor si,si
@@ -314,9 +241,199 @@ mov bl,al
 z2:
 
 mov al,cl
+
+push ax
+mov al,bl
+xor ah,ah
+mov bl,2
+div bl
+mov bl,al
+pop ax
+
 sub al,bl
 mov ah,19;Es Al Reves
 sub ah,al
 mov BarraLargo,ah
 add BarraLargo,2
 endm
+
+CargarBarrasPunteo macro
+local SigUsuario,SigPunteo,SigPunteo,LupUsuario,LupPunteo,pasar,cambiar
+xor si,si
+xor bx,bx
+xor ax,ax
+xor cx,cx
+xor dx,dx
+
+Mov Regis16,0
+
+mov dl,20
+LupUsuario:
+
+
+
+cmp InformacionUsuario[si],0
+jz SigUsuario
+
+
+xor bx,bx
+mov dh,20
+LupPunteo:
+
+cmp InformacionPuntos[bx],0
+jz SigPunteo
+cmp InformacionPuntos[bx+1],0
+jz SigPunteo
+
+
+
+mov al,InformacionPuntos[bx+2]
+cmp InformacionUsuario[si+0],al
+jnz SigPunteo
+
+mov al,InformacionPuntos[bx+3]
+cmp InformacionUsuario[si+1],al
+jnz SigPunteo
+
+mov al,InformacionPuntos[bx+4]
+cmp InformacionUsuario[si+2],al
+jnz SigPunteo
+mov al,InformacionPuntos[bx+5]
+cmp InformacionUsuario[si+3],al
+jnz SigPunteo
+
+mov al,InformacionPuntos[bx+6]
+cmp InformacionUsuario[si+4],al
+jnz SigPunteo
+
+
+mov al,InformacionPuntos[bx+7]
+cmp InformacionUsuario[si+5],al
+jnz SigPunteo
+
+mov al,InformacionPuntos[bx+8]
+cmp InformacionUsuario[si+6],al
+jnz SigPunteo
+
+;======================Son Iguales
+push si
+mov si,Regis16
+mov al,InformacionPuntos[bx+0]
+cmp ValoresBarras[si],al
+jc cambiar
+jmp pasar
+cambiar:
+mov ValoresBarras[si],al
+jmp pasar
+pasar:
+pop si
+
+
+SigPunteo:
+add bx,9
+dec dh
+jnz LupPunteo
+
+
+
+SigUsuario:
+
+inc Regis16
+add si,11
+dec dl
+jnz LupUsuario
+
+endm 
+CargarBarrasTiempo macro
+local SigUsuario,SigTiempo,SigPunteo,LupUsuario,LupTiempo,pasar,cambiar
+xor si,si
+xor bx,bx
+xor ax,ax
+xor cx,cx
+xor dx,dx
+
+Mov Regis16,0
+
+mov dl,20
+LupUsuario:
+
+
+
+cmp InformacionUsuario[si],0
+jz SigUsuario
+
+
+xor bx,bx
+mov dh,20
+LupTiempo:
+
+cmp InformacionTiempo[bx],0
+jz SigTiempo
+cmp InformacionTiempo[bx+1],0
+jz SigTiempo
+
+
+
+mov al,InformacionTiempo[bx+2]
+cmp InformacionUsuario[si+0],al
+jnz SigTiempo
+
+mov al,InformacionTiempo[bx+3]
+cmp InformacionUsuario[si+1],al
+jnz SigTiempo
+
+mov al,InformacionTiempo[bx+4]
+cmp InformacionUsuario[si+2],al
+jnz SigTiempo
+
+mov al,InformacionTiempo[bx+5]
+cmp InformacionUsuario[si+3],al
+jnz SigTiempo
+
+
+
+
+mov al,InformacionTiempo[bx+6]
+cmp InformacionUsuario[si+4],al
+jnz SigTiempo
+
+
+mov al,InformacionTiempo[bx+7]
+cmp InformacionUsuario[si+5],al
+jnz SigTiempo
+
+mov al,InformacionTiempo[bx+8]
+cmp InformacionUsuario[si+6],al
+jnz SigTiempo
+
+
+
+;======================Son Iguales
+push si
+mov si,Regis16
+mov al,InformacionTiempo[bx+0]
+cmp ValoresBarras[si],al
+jc cambiar
+jmp pasar
+cambiar:
+mov ValoresBarras[si],al
+jmp pasar
+pasar:
+pop si
+
+
+SigTiempo:
+add bx,9
+dec dh
+jnz LupTiempo
+
+
+
+SigUsuario:
+
+inc Regis16
+add si,11
+dec dl
+jnz LupUsuario
+
+endm 
