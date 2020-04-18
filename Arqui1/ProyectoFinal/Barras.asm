@@ -1,34 +1,75 @@
-CargarBarras macro
-local SigUsuario,SigTiempo,SigPunteo,LupUsuario,LupTiempo,LupPunteo
+CargarBarrasTiempo macro
+local SigUsuario,SigTiempo,SigPunteo,LupUsuario,LupTiempo,pasar,cambiar
 xor si,si
 xor bx,bx
 xor ax,ax
 xor cx,cx
 xor dx,dx
 
+Mov Regis16,0
+
 mov dl,20
 LupUsuario:
 
-
+cmp InformacionUsuario[si],0
+jz SigUsuario
 
 
 xor bx,bx
 mov dh,20
 LupTiempo:
 
+cmp InformacionTiempo[bx],0
+jz SigTiempo
+
+mov bl,InformacionTiempo[bx+2]
+cmp InformacionUsuario[si+0],bl
+jnz SigTiempo
+
+mov bl,InformacionTiempo[bx+3]
+cmp InformacionUsuario[si+1],bl
+jnz SigTiempo
+
+mov bl,InformacionTiempo[bx+4]
+cmp InformacionUsuario[si+2],bl
+jnz SigTiempo
+
+mov bl,InformacionTiempo[bx+5]
+cmp InformacionUsuario[si+3],bl
+jnz SigTiempo
+
+
+
+
+mov bl,InformacionTiempo[bx+6]
+cmp InformacionUsuario[si+4],bl
+jnz SigTiempo
+
+
+mov bl,InformacionTiempo[bx+7]
+cmp InformacionUsuario[si+5],bl
+jnz SigTiempo
+
+mov bl,InformacionTiempo[bx+8]
+cmp InformacionUsuario[si+6],bl
+jnz SigTiempo
+
+;======================Son Iguales
+push si
+mov si,Regis16
+mov al,InformacionTiempo[bx+0]
+cmp ValoresBarras[si],al
+jc cambiar
+jmp pasar
+cambiar:
+mov ValoresBarras,al
+jmp pasar
+pasar:
+pop si
+
+
 SigTiempo:
-dec dh
-jnz LupTiempo
-
-
-
-
-
-xor bx,bx
-mov dh,20
-LupPunteo:
-
-SigTiempo:
+add bx,9
 dec dh
 jnz LupTiempo
 
@@ -36,15 +77,26 @@ jnz LupTiempo
 
 SigUsuario:
 
+inc Regis16
+add si,11
 dec dl
 jnz LupUsuario
 
 endm 
 
 GraficarBarras macro
-local fin
+local fin,lup
 
-CargarBarras
+xor bx,bx
+mov bx,20
+lup:
+mov ValoresBarras[bx],0
+dec bx
+jnz lup
+
+
+
+CargarBarrasTiempo
 
 mov CantidadBarras,11
 

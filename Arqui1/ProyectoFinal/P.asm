@@ -137,7 +137,6 @@ mov   ds,ax          ;ds = ax = saludo
 
 
 
-
 ArchivoCargarUsuario
 CargarPunteo
 CargarTiempo
@@ -146,6 +145,7 @@ GraficarBarras
 
 jmp Exec
 
+ssa:
 
 mov BanderaCargado,0
 
