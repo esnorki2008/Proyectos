@@ -1,3 +1,34 @@
+CalcularMaxBarraLargo macro
+local lupi,pasar
+xor bx,bx
+lupi:
+mov al,ValoresBarras[bx]
+cmp MaxBarraLargo,al
+jz pasar
+jnc pasar
+mov MaxBarraLargo,al
+pasar:
+inc bx
+cmp bx,20
+jnz lupi
+endm
+
+CalcularMaxBarraAncho macro 
+local lupi,pasar
+xor bx,bx
+lupi:
+mov al,ValoresBarras[bx]
+cmp al,0
+jz pasar
+inc MaxBarraAncho
+pasar:
+inc bx
+cmp bx,20
+jnz lupi
+endm
+
+
+
 GraficarBarras macro
 local fin,lup
 
@@ -10,27 +41,29 @@ jnz lup
 
 
 
-
-
-mov CantidadBarras,11
+mov MaxBarraLargo,0
+mov MaxBarraAncho,0
 mov ValoresBarras[0],18
 mov ValoresBarras[1],25
-mov ValoresBarras[2],91
-mov ValoresBarras[3],43
-mov ValoresBarras[4],77
-mov ValoresBarras[5],27
-mov ValoresBarras[6],32
-mov ValoresBarras[7],69
-mov ValoresBarras[8],75
-mov ValoresBarras[9],24
+mov ValoresBarras[2],26
+mov ValoresBarras[3],2
+mov ValoresBarras[4],27
+mov ValoresBarras[5],17
+mov ValoresBarras[6],12
+mov ValoresBarras[7],19
+mov ValoresBarras[8],25
+mov ValoresBarras[9],14
 
-;CargarBarrasPunteo
+CalcularMaxBarraLargo
+CalcularMaxBarraAncho
 
-;DibujarBarras
 
-;Burbuja
-
- 
+DibujarBarras
+mov ah,02;Posicionar Cursor
+mov bh,0
+mov dh,23;PosY
+mov dl,5;PosX
+int 10h
 
 fin:
 endm
@@ -77,15 +110,9 @@ cmp ValoresBarras[si],0
 jz siguiente
 
 ;==================Largo
-mov BarraLargo,2
-mov MaxBarraLargo,91;Acutalizar Este Valor
 CalcularLargo ValoresBarras[si]
 ;==================Anchi
-mov BarraAncho,1
-mov MaxBarraAncho,10;Actualizar Este Valor
 CalcularAncho MaxBarraAncho
-
-
 
 NuevaLinea
 CrearBarra ValX,BarraLargo,BarraAncho,ValoresBarras[si]
@@ -99,6 +126,7 @@ siguiente:
 inc si
 cmp si,20
 jnz lup
+
 
 endm
  

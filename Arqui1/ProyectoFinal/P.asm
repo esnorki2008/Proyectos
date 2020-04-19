@@ -145,7 +145,7 @@ RegistroSort6   dw  ?
 gap db 0
 j db 0
 k db 0
-n db 20
+n db 19
 .code
 
 
@@ -168,9 +168,25 @@ CargarTiempo
 GraficarBarras
 Call CargaValores;Cargar Al Temporal
 EstablecerTiempos
-call QSAscendente
-;call Burbuja
+
+
+;call BurbujaAscendente
+;call BurbujaDescendente
+
+
+;call SSAscendente
 ;call SSDescendente
+
+mov RegistroSort3,0
+mov RegistroSort4,19
+;call QSAscendente
+;mov RegistroSort3,0
+;mov RegistroSort4,19
+call QSDescendente
+
+
+
+
 
 jmp Exec
 
@@ -384,6 +400,10 @@ mov  cx,[di]
 mov  [di], ax
 mov  [si], cx
 
+cmp ax,0
+jz silencio1
+cmp cx,0
+jz silencio1
 
 push ax
 push bx
@@ -407,6 +427,7 @@ push ax
 push bx 
 push cx
 push dx
+push si
 call DesCargaValores
 
 push rr
@@ -430,7 +451,8 @@ pop dx
 pop cx
 pop bx
 pop ax
-
+pop si
+silencio1:
 
 mayor:
 inc  RegistroSort2  
@@ -545,6 +567,12 @@ mov ValoresBarras[si],ah
 mov ValoresBarras[bx],al
 
 
+cmp al,0
+jz Silencio
+cmp ah,0
+jz Silencio
+
+
 push ax
 push bx
 push cx
@@ -577,6 +605,9 @@ SSD1:
 pop mm
 pop rr
 DibujarBarras
+
+Silencio:
+
 mov al,gap
 sub k,al;k=-=gap
 jc SSPasar;k>0
@@ -597,8 +628,110 @@ jnz SSlup1
 DibujarBarras
 ret
 SSDescendente endp
+
+SSAscendente proc
+mov gap,0
+mov j,0
+mov k,0
+xor ax,ax
+xor bx,bx
+mov al,n
+mov bl,2
+div bl
+mov gap,al
+SSlup1:
+mov al,gap
+mov j,al
+SSlup2:
+xor cx,cx
+mov cl,j
+push cx
+mov al,gap
+sub j,al
+jc SSPasar;Evitar Negativos
+mov al,j
+mov k,al
+pop cx
+mov j,cl 
+SSlup3:
+xor bx,bx
+xor si,si
+xor ax,ax
+mov al,k
+add al,gap
+mov si,ax
+mov bl,k
+mov al,ValoresBarras[si]
+cmp al,ValoresBarras[bx]
+jz SSPasar
+jnc SSPasar
+mov al,ValoresBarras[si]
+mov ah,ValoresBarras[bx]
+mov ValoresBarras[si],ah
+mov ValoresBarras[bx],al
+
+cmp al,0
+jz Silencio
+cmp ah,0
+jz Silencio
+
+push ax
+push bx
+push cx
+push dx
+push si
+xor ax,ax
+mov al,ValoresBarras[si]
+mov Regis16,ax
+SonidoBarra Regis16
+mov al,ValoresBarras[bx]
+mov Regis16,ax
+SonidoBarra Regis16
+pop si
+pop dx
+pop cx
+pop bx
+pop ax
+
+;==================Cambiar Posiciones
+push rr
+push mm
+SSD3:
+dec rr
+jz SSD1
+SSD2:
+dec mm
+jnz SSD2 
+jmp SSD3
+SSD1:
+pop mm
+pop rr
+DibujarBarras
+
+Silencio:
+
+mov al,gap
+sub k,al;k=-=gap
+jc SSPasar;k>0
+cmp k,0
+jnz SSlup3;k=0
+SSPasar:
+inc j;j++
+mov al,n
+cmp j,al
+jc SSlup2;j<n
+xor ah,ah
+mov al,gap
+mov bl,2
+div bl
+mov gap,al;gap=gap/2
+cmp gap,0
+jnz SSlup1
+DibujarBarras
+ret
+SSAscendente endp
 ;====================================Metodo Burbuja=========================
-Burbuja proc
+BurbujaDescendente proc
 
 xor ax,ax
 xor bx,bx
@@ -621,6 +754,12 @@ Bcambio:
 mov ah,ValoresBarras[bx+1]
 mov ValoresBarras[bx+1],al
 mov ValoresBarras[bx],ah
+
+cmp al,0
+jz Silencio
+cmp ah,0
+jz Silencio
+
 
 push ax
 push bx
@@ -657,7 +796,13 @@ QSD1:
 pop mm
 pop rr
 
+push si
+push bx
 DibujarBarras
+pop bx
+pop si
+
+Silencio:
 
 
 Bpasar:
@@ -672,7 +817,97 @@ jnz Blup1
 
 DibujarBarras
 ret
-Burbuja endp
+BurbujaDescendente endp
+
+
+BurbujaAscendente proc
+
+xor ax,ax
+xor bx,bx
+xor si,si
+xor dx,dx
+
+
+BAlup1:
+
+xor bx,bx
+BAlup2:
+
+mov al,ValoresBarras[bx]
+cmp al,ValoresBarras[bx+1]
+jc BApasar
+jz BApasar
+
+
+BAcambio: 
+
+mov ah,ValoresBarras[bx+1]
+mov ValoresBarras[bx+1],al
+mov ValoresBarras[bx],ah
+
+cmp al,0
+jz Silencio
+cmp ah,0
+jz Silencio
+
+push ax
+push bx
+push cx
+push dx
+push si
+xor ax,ax
+mov al,ValoresBarras[bx+1]
+mov Regis16,ax
+SonidoBarra Regis16
+mov al,ValoresBarras[bx]
+mov Regis16,ax
+SonidoBarra Regis16
+pop si
+pop dx
+pop cx
+pop bx
+pop ax
+
+
+push rr
+push mm
+
+BAD3:
+dec rr
+jz BAD1
+BAD2:
+dec mm
+jnz BAD2 
+jmp BAD3
+BAD1:
+
+
+pop mm
+pop rr
+
+
+push si
+push bx
+DibujarBarras
+pop bx
+pop si
+
+Silencio:
+
+BApasar:
+
+inc bx
+cmp bx,19
+jc BAlup2
+jnz BAlup2
+
+inc si
+cmp si,20
+jnz BAlup1
+
+DibujarBarras
+ret
+BurbujaAscendente endp
 
 
 
@@ -738,34 +973,10 @@ mov  cx,[di]
 mov  [di], ax
 mov  [si], cx
 
-
-
-
-mayor:
-inc  RegistroSort2  
-mov  ax,RegistroSort4
-cmp  RegistroSort2,ax
-jl   CicloPara
-inc  RegistroSort1
-lea  si,ArregloTemporal
-mov  ax, RegistroSort1
-shl  ax, 1
-push cx
-add  si, ax
-mov  ax, [si] 
-lea  di,ArregloTemporal
-mov  cx, RegistroSort4
-shl  cx, 1  
-add  di, cx
-mov  cx, [di] 
-mov  [di],ax;Cambio Pos entre di y si
-mov  [si],cx  
-mov  ax, RegistroSort1;Retorno Del Siguiente
-pop cx
-
-
-
-
+cmp ax,0
+jz silencio1
+cmp cx,0
+jz silencio1
 
 push ax
 push bx
@@ -812,6 +1023,35 @@ pop dx
 pop cx
 pop bx
 pop ax
+
+silencio1:
+
+
+mayor:
+inc  RegistroSort2  
+mov  ax,RegistroSort4
+cmp  RegistroSort2,ax
+jl   CicloPara
+inc  RegistroSort1
+lea  si,ArregloTemporal
+mov  ax, RegistroSort1
+shl  ax, 1
+push cx
+add  si, ax
+mov  ax, [si] 
+lea  di,ArregloTemporal
+mov  cx, RegistroSort4
+shl  cx, 1  
+add  di, cx
+mov  cx, [di] 
+mov  [di],ax;Cambio Pos entre di y si
+mov  [si],cx  
+mov  ax, RegistroSort1;Retorno Del Siguiente
+pop cx
+
+
+
+
 
 
 PivoFin:

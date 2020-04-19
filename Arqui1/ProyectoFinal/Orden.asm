@@ -78,7 +78,7 @@ EstablecerTiempos macro
 local Cero,Uno,Dos,Tres,Cuatro,Cinco,Seis,Siete,Ocho,Nueve,Fin
 mov mm,2
 Print TituloTiempoBarras
-NuevaLinea
+Espacio
 
 mov ah,1
 int 21h
