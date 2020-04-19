@@ -1,79 +1,141 @@
+EncenderNota macro 
+mov ax,si;Frecuencia
+out 42h,al;
+mov al,ah
+out 42h,al
 
-
-Quicksort macro
-local lup1,lup2,cambio,pasar
-
-xor ax,ax
-xor bx,bx
-xor si,si
-xor dx,dx
-
-
-lup1:
-
-xor bx,bx
-lup2:
-
-mov al,ValoresBarras[bx]
-cmp al,ValoresBarras[bx+1]
-jnc pasar
-jz pasar
-
-cambio: 
-
-mov ah,ValoresBarras[bx+1]
-mov ValoresBarras[bx+1],al
-mov ValoresBarras[bx],ah
-
-pasar:
-
-inc bx
-cmp bx,19
-jnz lup2
-
-inc si
-cmp si,20
-jnz lup1
-
-
-
-DibujarBarras
+mov al,61h
+mov al,11b
+out 61h,al
+mov ah,86h
+mov cx,5h
+mov dx,5h
+int 15h
+nop
 endm
 
 
-Burbuja macro
-local lup1,lup2,cambio,pasar
+ApagarNota macro
+mov al,61h
+out 61h,al
+endm
+
+SonidoBarra macro Regex
+local rojo,azul,amarillo,verde,blanco,salida
+
+cmp Regex,21
+jc rojo
+
+cmp Regex,41
+jc azul
+
+cmp Regex,61
+jc amarillo
+
+cmp Regex,81
+jc verde
+
+jmp blanco
+
+rojo:
+
+mov si,100
+jmp salida
+azul:
+mov si,300
+jmp salida
+amarillo:
+mov si,500
+jmp salida
+verde:
+mov si,700
+jmp salida
+blanco:
+mov si,900
+jmp salida
+salida:
+
+
+EncenderNota
+ApagarNota
+
+endm
+
+CalcularAncho macro Regex
 xor ax,ax
-xor bx,bx
-xor si,si
 xor dx,dx
-
-
-lup1:
-
 xor bx,bx
-lup2:
 
-mov al,ValoresBarras[bx]
-cmp al,ValoresBarras[bx+1]
-jnc pasar
-jz pasar
+mov al,58
+sub al,Regex
+xor ah,ah
+div Regex
 
-cambio: 
+mov BarraAncho,al
+endm
 
-mov ah,ValoresBarras[bx+1]
-mov ValoresBarras[bx+1],al
-mov ValoresBarras[bx],ah
+EstablecerTiempos macro
+local Cero,Uno,Dos,Tres,Cuatro,Cinco,Seis,Siete,Ocho,Nueve,Fin
+mov mm,2
+Print TituloTiempoBarras
+NuevaLinea
 
-pasar:
+mov ah,1
+int 21h
 
-inc bx
-cmp bx,19
-jnz lup2
+cmp al,48
+jz Cero
+cmp al,49
+jz Uno
+cmp al,50
+jz Dos
+cmp al,51
+jz Tres
+cmp al,52
+jz Cuatro
+cmp al,53
+jz Cinco
+cmp al,54
+jz Seis
+cmp al,55
+jz Siete
+cmp al,56
+jz Ocho
+jmp Nueve
 
-inc si
-cmp si,20
-jnz lup1
+Cero:
+mov rr,21
+jmp Fin
+Uno:
+mov rr,19
+jmp Fin
+Dos:
+mov rr,17
+jmp Fin
+Tres:
+mov rr,15
+jmp Fin
+Cuatro:
+mov rr,13
+jmp Fin
+Cinco:
+mov rr,11
+jmp Fin
+Seis:
+mov rr,9
+jmp Fin
+Siete:
+mov rr,7
+jmp Fin
+Ocho:
+mov rr,5
+jmp Fin
+Nueve:
+mov rr,3
+jmp Fin
 
-DibujarBarras
+Fin:
+
+
+
 endm

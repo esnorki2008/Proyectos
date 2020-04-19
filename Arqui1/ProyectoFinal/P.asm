@@ -17,9 +17,11 @@ include Orden.asm
 Titulo1  db "UNIVERSIDAD DE SAN CARLOS DE GUATEMALA",10,13,"$"   
 Titulo2 db "ARQUITECTURA DE COMPUTADORES Y ENSAMBLADORES 1A",10,13,"NOMBRE: ANDHY LIZANDRO SOLIS OSORIO",10,13,"$"
 Titulo3 db "CARNET: 201700886",10,13,"SECCION: A",10,13,"$" 
+
+TituloTiempoBarras db "Ingrese La Velocidad Del Ordenamiento(0-9)","$"
 SinCarga db "No Hay Niveles Cargados","$" 
-Top10Puntos db "    Top 10 Puntos","$"
-Top10Tiempo db "    Top 10 Tiempos","$"
+Top10Puntos db "Top 10 Puntos","$"
+Top10Tiempo db "Top 10 Tiempos","$"
 BanderaCargado db 0
 
 MenuPrincipal1 db "1)Ingresar","$"
@@ -129,23 +131,46 @@ IndexNivel dw 0
 inputi db 50
 mm dw 0
 rr dw 0
-.code
+;=================================================
+ ArregloTemporal dw 20 dup(0)
+;-----------------------------------------
 
+RegistroSort1   dw  ? 
+RegistroSort2   dw  ?
+RegistroSort3   dw  0   
+RegistroSort4   dw  19 
+RegistroSort5   dw  ?
+RegistroSort6   dw  ?
+;=========================================
+gap db 0
+j db 0
+k db 0
+n db 20
+.code
 
 
 
 main  proc
 xor ax,ax
-mov   ax, @data     ;hmm ¿seg?
-mov   ds,ax          ;ds = ax = saludo
+mov   ax, @data ;hmm ¿seg?
+mov   ds,ax  ;ds = ax = saludo
 
-call M
+;xor ah,ah
+;int 16h
+tip:
+
+
+
 
 ArchivoCargarUsuario
 CargarPunteo
 CargarTiempo
 GraficarBarras
-
+Call CargaValores;Cargar Al Temporal
+EstablecerTiempos
+call QSAscendente
+;call Burbuja
+;call SSDescendente
 
 jmp Exec
 
@@ -289,12 +314,145 @@ TopPunteo
 jmp LabelMenuAdmin
 
 
-;cmp al, 'a'          
+;cmp al, 'a'  
 ;jne a 
 Exec:
 NuevaLinea
 .exit
-main  endp              ;Termina proceso
+main  endp  ;Termina proceso
+
+
+QSAscendente proc
+xor ax,ax
+xor bx,bx
+xor cx,cx
+xor dx,dx
+xor si,si
+mov  ax,RegistroSort3 
+cmp  ax,RegistroSort4  
+jnl  mayor1
+call NuevoPivoteAscendente
+mov RegistroSort5, ax
+add ax,1
+mov Regis8,0
+Push Regis16
+push ax
+push RegistroSort4
+mov ax,RegistroSort5
+mov RegistroSort4,ax
+dec RegistroSort4
+call QSAscendente
+pop Regis16
+Push Regis16
+pop RegistroSort4
+pop RegistroSort3 
+call QSAscendente
+pop Regis16 
+mayor1:
+ret
+QSAscendente endp
+
+NuevoPivoteAscendente proc
+lea  si,ArregloTemporal
+mov  ax,RegistroSort4
+shl  ax,1 ;Desplazar
+add  si,ax
+mov  ax,[si]   
+mov  RegistroSort6,ax 
+mov  ax,RegistroSort3
+mov  RegistroSort1,ax
+dec  RegistroSort1
+mov  ax,RegistroSort3
+mov  RegistroSort2,ax
+;===================Inicio Del Ciclo
+CicloPara:
+lea  si,ArregloTemporal
+mov  ax,RegistroSort2
+shl  ax,1
+add  si,ax
+mov  ax,[si]
+cmp  ax,RegistroSort6
+jnl   mayor;Condicional De Cambio
+jz mayor
+
+inc  RegistroSort1
+lea  di,ArregloTemporal
+mov  cx,RegistroSort1
+shl  cx,1
+add  di,cx
+mov  cx,[di]
+mov  [di], ax
+mov  [si], cx
+
+
+push ax
+push bx
+push cx
+push dx
+push si
+xor ax,ax
+mov ax,[si]
+mov Regis16,ax
+SonidoBarra Regis16
+mov ax,[di]
+mov Regis16,ax
+SonidoBarra Regis16
+pop si
+pop dx
+pop cx
+pop bx
+pop ax
+
+push ax
+push bx 
+push cx
+push dx
+call DesCargaValores
+
+push rr
+push mm
+
+QSD3:
+dec rr
+jz QSD1
+QSD2:
+dec mm
+jnz QSD2 
+jmp QSD3
+QSD1:
+
+
+pop mm
+pop rr
+
+DibujarBarras
+pop dx
+pop cx
+pop bx
+pop ax
+
+
+mayor:
+inc  RegistroSort2  
+mov  ax,RegistroSort4
+cmp  RegistroSort2,ax
+jl   CicloPara
+inc  RegistroSort1
+lea  si,ArregloTemporal
+mov  ax, RegistroSort1
+shl  ax, 1
+push cx
+add  si, ax
+mov  ax, [si] 
+lea  di,ArregloTemporal
+mov  cx, RegistroSort4
+shl  cx, 1  
+add  di, cx
+mov  cx, [di] 
+mov  [di],ax;Cambio Pos entre di y si
+mov  [si],cx  
+mov  ax, RegistroSort1;Retorno Del Siguiente
+pop cx
 
 
 
@@ -302,14 +460,364 @@ main  endp              ;Termina proceso
 
 
 
-M proc
-local 
-
-call M
+PivoFin:
 
 ret
-M endp
+NuevoPivoteAscendente endp
+
+DesCargaValores proc
+mov cx,20
+xor si,si
+LupDesCargaValores:
+
+xor ah,ah
+mov bx,si
+shl bx,1
+
+mov ax,ArregloTemporal[bx] 
+
+
+mov ValoresBarras[si],al
+
+inc si
+dec cx
+jnz LupDesCargaValores
+ret
+DesCargaValores endp
+
+CargaValores proc
+mov cx,20
+xor si,si
+LupCargaValores:
+
+xor ah,ah
+mov al,ValoresBarras[si]
+mov bx,si
+shl bx,1
+
+mov ArregloTemporal[bx],ax
+
+inc si
+dec cx
+jnz LupCargaValores
+ret
+CargaValores endp
+;==============================================Shell Sort
+SSDescendente proc
+mov gap,0
+mov j,0
+mov k,0
+xor ax,ax
+xor bx,bx
+mov al,n
+mov bl,2
+div bl
+mov gap,al
+SSlup1:
+mov al,gap
+mov j,al
+SSlup2:
+xor cx,cx
+mov cl,j
+push cx
+mov al,gap
+sub j,al
+jc SSPasar;Evitar Negativos
+mov al,j
+mov k,al
+pop cx
+mov j,cl 
+SSlup3:
+xor bx,bx
+xor si,si
+xor ax,ax
+mov al,k
+add al,gap
+mov si,ax
+mov bl,k
+mov al,ValoresBarras[si]
+cmp al,ValoresBarras[bx]
+jz SSPasar
+jc SSPasar
+mov al,ValoresBarras[si]
+mov ah,ValoresBarras[bx]
+mov ValoresBarras[si],ah
+mov ValoresBarras[bx],al
+
+
+push ax
+push bx
+push cx
+push dx
+push si
+xor ax,ax
+mov al,ValoresBarras[si]
+mov Regis16,ax
+SonidoBarra Regis16
+mov al,ValoresBarras[bx]
+mov Regis16,ax
+SonidoBarra Regis16
+pop si
+pop dx
+pop cx
+pop bx
+pop ax
+
+;==================Cambiar Posiciones
+push rr
+push mm
+SSD3:
+dec rr
+jz SSD1
+SSD2:
+dec mm
+jnz SSD2 
+jmp SSD3
+SSD1:
+pop mm
+pop rr
+DibujarBarras
+mov al,gap
+sub k,al;k=-=gap
+jc SSPasar;k>0
+cmp k,0
+jnz SSlup3;k=0
+SSPasar:
+inc j;j++
+mov al,n
+cmp j,al
+jc SSlup2;j<n
+xor ah,ah
+mov al,gap
+mov bl,2
+div bl
+mov gap,al;gap=gap/2
+cmp gap,0
+jnz SSlup1
+DibujarBarras
+ret
+SSDescendente endp
+;====================================Metodo Burbuja=========================
+Burbuja proc
+
+xor ax,ax
+xor bx,bx
+xor si,si
+xor dx,dx
+
+
+Blup1:
+
+xor bx,bx
+Blup2:
+
+mov al,ValoresBarras[bx]
+cmp al,ValoresBarras[bx+1]
+jnc Bpasar
+jz Bpasar
+
+Bcambio: 
+
+mov ah,ValoresBarras[bx+1]
+mov ValoresBarras[bx+1],al
+mov ValoresBarras[bx],ah
+
+push ax
+push bx
+push cx
+push dx
+push si
+xor ax,ax
+mov al,ValoresBarras[bx+1]
+mov Regis16,ax
+SonidoBarra Regis16
+mov al,ValoresBarras[bx]
+mov Regis16,ax
+SonidoBarra Regis16
+pop si
+pop dx
+pop cx
+pop bx
+pop ax
+
+
+push rr
+push mm
+
+QSD3:
+dec rr
+jz QSD1
+QSD2:
+dec mm
+jnz QSD2 
+jmp QSD3
+QSD1:
+
+
+pop mm
+pop rr
+
+DibujarBarras
+
+
+Bpasar:
+
+inc bx
+cmp bx,19
+jnz Blup2
+
+inc si
+cmp si,20
+jnz Blup1
+
+DibujarBarras
+ret
+Burbuja endp
+
+
+
+QSDescendente proc
+xor ax,ax
+xor bx,bx
+xor cx,cx
+xor dx,dx
+xor si,si
+mov  ax,RegistroSort3 
+cmp  ax,RegistroSort4  
+jnl  mayor1
+call NuevoPivoteDescendente
+mov RegistroSort5, ax
+add ax,1
+mov Regis8,0
+Push Regis16
+push ax
+push RegistroSort4
+mov ax,RegistroSort5
+mov RegistroSort4,ax
+dec RegistroSort4
+call QSDescendente
+pop Regis16
+Push Regis16
+pop RegistroSort4
+pop RegistroSort3 
+call QSDescendente
+pop Regis16 
+mayor1:
+ret
+QSDescendente endp
+
+NuevoPivoteDescendente proc
+lea  si,ArregloTemporal
+mov  ax,RegistroSort4
+shl  ax,1 ;Desplazar
+add  si,ax
+mov  ax,[si]   
+mov  RegistroSort6,ax 
+mov  ax,RegistroSort3
+mov  RegistroSort1,ax
+dec  RegistroSort1
+mov  ax,RegistroSort3
+mov  RegistroSort2,ax
+;===================Inicio Del Ciclo
+CicloPara:
+lea  si,ArregloTemporal
+mov  ax,RegistroSort2
+shl  ax,1
+add  si,ax
+mov  ax,[si]
+cmp  ax,RegistroSort6
+jl   mayor;Condicional De Cambio
+jz mayor
+
+inc  RegistroSort1
+lea  di,ArregloTemporal
+mov  cx,RegistroSort1
+shl  cx,1
+add  di,cx
+mov  cx,[di]
+mov  [di], ax
+mov  [si], cx
+
+
+
+
+mayor:
+inc  RegistroSort2  
+mov  ax,RegistroSort4
+cmp  RegistroSort2,ax
+jl   CicloPara
+inc  RegistroSort1
+lea  si,ArregloTemporal
+mov  ax, RegistroSort1
+shl  ax, 1
+push cx
+add  si, ax
+mov  ax, [si] 
+lea  di,ArregloTemporal
+mov  cx, RegistroSort4
+shl  cx, 1  
+add  di, cx
+mov  cx, [di] 
+mov  [di],ax;Cambio Pos entre di y si
+mov  [si],cx  
+mov  ax, RegistroSort1;Retorno Del Siguiente
+pop cx
+
+
+
+
+
+push ax
+push bx
+push cx
+push dx
+push si
+xor ax,ax
+mov ax,[si]
+mov Regis16,ax
+SonidoBarra Regis16
+mov ax,[di]
+mov Regis16,ax
+SonidoBarra Regis16
+pop si
+pop dx
+pop cx
+pop bx
+pop ax
+
+push ax
+push bx 
+push cx
+push dx
+call DesCargaValores
+
+push rr
+push mm
+
+QSD3A:
+dec rr
+jz QSD1A
+QSD2A:
+dec mm
+jnz QSD2A 
+jmp QSD3A
+QSD1A:
+
+
+pop mm
+pop rr
+
+DibujarBarras
+pop dx
+pop cx
+pop bx
+pop ax
+
+
+PivoFin:
+
+ret
+NuevoPivoteDescendente endp
 
 
 end main
-

@@ -1,7 +1,3 @@
-
-
-
-
 GraficarBarras macro
 local fin,lup
 
@@ -33,7 +29,8 @@ mov ValoresBarras[9],24
 ;DibujarBarras
 
 ;Burbuja
-QuickSort
+
+ 
 
 fin:
 endm
