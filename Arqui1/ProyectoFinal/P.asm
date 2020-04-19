@@ -19,6 +19,7 @@ Titulo2 db "ARQUITECTURA DE COMPUTADORES Y ENSAMBLADORES 1A",10,13,"NOMBRE: ANDH
 Titulo3 db "CARNET: 201700886",10,13,"SECCION: A",10,13,"$" 
 
 TituloTiempoBarras db "Ingrese La Velocidad Del Ordenamiento(0-9)","$"
+Velocidad db 0
 SinCarga db "No Hay Niveles Cargados","$" 
 Top10Puntos db "Top 10 Puntos","$"
 Top10Tiempo db "Top 10 Tiempos","$"
@@ -50,6 +51,7 @@ TItuloLoginMalo db "Credenciales Erroneas","$"
 
 Pausa db "Juego En Pausa Presione, Espacio Para Salir O Presione ESC para Regresar"
 
+ArchivoDita db 400 dup(0)
 
 RellenoUsu db "Usuario:","$"
 RellenoContra db "Contra:","$"
@@ -66,6 +68,8 @@ MaximoNivelTiempo db 0
 ArchivoUsuario db "User.txt",00h
 ArchivoPunteo db "Puntos.txt",00h
 ArchivoTiempo db "Tiempos.txt",00h
+ReportePuntos db "Puntos.rep",00h
+ReporteTiempo db "Tiempos.rep",00h
 ;=============Variables Del Juego=============
 JugadorActual db 12 dup(0)
 PosX db 0
@@ -147,6 +151,7 @@ mm dw 0
 rr dw 0
 ;=================================================
  ArregloTemporal dw 20 dup(0)
+ LetreroFinal db 70 dup(0)
 ;-----------------------------------------
 
 RegistroSort1   dw  ? 
@@ -176,12 +181,12 @@ tip:
 
 
 
-ArchivoCargarUsuario
-CargarPunteo
-CargarTiempo
-GraficarBarras
-Call CargaValores;Cargar Al Temporal
-EstablecerTiempos
+;ArchivoCargarUsuario
+;CargarPunteo
+;CargarTiempo
+;GraficarBarras
+;Call CargaValores;Cargar Al Temporal
+;EstablecerTiempos
 
 
 ;call BurbujaAscendente
@@ -191,18 +196,19 @@ EstablecerTiempos
 ;call SSAscendente
 ;call SSDescendente
 
-mov RegistroSort3,0
-mov RegistroSort4,19
-;call QSAscendente
 ;mov RegistroSort3,0
 ;mov RegistroSort4,19
-call QSDescendente
+;call QSAscendente
+
+;mov RegistroSort3,0
+;mov RegistroSort4,19
+;call QSDescendente
 
 
 
 
 
-jmp Exec
+;jmp Exec
 
 ssa:
 
@@ -380,6 +386,8 @@ call QSAscendente
 pop Regis16 
 mayor1:
 ret
+call DesCargaValores
+DibujarBarras
 QSAscendente endp
 
 NuevoPivoteAscendente proc
@@ -540,6 +548,7 @@ ret
 CargaValores endp
 ;==============================================Shell Sort
 SSDescendente proc
+DibujarBarras
 mov gap,0
 mov j,0
 mov k,0
@@ -644,6 +653,7 @@ ret
 SSDescendente endp
 
 SSAscendente proc
+DibujarBarras
 mov gap,0
 mov j,0
 mov k,0
@@ -746,7 +756,7 @@ ret
 SSAscendente endp
 ;====================================Metodo Burbuja=========================
 BurbujaDescendente proc
-
+DibujarBarras
 xor ax,ax
 xor bx,bx
 xor si,si
@@ -835,6 +845,7 @@ BurbujaDescendente endp
 
 
 BurbujaAscendente proc
+DibujarBarras
 
 xor ax,ax
 xor bx,bx
@@ -952,6 +963,8 @@ pop RegistroSort3
 call QSDescendente
 pop Regis16 
 mayor1:
+call DesCargaValores
+DibujarBarras
 ret
 QSDescendente endp
 
@@ -1014,6 +1027,7 @@ push ax
 push bx 
 push cx
 push dx
+push si
 call DesCargaValores
 
 push rr
@@ -1033,6 +1047,7 @@ pop mm
 pop rr
 
 DibujarBarras
+pop si
 pop dx
 pop cx
 pop bx

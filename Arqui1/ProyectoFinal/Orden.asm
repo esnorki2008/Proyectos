@@ -83,6 +83,8 @@ Espacio
 mov ah,1
 int 21h
 
+mov Velocidad,al
+
 cmp al,48
 jz Cero
 cmp al,49

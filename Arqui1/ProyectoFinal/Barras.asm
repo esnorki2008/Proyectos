@@ -95,6 +95,15 @@ jz salir
 jnz aum
 aum:
 inc ActualTiempo
+xor ax,ax
+mov ax,ActualTiempo
+mov bl,10
+div bl
+add al,48
+add ah,48
+mov LetreroFinal[36],al
+mov LetreroFinal[37],ah
+
 jmp salir
 salir:
 mov Hora,ch
@@ -107,7 +116,14 @@ DibujarBarras macro
 local lup,siguiente
 ;70 De Ancho
 ;20 De Alto
-ActuTiempo
+push ax
+push bx
+push cx
+push dx
+push si
+push di
+
+
 
 mov ah,6
 mov al,0;Lineas 0 
@@ -117,6 +133,10 @@ mov cl,0;Comienzo COlumna
 mov dh,24;Fin Del TExto
 mov dl,79;Columna Fin
 int 10h
+
+
+ActuTiempo
+EscribirLetreroFinal
 
 
 xor si,si
@@ -144,6 +164,12 @@ inc si
 cmp si,20
 jnz lup
 
+pop di
+pop si
+pop dx
+pop cx
+pop bx
+pop ax
 
 endm
  
