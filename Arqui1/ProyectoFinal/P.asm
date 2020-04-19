@@ -107,6 +107,20 @@ BarraLargo db 0
 MaxBarraLargo db 0
 MaxBarraAncho db 0
 
+
+TituloOrden1 db "Seleccion el Tipo De Ordenamiento Que Desea Usar","$"
+TituloOrden2 db "1)Ordenamiento Bubblesort","$"
+TituloOrden3 db "2)Ordenamiento Quicksort","$"
+TituloOrden4 db "3)Ordenamiento Shellsort","$"
+
+TituloMovimiento1 db "Orientacion Del Ordenamiento","$"
+TituloMovimiento2 db "1)Descendente","$"
+TituloMovimiento3 db "2)Ascendente","$"
+
+
+TipoOrden db 0
+Orientacion db 0
+
 TecladoTemporal db 10 dup (0)
 ;=============Almacenamiento Temporal===================
 InformacionUsuario db 1100 dup (0)

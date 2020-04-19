@@ -13,7 +13,7 @@ mov bh,0
 mov dh,0;Fila
 mov dl,0;Columna
 int 10h
-
+ArchivoCargarUsuario
 CargarPunteo
 
 
@@ -68,8 +68,12 @@ int 21h
 cmp al,32
 jnz barra
 
+
+
+;CargarPunteo
 CargarBarrasPunteo
 GraficarBarras
+
 EscribirTopPuntos
 
 barra2:
@@ -77,7 +81,127 @@ mov ah,1
 int 21h
 cmp al,32
 jnz barra2
+
+InicializarOdenamiento
+
 endm
+
+
+LLamarOrdenamiento macro
+local Burbuja,Quicksrot,Shellsort,BAsc,BDesc,QAsc,QDesc,SAsc,SDesc,Saliq
+
+mov ActualTiempo,0
+MOV AH,2CH
+INT 21H
+mov Hora,CH
+mov Minuto,CL
+mov Segundo,DH
+
+
+cmp TipoOrden,0
+jz Burbuja
+cmp TipoOrden,1
+jz Quicksrot
+jmp Shellsort
+Burbuja:
+cmp Orientacion,1
+jz BAsc
+jmp BDesc
+
+BAsc:
+call BurbujaAscendente
+jmp Saliq
+BDesc:
+call BurbujaDescendente
+jmp Saliq
+
+
+Quicksrot:
+cmp Orientacion,1
+jz QAsc
+jmp QDesc
+QAsc:
+call QSAscendente
+jmp Saliq
+QDesc:
+call QSDescendente
+jmp Saliq
+
+
+Shellsort:
+cmp Orientacion,1
+jz SAsc
+jmp SDesc
+SAsc:
+call SSAscendente
+jmp Saliq
+SDesc:
+call SSDescendente
+jmp Saliq
+
+Saliq:
+endm
+
+InicializarOdenamiento macro
+local Obs,Oqs,Oss,OSig,desce,ascen,OrSig
+NuevaLinea
+Print TituloOrden1
+NuevaLinea
+Print TituloOrden2
+NuevaLinea
+Print TituloOrden3
+NuevaLinea
+Print TituloOrden4
+NuevaLinea
+mov ah,1
+int 21h
+
+cmp al,49
+jz Obs
+cmp al,50
+jz Oqs
+cmp al,51
+jz Oss
+
+Obs:
+mov TipoOrden,0
+jmp OSig
+Oqs:
+mov TipoOrden,1
+jmp OSig
+Oss:
+mov TipoOrden,2
+jmp OSig
+OSig:
+
+EstablecerTiempos
+
+NuevaLinea
+Print TituloMovimiento1
+NuevaLinea
+Print TituloMovimiento2
+NuevaLinea
+Print TituloMovimiento3
+mov ah,1
+int 21h
+
+cmp al,49
+jz desce
+cmp al,50
+jz ascen
+
+
+desce:
+mov Orientacion,0
+jmp OrSig
+ascen:
+mov Orientacion,1
+jmp OrSig
+OrSig:
+
+LLamarOrdenamiento
+endm
+
 
 TopTiempo macro 
 local lup,barra,barra2
@@ -95,6 +219,7 @@ mov dh,0;Fila
 mov dl,0;Columna
 int 10h
 
+ArchivoCargarUsuario
 CargarTiempo
 
 
@@ -151,8 +276,11 @@ int 21h
 cmp al,32
 jnz barra
 
+
+;CargarTiempo
 CargarBarrasTiempo
 GraficarBarras
+
 EscribirTopTiempo
 
 barra2:
@@ -161,6 +289,7 @@ int 21h
 cmp al,32
 jnz barra2
 
+InicializarOdenamiento
 endm
 
 EscribirTopPuntos macro 

@@ -30,35 +30,25 @@ endm
 
 
 GraficarBarras macro
-local fin,lup
-
-xor bx,bx
-mov bx,20
-lup:
-mov ValoresBarras[bx],0
-dec bx
-jnz lup
-
-
-
+local fin
 mov MaxBarraLargo,0
 mov MaxBarraAncho,0
-mov ValoresBarras[0],18
-mov ValoresBarras[1],25
-mov ValoresBarras[2],26
-mov ValoresBarras[3],2
-mov ValoresBarras[4],27
-mov ValoresBarras[5],17
-mov ValoresBarras[6],12
-mov ValoresBarras[7],19
-mov ValoresBarras[8],25
-mov ValoresBarras[9],14
+
+;mov ValoresBarras[0],18
+;mov ValoresBarras[1],25
+;mov ValoresBarras[2],26
+;mov ValoresBarras[3],2
+;mov ValoresBarras[4],27
+;mov ValoresBarras[5],17
+;mov ValoresBarras[6],12
+;mov ValoresBarras[8],25
+;mov ValoresBarras[9],14
 
 CalcularMaxBarraLargo
 CalcularMaxBarraAncho
 
 
-DibujarBarras
+DibujarBarrasSolas
 mov ah,02;Posicionar Cursor
 mov bh,0
 mov dh,23;PosY
@@ -87,10 +77,37 @@ endm
 
 
 
+ActuTiempo macro
+local aum,salir,M,S
+MOV AH,2CH
+INT 21H
+
+cmp Hora,CH
+jz M
+jnz aum 
+M:
+cmp Minuto,CL
+jz S
+jnz aum
+S:
+cmp Segundo,DH
+jz salir
+jnz aum
+aum:
+inc ActualTiempo
+jmp salir
+salir:
+mov Hora,ch
+mov Minuto,cl
+mov Segundo,dh
+endm
+
+
 DibujarBarras macro
 local lup,siguiente
 ;70 De Ancho
 ;20 De Alto
+ActuTiempo
 
 mov ah,6
 mov al,0;Lineas 0 
@@ -284,7 +301,15 @@ add BarraLargo,2
 endm
 
 CargarBarrasPunteo macro
-local SigUsuario,SigPunteo,SigPunteo,LupUsuario,LupPunteo,pasar,cambiar
+local SigUsuario,SigPunteo,SigPunteo,LupUsuario,LupPunteo,pasar,cambiar,lup
+
+xor bx,bx
+mov bx,20
+lup:
+mov ValoresBarras[bx],0
+dec bx
+jnz lup
+
 xor si,si
 xor bx,bx
 xor ax,ax
@@ -371,7 +396,15 @@ jnz LupUsuario
 
 endm 
 CargarBarrasTiempo macro
-local SigUsuario,SigTiempo,SigPunteo,LupUsuario,LupTiempo,pasar,cambiar
+local SigUsuario,SigTiempo,SigPunteo,LupUsuario,LupTiempo,pasar,cambiar,lup
+
+xor bx,bx
+mov bx,20
+lup:
+mov ValoresBarras[bx],0
+dec bx
+jnz lup
+
 xor si,si
 xor bx,bx
 xor ax,ax
@@ -463,3 +496,47 @@ dec dl
 jnz LupUsuario
 
 endm 
+
+DibujarBarrasSolas macro
+local lup,siguiente
+;70 De Ancho
+;20 De Alto
+
+
+mov ah,6
+mov al,0;Lineas 0 
+mov bh,00001111b;Atributos
+mov ch,0;Comienzo De Linea
+mov cl,0;Comienzo COlumna
+mov dh,24;Fin Del TExto
+mov dl,79;Columna Fin
+int 10h
+
+
+xor si,si
+mov ValX,4
+lup:
+
+cmp ValoresBarras[si],0
+jz siguiente
+
+;==================Largo
+CalcularLargo ValoresBarras[si]
+;==================Anchi
+CalcularAncho MaxBarraAncho
+
+NuevaLinea
+CrearBarra ValX,BarraLargo,BarraAncho,ValoresBarras[si]
+EscribirValorBarra ValoresBarras[si],ValX
+
+mov al,BarraAncho
+add ValX,al
+add ValX,2
+
+siguiente:
+inc si
+cmp si,20
+jnz lup
+
+
+endm
