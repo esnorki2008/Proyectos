@@ -1,3 +1,102 @@
+ReporteTopTiempo macro
+local lup,limp
+xor si,si
+limp:
+
+mov ArchivoDIta[si],32
+
+inc si
+cmp si,400
+jnz limp
+
+xor si,si
+xor bx,bx
+xor ax,ax
+xor cx,cx
+lup:
+inc ax
+push bx
+push ax
+
+xor ah,ah
+mov cl,10
+div cl
+add al,48
+add ah,48
+mov ArchivoDIta[bx+0],al
+mov ArchivoDIta[bx+1],ah
+mov ArchivoDIta[bx+2],32
+mov ArchivoDIta[bx+3],32
+mov ArchivoDIta[bx+4],32
+
+mov al,InformacionTiempo[si+2]
+LimpiarAl
+mov ArchivoDIta[bx+5],al
+mov al,InformacionTiempo[si+3]
+LimpiarAl
+mov ArchivoDIta[bx+6],al
+mov al,InformacionTiempo[si+4]
+LimpiarAl
+mov ArchivoDIta[bx+7],al
+mov al,InformacionTiempo[si+5]
+LimpiarAl
+mov ArchivoDIta[bx+8],al
+mov al,InformacionTiempo[si+6]
+LimpiarAl
+mov ArchivoDIta[bx+9],al
+mov al,InformacionTiempo[si+7]
+LimpiarAl
+mov ArchivoDIta[bx+10],al
+mov al,InformacionTiempo[si+8]
+LimpiarAl
+mov ArchivoDIta[bx+11],al
+
+mov ArchivoDIta[bx+12],32
+mov ArchivoDIta[bx+13],32
+mov ArchivoDIta[bx+14],32
+
+mov al,InformacionTiempo[si+1]
+LimpiarAl
+mov ArchivoDIta[bx+15],al
+
+
+mov ArchivoDIta[bx+16],32
+mov ArchivoDIta[bx+17],32
+mov ArchivoDIta[bx+18],32
+
+xor ah,ah
+mov al,InformacionTiempo[si+0]
+mov cl,10
+div cl
+
+add al,48
+add ah,48
+mov ArchivoDIta[bx+19],al
+mov ArchivoDIta[bx+20],ah
+mov ArchivoDIta[bx+21],13
+
+pop ax
+pop bx
+add bx,22
+add si,9
+cmp si,90
+jnz lup
+
+
+
+CreateFile ReporteTiempo
+OpenFileS ReporteTiempo,handle
+WriteFile handle,ArchivoDIta,300
+CloseFile handle
+
+endm
+LimpiarAl macro
+local salida
+cmp al,0
+jnz salida
+mov al,32
+salida:
+endm
 ReporteTopPunteo macro
 local lup,limp
 xor si,si
@@ -30,18 +129,25 @@ mov ArchivoDIta[bx+3],32
 mov ArchivoDIta[bx+4],32
 
 mov al,InformacionPuntos[si+2]
+LimpiarAl
 mov ArchivoDIta[bx+5],al
 mov al,InformacionPuntos[si+3]
+LimpiarAl
 mov ArchivoDIta[bx+6],al
 mov al,InformacionPuntos[si+4]
+LimpiarAl
 mov ArchivoDIta[bx+7],al
 mov al,InformacionPuntos[si+5]
+LimpiarAl
 mov ArchivoDIta[bx+8],al
 mov al,InformacionPuntos[si+6]
+LimpiarAl
 mov ArchivoDIta[bx+9],al
 mov al,InformacionPuntos[si+7]
+LimpiarAl
 mov ArchivoDIta[bx+10],al
 mov al,InformacionPuntos[si+8]
+LimpiarAl
 mov ArchivoDIta[bx+11],al
 
 mov ArchivoDIta[bx+12],32
@@ -49,6 +155,7 @@ mov ArchivoDIta[bx+13],32
 mov ArchivoDIta[bx+14],32
 
 mov al,InformacionPuntos[si+1]
+LimpiarAl
 mov ArchivoDIta[bx+15],al
 
 
@@ -411,6 +518,8 @@ jnz lup
 
 mov ah,1
 int 21h
+
+ReporteTopTiempo
 
 barra:
 mov ah,1
