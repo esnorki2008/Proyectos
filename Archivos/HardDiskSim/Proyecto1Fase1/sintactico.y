@@ -319,7 +319,7 @@ CAMBIARPROP:CAMBIARPROP r {$1->R="1"; $$=$1;}
     |chownp{$$= new STRSCHOW();}
 ;
 
-FIN:FIN name igual TERMIIDENTI{$1->Name=$4; $$=$1; $$->NameB=true;}
+FIN:FIN name igual TERMIDIRECC{$1->Name=$4; $$=$1; $$->NameB=true;}
     |FIN path igual TERMIDIRECC{$1->Path=$4; $$=$1; $$->PathB=true;}
     |find{$$=new STRSFIN();}
 ;

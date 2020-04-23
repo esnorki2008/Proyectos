@@ -233,7 +233,7 @@ void Reports::ReporteFile(const char *Path, const char *Contenido){
     std::string Salida=Contenido;
     if(Fun->IF(Salida,""))
     {
-        std::cout<<"Error No Se Encontro Contenido O El Archivo Que Se BUscaba Reporte LS"<<std::endl;
+        std::cout<<"Error No Se Encontro Contenido O El Archivo Que Se BUscaba Reporte File"<<std::endl;
         return;
     }
 
@@ -836,7 +836,7 @@ void Reports::Reportebm_Inodo(int Inicio, const char *Disco, const char *Path){
         }
     }
     std::string Pth=Path;
-    Pth=".txt";
+    Pth=Pth+".txt";
     fclose(f);
     char Cop[1+Salida.length()];
     strcpy(Cop,Salida.c_str());
@@ -878,7 +878,7 @@ void Reports::Reportebm_Bloque(int Inicio, const char *Disco, const char *Path){
     char Cop[1+Salida.length()];
     strcpy(Cop,Salida.c_str());
     std::string Pth=Path;
-    Pth=".txt";
+    Pth=Pth+".txt";
     f=fopen(Pth.data(),"w");
     if (!f){
         return ;

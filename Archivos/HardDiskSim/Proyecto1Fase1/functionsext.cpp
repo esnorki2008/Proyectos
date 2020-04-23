@@ -435,11 +435,15 @@ void FunctionsExt::LiberarBloque(SPB *Super, const char *PathReal,long Comienzo)
 }
 //Busqueda
 long FunctionsExt::BuscarPadre(long Comienzo, std::string PathVirtual, const char *PathReal){
-    if(IF(PathVirtual,"/"))
+    std::cout<<PathVirtual<<std::endl;
+
+    if(IF(PathVirtual,"/") || CantidadBarras(PathVirtual)==1 || CantidadBarras(PathVirtual)==0)
         return Comienzo;
+
     long Num=BuscarInodos(Comienzo,PathVirtual,PathReal);
     if(Num==-2){
-        std::cout<<"OPTI"<<std::endl;
+
+        //std::cout<<"OPTI"<<std::endl;
         return-1;
     }
     return Num;
@@ -866,6 +870,7 @@ long FunctionsExt::BuscarActual(long Comienzo, std::string PathVirtual, const ch
         return Comienzo;
     //PathVirtual=PathVirtual.substr(1);
     long Busq=BuscarPadre(Comienzo,(PathVirtual),PathReal);
+
     if(Busq==-1){
         std::cout<<"No Se Encontro La Carpeta Padre"<<std::endl;
         return Busq;

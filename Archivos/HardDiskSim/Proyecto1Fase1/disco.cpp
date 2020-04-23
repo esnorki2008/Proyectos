@@ -1022,10 +1022,10 @@ void Disco::Reporte(const char *ID, const char *Path, const char *Tipo,const cha
                     IUG PermisoFalso;
                     PermisoFalso.Gid=1;
                     PermisoFalso.Uid=1;
-                    Contenido=LeerArchivoParticion(ID,Path,PermisoFalso);
+                    Contenido=LeerArchivoParticion(ID,Ruta,PermisoFalso);
 
 
-                    R->ReporteFile(Ruta,Contenido.data());
+                    R->ReporteFile(Path,Contenido.data());
 
                 }else if(Fun->IF(Tipo,"ls")){
                     if(Fun->IF(Ruta,""))

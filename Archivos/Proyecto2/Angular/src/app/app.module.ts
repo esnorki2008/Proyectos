@@ -8,7 +8,10 @@ import { AdminComponent } from './admin/admin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { MaterialModule } from './material/material.module';
 import { InicioComponent } from './inicio/inicio.component';
-import {LoginService} from './services/login.service'
+import {LoginService} from './services/login.service';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { TiendaComponent } from './tienda/tienda.component';
+import { BusquedaComponent } from './tienda/busqueda/busqueda.component'
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import {LoginService} from './services/login.service'
     LoginComponent,
     HomeComponent,
     AdminComponent,
-    InicioComponent
+    InicioComponent,
+    UsuarioComponent,
+    TiendaComponent,
+    BusquedaComponent
   ],
   imports: [
     MaterialModule,

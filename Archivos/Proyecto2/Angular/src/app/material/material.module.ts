@@ -7,11 +7,13 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatTreeModule} from '@angular/material/tree'; 
+import {MatIconModule} from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator';
 const MaterialComponents=[
   MatButtonModule,MatToolbarModule,MatDividerModule,MatListModule,
   MatDividerModule,MatFormFieldModule,MatDialogModule,MatInputModule,
-  MatSelectModule
+  MatSelectModule,MatTreeModule,MatIconModule,MatPaginatorModule
 ]
 
 @NgModule({
