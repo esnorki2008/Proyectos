@@ -1,0 +1,109 @@
+<div class="FormLogin">
+    <h1 class ="Titu">Registrar </h1>
+    <div >
+       
+    <span>   
+    <H2>Nombre</H2>  
+    <mat-form-field appearance="fill" class="Txt">
+        <mat-label>Nombre Para Las Entregas Fisicas</mat-label>
+            <input matInput [(ngModel)]="NuevoUsuario.Nombre"   type="text" >
+    </mat-form-field>
+    </span>  
+        
+    </div>
+    
+    
+    <div>
+    <H2>Apellidos</H2>    
+    <span>
+    <mat-form-field appearance="fill" class="Txt">
+        <mat-label>Apellido Para Las Entregas Fisicas</mat-label>
+      <input matInput [(ngModel)]="NuevoUsuario.Apellido"   type="text">
+    </mat-form-field>
+    </span>
+    </div >
+
+
+    <div>
+        <H2>Clave De Acceso</H2>    
+        <span>
+        <mat-form-field appearance="fill" class="Txt">
+          <input matInput [(ngModel)]="NuevoUsuario.Clave">
+        </mat-form-field>
+        </span>
+        </div >
+    
+        <div>
+            <H2>Correo</H2>    
+            <span>
+            <mat-form-field appearance="fill" class="Txt">
+                <mat-label>Se Comprobara La Direccion</mat-label>
+              <input matInput [(ngModel)]="NuevoUsuario.Correo">
+            </mat-form-field>
+            </span>
+        </div >
+
+        <div>
+            <H2>Telefono</H2>    
+            <span>
+            <mat-form-field appearance="fill" class="Txt">
+              <input matInput [(ngModel)]="NuevoUsuario.Telefono">
+            </mat-form-field>
+            </span>
+        </div >
+
+        <div>
+            <H2>Genero</H2>    
+            <span>
+            <mat-form-field appearance="fill" class="Txt">
+              <input matInput [(ngModel)]="NuevoUsuario.Genero">
+            </mat-form-field>
+            </span>
+        </div >
+
+        <div>
+            <H2>Fecha De Nacimiento</H2>    
+            <span>
+            <mat-form-field appearance="fill" class="Txt">
+              <input matInput [(ngModel)]="NuevoUsuario.Fecha">
+            </mat-form-field>
+            </span>
+        </div >
+
+
+        <mat-form-field>
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          
+        <div>
+            <H2>Direccion</H2>    
+            <span>
+            <mat-form-field appearance="fill" class="Txt">
+              <mat-label>Donde Se Realizan Entregas</mat-label>
+              <input matInput [(ngModel)]="NuevoUsuario.Direccion">
+            </mat-form-field>
+            </span>
+        </div >
+    
+        <table class="btnSignIn">
+            <tr >    
+            <td class="btnSignIn">
+                <span ><button mat-raised-button (click)="Regresar()" >Regresar</button></span>
+            </td>
+            <td class="btnSignIn">
+                <span ><button mat-raised-button (click)="Registrar()" >Confirmar Registro </button></span>
+            </td>
+        </tr>
+        </table>
+      
+    </div>
+
+    <input [matDatepicker]="basicDatepicker">
+    <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+    <mat-datepicker #basicDatepicker></mat-datepicker>
+      
+
+    <p></p>

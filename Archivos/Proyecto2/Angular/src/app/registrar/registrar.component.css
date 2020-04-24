@@ -1,0 +1,25 @@
+.btnSignIn{
+    width: 100%;
+}
+.Txt{
+    width: 100%;
+}
+.Titu{
+    text-align: center;
+}
+.FormLogin{
+    color: black;
+    margin-top: 10%;
+    align-content: center;
+    margin-left: 35%;
+    margin-right: 35%;
+    border-left: 10px;
+    border-right: 10px;
+    border-bottom: 10px;
+    width: 30%;
+    border-radius: 10px;
+    border-color: black;
+    border-style: groove;
+   
+    
+}

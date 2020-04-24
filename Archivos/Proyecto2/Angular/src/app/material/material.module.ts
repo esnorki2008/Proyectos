@@ -10,10 +10,15 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTreeModule} from '@angular/material/tree'; 
 import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 const MaterialComponents=[
   MatButtonModule,MatToolbarModule,MatDividerModule,MatListModule,
   MatDividerModule,MatFormFieldModule,MatDialogModule,MatInputModule,
-  MatSelectModule,MatTreeModule,MatIconModule,MatPaginatorModule
+  MatSelectModule,MatTreeModule,MatIconModule,MatPaginatorModule,MatTableModule,
+  MatCardModule,MatDatepickerModule
 ]
 
 @NgModule({

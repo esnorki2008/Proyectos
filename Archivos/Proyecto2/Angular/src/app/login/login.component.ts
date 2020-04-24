@@ -19,4 +19,7 @@ export class LoginComponent implements OnInit {
   Regresar():void{
     window.location.href = '/home';
   }
+  Registrar():void{
+    window.location.href = '/registrar';
+  }
 }

@@ -11,7 +11,10 @@ import { InicioComponent } from './inicio/inicio.component';
 import {LoginService} from './services/login.service';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { TiendaComponent } from './tienda/tienda.component';
-import { BusquedaComponent } from './tienda/busqueda/busqueda.component'
+import { BusquedaComponent } from './tienda/busqueda/busqueda.component';
+import { RegistrarComponent } from './registrar/registrar.component'
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,13 +25,17 @@ import { BusquedaComponent } from './tienda/busqueda/busqueda.component'
     InicioComponent,
     UsuarioComponent,
     TiendaComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    RegistrarComponent
   ],
   imports: [
     MaterialModule,
     BrowserModule,
     BrowserAnimationsModule,    
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [
     LoginService
