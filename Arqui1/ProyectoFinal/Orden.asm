@@ -76,7 +76,7 @@ endm
 
 EstablecerTiempos macro
 local Cero,Uno,Dos,Tres,Cuatro,Cinco,Seis,Siete,Ocho,Nueve,Fin
-mov mm,2
+mov mm,1
 Print TituloTiempoBarras
 Espacio
 

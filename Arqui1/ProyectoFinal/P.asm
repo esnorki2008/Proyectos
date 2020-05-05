@@ -18,6 +18,9 @@ Titulo1  db "UNIVERSIDAD DE SAN CARLOS DE GUATEMALA",10,13,"$"
 Titulo2 db "ARQUITECTURA DE COMPUTADORES Y ENSAMBLADORES 1A",10,13,"NOMBRE: ANDHY LIZANDRO SOLIS OSORIO",10,13,"$"
 Titulo3 db "CARNET: 201700886",10,13,"SECCION: A",10,13,"$" 
 
+APunteo db "Punteo Alcanzado: ","$"
+ATiempo db "Tiempo Alcanzado: ","$"
+
 TituloTiempoBarras db "Ingrese La Velocidad Del Ordenamiento(0-9)","$"
 Velocidad db 0
 SinCarga db "No Hay Niveles Cargados","$" 
@@ -333,9 +336,14 @@ cmp al,'2'
 jz LabelTopTiempos
 cmp al,'3'
 jz LabelPrincipal
+cmp al,'4'
+jz LabelPrincipalDefinido
 jmp LabelMenuAdmin
 
-
+LabelPrincipalDefinido:
+NuevaLinea
+GenericoTop
+jmp LabelMenuAdmin
 
 
 LabelTopTiempos:
@@ -929,6 +937,13 @@ jnz BAlup2
 inc si
 cmp si,20
 jnz BAlup1
+
+xor dx,dx
+mov ax,5
+mov bx,5
+mul bx
+
+
 
 DibujarBarras
 ret

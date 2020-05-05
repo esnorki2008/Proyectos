@@ -181,11 +181,49 @@ CargarTiempo
 NuevoTiempo
 OrdenarTiempo
 GuardarTiempo
+;=================Mostrar Maximus
+
+Print ATiempo
+Print16 MaximoTiempo
+NuevaLinea
+Print APunteo
+Print16 MaximoPunteo
+
+mov ah,1
+int 21h
+
+mov ah,6
+mov al,0;Lineas 0 
+mov bh,00001111b;Atributos
+mov ch,0;Comienzo De Linea
+mov cl,0;Comienzo COlumna
+mov dh,24;Fin Del TExto
+mov dl,79;Columna Fin
+int 10h
+mov ah,2h;Posicionar Cursor
+mov bh,0
+mov dh,0;Fila
+mov dl,0;Columna
+int 10h
+endm
+
+DelimitarMax macro
+local finis,MT,MP
+cmp MaximoTiempo,99
+jc MP
+mov MaximoTiempo,99
+MP:
+cmp MaximoPunteo,99
+jc MT
+mov MaximoPunteo,99
+MT:
+finis:
 endm
 
 Maximos macro
 local Tiempo,Pun
 
+DelimitarMax
 
 mov ax,ActualTiempo
 cmp ax,MaximoTiempo

@@ -86,6 +86,8 @@ jnz lup
 
 CreateFile ReporteTiempo
 OpenFileS ReporteTiempo,handle
+WriteFile handle,Top10Tiempo,14
+WriteFile handle,Regis8,1
 WriteFile handle,ArchivoDIta,300
 CloseFile handle
 
@@ -185,6 +187,8 @@ jnz lup
 
 CreateFile ReportePuntos
 OpenFileS ReportePuntos,handle
+WriteFile handle,Top10Puntos,12
+WriteFile handle,Regis8,1
 WriteFile handle,ArchivoDIta,300
 CloseFile handle
 
@@ -207,7 +211,7 @@ mov dl,0;Columna
 int 10h
 ArchivoCargarUsuario
 CargarPunteo
-
+OrdenarPunteo
 
 
 Print Top10Puntos
@@ -255,7 +259,7 @@ jnz lup
 
 xor si,si
 limp:
-mov ValoresBarras,0
+mov ValoresBarras[si],0
 inc si
 cmp si,20
 jnz limp
@@ -470,7 +474,7 @@ int 10h
 
 ArchivoCargarUsuario
 CargarTiempo
-
+OrdenarTiempo
 
 
 Print Top10Tiempo
@@ -529,7 +533,7 @@ jnz barra
 
 xor si,si
 limp:
-mov ValoresBarras,0
+mov ValoresBarras[si],0
 inc si
 cmp si,20
 jnz limp
@@ -547,6 +551,21 @@ cmp al,32
 jnz barra2
 
 InicializarOdenamiento
+endm
+
+GenericoTop macro
+mov ValoresBarras[0],8
+mov ValoresBarras[1],14
+mov ValoresBarras[2],50
+mov ValoresBarras[3],35
+mov ValoresBarras[4],27
+mov ValoresBarras[5],16
+mov ValoresBarras[6],74
+mov ValoresBarras[7],3
+mov ValoresBarras[8],4
+GraficarBarras
+InicializarOdenamiento
+
 endm
 
 EscribirTopPuntos macro 
