@@ -1,0 +1,2111 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> inicio
+Rule 1     inicio -> etiquetas
+Rule 2     etiquetas -> etiquetas etiqueta
+Rule 3     etiquetas -> etiqueta
+Rule 4     etiqueta -> IDENTIFICADOR ideti instrucciones
+Rule 5     ideti -> DOBLEPUNTO
+Rule 6     etiqueta -> MAIN ideti instrucciones
+Rule 7     instrucciones -> instrucciones instruccion
+Rule 8     instrucciones -> <empty>
+Rule 9     instruccion -> EXIT PUNTOCOMA
+Rule 10    instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA
+Rule 11    instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA
+Rule 12    instruccion -> DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA
+Rule 13    arra -> CORA expresion CORC arra
+Rule 14    arra -> <empty>
+Rule 15    instruccion -> GOTO IDENTIFICADOR PUNTOCOMA
+Rule 16    instruccion -> IF expresion instruccion
+Rule 17    expresion -> valor MAS valor
+Rule 18    expresion -> valor MENOS valor
+Rule 19    expresion -> valor POR valor
+Rule 20    expresion -> valor DIVIDIDO valor
+Rule 21    expresion -> valor MOD valor
+Rule 22    expresion -> valor ANDB valor
+Rule 23    expresion -> valor ORB valor
+Rule 24    expresion -> valor XORB valor
+Rule 25    expresion -> valor SHIFTD valor
+Rule 26    expresion -> valor SHIFTI valor
+Rule 27    expresion -> valor AND valor
+Rule 28    expresion -> valor OR valor
+Rule 29    expresion -> valor XOR valor
+Rule 30    expresion -> valor DIFERENTE valor
+Rule 31    expresion -> valor IGUALDOBLE valor
+Rule 32    expresion -> valor MAYOR valor
+Rule 33    expresion -> valor MAYORIGUAL valor
+Rule 34    expresion -> valor MENORIGUAL valor
+Rule 35    expresion -> valor MENOR valor
+Rule 36    expresion -> valor
+Rule 37    expresion -> MENOS valor
+Rule 38    expresion -> ABS PARA valor PARC
+Rule 39    expresion -> NOTB valor
+Rule 40    expresion -> NOT valor
+Rule 41    expresion -> MAS valor
+Rule 42    expresion -> ANDB DOLAR IDENTIFICADOR arra
+Rule 43    expresion -> READ PARA PARC
+Rule 44    expresion -> ARRAY PARA PARC
+Rule 45    expresion -> PARA INT PARC valor
+Rule 46    expresion -> PARA FLOAT PARC valor
+Rule 47    expresion -> PARA CHAR PARC valor
+Rule 48    expresion -> PARA expresion PARC
+Rule 49    valor -> ENTERO
+Rule 50    valor -> DECIMAL
+Rule 51    valor -> CADENA
+Rule 52    valor -> DOLAR IDENTIFICADOR arra
+
+Terminals, with rules where they appear
+
+ABS                  : 38
+AND                  : 27
+ANDB                 : 22 42
+ARRAY                : 44
+CADENA               : 51
+CHAR                 : 47
+CORA                 : 13
+CORC                 : 13
+DECIMAL              : 50
+DIFERENTE            : 30
+DIVIDIDO             : 20
+DOBLEPUNTO           : 5
+DOLAR                : 11 12 42 52
+ENTERO               : 49
+EXIT                 : 9
+FLOAT                : 46
+GOTO                 : 15
+IDENTIFICADOR        : 4 11 12 15 42 52
+IF                   : 16
+IGUAL                : 12
+IGUALDOBLE           : 31
+IMPRIMIR             : 10
+INT                  : 45
+MAIN                 : 6
+MAS                  : 17 41
+MAYOR                : 32
+MAYORIGUAL           : 33
+MENOR                : 35
+MENORIGUAL           : 34
+MENOS                : 18 37
+MOD                  : 21
+NOT                  : 40
+NOTB                 : 39
+OR                   : 28
+ORB                  : 23
+PARA                 : 10 11 38 43 44 45 46 47 48
+PARC                 : 10 11 38 43 44 45 46 47 48
+POR                  : 19
+PUNTOCOMA            : 9 10 11 12 15
+READ                 : 43
+SHIFTD               : 25
+SHIFTI               : 26
+UNSET                : 11
+XOR                  : 29
+XORB                 : 24
+error                : 
+
+Nonterminals, with rules where they appear
+
+arra                 : 11 12 13 42 52
+etiqueta             : 2 3
+etiquetas            : 1 2
+expresion            : 10 12 13 16 48
+ideti                : 4 6
+inicio               : 0
+instruccion          : 7 16
+instrucciones        : 4 6 7
+valor                : 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 37 38 39 40 41 45 46 47
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . inicio
+    (1) inicio -> . etiquetas
+    (2) etiquetas -> . etiquetas etiqueta
+    (3) etiquetas -> . etiqueta
+    (4) etiqueta -> . IDENTIFICADOR ideti instrucciones
+    (6) etiqueta -> . MAIN ideti instrucciones
+
+    IDENTIFICADOR   shift and go to state 4
+    MAIN            shift and go to state 5
+
+    inicio                         shift and go to state 1
+    etiquetas                      shift and go to state 2
+    etiqueta                       shift and go to state 3
+
+state 1
+
+    (0) S' -> inicio .
+
+
+
+state 2
+
+    (1) inicio -> etiquetas .
+    (2) etiquetas -> etiquetas . etiqueta
+    (4) etiqueta -> . IDENTIFICADOR ideti instrucciones
+    (6) etiqueta -> . MAIN ideti instrucciones
+
+    $end            reduce using rule 1 (inicio -> etiquetas .)
+    IDENTIFICADOR   shift and go to state 4
+    MAIN            shift and go to state 5
+
+    etiqueta                       shift and go to state 6
+
+state 3
+
+    (3) etiquetas -> etiqueta .
+
+    IDENTIFICADOR   reduce using rule 3 (etiquetas -> etiqueta .)
+    MAIN            reduce using rule 3 (etiquetas -> etiqueta .)
+    $end            reduce using rule 3 (etiquetas -> etiqueta .)
+
+
+state 4
+
+    (4) etiqueta -> IDENTIFICADOR . ideti instrucciones
+    (5) ideti -> . DOBLEPUNTO
+
+    DOBLEPUNTO      shift and go to state 8
+
+    ideti                          shift and go to state 7
+
+state 5
+
+    (6) etiqueta -> MAIN . ideti instrucciones
+    (5) ideti -> . DOBLEPUNTO
+
+    DOBLEPUNTO      shift and go to state 8
+
+    ideti                          shift and go to state 9
+
+state 6
+
+    (2) etiquetas -> etiquetas etiqueta .
+
+    IDENTIFICADOR   reduce using rule 2 (etiquetas -> etiquetas etiqueta .)
+    MAIN            reduce using rule 2 (etiquetas -> etiquetas etiqueta .)
+    $end            reduce using rule 2 (etiquetas -> etiquetas etiqueta .)
+
+
+state 7
+
+    (4) etiqueta -> IDENTIFICADOR ideti . instrucciones
+    (7) instrucciones -> . instrucciones instruccion
+    (8) instrucciones -> .
+
+    EXIT            reduce using rule 8 (instrucciones -> .)
+    IMPRIMIR        reduce using rule 8 (instrucciones -> .)
+    UNSET           reduce using rule 8 (instrucciones -> .)
+    DOLAR           reduce using rule 8 (instrucciones -> .)
+    GOTO            reduce using rule 8 (instrucciones -> .)
+    IF              reduce using rule 8 (instrucciones -> .)
+    IDENTIFICADOR   reduce using rule 8 (instrucciones -> .)
+    MAIN            reduce using rule 8 (instrucciones -> .)
+    $end            reduce using rule 8 (instrucciones -> .)
+
+    instrucciones                  shift and go to state 10
+
+state 8
+
+    (5) ideti -> DOBLEPUNTO .
+
+    EXIT            reduce using rule 5 (ideti -> DOBLEPUNTO .)
+    IMPRIMIR        reduce using rule 5 (ideti -> DOBLEPUNTO .)
+    UNSET           reduce using rule 5 (ideti -> DOBLEPUNTO .)
+    DOLAR           reduce using rule 5 (ideti -> DOBLEPUNTO .)
+    GOTO            reduce using rule 5 (ideti -> DOBLEPUNTO .)
+    IF              reduce using rule 5 (ideti -> DOBLEPUNTO .)
+    IDENTIFICADOR   reduce using rule 5 (ideti -> DOBLEPUNTO .)
+    MAIN            reduce using rule 5 (ideti -> DOBLEPUNTO .)
+    $end            reduce using rule 5 (ideti -> DOBLEPUNTO .)
+
+
+state 9
+
+    (6) etiqueta -> MAIN ideti . instrucciones
+    (7) instrucciones -> . instrucciones instruccion
+    (8) instrucciones -> .
+
+    EXIT            reduce using rule 8 (instrucciones -> .)
+    IMPRIMIR        reduce using rule 8 (instrucciones -> .)
+    UNSET           reduce using rule 8 (instrucciones -> .)
+    DOLAR           reduce using rule 8 (instrucciones -> .)
+    GOTO            reduce using rule 8 (instrucciones -> .)
+    IF              reduce using rule 8 (instrucciones -> .)
+    IDENTIFICADOR   reduce using rule 8 (instrucciones -> .)
+    MAIN            reduce using rule 8 (instrucciones -> .)
+    $end            reduce using rule 8 (instrucciones -> .)
+
+    instrucciones                  shift and go to state 11
+
+state 10
+
+    (4) etiqueta -> IDENTIFICADOR ideti instrucciones .
+    (7) instrucciones -> instrucciones . instruccion
+    (9) instruccion -> . EXIT PUNTOCOMA
+    (10) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
+    (11) instruccion -> . UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA
+    (12) instruccion -> . DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA
+    (15) instruccion -> . GOTO IDENTIFICADOR PUNTOCOMA
+    (16) instruccion -> . IF expresion instruccion
+
+    IDENTIFICADOR   reduce using rule 4 (etiqueta -> IDENTIFICADOR ideti instrucciones .)
+    MAIN            reduce using rule 4 (etiqueta -> IDENTIFICADOR ideti instrucciones .)
+    $end            reduce using rule 4 (etiqueta -> IDENTIFICADOR ideti instrucciones .)
+    EXIT            shift and go to state 13
+    IMPRIMIR        shift and go to state 14
+    UNSET           shift and go to state 15
+    DOLAR           shift and go to state 16
+    GOTO            shift and go to state 17
+    IF              shift and go to state 18
+
+    instruccion                    shift and go to state 12
+
+state 11
+
+    (6) etiqueta -> MAIN ideti instrucciones .
+    (7) instrucciones -> instrucciones . instruccion
+    (9) instruccion -> . EXIT PUNTOCOMA
+    (10) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
+    (11) instruccion -> . UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA
+    (12) instruccion -> . DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA
+    (15) instruccion -> . GOTO IDENTIFICADOR PUNTOCOMA
+    (16) instruccion -> . IF expresion instruccion
+
+    IDENTIFICADOR   reduce using rule 6 (etiqueta -> MAIN ideti instrucciones .)
+    MAIN            reduce using rule 6 (etiqueta -> MAIN ideti instrucciones .)
+    $end            reduce using rule 6 (etiqueta -> MAIN ideti instrucciones .)
+    EXIT            shift and go to state 13
+    IMPRIMIR        shift and go to state 14
+    UNSET           shift and go to state 15
+    DOLAR           shift and go to state 16
+    GOTO            shift and go to state 17
+    IF              shift and go to state 18
+
+    instruccion                    shift and go to state 12
+
+state 12
+
+    (7) instrucciones -> instrucciones instruccion .
+
+    EXIT            reduce using rule 7 (instrucciones -> instrucciones instruccion .)
+    IMPRIMIR        reduce using rule 7 (instrucciones -> instrucciones instruccion .)
+    UNSET           reduce using rule 7 (instrucciones -> instrucciones instruccion .)
+    DOLAR           reduce using rule 7 (instrucciones -> instrucciones instruccion .)
+    GOTO            reduce using rule 7 (instrucciones -> instrucciones instruccion .)
+    IF              reduce using rule 7 (instrucciones -> instrucciones instruccion .)
+    IDENTIFICADOR   reduce using rule 7 (instrucciones -> instrucciones instruccion .)
+    MAIN            reduce using rule 7 (instrucciones -> instrucciones instruccion .)
+    $end            reduce using rule 7 (instrucciones -> instrucciones instruccion .)
+
+
+state 13
+
+    (9) instruccion -> EXIT . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 19
+
+
+state 14
+
+    (10) instruccion -> IMPRIMIR . PARA expresion PARC PUNTOCOMA
+
+    PARA            shift and go to state 20
+
+
+state 15
+
+    (11) instruccion -> UNSET . PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA
+
+    PARA            shift and go to state 21
+
+
+state 16
+
+    (12) instruccion -> DOLAR . IDENTIFICADOR arra IGUAL expresion PUNTOCOMA
+
+    IDENTIFICADOR   shift and go to state 22
+
+
+state 17
+
+    (15) instruccion -> GOTO . IDENTIFICADOR PUNTOCOMA
+
+    IDENTIFICADOR   shift and go to state 23
+
+
+state 18
+
+    (16) instruccion -> IF . expresion instruccion
+    (17) expresion -> . valor MAS valor
+    (18) expresion -> . valor MENOS valor
+    (19) expresion -> . valor POR valor
+    (20) expresion -> . valor DIVIDIDO valor
+    (21) expresion -> . valor MOD valor
+    (22) expresion -> . valor ANDB valor
+    (23) expresion -> . valor ORB valor
+    (24) expresion -> . valor XORB valor
+    (25) expresion -> . valor SHIFTD valor
+    (26) expresion -> . valor SHIFTI valor
+    (27) expresion -> . valor AND valor
+    (28) expresion -> . valor OR valor
+    (29) expresion -> . valor XOR valor
+    (30) expresion -> . valor DIFERENTE valor
+    (31) expresion -> . valor IGUALDOBLE valor
+    (32) expresion -> . valor MAYOR valor
+    (33) expresion -> . valor MAYORIGUAL valor
+    (34) expresion -> . valor MENORIGUAL valor
+    (35) expresion -> . valor MENOR valor
+    (36) expresion -> . valor
+    (37) expresion -> . MENOS valor
+    (38) expresion -> . ABS PARA valor PARC
+    (39) expresion -> . NOTB valor
+    (40) expresion -> . NOT valor
+    (41) expresion -> . MAS valor
+    (42) expresion -> . ANDB DOLAR IDENTIFICADOR arra
+    (43) expresion -> . READ PARA PARC
+    (44) expresion -> . ARRAY PARA PARC
+    (45) expresion -> . PARA INT PARC valor
+    (46) expresion -> . PARA FLOAT PARC valor
+    (47) expresion -> . PARA CHAR PARC valor
+    (48) expresion -> . PARA expresion PARC
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    MENOS           shift and go to state 27
+    ABS             shift and go to state 29
+    NOTB            shift and go to state 31
+    NOT             shift and go to state 32
+    MAS             shift and go to state 26
+    ANDB            shift and go to state 28
+    READ            shift and go to state 34
+    ARRAY           shift and go to state 35
+    PARA            shift and go to state 30
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    expresion                      shift and go to state 24
+    valor                          shift and go to state 25
+
+state 19
+
+    (9) instruccion -> EXIT PUNTOCOMA .
+
+    EXIT            reduce using rule 9 (instruccion -> EXIT PUNTOCOMA .)
+    IMPRIMIR        reduce using rule 9 (instruccion -> EXIT PUNTOCOMA .)
+    UNSET           reduce using rule 9 (instruccion -> EXIT PUNTOCOMA .)
+    DOLAR           reduce using rule 9 (instruccion -> EXIT PUNTOCOMA .)
+    GOTO            reduce using rule 9 (instruccion -> EXIT PUNTOCOMA .)
+    IF              reduce using rule 9 (instruccion -> EXIT PUNTOCOMA .)
+    IDENTIFICADOR   reduce using rule 9 (instruccion -> EXIT PUNTOCOMA .)
+    MAIN            reduce using rule 9 (instruccion -> EXIT PUNTOCOMA .)
+    $end            reduce using rule 9 (instruccion -> EXIT PUNTOCOMA .)
+
+
+state 20
+
+    (10) instruccion -> IMPRIMIR PARA . expresion PARC PUNTOCOMA
+    (17) expresion -> . valor MAS valor
+    (18) expresion -> . valor MENOS valor
+    (19) expresion -> . valor POR valor
+    (20) expresion -> . valor DIVIDIDO valor
+    (21) expresion -> . valor MOD valor
+    (22) expresion -> . valor ANDB valor
+    (23) expresion -> . valor ORB valor
+    (24) expresion -> . valor XORB valor
+    (25) expresion -> . valor SHIFTD valor
+    (26) expresion -> . valor SHIFTI valor
+    (27) expresion -> . valor AND valor
+    (28) expresion -> . valor OR valor
+    (29) expresion -> . valor XOR valor
+    (30) expresion -> . valor DIFERENTE valor
+    (31) expresion -> . valor IGUALDOBLE valor
+    (32) expresion -> . valor MAYOR valor
+    (33) expresion -> . valor MAYORIGUAL valor
+    (34) expresion -> . valor MENORIGUAL valor
+    (35) expresion -> . valor MENOR valor
+    (36) expresion -> . valor
+    (37) expresion -> . MENOS valor
+    (38) expresion -> . ABS PARA valor PARC
+    (39) expresion -> . NOTB valor
+    (40) expresion -> . NOT valor
+    (41) expresion -> . MAS valor
+    (42) expresion -> . ANDB DOLAR IDENTIFICADOR arra
+    (43) expresion -> . READ PARA PARC
+    (44) expresion -> . ARRAY PARA PARC
+    (45) expresion -> . PARA INT PARC valor
+    (46) expresion -> . PARA FLOAT PARC valor
+    (47) expresion -> . PARA CHAR PARC valor
+    (48) expresion -> . PARA expresion PARC
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    MENOS           shift and go to state 27
+    ABS             shift and go to state 29
+    NOTB            shift and go to state 31
+    NOT             shift and go to state 32
+    MAS             shift and go to state 26
+    ANDB            shift and go to state 28
+    READ            shift and go to state 34
+    ARRAY           shift and go to state 35
+    PARA            shift and go to state 30
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    expresion                      shift and go to state 39
+    valor                          shift and go to state 25
+
+state 21
+
+    (11) instruccion -> UNSET PARA . DOLAR IDENTIFICADOR arra PARC PUNTOCOMA
+
+    DOLAR           shift and go to state 40
+
+
+state 22
+
+    (12) instruccion -> DOLAR IDENTIFICADOR . arra IGUAL expresion PUNTOCOMA
+    (13) arra -> . CORA expresion CORC arra
+    (14) arra -> .
+
+    CORA            shift and go to state 42
+    IGUAL           reduce using rule 14 (arra -> .)
+
+    arra                           shift and go to state 41
+
+state 23
+
+    (15) instruccion -> GOTO IDENTIFICADOR . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 43
+
+
+state 24
+
+    (16) instruccion -> IF expresion . instruccion
+    (9) instruccion -> . EXIT PUNTOCOMA
+    (10) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
+    (11) instruccion -> . UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA
+    (12) instruccion -> . DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA
+    (15) instruccion -> . GOTO IDENTIFICADOR PUNTOCOMA
+    (16) instruccion -> . IF expresion instruccion
+
+    EXIT            shift and go to state 13
+    IMPRIMIR        shift and go to state 14
+    UNSET           shift and go to state 15
+    DOLAR           shift and go to state 16
+    GOTO            shift and go to state 17
+    IF              shift and go to state 18
+
+    instruccion                    shift and go to state 44
+
+state 25
+
+    (17) expresion -> valor . MAS valor
+    (18) expresion -> valor . MENOS valor
+    (19) expresion -> valor . POR valor
+    (20) expresion -> valor . DIVIDIDO valor
+    (21) expresion -> valor . MOD valor
+    (22) expresion -> valor . ANDB valor
+    (23) expresion -> valor . ORB valor
+    (24) expresion -> valor . XORB valor
+    (25) expresion -> valor . SHIFTD valor
+    (26) expresion -> valor . SHIFTI valor
+    (27) expresion -> valor . AND valor
+    (28) expresion -> valor . OR valor
+    (29) expresion -> valor . XOR valor
+    (30) expresion -> valor . DIFERENTE valor
+    (31) expresion -> valor . IGUALDOBLE valor
+    (32) expresion -> valor . MAYOR valor
+    (33) expresion -> valor . MAYORIGUAL valor
+    (34) expresion -> valor . MENORIGUAL valor
+    (35) expresion -> valor . MENOR valor
+    (36) expresion -> valor .
+
+    MAS             shift and go to state 45
+    MENOS           shift and go to state 46
+    POR             shift and go to state 47
+    DIVIDIDO        shift and go to state 48
+    MOD             shift and go to state 49
+    ANDB            shift and go to state 50
+    ORB             shift and go to state 51
+    XORB            shift and go to state 52
+    SHIFTD          shift and go to state 53
+    SHIFTI          shift and go to state 54
+    AND             shift and go to state 55
+    OR              shift and go to state 56
+    XOR             shift and go to state 57
+    DIFERENTE       shift and go to state 58
+    IGUALDOBLE      shift and go to state 59
+    MAYOR           shift and go to state 60
+    MAYORIGUAL      shift and go to state 61
+    MENORIGUAL      shift and go to state 62
+    MENOR           shift and go to state 63
+    EXIT            reduce using rule 36 (expresion -> valor .)
+    IMPRIMIR        reduce using rule 36 (expresion -> valor .)
+    UNSET           reduce using rule 36 (expresion -> valor .)
+    DOLAR           reduce using rule 36 (expresion -> valor .)
+    GOTO            reduce using rule 36 (expresion -> valor .)
+    IF              reduce using rule 36 (expresion -> valor .)
+    PARC            reduce using rule 36 (expresion -> valor .)
+    CORC            reduce using rule 36 (expresion -> valor .)
+    PUNTOCOMA       reduce using rule 36 (expresion -> valor .)
+
+
+state 26
+
+    (41) expresion -> MAS . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 64
+
+state 27
+
+    (37) expresion -> MENOS . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 65
+
+state 28
+
+    (42) expresion -> ANDB . DOLAR IDENTIFICADOR arra
+
+    DOLAR           shift and go to state 66
+
+
+state 29
+
+    (38) expresion -> ABS . PARA valor PARC
+
+    PARA            shift and go to state 67
+
+
+state 30
+
+    (45) expresion -> PARA . INT PARC valor
+    (46) expresion -> PARA . FLOAT PARC valor
+    (47) expresion -> PARA . CHAR PARC valor
+    (48) expresion -> PARA . expresion PARC
+    (17) expresion -> . valor MAS valor
+    (18) expresion -> . valor MENOS valor
+    (19) expresion -> . valor POR valor
+    (20) expresion -> . valor DIVIDIDO valor
+    (21) expresion -> . valor MOD valor
+    (22) expresion -> . valor ANDB valor
+    (23) expresion -> . valor ORB valor
+    (24) expresion -> . valor XORB valor
+    (25) expresion -> . valor SHIFTD valor
+    (26) expresion -> . valor SHIFTI valor
+    (27) expresion -> . valor AND valor
+    (28) expresion -> . valor OR valor
+    (29) expresion -> . valor XOR valor
+    (30) expresion -> . valor DIFERENTE valor
+    (31) expresion -> . valor IGUALDOBLE valor
+    (32) expresion -> . valor MAYOR valor
+    (33) expresion -> . valor MAYORIGUAL valor
+    (34) expresion -> . valor MENORIGUAL valor
+    (35) expresion -> . valor MENOR valor
+    (36) expresion -> . valor
+    (37) expresion -> . MENOS valor
+    (38) expresion -> . ABS PARA valor PARC
+    (39) expresion -> . NOTB valor
+    (40) expresion -> . NOT valor
+    (41) expresion -> . MAS valor
+    (42) expresion -> . ANDB DOLAR IDENTIFICADOR arra
+    (43) expresion -> . READ PARA PARC
+    (44) expresion -> . ARRAY PARA PARC
+    (45) expresion -> . PARA INT PARC valor
+    (46) expresion -> . PARA FLOAT PARC valor
+    (47) expresion -> . PARA CHAR PARC valor
+    (48) expresion -> . PARA expresion PARC
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    INT             shift and go to state 68
+    FLOAT           shift and go to state 69
+    CHAR            shift and go to state 70
+    MENOS           shift and go to state 27
+    ABS             shift and go to state 29
+    NOTB            shift and go to state 31
+    NOT             shift and go to state 32
+    MAS             shift and go to state 26
+    ANDB            shift and go to state 28
+    READ            shift and go to state 34
+    ARRAY           shift and go to state 35
+    PARA            shift and go to state 30
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 25
+    expresion                      shift and go to state 71
+
+state 31
+
+    (39) expresion -> NOTB . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 72
+
+state 32
+
+    (40) expresion -> NOT . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 73
+
+state 33
+
+    (52) valor -> DOLAR . IDENTIFICADOR arra
+
+    IDENTIFICADOR   shift and go to state 74
+
+
+state 34
+
+    (43) expresion -> READ . PARA PARC
+
+    PARA            shift and go to state 75
+
+
+state 35
+
+    (44) expresion -> ARRAY . PARA PARC
+
+    PARA            shift and go to state 76
+
+
+state 36
+
+    (49) valor -> ENTERO .
+
+    MAS             reduce using rule 49 (valor -> ENTERO .)
+    MENOS           reduce using rule 49 (valor -> ENTERO .)
+    POR             reduce using rule 49 (valor -> ENTERO .)
+    DIVIDIDO        reduce using rule 49 (valor -> ENTERO .)
+    MOD             reduce using rule 49 (valor -> ENTERO .)
+    ANDB            reduce using rule 49 (valor -> ENTERO .)
+    ORB             reduce using rule 49 (valor -> ENTERO .)
+    XORB            reduce using rule 49 (valor -> ENTERO .)
+    SHIFTD          reduce using rule 49 (valor -> ENTERO .)
+    SHIFTI          reduce using rule 49 (valor -> ENTERO .)
+    AND             reduce using rule 49 (valor -> ENTERO .)
+    OR              reduce using rule 49 (valor -> ENTERO .)
+    XOR             reduce using rule 49 (valor -> ENTERO .)
+    DIFERENTE       reduce using rule 49 (valor -> ENTERO .)
+    IGUALDOBLE      reduce using rule 49 (valor -> ENTERO .)
+    MAYOR           reduce using rule 49 (valor -> ENTERO .)
+    MAYORIGUAL      reduce using rule 49 (valor -> ENTERO .)
+    MENORIGUAL      reduce using rule 49 (valor -> ENTERO .)
+    MENOR           reduce using rule 49 (valor -> ENTERO .)
+    EXIT            reduce using rule 49 (valor -> ENTERO .)
+    IMPRIMIR        reduce using rule 49 (valor -> ENTERO .)
+    UNSET           reduce using rule 49 (valor -> ENTERO .)
+    DOLAR           reduce using rule 49 (valor -> ENTERO .)
+    GOTO            reduce using rule 49 (valor -> ENTERO .)
+    IF              reduce using rule 49 (valor -> ENTERO .)
+    PARC            reduce using rule 49 (valor -> ENTERO .)
+    CORC            reduce using rule 49 (valor -> ENTERO .)
+    PUNTOCOMA       reduce using rule 49 (valor -> ENTERO .)
+
+
+state 37
+
+    (50) valor -> DECIMAL .
+
+    MAS             reduce using rule 50 (valor -> DECIMAL .)
+    MENOS           reduce using rule 50 (valor -> DECIMAL .)
+    POR             reduce using rule 50 (valor -> DECIMAL .)
+    DIVIDIDO        reduce using rule 50 (valor -> DECIMAL .)
+    MOD             reduce using rule 50 (valor -> DECIMAL .)
+    ANDB            reduce using rule 50 (valor -> DECIMAL .)
+    ORB             reduce using rule 50 (valor -> DECIMAL .)
+    XORB            reduce using rule 50 (valor -> DECIMAL .)
+    SHIFTD          reduce using rule 50 (valor -> DECIMAL .)
+    SHIFTI          reduce using rule 50 (valor -> DECIMAL .)
+    AND             reduce using rule 50 (valor -> DECIMAL .)
+    OR              reduce using rule 50 (valor -> DECIMAL .)
+    XOR             reduce using rule 50 (valor -> DECIMAL .)
+    DIFERENTE       reduce using rule 50 (valor -> DECIMAL .)
+    IGUALDOBLE      reduce using rule 50 (valor -> DECIMAL .)
+    MAYOR           reduce using rule 50 (valor -> DECIMAL .)
+    MAYORIGUAL      reduce using rule 50 (valor -> DECIMAL .)
+    MENORIGUAL      reduce using rule 50 (valor -> DECIMAL .)
+    MENOR           reduce using rule 50 (valor -> DECIMAL .)
+    EXIT            reduce using rule 50 (valor -> DECIMAL .)
+    IMPRIMIR        reduce using rule 50 (valor -> DECIMAL .)
+    UNSET           reduce using rule 50 (valor -> DECIMAL .)
+    DOLAR           reduce using rule 50 (valor -> DECIMAL .)
+    GOTO            reduce using rule 50 (valor -> DECIMAL .)
+    IF              reduce using rule 50 (valor -> DECIMAL .)
+    PARC            reduce using rule 50 (valor -> DECIMAL .)
+    CORC            reduce using rule 50 (valor -> DECIMAL .)
+    PUNTOCOMA       reduce using rule 50 (valor -> DECIMAL .)
+
+
+state 38
+
+    (51) valor -> CADENA .
+
+    MAS             reduce using rule 51 (valor -> CADENA .)
+    MENOS           reduce using rule 51 (valor -> CADENA .)
+    POR             reduce using rule 51 (valor -> CADENA .)
+    DIVIDIDO        reduce using rule 51 (valor -> CADENA .)
+    MOD             reduce using rule 51 (valor -> CADENA .)
+    ANDB            reduce using rule 51 (valor -> CADENA .)
+    ORB             reduce using rule 51 (valor -> CADENA .)
+    XORB            reduce using rule 51 (valor -> CADENA .)
+    SHIFTD          reduce using rule 51 (valor -> CADENA .)
+    SHIFTI          reduce using rule 51 (valor -> CADENA .)
+    AND             reduce using rule 51 (valor -> CADENA .)
+    OR              reduce using rule 51 (valor -> CADENA .)
+    XOR             reduce using rule 51 (valor -> CADENA .)
+    DIFERENTE       reduce using rule 51 (valor -> CADENA .)
+    IGUALDOBLE      reduce using rule 51 (valor -> CADENA .)
+    MAYOR           reduce using rule 51 (valor -> CADENA .)
+    MAYORIGUAL      reduce using rule 51 (valor -> CADENA .)
+    MENORIGUAL      reduce using rule 51 (valor -> CADENA .)
+    MENOR           reduce using rule 51 (valor -> CADENA .)
+    EXIT            reduce using rule 51 (valor -> CADENA .)
+    IMPRIMIR        reduce using rule 51 (valor -> CADENA .)
+    UNSET           reduce using rule 51 (valor -> CADENA .)
+    DOLAR           reduce using rule 51 (valor -> CADENA .)
+    GOTO            reduce using rule 51 (valor -> CADENA .)
+    IF              reduce using rule 51 (valor -> CADENA .)
+    PARC            reduce using rule 51 (valor -> CADENA .)
+    CORC            reduce using rule 51 (valor -> CADENA .)
+    PUNTOCOMA       reduce using rule 51 (valor -> CADENA .)
+
+
+state 39
+
+    (10) instruccion -> IMPRIMIR PARA expresion . PARC PUNTOCOMA
+
+    PARC            shift and go to state 77
+
+
+state 40
+
+    (11) instruccion -> UNSET PARA DOLAR . IDENTIFICADOR arra PARC PUNTOCOMA
+
+    IDENTIFICADOR   shift and go to state 78
+
+
+state 41
+
+    (12) instruccion -> DOLAR IDENTIFICADOR arra . IGUAL expresion PUNTOCOMA
+
+    IGUAL           shift and go to state 79
+
+
+state 42
+
+    (13) arra -> CORA . expresion CORC arra
+    (17) expresion -> . valor MAS valor
+    (18) expresion -> . valor MENOS valor
+    (19) expresion -> . valor POR valor
+    (20) expresion -> . valor DIVIDIDO valor
+    (21) expresion -> . valor MOD valor
+    (22) expresion -> . valor ANDB valor
+    (23) expresion -> . valor ORB valor
+    (24) expresion -> . valor XORB valor
+    (25) expresion -> . valor SHIFTD valor
+    (26) expresion -> . valor SHIFTI valor
+    (27) expresion -> . valor AND valor
+    (28) expresion -> . valor OR valor
+    (29) expresion -> . valor XOR valor
+    (30) expresion -> . valor DIFERENTE valor
+    (31) expresion -> . valor IGUALDOBLE valor
+    (32) expresion -> . valor MAYOR valor
+    (33) expresion -> . valor MAYORIGUAL valor
+    (34) expresion -> . valor MENORIGUAL valor
+    (35) expresion -> . valor MENOR valor
+    (36) expresion -> . valor
+    (37) expresion -> . MENOS valor
+    (38) expresion -> . ABS PARA valor PARC
+    (39) expresion -> . NOTB valor
+    (40) expresion -> . NOT valor
+    (41) expresion -> . MAS valor
+    (42) expresion -> . ANDB DOLAR IDENTIFICADOR arra
+    (43) expresion -> . READ PARA PARC
+    (44) expresion -> . ARRAY PARA PARC
+    (45) expresion -> . PARA INT PARC valor
+    (46) expresion -> . PARA FLOAT PARC valor
+    (47) expresion -> . PARA CHAR PARC valor
+    (48) expresion -> . PARA expresion PARC
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    MENOS           shift and go to state 27
+    ABS             shift and go to state 29
+    NOTB            shift and go to state 31
+    NOT             shift and go to state 32
+    MAS             shift and go to state 26
+    ANDB            shift and go to state 28
+    READ            shift and go to state 34
+    ARRAY           shift and go to state 35
+    PARA            shift and go to state 30
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    expresion                      shift and go to state 80
+    valor                          shift and go to state 25
+
+state 43
+
+    (15) instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .
+
+    EXIT            reduce using rule 15 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    IMPRIMIR        reduce using rule 15 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    UNSET           reduce using rule 15 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    DOLAR           reduce using rule 15 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    GOTO            reduce using rule 15 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    IF              reduce using rule 15 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    IDENTIFICADOR   reduce using rule 15 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    MAIN            reduce using rule 15 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    $end            reduce using rule 15 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+
+
+state 44
+
+    (16) instruccion -> IF expresion instruccion .
+
+    EXIT            reduce using rule 16 (instruccion -> IF expresion instruccion .)
+    IMPRIMIR        reduce using rule 16 (instruccion -> IF expresion instruccion .)
+    UNSET           reduce using rule 16 (instruccion -> IF expresion instruccion .)
+    DOLAR           reduce using rule 16 (instruccion -> IF expresion instruccion .)
+    GOTO            reduce using rule 16 (instruccion -> IF expresion instruccion .)
+    IF              reduce using rule 16 (instruccion -> IF expresion instruccion .)
+    IDENTIFICADOR   reduce using rule 16 (instruccion -> IF expresion instruccion .)
+    MAIN            reduce using rule 16 (instruccion -> IF expresion instruccion .)
+    $end            reduce using rule 16 (instruccion -> IF expresion instruccion .)
+
+
+state 45
+
+    (17) expresion -> valor MAS . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 81
+
+state 46
+
+    (18) expresion -> valor MENOS . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 82
+
+state 47
+
+    (19) expresion -> valor POR . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 83
+
+state 48
+
+    (20) expresion -> valor DIVIDIDO . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 84
+
+state 49
+
+    (21) expresion -> valor MOD . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 85
+
+state 50
+
+    (22) expresion -> valor ANDB . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 86
+
+state 51
+
+    (23) expresion -> valor ORB . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 87
+
+state 52
+
+    (24) expresion -> valor XORB . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 88
+
+state 53
+
+    (25) expresion -> valor SHIFTD . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 89
+
+state 54
+
+    (26) expresion -> valor SHIFTI . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 90
+
+state 55
+
+    (27) expresion -> valor AND . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 91
+
+state 56
+
+    (28) expresion -> valor OR . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 92
+
+state 57
+
+    (29) expresion -> valor XOR . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 93
+
+state 58
+
+    (30) expresion -> valor DIFERENTE . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 94
+
+state 59
+
+    (31) expresion -> valor IGUALDOBLE . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 95
+
+state 60
+
+    (32) expresion -> valor MAYOR . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 96
+
+state 61
+
+    (33) expresion -> valor MAYORIGUAL . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 97
+
+state 62
+
+    (34) expresion -> valor MENORIGUAL . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 98
+
+state 63
+
+    (35) expresion -> valor MENOR . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 99
+
+state 64
+
+    (41) expresion -> MAS valor .
+
+    EXIT            reduce using rule 41 (expresion -> MAS valor .)
+    IMPRIMIR        reduce using rule 41 (expresion -> MAS valor .)
+    UNSET           reduce using rule 41 (expresion -> MAS valor .)
+    DOLAR           reduce using rule 41 (expresion -> MAS valor .)
+    GOTO            reduce using rule 41 (expresion -> MAS valor .)
+    IF              reduce using rule 41 (expresion -> MAS valor .)
+    PARC            reduce using rule 41 (expresion -> MAS valor .)
+    CORC            reduce using rule 41 (expresion -> MAS valor .)
+    PUNTOCOMA       reduce using rule 41 (expresion -> MAS valor .)
+
+
+state 65
+
+    (37) expresion -> MENOS valor .
+
+    EXIT            reduce using rule 37 (expresion -> MENOS valor .)
+    IMPRIMIR        reduce using rule 37 (expresion -> MENOS valor .)
+    UNSET           reduce using rule 37 (expresion -> MENOS valor .)
+    DOLAR           reduce using rule 37 (expresion -> MENOS valor .)
+    GOTO            reduce using rule 37 (expresion -> MENOS valor .)
+    IF              reduce using rule 37 (expresion -> MENOS valor .)
+    PARC            reduce using rule 37 (expresion -> MENOS valor .)
+    CORC            reduce using rule 37 (expresion -> MENOS valor .)
+    PUNTOCOMA       reduce using rule 37 (expresion -> MENOS valor .)
+
+
+state 66
+
+    (42) expresion -> ANDB DOLAR . IDENTIFICADOR arra
+
+    IDENTIFICADOR   shift and go to state 100
+
+
+state 67
+
+    (38) expresion -> ABS PARA . valor PARC
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 101
+
+state 68
+
+    (45) expresion -> PARA INT . PARC valor
+
+    PARC            shift and go to state 102
+
+
+state 69
+
+    (46) expresion -> PARA FLOAT . PARC valor
+
+    PARC            shift and go to state 103
+
+
+state 70
+
+    (47) expresion -> PARA CHAR . PARC valor
+
+    PARC            shift and go to state 104
+
+
+state 71
+
+    (48) expresion -> PARA expresion . PARC
+
+    PARC            shift and go to state 105
+
+
+state 72
+
+    (39) expresion -> NOTB valor .
+
+    EXIT            reduce using rule 39 (expresion -> NOTB valor .)
+    IMPRIMIR        reduce using rule 39 (expresion -> NOTB valor .)
+    UNSET           reduce using rule 39 (expresion -> NOTB valor .)
+    DOLAR           reduce using rule 39 (expresion -> NOTB valor .)
+    GOTO            reduce using rule 39 (expresion -> NOTB valor .)
+    IF              reduce using rule 39 (expresion -> NOTB valor .)
+    PARC            reduce using rule 39 (expresion -> NOTB valor .)
+    CORC            reduce using rule 39 (expresion -> NOTB valor .)
+    PUNTOCOMA       reduce using rule 39 (expresion -> NOTB valor .)
+
+
+state 73
+
+    (40) expresion -> NOT valor .
+
+    EXIT            reduce using rule 40 (expresion -> NOT valor .)
+    IMPRIMIR        reduce using rule 40 (expresion -> NOT valor .)
+    UNSET           reduce using rule 40 (expresion -> NOT valor .)
+    DOLAR           reduce using rule 40 (expresion -> NOT valor .)
+    GOTO            reduce using rule 40 (expresion -> NOT valor .)
+    IF              reduce using rule 40 (expresion -> NOT valor .)
+    PARC            reduce using rule 40 (expresion -> NOT valor .)
+    CORC            reduce using rule 40 (expresion -> NOT valor .)
+    PUNTOCOMA       reduce using rule 40 (expresion -> NOT valor .)
+
+
+state 74
+
+    (52) valor -> DOLAR IDENTIFICADOR . arra
+    (13) arra -> . CORA expresion CORC arra
+    (14) arra -> .
+
+    CORA            shift and go to state 42
+    MAS             reduce using rule 14 (arra -> .)
+    MENOS           reduce using rule 14 (arra -> .)
+    POR             reduce using rule 14 (arra -> .)
+    DIVIDIDO        reduce using rule 14 (arra -> .)
+    MOD             reduce using rule 14 (arra -> .)
+    ANDB            reduce using rule 14 (arra -> .)
+    ORB             reduce using rule 14 (arra -> .)
+    XORB            reduce using rule 14 (arra -> .)
+    SHIFTD          reduce using rule 14 (arra -> .)
+    SHIFTI          reduce using rule 14 (arra -> .)
+    AND             reduce using rule 14 (arra -> .)
+    OR              reduce using rule 14 (arra -> .)
+    XOR             reduce using rule 14 (arra -> .)
+    DIFERENTE       reduce using rule 14 (arra -> .)
+    IGUALDOBLE      reduce using rule 14 (arra -> .)
+    MAYOR           reduce using rule 14 (arra -> .)
+    MAYORIGUAL      reduce using rule 14 (arra -> .)
+    MENORIGUAL      reduce using rule 14 (arra -> .)
+    MENOR           reduce using rule 14 (arra -> .)
+    EXIT            reduce using rule 14 (arra -> .)
+    IMPRIMIR        reduce using rule 14 (arra -> .)
+    UNSET           reduce using rule 14 (arra -> .)
+    DOLAR           reduce using rule 14 (arra -> .)
+    GOTO            reduce using rule 14 (arra -> .)
+    IF              reduce using rule 14 (arra -> .)
+    PARC            reduce using rule 14 (arra -> .)
+    CORC            reduce using rule 14 (arra -> .)
+    PUNTOCOMA       reduce using rule 14 (arra -> .)
+
+    arra                           shift and go to state 106
+
+state 75
+
+    (43) expresion -> READ PARA . PARC
+
+    PARC            shift and go to state 107
+
+
+state 76
+
+    (44) expresion -> ARRAY PARA . PARC
+
+    PARC            shift and go to state 108
+
+
+state 77
+
+    (10) instruccion -> IMPRIMIR PARA expresion PARC . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 109
+
+
+state 78
+
+    (11) instruccion -> UNSET PARA DOLAR IDENTIFICADOR . arra PARC PUNTOCOMA
+    (13) arra -> . CORA expresion CORC arra
+    (14) arra -> .
+
+    CORA            shift and go to state 42
+    PARC            reduce using rule 14 (arra -> .)
+
+    arra                           shift and go to state 110
+
+state 79
+
+    (12) instruccion -> DOLAR IDENTIFICADOR arra IGUAL . expresion PUNTOCOMA
+    (17) expresion -> . valor MAS valor
+    (18) expresion -> . valor MENOS valor
+    (19) expresion -> . valor POR valor
+    (20) expresion -> . valor DIVIDIDO valor
+    (21) expresion -> . valor MOD valor
+    (22) expresion -> . valor ANDB valor
+    (23) expresion -> . valor ORB valor
+    (24) expresion -> . valor XORB valor
+    (25) expresion -> . valor SHIFTD valor
+    (26) expresion -> . valor SHIFTI valor
+    (27) expresion -> . valor AND valor
+    (28) expresion -> . valor OR valor
+    (29) expresion -> . valor XOR valor
+    (30) expresion -> . valor DIFERENTE valor
+    (31) expresion -> . valor IGUALDOBLE valor
+    (32) expresion -> . valor MAYOR valor
+    (33) expresion -> . valor MAYORIGUAL valor
+    (34) expresion -> . valor MENORIGUAL valor
+    (35) expresion -> . valor MENOR valor
+    (36) expresion -> . valor
+    (37) expresion -> . MENOS valor
+    (38) expresion -> . ABS PARA valor PARC
+    (39) expresion -> . NOTB valor
+    (40) expresion -> . NOT valor
+    (41) expresion -> . MAS valor
+    (42) expresion -> . ANDB DOLAR IDENTIFICADOR arra
+    (43) expresion -> . READ PARA PARC
+    (44) expresion -> . ARRAY PARA PARC
+    (45) expresion -> . PARA INT PARC valor
+    (46) expresion -> . PARA FLOAT PARC valor
+    (47) expresion -> . PARA CHAR PARC valor
+    (48) expresion -> . PARA expresion PARC
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    MENOS           shift and go to state 27
+    ABS             shift and go to state 29
+    NOTB            shift and go to state 31
+    NOT             shift and go to state 32
+    MAS             shift and go to state 26
+    ANDB            shift and go to state 28
+    READ            shift and go to state 34
+    ARRAY           shift and go to state 35
+    PARA            shift and go to state 30
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    expresion                      shift and go to state 111
+    valor                          shift and go to state 25
+
+state 80
+
+    (13) arra -> CORA expresion . CORC arra
+
+    CORC            shift and go to state 112
+
+
+state 81
+
+    (17) expresion -> valor MAS valor .
+
+    EXIT            reduce using rule 17 (expresion -> valor MAS valor .)
+    IMPRIMIR        reduce using rule 17 (expresion -> valor MAS valor .)
+    UNSET           reduce using rule 17 (expresion -> valor MAS valor .)
+    DOLAR           reduce using rule 17 (expresion -> valor MAS valor .)
+    GOTO            reduce using rule 17 (expresion -> valor MAS valor .)
+    IF              reduce using rule 17 (expresion -> valor MAS valor .)
+    PARC            reduce using rule 17 (expresion -> valor MAS valor .)
+    CORC            reduce using rule 17 (expresion -> valor MAS valor .)
+    PUNTOCOMA       reduce using rule 17 (expresion -> valor MAS valor .)
+
+
+state 82
+
+    (18) expresion -> valor MENOS valor .
+
+    EXIT            reduce using rule 18 (expresion -> valor MENOS valor .)
+    IMPRIMIR        reduce using rule 18 (expresion -> valor MENOS valor .)
+    UNSET           reduce using rule 18 (expresion -> valor MENOS valor .)
+    DOLAR           reduce using rule 18 (expresion -> valor MENOS valor .)
+    GOTO            reduce using rule 18 (expresion -> valor MENOS valor .)
+    IF              reduce using rule 18 (expresion -> valor MENOS valor .)
+    PARC            reduce using rule 18 (expresion -> valor MENOS valor .)
+    CORC            reduce using rule 18 (expresion -> valor MENOS valor .)
+    PUNTOCOMA       reduce using rule 18 (expresion -> valor MENOS valor .)
+
+
+state 83
+
+    (19) expresion -> valor POR valor .
+
+    EXIT            reduce using rule 19 (expresion -> valor POR valor .)
+    IMPRIMIR        reduce using rule 19 (expresion -> valor POR valor .)
+    UNSET           reduce using rule 19 (expresion -> valor POR valor .)
+    DOLAR           reduce using rule 19 (expresion -> valor POR valor .)
+    GOTO            reduce using rule 19 (expresion -> valor POR valor .)
+    IF              reduce using rule 19 (expresion -> valor POR valor .)
+    PARC            reduce using rule 19 (expresion -> valor POR valor .)
+    CORC            reduce using rule 19 (expresion -> valor POR valor .)
+    PUNTOCOMA       reduce using rule 19 (expresion -> valor POR valor .)
+
+
+state 84
+
+    (20) expresion -> valor DIVIDIDO valor .
+
+    EXIT            reduce using rule 20 (expresion -> valor DIVIDIDO valor .)
+    IMPRIMIR        reduce using rule 20 (expresion -> valor DIVIDIDO valor .)
+    UNSET           reduce using rule 20 (expresion -> valor DIVIDIDO valor .)
+    DOLAR           reduce using rule 20 (expresion -> valor DIVIDIDO valor .)
+    GOTO            reduce using rule 20 (expresion -> valor DIVIDIDO valor .)
+    IF              reduce using rule 20 (expresion -> valor DIVIDIDO valor .)
+    PARC            reduce using rule 20 (expresion -> valor DIVIDIDO valor .)
+    CORC            reduce using rule 20 (expresion -> valor DIVIDIDO valor .)
+    PUNTOCOMA       reduce using rule 20 (expresion -> valor DIVIDIDO valor .)
+
+
+state 85
+
+    (21) expresion -> valor MOD valor .
+
+    EXIT            reduce using rule 21 (expresion -> valor MOD valor .)
+    IMPRIMIR        reduce using rule 21 (expresion -> valor MOD valor .)
+    UNSET           reduce using rule 21 (expresion -> valor MOD valor .)
+    DOLAR           reduce using rule 21 (expresion -> valor MOD valor .)
+    GOTO            reduce using rule 21 (expresion -> valor MOD valor .)
+    IF              reduce using rule 21 (expresion -> valor MOD valor .)
+    PARC            reduce using rule 21 (expresion -> valor MOD valor .)
+    CORC            reduce using rule 21 (expresion -> valor MOD valor .)
+    PUNTOCOMA       reduce using rule 21 (expresion -> valor MOD valor .)
+
+
+state 86
+
+    (22) expresion -> valor ANDB valor .
+
+    EXIT            reduce using rule 22 (expresion -> valor ANDB valor .)
+    IMPRIMIR        reduce using rule 22 (expresion -> valor ANDB valor .)
+    UNSET           reduce using rule 22 (expresion -> valor ANDB valor .)
+    DOLAR           reduce using rule 22 (expresion -> valor ANDB valor .)
+    GOTO            reduce using rule 22 (expresion -> valor ANDB valor .)
+    IF              reduce using rule 22 (expresion -> valor ANDB valor .)
+    PARC            reduce using rule 22 (expresion -> valor ANDB valor .)
+    CORC            reduce using rule 22 (expresion -> valor ANDB valor .)
+    PUNTOCOMA       reduce using rule 22 (expresion -> valor ANDB valor .)
+
+
+state 87
+
+    (23) expresion -> valor ORB valor .
+
+    EXIT            reduce using rule 23 (expresion -> valor ORB valor .)
+    IMPRIMIR        reduce using rule 23 (expresion -> valor ORB valor .)
+    UNSET           reduce using rule 23 (expresion -> valor ORB valor .)
+    DOLAR           reduce using rule 23 (expresion -> valor ORB valor .)
+    GOTO            reduce using rule 23 (expresion -> valor ORB valor .)
+    IF              reduce using rule 23 (expresion -> valor ORB valor .)
+    PARC            reduce using rule 23 (expresion -> valor ORB valor .)
+    CORC            reduce using rule 23 (expresion -> valor ORB valor .)
+    PUNTOCOMA       reduce using rule 23 (expresion -> valor ORB valor .)
+
+
+state 88
+
+    (24) expresion -> valor XORB valor .
+
+    EXIT            reduce using rule 24 (expresion -> valor XORB valor .)
+    IMPRIMIR        reduce using rule 24 (expresion -> valor XORB valor .)
+    UNSET           reduce using rule 24 (expresion -> valor XORB valor .)
+    DOLAR           reduce using rule 24 (expresion -> valor XORB valor .)
+    GOTO            reduce using rule 24 (expresion -> valor XORB valor .)
+    IF              reduce using rule 24 (expresion -> valor XORB valor .)
+    PARC            reduce using rule 24 (expresion -> valor XORB valor .)
+    CORC            reduce using rule 24 (expresion -> valor XORB valor .)
+    PUNTOCOMA       reduce using rule 24 (expresion -> valor XORB valor .)
+
+
+state 89
+
+    (25) expresion -> valor SHIFTD valor .
+
+    EXIT            reduce using rule 25 (expresion -> valor SHIFTD valor .)
+    IMPRIMIR        reduce using rule 25 (expresion -> valor SHIFTD valor .)
+    UNSET           reduce using rule 25 (expresion -> valor SHIFTD valor .)
+    DOLAR           reduce using rule 25 (expresion -> valor SHIFTD valor .)
+    GOTO            reduce using rule 25 (expresion -> valor SHIFTD valor .)
+    IF              reduce using rule 25 (expresion -> valor SHIFTD valor .)
+    PARC            reduce using rule 25 (expresion -> valor SHIFTD valor .)
+    CORC            reduce using rule 25 (expresion -> valor SHIFTD valor .)
+    PUNTOCOMA       reduce using rule 25 (expresion -> valor SHIFTD valor .)
+
+
+state 90
+
+    (26) expresion -> valor SHIFTI valor .
+
+    EXIT            reduce using rule 26 (expresion -> valor SHIFTI valor .)
+    IMPRIMIR        reduce using rule 26 (expresion -> valor SHIFTI valor .)
+    UNSET           reduce using rule 26 (expresion -> valor SHIFTI valor .)
+    DOLAR           reduce using rule 26 (expresion -> valor SHIFTI valor .)
+    GOTO            reduce using rule 26 (expresion -> valor SHIFTI valor .)
+    IF              reduce using rule 26 (expresion -> valor SHIFTI valor .)
+    PARC            reduce using rule 26 (expresion -> valor SHIFTI valor .)
+    CORC            reduce using rule 26 (expresion -> valor SHIFTI valor .)
+    PUNTOCOMA       reduce using rule 26 (expresion -> valor SHIFTI valor .)
+
+
+state 91
+
+    (27) expresion -> valor AND valor .
+
+    EXIT            reduce using rule 27 (expresion -> valor AND valor .)
+    IMPRIMIR        reduce using rule 27 (expresion -> valor AND valor .)
+    UNSET           reduce using rule 27 (expresion -> valor AND valor .)
+    DOLAR           reduce using rule 27 (expresion -> valor AND valor .)
+    GOTO            reduce using rule 27 (expresion -> valor AND valor .)
+    IF              reduce using rule 27 (expresion -> valor AND valor .)
+    PARC            reduce using rule 27 (expresion -> valor AND valor .)
+    CORC            reduce using rule 27 (expresion -> valor AND valor .)
+    PUNTOCOMA       reduce using rule 27 (expresion -> valor AND valor .)
+
+
+state 92
+
+    (28) expresion -> valor OR valor .
+
+    EXIT            reduce using rule 28 (expresion -> valor OR valor .)
+    IMPRIMIR        reduce using rule 28 (expresion -> valor OR valor .)
+    UNSET           reduce using rule 28 (expresion -> valor OR valor .)
+    DOLAR           reduce using rule 28 (expresion -> valor OR valor .)
+    GOTO            reduce using rule 28 (expresion -> valor OR valor .)
+    IF              reduce using rule 28 (expresion -> valor OR valor .)
+    PARC            reduce using rule 28 (expresion -> valor OR valor .)
+    CORC            reduce using rule 28 (expresion -> valor OR valor .)
+    PUNTOCOMA       reduce using rule 28 (expresion -> valor OR valor .)
+
+
+state 93
+
+    (29) expresion -> valor XOR valor .
+
+    EXIT            reduce using rule 29 (expresion -> valor XOR valor .)
+    IMPRIMIR        reduce using rule 29 (expresion -> valor XOR valor .)
+    UNSET           reduce using rule 29 (expresion -> valor XOR valor .)
+    DOLAR           reduce using rule 29 (expresion -> valor XOR valor .)
+    GOTO            reduce using rule 29 (expresion -> valor XOR valor .)
+    IF              reduce using rule 29 (expresion -> valor XOR valor .)
+    PARC            reduce using rule 29 (expresion -> valor XOR valor .)
+    CORC            reduce using rule 29 (expresion -> valor XOR valor .)
+    PUNTOCOMA       reduce using rule 29 (expresion -> valor XOR valor .)
+
+
+state 94
+
+    (30) expresion -> valor DIFERENTE valor .
+
+    EXIT            reduce using rule 30 (expresion -> valor DIFERENTE valor .)
+    IMPRIMIR        reduce using rule 30 (expresion -> valor DIFERENTE valor .)
+    UNSET           reduce using rule 30 (expresion -> valor DIFERENTE valor .)
+    DOLAR           reduce using rule 30 (expresion -> valor DIFERENTE valor .)
+    GOTO            reduce using rule 30 (expresion -> valor DIFERENTE valor .)
+    IF              reduce using rule 30 (expresion -> valor DIFERENTE valor .)
+    PARC            reduce using rule 30 (expresion -> valor DIFERENTE valor .)
+    CORC            reduce using rule 30 (expresion -> valor DIFERENTE valor .)
+    PUNTOCOMA       reduce using rule 30 (expresion -> valor DIFERENTE valor .)
+
+
+state 95
+
+    (31) expresion -> valor IGUALDOBLE valor .
+
+    EXIT            reduce using rule 31 (expresion -> valor IGUALDOBLE valor .)
+    IMPRIMIR        reduce using rule 31 (expresion -> valor IGUALDOBLE valor .)
+    UNSET           reduce using rule 31 (expresion -> valor IGUALDOBLE valor .)
+    DOLAR           reduce using rule 31 (expresion -> valor IGUALDOBLE valor .)
+    GOTO            reduce using rule 31 (expresion -> valor IGUALDOBLE valor .)
+    IF              reduce using rule 31 (expresion -> valor IGUALDOBLE valor .)
+    PARC            reduce using rule 31 (expresion -> valor IGUALDOBLE valor .)
+    CORC            reduce using rule 31 (expresion -> valor IGUALDOBLE valor .)
+    PUNTOCOMA       reduce using rule 31 (expresion -> valor IGUALDOBLE valor .)
+
+
+state 96
+
+    (32) expresion -> valor MAYOR valor .
+
+    EXIT            reduce using rule 32 (expresion -> valor MAYOR valor .)
+    IMPRIMIR        reduce using rule 32 (expresion -> valor MAYOR valor .)
+    UNSET           reduce using rule 32 (expresion -> valor MAYOR valor .)
+    DOLAR           reduce using rule 32 (expresion -> valor MAYOR valor .)
+    GOTO            reduce using rule 32 (expresion -> valor MAYOR valor .)
+    IF              reduce using rule 32 (expresion -> valor MAYOR valor .)
+    PARC            reduce using rule 32 (expresion -> valor MAYOR valor .)
+    CORC            reduce using rule 32 (expresion -> valor MAYOR valor .)
+    PUNTOCOMA       reduce using rule 32 (expresion -> valor MAYOR valor .)
+
+
+state 97
+
+    (33) expresion -> valor MAYORIGUAL valor .
+
+    EXIT            reduce using rule 33 (expresion -> valor MAYORIGUAL valor .)
+    IMPRIMIR        reduce using rule 33 (expresion -> valor MAYORIGUAL valor .)
+    UNSET           reduce using rule 33 (expresion -> valor MAYORIGUAL valor .)
+    DOLAR           reduce using rule 33 (expresion -> valor MAYORIGUAL valor .)
+    GOTO            reduce using rule 33 (expresion -> valor MAYORIGUAL valor .)
+    IF              reduce using rule 33 (expresion -> valor MAYORIGUAL valor .)
+    PARC            reduce using rule 33 (expresion -> valor MAYORIGUAL valor .)
+    CORC            reduce using rule 33 (expresion -> valor MAYORIGUAL valor .)
+    PUNTOCOMA       reduce using rule 33 (expresion -> valor MAYORIGUAL valor .)
+
+
+state 98
+
+    (34) expresion -> valor MENORIGUAL valor .
+
+    EXIT            reduce using rule 34 (expresion -> valor MENORIGUAL valor .)
+    IMPRIMIR        reduce using rule 34 (expresion -> valor MENORIGUAL valor .)
+    UNSET           reduce using rule 34 (expresion -> valor MENORIGUAL valor .)
+    DOLAR           reduce using rule 34 (expresion -> valor MENORIGUAL valor .)
+    GOTO            reduce using rule 34 (expresion -> valor MENORIGUAL valor .)
+    IF              reduce using rule 34 (expresion -> valor MENORIGUAL valor .)
+    PARC            reduce using rule 34 (expresion -> valor MENORIGUAL valor .)
+    CORC            reduce using rule 34 (expresion -> valor MENORIGUAL valor .)
+    PUNTOCOMA       reduce using rule 34 (expresion -> valor MENORIGUAL valor .)
+
+
+state 99
+
+    (35) expresion -> valor MENOR valor .
+
+    EXIT            reduce using rule 35 (expresion -> valor MENOR valor .)
+    IMPRIMIR        reduce using rule 35 (expresion -> valor MENOR valor .)
+    UNSET           reduce using rule 35 (expresion -> valor MENOR valor .)
+    DOLAR           reduce using rule 35 (expresion -> valor MENOR valor .)
+    GOTO            reduce using rule 35 (expresion -> valor MENOR valor .)
+    IF              reduce using rule 35 (expresion -> valor MENOR valor .)
+    PARC            reduce using rule 35 (expresion -> valor MENOR valor .)
+    CORC            reduce using rule 35 (expresion -> valor MENOR valor .)
+    PUNTOCOMA       reduce using rule 35 (expresion -> valor MENOR valor .)
+
+
+state 100
+
+    (42) expresion -> ANDB DOLAR IDENTIFICADOR . arra
+    (13) arra -> . CORA expresion CORC arra
+    (14) arra -> .
+
+    CORA            shift and go to state 42
+    EXIT            reduce using rule 14 (arra -> .)
+    IMPRIMIR        reduce using rule 14 (arra -> .)
+    UNSET           reduce using rule 14 (arra -> .)
+    DOLAR           reduce using rule 14 (arra -> .)
+    GOTO            reduce using rule 14 (arra -> .)
+    IF              reduce using rule 14 (arra -> .)
+    PARC            reduce using rule 14 (arra -> .)
+    CORC            reduce using rule 14 (arra -> .)
+    PUNTOCOMA       reduce using rule 14 (arra -> .)
+
+    arra                           shift and go to state 113
+
+state 101
+
+    (38) expresion -> ABS PARA valor . PARC
+
+    PARC            shift and go to state 114
+
+
+state 102
+
+    (45) expresion -> PARA INT PARC . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 115
+
+state 103
+
+    (46) expresion -> PARA FLOAT PARC . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 116
+
+state 104
+
+    (47) expresion -> PARA CHAR PARC . valor
+    (49) valor -> . ENTERO
+    (50) valor -> . DECIMAL
+    (51) valor -> . CADENA
+    (52) valor -> . DOLAR IDENTIFICADOR arra
+
+    ENTERO          shift and go to state 36
+    DECIMAL         shift and go to state 37
+    CADENA          shift and go to state 38
+    DOLAR           shift and go to state 33
+
+    valor                          shift and go to state 117
+
+state 105
+
+    (48) expresion -> PARA expresion PARC .
+
+    EXIT            reduce using rule 48 (expresion -> PARA expresion PARC .)
+    IMPRIMIR        reduce using rule 48 (expresion -> PARA expresion PARC .)
+    UNSET           reduce using rule 48 (expresion -> PARA expresion PARC .)
+    DOLAR           reduce using rule 48 (expresion -> PARA expresion PARC .)
+    GOTO            reduce using rule 48 (expresion -> PARA expresion PARC .)
+    IF              reduce using rule 48 (expresion -> PARA expresion PARC .)
+    PARC            reduce using rule 48 (expresion -> PARA expresion PARC .)
+    CORC            reduce using rule 48 (expresion -> PARA expresion PARC .)
+    PUNTOCOMA       reduce using rule 48 (expresion -> PARA expresion PARC .)
+
+
+state 106
+
+    (52) valor -> DOLAR IDENTIFICADOR arra .
+
+    MAS             reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    MENOS           reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    POR             reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    DIVIDIDO        reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    MOD             reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    ANDB            reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    ORB             reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    XORB            reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    SHIFTD          reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    SHIFTI          reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    AND             reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    OR              reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    XOR             reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    DIFERENTE       reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    IGUALDOBLE      reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    MAYOR           reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    MAYORIGUAL      reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    MENORIGUAL      reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    MENOR           reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    EXIT            reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    IMPRIMIR        reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    UNSET           reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    DOLAR           reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    GOTO            reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    IF              reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    PARC            reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    CORC            reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+    PUNTOCOMA       reduce using rule 52 (valor -> DOLAR IDENTIFICADOR arra .)
+
+
+state 107
+
+    (43) expresion -> READ PARA PARC .
+
+    EXIT            reduce using rule 43 (expresion -> READ PARA PARC .)
+    IMPRIMIR        reduce using rule 43 (expresion -> READ PARA PARC .)
+    UNSET           reduce using rule 43 (expresion -> READ PARA PARC .)
+    DOLAR           reduce using rule 43 (expresion -> READ PARA PARC .)
+    GOTO            reduce using rule 43 (expresion -> READ PARA PARC .)
+    IF              reduce using rule 43 (expresion -> READ PARA PARC .)
+    PARC            reduce using rule 43 (expresion -> READ PARA PARC .)
+    CORC            reduce using rule 43 (expresion -> READ PARA PARC .)
+    PUNTOCOMA       reduce using rule 43 (expresion -> READ PARA PARC .)
+
+
+state 108
+
+    (44) expresion -> ARRAY PARA PARC .
+
+    EXIT            reduce using rule 44 (expresion -> ARRAY PARA PARC .)
+    IMPRIMIR        reduce using rule 44 (expresion -> ARRAY PARA PARC .)
+    UNSET           reduce using rule 44 (expresion -> ARRAY PARA PARC .)
+    DOLAR           reduce using rule 44 (expresion -> ARRAY PARA PARC .)
+    GOTO            reduce using rule 44 (expresion -> ARRAY PARA PARC .)
+    IF              reduce using rule 44 (expresion -> ARRAY PARA PARC .)
+    PARC            reduce using rule 44 (expresion -> ARRAY PARA PARC .)
+    CORC            reduce using rule 44 (expresion -> ARRAY PARA PARC .)
+    PUNTOCOMA       reduce using rule 44 (expresion -> ARRAY PARA PARC .)
+
+
+state 109
+
+    (10) instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .
+
+    EXIT            reduce using rule 10 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    IMPRIMIR        reduce using rule 10 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    UNSET           reduce using rule 10 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    DOLAR           reduce using rule 10 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    GOTO            reduce using rule 10 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    IF              reduce using rule 10 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    IDENTIFICADOR   reduce using rule 10 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    MAIN            reduce using rule 10 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    $end            reduce using rule 10 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+
+
+state 110
+
+    (11) instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra . PARC PUNTOCOMA
+
+    PARC            shift and go to state 118
+
+
+state 111
+
+    (12) instruccion -> DOLAR IDENTIFICADOR arra IGUAL expresion . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 119
+
+
+state 112
+
+    (13) arra -> CORA expresion CORC . arra
+    (13) arra -> . CORA expresion CORC arra
+    (14) arra -> .
+
+    CORA            shift and go to state 42
+    IGUAL           reduce using rule 14 (arra -> .)
+    MAS             reduce using rule 14 (arra -> .)
+    MENOS           reduce using rule 14 (arra -> .)
+    POR             reduce using rule 14 (arra -> .)
+    DIVIDIDO        reduce using rule 14 (arra -> .)
+    MOD             reduce using rule 14 (arra -> .)
+    ANDB            reduce using rule 14 (arra -> .)
+    ORB             reduce using rule 14 (arra -> .)
+    XORB            reduce using rule 14 (arra -> .)
+    SHIFTD          reduce using rule 14 (arra -> .)
+    SHIFTI          reduce using rule 14 (arra -> .)
+    AND             reduce using rule 14 (arra -> .)
+    OR              reduce using rule 14 (arra -> .)
+    XOR             reduce using rule 14 (arra -> .)
+    DIFERENTE       reduce using rule 14 (arra -> .)
+    IGUALDOBLE      reduce using rule 14 (arra -> .)
+    MAYOR           reduce using rule 14 (arra -> .)
+    MAYORIGUAL      reduce using rule 14 (arra -> .)
+    MENORIGUAL      reduce using rule 14 (arra -> .)
+    MENOR           reduce using rule 14 (arra -> .)
+    EXIT            reduce using rule 14 (arra -> .)
+    IMPRIMIR        reduce using rule 14 (arra -> .)
+    UNSET           reduce using rule 14 (arra -> .)
+    DOLAR           reduce using rule 14 (arra -> .)
+    GOTO            reduce using rule 14 (arra -> .)
+    IF              reduce using rule 14 (arra -> .)
+    PARC            reduce using rule 14 (arra -> .)
+    CORC            reduce using rule 14 (arra -> .)
+    PUNTOCOMA       reduce using rule 14 (arra -> .)
+
+    arra                           shift and go to state 120
+
+state 113
+
+    (42) expresion -> ANDB DOLAR IDENTIFICADOR arra .
+
+    EXIT            reduce using rule 42 (expresion -> ANDB DOLAR IDENTIFICADOR arra .)
+    IMPRIMIR        reduce using rule 42 (expresion -> ANDB DOLAR IDENTIFICADOR arra .)
+    UNSET           reduce using rule 42 (expresion -> ANDB DOLAR IDENTIFICADOR arra .)
+    DOLAR           reduce using rule 42 (expresion -> ANDB DOLAR IDENTIFICADOR arra .)
+    GOTO            reduce using rule 42 (expresion -> ANDB DOLAR IDENTIFICADOR arra .)
+    IF              reduce using rule 42 (expresion -> ANDB DOLAR IDENTIFICADOR arra .)
+    PARC            reduce using rule 42 (expresion -> ANDB DOLAR IDENTIFICADOR arra .)
+    CORC            reduce using rule 42 (expresion -> ANDB DOLAR IDENTIFICADOR arra .)
+    PUNTOCOMA       reduce using rule 42 (expresion -> ANDB DOLAR IDENTIFICADOR arra .)
+
+
+state 114
+
+    (38) expresion -> ABS PARA valor PARC .
+
+    EXIT            reduce using rule 38 (expresion -> ABS PARA valor PARC .)
+    IMPRIMIR        reduce using rule 38 (expresion -> ABS PARA valor PARC .)
+    UNSET           reduce using rule 38 (expresion -> ABS PARA valor PARC .)
+    DOLAR           reduce using rule 38 (expresion -> ABS PARA valor PARC .)
+    GOTO            reduce using rule 38 (expresion -> ABS PARA valor PARC .)
+    IF              reduce using rule 38 (expresion -> ABS PARA valor PARC .)
+    PARC            reduce using rule 38 (expresion -> ABS PARA valor PARC .)
+    CORC            reduce using rule 38 (expresion -> ABS PARA valor PARC .)
+    PUNTOCOMA       reduce using rule 38 (expresion -> ABS PARA valor PARC .)
+
+
+state 115
+
+    (45) expresion -> PARA INT PARC valor .
+
+    EXIT            reduce using rule 45 (expresion -> PARA INT PARC valor .)
+    IMPRIMIR        reduce using rule 45 (expresion -> PARA INT PARC valor .)
+    UNSET           reduce using rule 45 (expresion -> PARA INT PARC valor .)
+    DOLAR           reduce using rule 45 (expresion -> PARA INT PARC valor .)
+    GOTO            reduce using rule 45 (expresion -> PARA INT PARC valor .)
+    IF              reduce using rule 45 (expresion -> PARA INT PARC valor .)
+    PARC            reduce using rule 45 (expresion -> PARA INT PARC valor .)
+    CORC            reduce using rule 45 (expresion -> PARA INT PARC valor .)
+    PUNTOCOMA       reduce using rule 45 (expresion -> PARA INT PARC valor .)
+
+
+state 116
+
+    (46) expresion -> PARA FLOAT PARC valor .
+
+    EXIT            reduce using rule 46 (expresion -> PARA FLOAT PARC valor .)
+    IMPRIMIR        reduce using rule 46 (expresion -> PARA FLOAT PARC valor .)
+    UNSET           reduce using rule 46 (expresion -> PARA FLOAT PARC valor .)
+    DOLAR           reduce using rule 46 (expresion -> PARA FLOAT PARC valor .)
+    GOTO            reduce using rule 46 (expresion -> PARA FLOAT PARC valor .)
+    IF              reduce using rule 46 (expresion -> PARA FLOAT PARC valor .)
+    PARC            reduce using rule 46 (expresion -> PARA FLOAT PARC valor .)
+    CORC            reduce using rule 46 (expresion -> PARA FLOAT PARC valor .)
+    PUNTOCOMA       reduce using rule 46 (expresion -> PARA FLOAT PARC valor .)
+
+
+state 117
+
+    (47) expresion -> PARA CHAR PARC valor .
+
+    EXIT            reduce using rule 47 (expresion -> PARA CHAR PARC valor .)
+    IMPRIMIR        reduce using rule 47 (expresion -> PARA CHAR PARC valor .)
+    UNSET           reduce using rule 47 (expresion -> PARA CHAR PARC valor .)
+    DOLAR           reduce using rule 47 (expresion -> PARA CHAR PARC valor .)
+    GOTO            reduce using rule 47 (expresion -> PARA CHAR PARC valor .)
+    IF              reduce using rule 47 (expresion -> PARA CHAR PARC valor .)
+    PARC            reduce using rule 47 (expresion -> PARA CHAR PARC valor .)
+    CORC            reduce using rule 47 (expresion -> PARA CHAR PARC valor .)
+    PUNTOCOMA       reduce using rule 47 (expresion -> PARA CHAR PARC valor .)
+
+
+state 118
+
+    (11) instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra PARC . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 121
+
+
+state 119
+
+    (12) instruccion -> DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA .
+
+    EXIT            reduce using rule 12 (instruccion -> DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA .)
+    IMPRIMIR        reduce using rule 12 (instruccion -> DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA .)
+    UNSET           reduce using rule 12 (instruccion -> DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA .)
+    DOLAR           reduce using rule 12 (instruccion -> DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA .)
+    GOTO            reduce using rule 12 (instruccion -> DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA .)
+    IF              reduce using rule 12 (instruccion -> DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA .)
+    IDENTIFICADOR   reduce using rule 12 (instruccion -> DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA .)
+    MAIN            reduce using rule 12 (instruccion -> DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA .)
+    $end            reduce using rule 12 (instruccion -> DOLAR IDENTIFICADOR arra IGUAL expresion PUNTOCOMA .)
+
+
+state 120
+
+    (13) arra -> CORA expresion CORC arra .
+
+    IGUAL           reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    MAS             reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    MENOS           reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    POR             reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    DIVIDIDO        reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    MOD             reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    ANDB            reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    ORB             reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    XORB            reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    SHIFTD          reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    SHIFTI          reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    AND             reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    OR              reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    XOR             reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    DIFERENTE       reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    IGUALDOBLE      reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    MAYOR           reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    MAYORIGUAL      reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    MENORIGUAL      reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    MENOR           reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    EXIT            reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    IMPRIMIR        reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    UNSET           reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    DOLAR           reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    GOTO            reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    IF              reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    PARC            reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    CORC            reduce using rule 13 (arra -> CORA expresion CORC arra .)
+    PUNTOCOMA       reduce using rule 13 (arra -> CORA expresion CORC arra .)
+
+
+state 121
+
+    (11) instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA .
+
+    EXIT            reduce using rule 11 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA .)
+    IMPRIMIR        reduce using rule 11 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA .)
+    UNSET           reduce using rule 11 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA .)
+    DOLAR           reduce using rule 11 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA .)
+    GOTO            reduce using rule 11 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA .)
+    IF              reduce using rule 11 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA .)
+    IDENTIFICADOR   reduce using rule 11 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA .)
+    MAIN            reduce using rule 11 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA .)
+    $end            reduce using rule 11 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA .)
+
