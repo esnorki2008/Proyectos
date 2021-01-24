@@ -1,0 +1,1 @@
+export const api_url :string = "http://35.184.244.85:4040"

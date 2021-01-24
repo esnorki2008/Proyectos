@@ -1,0 +1,19 @@
+.backgroud_list {
+    /*background: linear-gradient(to right, rgba(75, 123, 211, 0.5), rgba(22, 215, 177, 0.3)),  url(https://image.freepik.com/foto-gratis/corredor-largo-escaparate_1127-3441.jpg);*/
+    background-image:  url(https://images.pexels.com/photos/2610756/pexels-photo-2610756.jpeg?cs=srgb&dl=pexels-naim-benjelloun-2610756.jpg&fm=jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+    background-color: lightgray;
+}
+
+.title_color {
+    background-color: lightgray;
+}
+
+.card_body_color {
+    background-color: lightseagreen;
+    color: white;
+}

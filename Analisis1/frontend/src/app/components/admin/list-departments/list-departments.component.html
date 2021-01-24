@@ -1,0 +1,37 @@
+<div class="backgroud_list">
+    <div class="row justify-content-center">
+        <div class="card">
+            <div class="card-header title_color">
+                <h1 class="card-title">
+                    <strong>Lista de departamentos</strong>
+                </h1>
+                <!--Area de espaciado, se realizo para colocar el boton en la -->
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!--------------------------------------------------------------->
+                <button class="btn btn-danger" routerLink="/admin/profile">Salir</button>
+            </div>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="cold-md-3 mt-2 mr-2 " style="padding-top: 2%; padding-left: 2%;" *ngFor="let department of departments">
+            <div class="card text-center" >
+                <div class="card-header" style="background-color: cornflowerblue;">
+                    <h2>
+                        Departamento:
+                    </h2>
+                    <span class="material-icons">
+                        store
+                    </span>
+                </div>
+                
+                <div class="card-body card_body_color">
+                    <h3>
+                        {{department.departamento}}
+                    </h3>
+                    <button type="button" class="btn btn-warning btn-block" (click)="editDepartment(department)">Editar</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="bgImgCenter">
+
+    <div class="centerdiv">
+
+       
+            <div class="row ">
+                
+                <div >
+                    <br>
+                    <br>
+                    <div class="card card-primary">
+                        <div class="card-header ">
+                            <h2 class="card-title">Formulario Tienda</h2>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form>
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <input [(ngModel)]="tienda.nombre" type="text" class="form-control" name="nombre"
+                                        placeholder="Ingresar Nombre Usuario">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-user"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="apellido"
+                                        [(ngModel)]="tienda.apellido" placeholder="Ingresar Apellido Usuario">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-user"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="input-group mb-3">
+                                    <input type="email" class="form-control" name="correo" [(ngModel)]="tienda.correo"
+                                        placeholder="Ingresar Correo">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-envelope"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" name="contrasenia"
+                                        [(ngModel)]="tienda.contrasenia" placeholder="Ingresar Contraseña">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-unlock"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" name="confirmarContrasenia"
+                                        [(ngModel)]="tienda.confirmarContrasenia" placeholder="Ingresar Contraseña">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-unlock"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="tel" class="form-control" name="telefono" [(ngModel)]="tienda.telefono"
+                                        placeholder="Ingresar Telefono">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-phone"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="nombreTienda"
+                                        placeholder="Ingresar Nombre Tienda " [(ngModel)]="tienda.nombreTienda">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-gift"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <textarea name="Text1" cols="60" rows="2" name="slogan" [(ngModel)]="tienda.slogan"
+                                    placeholder="Ingresar Slogan"></textarea>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-rss"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer ">
+                                <div class="row ">
+                                    <div class="col-sm-12  d-flex justify-content-center">
+                                        <button type="button" class="btn btn-primary btn-block"
+                                            (click)="registrarTienda()">Registrar Tienda</button>
+                                    </div>
+                                </div>
+                                
+                                <a  class="text-center" (click)="yaExiste()"  >Ya estoy registrado</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+    </div>
+</div>

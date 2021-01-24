@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  backend:
+    container_name: Backend
+    build: ./Backend/
+    command: npm start
+    ports:
+      - "4040:4040"
+
+  frontend:
+    container_name: Frontend
+    build: ./frontend/
+    command: npm start
+    ports:
+      - "4200:4200"

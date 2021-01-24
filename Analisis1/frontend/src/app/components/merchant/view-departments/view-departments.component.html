@@ -1,0 +1,83 @@
+<app-side-bar></app-side-bar>
+
+
+<div class="bgImgCenter">
+  <div class="centerdiv">
+    <br>
+    <br>
+    <div class="card card-primay">
+      <div class="card-body center">
+        <h2> Administración De Departamentos </h2>
+      </div>
+    </div>
+    <div class="card card-primay">
+      <div class="card-body">
+
+        <br>
+
+        <div class="d-flex justify-content-center">
+
+         
+        </div>
+        <br>
+        <div class="d-flex justify-content-center">
+          <div class='col-5'>
+            <button (click)="showAdd()" class="btn btn-success">Ver Agregar Departamentos</button>
+          </div>
+          <div class='col-5'>
+            <button (click)="showRemove()" class="btn btn-warning">Ver Eliminar Departamenos</button>
+          </div>
+        </div>
+
+        <mat-form-field>
+          <mat-label>Filtrar Departamentos</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.departamento}} </td>
+          </ng-container>
+
+
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="button">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+              <div *ngIf="!transaction">
+                <button *ngIf="showingAdd" (click)="addDepartments(element.id)" class="btn btn-primary">Agregar</button>
+                <button *ngIf="!showingAdd" (click)="removeDepartments(element.id)"
+                  class="btn btn-danger">Eliminar</button>
+              </div>
+              <div *ngIf="transaction">
+                  <p>Transaccion En Curso</p>
+              </div>
+            </td>
+          </ng-container>
+
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No Hay Departamento Similar a "{{input.value}}"</td>
+          </tr>
+        </table>
+        <br>
+
+      </div>
+    </div>
+  </div>
+</div>

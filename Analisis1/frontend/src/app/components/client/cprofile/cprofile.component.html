@@ -1,0 +1,194 @@
+<div class="bgImgCenter">
+
+  <div class="r bgImgCenter">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Mi Usuario</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">User Profile</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                    src="https://cdn2.iconfinder.com/data/icons/business-hr-and-recruitment/100/account_blank_face_dummy_human_mannequin_profile_user_-512.png"
+                    alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center">{{this.fullName}}</h3>
+
+                <p class="text-muted text-center">{{this.rolTexto}}</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>Transacciones Realizadas</b> <a class="float-right">{{countTransact}}</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- About Me Box -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Información De Contacto</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <strong><i class="fas fa-address-card mr-1"></i> Nombre</strong>
+
+                <p class="text-muted">
+                  {{this.firstName}}
+                </p>
+
+                <hr>
+
+                <strong><i class="fas fa-address-card mr-1"></i> Apellido</strong>
+
+                <p class="text-muted">{{this.secondName}}</p>
+
+                <hr>
+
+                <strong><i class="fas fa-bullhorn mr-1"></i> correo</strong>
+
+                <p class="text-muted">
+                  {{this.inforUsuario.correo}}
+                </p>
+
+                <hr>
+
+                <strong><i class="fas fa-book mr-1"></i> Telefono</strong>
+
+                <p class="text-muted">
+                  {{this.phone}}
+                </p>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a (click)="activarHistorial()" class="nav-link maus" data-toggle="tab">Historial
+                      Transacciones</a></li>
+                  <li class="nav-item"><a (click)="activarDatos()" class="nav-link maus" data-toggle="tab">Actualizar
+                      Datos</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div *ngIf="mostrarHistoria" class="active tab-pane" id="activity">
+                    <!-- Post -->
+                    <div *ngFor="let item of historial  ">
+                      <div class="post">
+                        <div class="user-block">
+                          <img class="img-circle img-bordered-sm"
+                            src="https://cdn4.iconfinder.com/data/icons/ecommerce-33/102/money_bag_dollar_shopping_commerce_buy_sell-512.png"
+                            alt="user image">
+                          <span class="username">
+                            <a>{{this.tipoHistorial}}</a>
+                          </span>
+                          <span class="description">Fecha: - {{item.fecha}} </span>
+                        </div>
+                        <!-- /.user-block -->
+                        <p>
+                          <strong>Estado: </strong> {{estadoStr(item.estado)}}
+                          <br>
+                          <strong>Total Transaccion: </strong> {{item.total}}
+                          <br>
+                          <strong>Direccion: </strong> {{item.direccion}}
+                          <br>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div *ngIf="!mostrarHistoria" class="tab-pane active" id="settings">
+                    <br>
+                    <form class="form-horizontal">
+                      <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Nombre</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="this.inforUsuario.nombre" type="text" class="form-control"
+                            name="inputName" placeholder="Nombre">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputName2" class="col-sm-2 col-form-label">Apellido</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="this.inforUsuario.apellido" type="text" class="form-control"
+                            name="inputName2" placeholder="Apellido">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputExperience" class="col-sm-2 col-form-label">Telefono</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="this.inforUsuario.telefono" type="number" class="form-control"
+                            name="inputTelefono" placeholder="Telefono">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputSkills" class="col-sm-2 col-form-label">Contraseña</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="this.oldPassword" type="password" class="form-control" name="password"
+                            placeholder="Ingresar  Contraseña Actual">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputSkills" class="col-sm-2 col-form-label">Nueva Contraseña</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="this.inforUsuario.contrasenia" type="password" class="form-control"
+                            name="repetirPassword" placeholder="Ingresar Nueva Contraseña">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          <div class="checkbox">
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          <button (click)="updateUser()" class="btn btn-warning">Actualizar Datos</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+</div>

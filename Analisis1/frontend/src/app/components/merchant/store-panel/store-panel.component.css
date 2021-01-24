@@ -1,0 +1,34 @@
+.bgImgCenter {
+    background-image: url('https://cdn.wallpaper.com/main/legacy/gallery/17055407/Corner-Stone-1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+  
+  }
+
+.imgSize{
+  max-width: 150px;
+  max-height: 150px;
+}
+  .centerdiv{
+    width: 450;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)
+  }
+
+
+  
+
+.buttonUpload {
+    background-color: rgb(55, 145, 187);
+    color: white;
+}
+
+

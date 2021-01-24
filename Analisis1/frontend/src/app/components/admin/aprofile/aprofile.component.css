@@ -1,0 +1,35 @@
+.bgImgCenter {
+    background: linear-gradient(to right, rgba(52, 73, 94, 0.5), rgba(52, 73, 94, 0.3)), url('https://images.pexels.com/photos/6193649/pexels-photo-6193649.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    background-color: lightgray;
+  }
+
+  .centerdiv {
+    padding-top: 10%;
+  }
+
+  .center_title {
+    padding-top: 1.5%;
+  }
+
+  .title_color {
+    background-color: lightgray;
+  }
+  .card_header_style_1 {
+    background-color: rgb( 88, 214, 141 );
+  }
+
+  .card_header_style_2 {
+    background-color: rgb(165, 105, 189);
+  }
+
+  .card_header_style_3 {
+    background-color: rgb(115, 198, 182);
+  }
+
+  .card_body_style_1 {
+    background-color: rgb(52, 73, 94);
+  }

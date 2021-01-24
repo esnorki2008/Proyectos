@@ -1,0 +1,178 @@
+<div class="r">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Proceso De Pago</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Pago</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="callout callout-info">
+            <h5><i class="fas fa-info"></i> Nota:</h5>
+            Esta pagina contiene informacion sensible, no comparta con nadie estos datos.
+          </div>
+
+
+          <!-- Main content -->
+          <div class="invoice p-3 mb-3">
+            <!-- title row -->
+            <div class="row">
+              <div class="col-12">
+                <h4>
+                  <i class="fas fa-globe"></i> CCV.
+                  <small class="float-right">Fecha: {{this.fecha}}</small>
+                </h4>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- info row -->
+            <!-- /.row -->
+            <!-- Table row -->
+            <div class="row">
+              <div class="col-12 table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID Del Pedido</th>
+                      <th>Producto</th>
+                      <th>Descripcion</th>
+                      <th>Nombre Tienda</th>
+                      <th>Cantidad</th>
+                      <th>Precio Unitario</th>
+                      <th>Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of products  ">
+                      <td>{{item.id}}</td>
+                      <td>{{item.nombre}}</td>
+                      <td>{{item.descripcion}}</td>
+                      <td>{{item.nombreTienda}}</td>
+                      <td>{{item.CantidadCompra}}</td>
+                      <td>{{item.precio}}</td>
+                      <td>Q{{item.CantidadCompra * item.precio}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <!-- accepted payments column -->
+              <div class="col-6">
+                <p class="lead">Metodos de pago:</p>
+                <img src="{{this.imgVisa}}" alt="Visa">
+                <img src="{{this.imgMaster}}" alt="Mastercard">
+                <img src="{{this.imgMurica}}" alt="American Express">
+
+                <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                  En el momento de confirmar el pago se procedera a generar el tramite respectivo.
+
+                </p>
+                <div class="row">
+                  <div class="col-6">
+                    <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                      Numero de tarjeta.
+                    </p>
+                  <input [(ngModel)]="tarjeta" class="form-control" name="ccnm" type="tel" inputmode="numeric" 
+                    autocomplete="cc-number" maxlength="19" placeholder="xxxx-xxxx-xxxx-xxxx">
+                  </div>
+                  <div class="col-6">
+                    <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                      Codigo de seguridad.
+                    </p>
+                    <input [(ngModel)]="seguridad" class="form-control" name="ccnm" type="tel" inputmode="numeric" 
+                      autocomplete="cc-number" maxlength="3" placeholder="xxx">
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-9">
+                      <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                        Propietario de tarjeta.
+                      </p>
+                    <input [(ngModel)]="nombre" class="form-control" name="ccwnm" type="tel" inputmode="numeric" 
+                      autocomplete="cc-number" maxlength="100" placeholder="">
+                    </div>
+                    <div class="col-3">
+                      <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                        Fecha Valida Tarjeta
+                      </p>
+                      <input [(ngModel)]="fechaValida" class="form-control" name="ccnmff" type="tel" inputmode="numeric" 
+                        autocomplete="cc-number" maxlength="5" placeholder="xx/2x">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                          Direccion para la entrega del producto
+                        </p>
+                      <input [(ngModel)]="direccion" class="form-control" name="direccionccv" type="text" placeholder="Direccion de entrega">
+                      </div>
+                      </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-6">
+                <p class="lead">Desglose Del Total {{this.fecha}}</p>
+
+                <div class="table-responsive">
+                  <table class="table">
+                    <tr>
+                      <th style="width:50%">Subtotal:</th>
+                      <td>Q{{this.subtotal}}</td>
+                    </tr>
+                    <tr>
+                      <th>Impuesto</th>
+                      <td>Q{{this.tax}}</td>
+                    </tr>
+                    <tr>
+                      <th>Envio:</th>
+                      <td>GRATIS</td>
+                    </tr>
+                    <tr>
+                      <th>Total:</th>
+                      <td>Q{{this.total}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- this row will not appear when printing -->
+            <div class="row no-print">
+              <div class="col-12">
+                <a *ngIf="false" href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i
+                    class="fas fa-print"></i> Imprimir</a>
+                <button *ngIf="!transact" (click)="confirm()" type="submit" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Confirmar
+                  Pago
+                </button>
+                <p *ngIf="transact" class="float-right">Transaccion en proceso, por favor espere</p>
+                <button *ngIf="false" type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                  <i class="fas fa-download"></i> Generar PDF
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- /.invoice -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+</div>

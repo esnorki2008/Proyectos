@@ -1,0 +1,72 @@
+<div class="contorno" style="margin-left: 50px;margin-top: 30px; margin-right: 50px; background-color:rgb(97, 145, 126);">
+
+<!--
+  ------------ SEARCH BAR --------------------------
+-->
+
+<div class="topnav">
+  <a class="active" (click)="TiendaClick()" >Todas Las Tiendas</a>
+  <a class="Depa" (click)="DepartamentosClick()" >Todos Los Departamentos</a>
+  <input type="text" placeholder="Search.." (keyup.enter) = "onKey($event)" [(ngModel)]="filtername">
+</div> 
+
+
+
+
+<div class="row" style="margin-left:2px; margin-right: 2px;">
+<!-- CREACION DINAMICA DE PRODUCTOS -->
+
+<div class="col-md-2 mt-2" *ngFor="let productos of productos">
+  <div class="card text-center">
+    <div class="card-header" (click)="VerIndividual(productos)">
+      
+      {{productos.nombre}}
+    </div>  
+    <div class="card-header" >
+      
+      {{productos.descripcion}}
+    </div>
+    <img src={{productos.imagen}} alt="" class="card-img-top" height="125">
+    <div class="card-body">
+      <p> Precio: {{productos.precio}} Q</p>
+      <a class="btn btn-warning btn-block" (click)="Addcarrito(productos)"> Añadir al carrito</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- CREACION DINAMICA DE TIENDAS -->
+
+<div class="col-md-2 mt-2" *ngFor="let tiendas of tiendas">
+  <div class="card text-center">
+    <div class="card-header">
+      {{tiendas.nombreTienda}}
+    </div>
+    <img src={{tiendas.IMAGEN}} alt="" class="card-img-top">
+
+    <div class="card-footer">
+      {{tiendas.slogan}}
+    </div>
+    <div class="card-body">
+      <button  type="button" class="btn btn-block btn-success" (click)="verProductosTienda(tiendas)"> Ver Productos</button>
+    </div>
+  </div>
+</div>
+
+<!--  CREACION DINAMICA DE DEPARTAMENTOS -->
+
+<div class="col-md-2 mt-2" *ngFor="let departamentos of departamentos">
+  <div class="card text-center">
+    <div class="card-header">
+      {{departamentos.departamento}}
+    </div>
+    <div class="card-body">
+      <button  type="button" class="btn btn-info btn-block" (click)="VerTiendasDepa(departamentos)"> Ver Tiendas</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+</div>

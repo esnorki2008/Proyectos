@@ -1,0 +1,86 @@
+<section class="content">
+    <div class="container-fluid col-sm-8">
+        <br>
+        <br>
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Reportes Administrador</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form class="form-horizontal col-sm-12">
+                <div class="card-body  ">
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <div class="col-sm-2 ">
+                            <label for="inputEmail3" class="col-form-label">Seleccionar Año</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <select [(ngModel)]="this.selectYear" class="custom-select form-control-border" name="exampleSelectBorder">
+                                <option *ngFor="let item of yearArray  ">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row d-flex justify-content-center">
+                        <div class="col-sm-2 ">
+                            <label for="inputPassword3" class="col-form-label">Seleccionar Mes</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <select  [(ngModel)]="this.selectMonth" class="custom-select form-control-border" name="wexampleSelectBorder">
+                                <option *ngFor="let item of monthArray  ">{{item}}</option>
+                              
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer  ">
+                    <div class="row ">
+                        <div class="col-sm-6 d-flex justify-content-center">
+
+                            <button (click)="reportYear()" type="submit" class="btn btn-info">Mostrar Por Año</button>
+                        </div>
+                        <div class="col-sm-6 d-flex justify-content-center">
+
+                            <button (click)="reportMonth()" type="submit" class="btn btn-info">Mostrar Por Mes</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-footer -->
+            </form>
+        </div>
+        <div *ngIf="this.periodo!= '' " class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Historial por {{this.periodo}}</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form class="form-horizontal col-sm-12">
+                <div class="card-body  ">
+
+                    <div class="row">
+                        <div *ngFor="let item of historial  " class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h4><strong>Total:</strong></h4>
+                                    <h3>Q{{item.total}}</h3>
+
+                                    <p><strong>Cliente:</strong></p>
+                                    <p>{{item.nombreUsuario}}</p>
+                                    <p><strong>Estado:</strong></p>
+                                    <p>{{this.estadoStr(item.estado)}}</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-bag"></i>
+                                </div>
+                                <a  class="small-box-footer"><strong>Direccion: </strong>{{item.direccion}}  <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

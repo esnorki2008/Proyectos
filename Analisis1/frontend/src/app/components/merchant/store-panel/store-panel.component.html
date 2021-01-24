@@ -1,0 +1,96 @@
+<div class="bgImgCenter">
+
+    <div class="centerdiv">
+
+
+        <div class="row ">
+
+            <div>
+
+
+                <div class="card card-success ">
+                    <div class="buttonUpload">
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-12  d-flex justify-content-center">
+                                <h2 class="card-title ">Modificar Datos Tienda</h2>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                   
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form>
+                        <div class="card-body">
+                            <h3>Nombre </h3>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="nombre" [(ngModel)]="tienda.nombreTienda"
+                                    placeholder="Nombre Tienda">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-user"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>Slogan </h3>
+                            <div class="input-group ">
+                                <textarea name="Text1" cols="60" rows="2" name="slogan" [(ngModel)]="tienda.slogan"
+                                    placeholder="Ingresar Slogan"></textarea>
+                                <div class="input-group-append">
+
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-12  d-flex justify-content-center">
+
+
+                                    <h2 classs="center">Imagen Cargada</h2>
+                                </div>
+                                <div class="col-sm-12  d-flex justify-content-center">
+
+
+                                    <img class="img-fluid pad imgSize" src="{{imgData}}"
+                                        alt="Photo">
+                                </div>
+                            </div>
+
+                            <input #csvInput type="file" onclick="this.value=null" class="form-control-file invisible"
+                                id="input_picture" (change)="inputPicture($event)">
+                            <button class="btn btn-block buttonUpload" (click)="csvInput.click()">Agregar imagen de
+                                producto
+                                <span class="far fa-image"></span></button>
+
+                        </div>
+
+                        <!-- /.card-body -->
+
+
+
+                        <div class="card-footer ">
+                            <div class="row ">
+                                <div class="col-sm-12  d-flex justify-content-center mb-3">
+                                    <button type="button" class="btn btn-warning btn-block"
+                                        (click)="sendImage()">Confirmar Cambio</button>
+
+
+                                </div>
+                                <br>
+                                <br>
+                                <div class="col-sm-12  d-flex justify-content-center mb-3">
+                                    <button type="button" class="btn btn-danger btn-block"
+                                        (click)="hrefMechant()">Cancelar</button>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

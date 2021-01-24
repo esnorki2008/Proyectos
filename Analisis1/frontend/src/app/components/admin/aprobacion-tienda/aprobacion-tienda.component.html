@@ -1,0 +1,45 @@
+<div class="bgImgCenter">
+    <div class="row ">
+        <div class="container" style="padding-top: 1%;">
+            <p><a  href="">
+                Aprobacion 
+              </a></p>
+              <p><a href="">
+                Tienda 
+              </a></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cold-md-3 mt-2 mr-2 " style="padding-top: 2%; padding-left: 2%;" *ngFor="let store of stores">
+            <div class="card text-center" style="background-color: cornflowerblue;">
+                <div class="card-header">
+                    <h2>
+                        Nombre de Tienda: {{store.nombre}}
+                    </h2>
+                    <h4>
+                        Eslogan: {{store.slogan}}
+                    </h4>
+                    <span class="material-icons">
+                        store
+                    </span>
+                </div>
+               
+                <div class="card-body">
+                    <h3>
+                        Nombre del dueño: {{store.nombreU}} {{store.apellido}}
+                        <br>
+                        Correo: {{store.correo}} 
+                        <br>
+                        Telefono: {{store.telefono}}
+                    </h3>
+                    <button type="button" class="btn btn-success btn-block" (click)="acceptStore(store)">Autorizar</button> 
+                    <button type="button" class="btn btn-danger btn-block" (click)="rejectStore(store)">Rechazar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row justify-content-center" style="margin-bottom:10px;">
+        <button class="btn" style="background-color: #FF1177; color: #FFFFFF;" routerLink="/admin/profile">Salir</button>
+    </div>
+</div>

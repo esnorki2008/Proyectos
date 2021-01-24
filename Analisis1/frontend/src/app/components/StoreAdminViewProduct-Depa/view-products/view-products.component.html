@@ -1,0 +1,33 @@
+<div class="contorno" style="margin-left: 50px;margin-top: 30px; margin-right: 50px; background-color:rgb(97, 145, 126);">
+
+    <!--
+      ------------ SEARCH BAR --------------------------
+    -->
+    
+    <div class="topnav">
+      <a class="active" (click)="VerTodo()" >View All</a>
+      <input type="text" placeholder="Search.." (keyup.enter) = "onKey($event)" [(ngModel)]="filtername">
+    </div> 
+    
+    
+    
+    
+    <div class="col-md-2 mt-2" *ngFor="let productos of productos">
+      <div class="card text-center">
+        <div class="card-header">
+          
+          {{productos.nombre}}
+        </div>  
+        <div class="card-header" >
+          
+          {{productos.descripcion}}
+        </div>
+        <img src={{productos.imagen}} alt="" class="card-img-top">
+        <div class="card-body">
+          <p> Precio: {{productos.precio}} Q</p>
+          <a class="btn btn-warning btn-block"  (click)="Editar(productos)">Editar</a>
+        </div>
+      </div>
+    </div>
+    
+    </div>
