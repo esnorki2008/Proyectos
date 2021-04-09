@@ -1,7 +1,10 @@
 const utils = require('../utils/utils')
-medicion = {data:""};
+let medicion = {data:""};
+let copia = "";
 module.exports.ntime = async function(request, response, next){
     try {
+        if(medicion.data != "")
+            copia = request.body.data
         medicion.data = request.body.data
         response = utils.formarResponse(response, `Medicion Guardada`, 200)
     } catch (error) {
@@ -11,6 +14,12 @@ module.exports.ntime = async function(request, response, next){
 }
 module.exports.gtime = async function(request, response, next){
     try {
+        if(medicion.data == ""){
+            if(copia != ""){
+                medicion.data = copia
+                copia = ""
+            }
+        }
         let tempo = medicion;
         medicion = {data:""}
         response = utils.formarResponse(response, tempo, 200)
